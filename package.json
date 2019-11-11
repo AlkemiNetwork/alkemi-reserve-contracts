@@ -24,7 +24,7 @@
     "deploy": "truffle deploy",
     "lint": "npm run prettier",
     "prettier": "prettier --write **/*.sol",
-    "coverage": "npx solidity-coverage",
+    "coverage": "npx solidity-coverage"
   },
   "repository": {
     "type": "git",
