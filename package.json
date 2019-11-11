@@ -1,0 +1,41 @@
+{
+  "name": "alkemi-protocol-contracts",
+  "version": "1.0.0",
+  "description": "Alkemi Protocol Smart Contracts",
+  "dependencies": {
+    "truffle": "^5.0.37"
+  },
+  "devDependencies": {
+    "@openzeppelin/test-helpers": "^0.5.3",
+    "bignumber.js": "^9.0.0",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "chai-bignumber": "^3.0.0",
+    "eth-gas-reporter": "^0.2.12",
+    "ganache-cli": "^6.7.0",
+    "prettier": "^1.18.2",
+    "prettier-plugin-solidity": "^1.0.0-alpha.34",
+    "solidity-coverage": "^0.6.7"
+  },
+  "scripts": {
+    "ganache": "ganache-cli --port 8545",
+    "test": "ganache-cli --port 8545 > /dev/null & sleep 5 && truffle test",
+    "compile": "truffle compile --all",
+    "deploy": "truffle deploy",
+    "lint": "npm run prettier",
+    "prettier": "prettier --write **/*.sol",
+    "coverage": "npx solidity-coverage",
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:project-alkemi/alkemi-protocol-contracts.git"
+  },
+  "keywords": [
+    "Alkemi",
+    "DeFi",
+    "Ethereum",
+    "Solidity"
+  ],
+  "author": "Haythem Sellami <haythem@alkemi.ai>",
+  "license": "ISC"
+}
