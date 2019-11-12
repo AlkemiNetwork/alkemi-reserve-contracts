@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Alkemi Protocol Smart Contracts",
   "dependencies": {
-    "truffle": "^5.0.37"
+    "@openzeppelin/contracts": "^2.4.0",
+    "truffle": "^5.0.44"
   },
   "devDependencies": {
     "@openzeppelin/test-helpers": "^0.5.3",
