@@ -157,20 +157,12 @@ contract LiquidityReserve is Ownable {
   }
 
   /**
-   * @dev Throws if called by any account other than the liquidity reserve contract.
-   */
-  modifier onlyManager() {
-    require(msg.sender == liquidityReserveManager, "LiquidityReserve: caller is not the manager");
-    _;
-  }
-
-  /**
    * @dev Set alkemi token address and minimum token amount
    * @notice this function can be only called from the Liquidity Reserve Manager
    * @param _alkemiToken Address of the alkemi token
    * @param _minAlkemiToken Minimum required amount of Alkemi token
    */
-  function setToken(address _alkemiToken, uint256 _minAlkemiToken) external  onlyManager {
+  function setToken(address _alkemiToken, uint256 _minAlkemiToken) external onlyManager {
     _setNewToken(_alkemiToken, _minAlkemiToken);
   }
 
@@ -179,6 +171,14 @@ contract LiquidityReserve is Ownable {
     
     alkemiToken = _alkemiToken;
     minAlkemiToken = _minAlkemiToken;
+  }
+
+  /**
+   * @dev Throws if called by any account other than the liquidity reserve contract.
+   */
+  modifier onlyManager() {
+    require(msg.sender == liquidityReserveManager, "LiquidityReserve: caller is not the manager");
+    _;
   }
 
 }

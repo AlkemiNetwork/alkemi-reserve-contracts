@@ -6,35 +6,35 @@ pragma solidity ^0.5.0;
  */
 contract LiquidityReserveManager {
 
-  address public manager;
+  address public owner;
 
   constructor() public {
-    _setManager(_liquidityReserveManager);
+    _setOwner(msg.sender);
   }
 
   /**
-   * @dev Verifies that the caller is the Manager
+   * @dev Verifies that the caller is the Owner
    */
-  modifier onlyManager() {
-    require(msg.sender == manager, "LiquidityReserveFactory: Only manager may perform this operation");
+  modifier onlyOwner() {
+    require(msg.sender == owner, "LiquidityReserveFactory: Only owner may perform this operation");
     _;
   }
 
   /**
-   * @dev Manager can set the address of the new Manager here
-   * @param _manager Address of the new Manager
+   * @dev Manager can set the address of the new Owner here
+   * @param _owner Address of the new Owner
    */
-  function setNewManager(address _liquidityReserveManager) public onlyManager {
-    _setManager(_liquidityReserveManager);
+  function setNewOwner(address _owner) public onlyOwner {
+    _setOwner(_owner);
   }
 
-  function _setManager(address _liquidityReserveManager) internal {
+  function _setOwner(address _owner) internal {
     require(
-      (_liquidityReserveManager != address(0)) && (_liquidityReserveManager != address(this)),
-      "LiquidityReserveFactory: invalid manager address"
+      (_owner != address(0)) && (_owner != address(this)),
+      "LiquidityReserveManager: invalid owner address"
     );
 
-    manager = _liquidityReserveManager;
+    owner = _owner;
   }
   
 }
