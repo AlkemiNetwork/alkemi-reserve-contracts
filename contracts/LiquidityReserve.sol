@@ -77,6 +77,8 @@ contract LiquidityReserve is Ownable {
     beneficiary = _beneficiary;
     lockingPrice = _lockingPrice;
 
+    // if _lockingPricePosition=0 (PriceLockout.BELOW) then unlock funds when oracle price is below lockingPrice (lockingPricePosition = 0)
+    // if _lockingPricePosition=1 (PriceLockout.ABOVE) then unlock funds when oracle price is above lockingPrice (lockingPricePosition = 1)
     PriceLockout priceLockout = PriceLockout(_lockingPricePosition);
     if(priceLockout == PriceLockout.BELOW) {
       lockingPricePosition = 0;
