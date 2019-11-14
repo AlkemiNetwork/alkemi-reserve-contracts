@@ -10,6 +10,7 @@ contract LiquidityReserveFactory {
 
   /**
    * @dev Creates and initialises a new LiquidityReserve
+   * @param _liquidityProvider Lequidity provider address
    * @param _liquidityReserveManager Lequidity Reserve Manager contract address
    * @param _alkemiToken Alkemi token address
    * @param _beneficiary earnings beneficiary (address(0) if the earnings goes to the current reserve address)
@@ -18,17 +19,18 @@ contract LiquidityReserveFactory {
    * @param _lockingPricePosition locking price position
    * @return Address of new Liquidity Reserve
    */
-  function createLiquidityReserve(
+  function _createLiquidityReserve(
+    address _liquidityProvider,
     address _liquidityReserveManager,
     address _alkemiToken,
     address _beneficiary,
     uint256 _lockingPeriod,
     uint256 _lockingPrice,
     uint8 _lockingPricePosition
-  ) public returns (address) {
+  ) internal returns (address) {
     return address(
       new LiquidityReserve(
-        msg.sender,
+        _liquidityProvider,
         _liquidityReserveManager,
         _alkemiToken,
         _beneficiary,
