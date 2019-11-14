@@ -1,5 +1,7 @@
 pragma solidity ^0.5.0;
 
+import "../interfaces/ILiquidityReserve.sol";
+
 /**
  * @title LiquidityReserveManager
  * @dev This contract manages a specific Liquidity Reserve
@@ -35,6 +37,30 @@ contract LiquidityReserveManager {
     );
 
     owner = _owner;
+  }
+
+  /**
+   * @dev Set new Alkemi token for a specific liquidity reserve
+   * @notice This function can only be called by the owner of the Liquidity Reserve Manager contract
+   * @param _liquidityReserve Liquidity reserve address
+   * @param _token Token address
+   * @param _minAmount Minimum token amount
+   */
+  function setLiquidityReserveToken(address _liquidityReserve, address _token, uint256 _minAmount) public onlyOwner {
+    _setLiquidityReserveToken(_liquidityReserve, _token, _minAmount);
+  }
+
+  function _setLiquidityReserveToken(address _liquidityReserve, address _token, uint256 _minAmount) internal {
+    require(
+      _liquidityReserve != address(0),
+      "LiquidityReserveManager: invalid liquidity reserve address"
+    );
+    require(
+      _token != address(0),
+      "LiquidityReserveManager: invalid token address"
+    );
+
+    ILiquidityReserve(_liquidityReserve).setToken(_token, _minAmount);
   }
   
 }
