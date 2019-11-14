@@ -15,8 +15,8 @@ contract LiquidityReserve is Ownable {
 
   address public liquidityReserveManager;   // address of the LiquidityReserveManager contract
   address public beneficiary;
-  uint256 public minAlkemiToken;            // minimum amount of alkemi token
   address public alkemiToken;
+  uint256 public minAlkemiToken;            // minimum amount of alkemi token
   uint256 public lockingPeriod;
   uint256 public lockingPrice;
   uint8 public lockingPricePosition;      // 0=below the lockingPrice; 1=above the lockingPrice
