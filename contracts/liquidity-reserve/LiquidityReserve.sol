@@ -2,18 +2,17 @@ pragma solidity ^0.5.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
-import "./Ownable.sol";
+import "./LiquidityReserveState.sol";
 
 /**
   * @title LiquidityReserve
   * @dev Base layer functionality for the Liquidity Reserve
   */
-contract LiquidityReserve is Ownable {
+contract LiquidityReserve is LiquidityReserveState {
   using SafeERC20 for ERC20;
 
   address internal constant ETH = address(0);
 
-  address public liquidityReserveManager;   // address of the LiquidityReserveManager contract
   address public beneficiary;
   uint256 public lockingPeriod;
   uint256 public lockingPrice;
@@ -28,9 +27,13 @@ contract LiquidityReserve is Ownable {
   }
 
   event ReserveCreate(
-    address indexed owner,
+    address indexed liquidityProvider,
+    address liquidityReserveManager,
+    address settlementContract,
     address indexed beneficiary,
-    uint256 lockingPeriod
+    uint256 lockingPeriod,
+    uint256 lockingPrice,
+    uint8 lockingPricePosition
   );
   event ReserveDeposit(
     address indexed token,
@@ -55,28 +58,26 @@ contract LiquidityReserve is Ownable {
 
   /**
    * @dev constructor
-   * @param _owner liquidity reserve owner
+   * @param _liquidityProvider liquidity provider address
    * @param _liquidityReserveManager Lequidity Reserve Manager contract address
+   * @param _settlementContract Settlement contract address
    * @param _beneficiary earnings beneficiary (address(0) if the earnings goes to the current reserve address)
    * @param _lockingPeriod funds locking period
    * @param _lockingPrice release funds when hitting this price
    * @param _lockingPricePosition locking price position
    */
   constructor(
-    address _owner,
+    address _liquidityProvider,
     address _liquidityReserveManager,
+    address _settlementContract,
     address _beneficiary,
     uint256 _lockingPeriod,
     uint256 _lockingPrice,
     uint8 _lockingPricePosition
   )
     public
-    Ownable(_owner)
+    LiquidityReserveState(_liquidityReserveManager, _settlementContract, _liquidityProvider)
   {
-    require(
-      ((_liquidityReserveManager != address(0)) && (_liquidityReserveManager != address(this))),
-      "LiquidityReserve: invalid liquidity reserve contract address"
-    );
     require(
       _lockingPeriod > now,
       "LiquidityReserve: invalid locking period timestamp"
@@ -86,8 +87,6 @@ contract LiquidityReserve is Ownable {
       "LiquidityReserve: invalid price lockout"
     );
 
-
-    liquidityReserveManager = liquidityReserveManager;
     beneficiary = _beneficiary;
     lockingPeriod = _lockingPeriod;
     lockingPrice = _lockingPrice;
@@ -102,10 +101,18 @@ contract LiquidityReserve is Ownable {
       lockingPricePosition = 1;
     }
 
-    emit ReserveCreate(owner(), beneficiary, lockingPeriod);
+    emit ReserveCreate(
+      liquidityProvider(),
+      liquidityReserveManager(),
+      settlementContract(),
+      beneficiary,
+      lockingPeriod,
+      lockingPrice,
+      _lockingPricePosition
+    );
   }
 
-  function() external payable onlyOwner {
+  function() external payable onlyPermissioned {
     require(msg.data.length == 0, "LiquidityReserve: data non zero");
     _deposit(ETH, msg.value);
   }
@@ -122,7 +129,7 @@ contract LiquidityReserve is Ownable {
    * @param _token Address of the token being transferred
    * @param _value Amount of tokens being transferred
    */
-  function deposit(address _token, uint256 _value) external payable onlyOwner {
+  function deposit(address _token, uint256 _value) external payable onlyPermissioned {
     _deposit(_token, _value);
   }
 
@@ -147,12 +154,4 @@ contract LiquidityReserve is Ownable {
     }
   }
   
-  /**
-   * @dev Throws if called by any account other than the liquidity reserve contract.
-   */
-  modifier onlyManager() {
-    require(msg.sender == liquidityReserveManager, "LiquidityReserve: caller is not the manager");
-    _;
-  }
-
 }

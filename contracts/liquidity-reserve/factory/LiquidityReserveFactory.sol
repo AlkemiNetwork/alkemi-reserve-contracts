@@ -12,6 +12,7 @@ contract LiquidityReserveFactory {
    * @dev Creates and initialises a new LiquidityReserve
    * @param _liquidityProvider Lequidity provider address
    * @param _liquidityReserveManager Lequidity Reserve Manager contract address
+   * @param _settlementContract Settlement contract address
    * @param _beneficiary earnings beneficiary (address(0) if the earnings goes to the current reserve address)
    * @param _lockingPeriod funds locking period
    * @param _lockingPrice release funds when hitting this price
@@ -21,6 +22,7 @@ contract LiquidityReserveFactory {
   function _createLiquidityReserve(
     address _liquidityProvider,
     address _liquidityReserveManager,
+    address _settlementContract,
     address _beneficiary,
     uint256 _lockingPeriod,
     uint256 _lockingPrice,
@@ -30,6 +32,7 @@ contract LiquidityReserveFactory {
       new LiquidityReserve(
         _liquidityProvider,
         _liquidityReserveManager,
+        _settlementContract,
         _beneficiary,
         _lockingPeriod,
         _lockingPrice,

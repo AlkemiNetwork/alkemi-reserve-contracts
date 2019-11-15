@@ -8,7 +8,7 @@ import "../interfaces/ILiquidityReserve.sol";
  * @title LiquidityReserveManager
  * @dev This contract manages a specific Liquidity Reserve
  */
-contract LiquidityReserveManager is  LiquidityReserveFactory{
+contract LiquidityReserveManager is LiquidityReserveFactory{
 
   address public owner;
 
@@ -28,6 +28,7 @@ contract LiquidityReserveManager is  LiquidityReserveFactory{
 
   /**
    * @dev Creates and initialises a new LiquidityReserve
+   * @param _settlementContract Settlement contract address
    * @param _beneficiary earnings beneficiary (address(0) if the earnings goes to the current reserve address)
    * @param _lockingPeriod funds locking period
    * @param _lockingPrice release funds when hitting this price
@@ -35,6 +36,7 @@ contract LiquidityReserveManager is  LiquidityReserveFactory{
    * @return Address of new Liquidity Reserve
    */
   function createLiquidityReserve(
+    address _settlementContract,
     address _beneficiary,
     uint256 _lockingPeriod,
     uint256 _lockingPrice,
@@ -43,6 +45,7 @@ contract LiquidityReserveManager is  LiquidityReserveFactory{
     _liquidityReserves[msg.sender] = _createLiquidityReserve(
       msg.sender,
       address(this),
+      _settlementContract,
       _beneficiary,
       _lockingPeriod,
       _lockingPrice,
@@ -76,7 +79,7 @@ contract LiquidityReserveManager is  LiquidityReserveFactory{
     owner = _owner;
   }
 
-  /// Will be moved to the settelmet contract
+  /// Will be moved to the settlement contract
   /*
   function setLiquidityReserveToken(address _liquidityReserve, address _token, uint256 _minAmount) public onlyOwner {
     _setLiquidityReserveToken(_liquidityReserve, _token, _minAmount);
