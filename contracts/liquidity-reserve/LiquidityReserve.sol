@@ -4,6 +4,8 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 import "./LiquidityReserveState.sol";
 
+import "../interfaces/IAlkemiSettlement.sol";
+
 /**
   * @title LiquidityReserve
   * @dev Base layer functionality for the Liquidity Reserve
@@ -42,7 +44,7 @@ contract LiquidityReserve is LiquidityReserveState {
   );
   event ReserveWithdraw(
     address indexed token,
-    address indexed sender,
+    address indexed withdrawer,
     uint256 amount
   );
   event ReserveApprove(
@@ -118,19 +120,23 @@ contract LiquidityReserve is LiquidityReserveState {
   }
 
   /**
-   * @dev Returns true if the beneficiary is the current reserve.
-   */
-  function isBeneficiary() public view returns (bool) {
-    return beneficiary == address(0);
-  }
-
-  /**
-   * @notice Deposit `_value` `_token` to the reserve
+   * @dev Deposit `_value` `_token` to the reserve
+   * @notice this function can only be called by the liquidity provider or by the settlement contract
    * @param _token Address of the token being transferred
    * @param _value Amount of tokens being transferred
    */
   function deposit(address _token, uint256 _value) external payable onlyPermissioned {
     _deposit(_token, _value);
+  }
+
+  /**
+   * @dev Withdraw `_value` `_token` from the reserve
+   * @notice this function can only be called by the liquidity provider or by the settlement contract
+   * @param _token Address of the token being transferred
+   * @param _value Amount of tokens being transferred
+   */
+  function withdraw(address _token, uint256 _value) external onlyPermissioned {
+    _withdraw(_token, _value);
   }
 
   function _deposit(address _token, uint256 _value) internal {
@@ -146,12 +152,52 @@ contract LiquidityReserve is LiquidityReserveState {
     emit ReserveDeposit(_token, msg.sender, _value);
   }
 
+  function _withdraw(address _token, uint256 _value) internal {
+    if(isLiquidityprovider()) {
+      require(
+        now > lockingPeriod,
+        "LiquidityReserve: funds time locked"
+      );
+
+      // get token price from settlement contract
+      uint256 tokenPrice = IAlkemiSettlement(settlementContract()).priceOf(_token);
+      if(lockingPricePosition == 0) {
+        require(
+          tokenPrice < lockingPrice,
+          "LiquidityReserve: funds locked - token price still above locking price"
+        );
+      }
+      else {
+        require(
+          tokenPrice >= lockingPrice,
+          "LiquidityReserve: funds locked - token price still below locking price"
+        );
+      }
+    }
+
+    if (_token == ETH) {
+      require(address(this).balance >= _value, "LiquidityReserve: insufficient balance");
+      msg.sender.transfer(_value);
+    } else {
+      ERC20(_token).safeTransfer(msg.sender, _value);
+    }
+
+    emit ReserveWithdraw(_token, msg.sender, _value);
+  }
+
   function balance(address _token) public view returns (uint256) {
     if (_token == ETH) {
         return address(this).balance;
     } else {
         return ERC20(_token).balanceOf(address(this));
     }
+  }
+
+  /**
+   * @dev Returns true if the beneficiary is the current reserve.
+   */
+  function isBeneficiary() public view returns (bool) {
+    return beneficiary == address(0);
   }
   
 }
