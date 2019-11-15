@@ -15,8 +15,6 @@ contract LiquidityReserve is Ownable {
 
   address public liquidityReserveManager;   // address of the LiquidityReserveManager contract
   address public beneficiary;
-  address public alkemiToken;
-  uint256 public minAlkemiToken;            // minimum amount of alkemi token
   uint256 public lockingPeriod;
   uint256 public lockingPrice;
   uint8 public lockingPricePosition;      // 0=below the lockingPrice; 1=above the lockingPrice
@@ -59,7 +57,6 @@ contract LiquidityReserve is Ownable {
    * @dev constructor
    * @param _owner liquidity reserve owner
    * @param _liquidityReserveManager Lequidity Reserve Manager contract address
-   * @param _alkemiToken Alkemi token address
    * @param _beneficiary earnings beneficiary (address(0) if the earnings goes to the current reserve address)
    * @param _lockingPeriod funds locking period
    * @param _lockingPrice release funds when hitting this price
@@ -68,7 +65,6 @@ contract LiquidityReserve is Ownable {
   constructor(
     address _owner,
     address _liquidityReserveManager,
-    address _alkemiToken,
     address _beneficiary,
     uint256 _lockingPeriod,
     uint256 _lockingPrice,
@@ -82,10 +78,6 @@ contract LiquidityReserve is Ownable {
       "LiquidityReserve: invalid liquidity reserve contract address"
     );
     require(
-      (_alkemiToken != address(0)),
-      "LiquidityReserve: invalid alkemi token  address"
-    );
-    require(
       _lockingPeriod > now,
       "LiquidityReserve: invalid locking period timestamp"
     );
@@ -96,7 +88,6 @@ contract LiquidityReserve is Ownable {
 
 
     liquidityReserveManager = liquidityReserveManager;
-    alkemiToken = _alkemiToken;
     beneficiary = _beneficiary;
     lockingPeriod = _lockingPeriod;
     lockingPrice = _lockingPrice;
@@ -155,24 +146,7 @@ contract LiquidityReserve is Ownable {
         return ERC20(_token).balanceOf(address(this));
     }
   }
-
-  /**
-   * @dev Set alkemi token address and minimum token amount
-   * @notice this function can be only called from the Liquidity Reserve Manager
-   * @param _alkemiToken Address of the alkemi token
-   * @param _minAlkemiToken Minimum required amount of Alkemi token
-   */
-  function setToken(address _alkemiToken, uint256 _minAlkemiToken) external onlyManager {
-    _setNewToken(_alkemiToken, _minAlkemiToken);
-  }
-
-  function _setNewToken(address _alkemiToken, uint256 _minAlkemiToken) internal {
-    require(_alkemiToken != address(0), "invalid address");
-    
-    alkemiToken = _alkemiToken;
-    minAlkemiToken = _minAlkemiToken;
-  }
-
+  
   /**
    * @dev Throws if called by any account other than the liquidity reserve contract.
    */

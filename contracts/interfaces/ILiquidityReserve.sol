@@ -18,13 +18,5 @@ contract ILiquidityReserve {
    */
   function deposit(address _token, uint256 _value) external payable;
 
-   /**
-   * @dev Set alkemi token address and minimum token amount
-   * @notice this function can be only called from the Liquidity Reserve Manager
-   * @param _alkemiToken Address of the alkemi token
-   * @param _minAlkemiToken Minimum required amount of Alkemi token
-   */
-  function setToken(address _alkemiToken, uint256 _minAlkemiToken) external;
-
   function balance(address _token) public view returns (uint256);
 }
