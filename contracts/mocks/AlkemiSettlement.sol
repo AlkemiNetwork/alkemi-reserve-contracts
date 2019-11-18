@@ -22,6 +22,17 @@ contract AlkemiSettlement {
   }
 
   /**
+   * @dev withdraw ERC20 or ETH from a specific liquidity reserve
+   * @notice this is just a mock for testing purpose
+   * @param _liquidityReserve liquidity reserve address
+   * @param _token erc20 token address to deposit
+   * @param _amount amount to deposit
+   */
+  function withdrawFromLiquidityReserve(address _liquidityReserve, address _token, uint256 _amount) public {
+    ILiquidityReserve(_liquidityReserve).withdraw(_token, _amount);
+  }
+
+  /**
    * @dev approve liquidity reserve contract to transfer token from this contract
    * @notice this is just a mock for testing purpose
    * @param _liquidityReserve liquidity reserve address

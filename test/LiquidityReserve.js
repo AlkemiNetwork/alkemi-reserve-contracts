@@ -131,8 +131,25 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
 
       assert.equal(alkemiSettlementBalanceBefore-alkemiSettlementBalanceAfter, amountToDeposit, "Wrong deposited amount");
       assert.equal(reserveBalanceAfter.toString(), parseInt(reserveBalanceBefore)+parseInt(amountToDeposit), "Wrong reserve balance");
+    });    
+  });
+
+  describe("Withdraw", async() => {
+    const amountToWithdraw = ether("120");
+
+    it("settlement contract withdraw tokens from liquidity reserve", async() => {
+      let alkemiSettlementBalanceBefore = await tokenMock.balanceOf(alkemiSettlement.address);
+      let reserveBalanceBefore = await liquidityReserve1.balance(tokenMock.address);
+
+      //withdraw tokens
+      await alkemiSettlement.withdrawFromLiquidityReserve(liquidityReserve1.address, tokenMock.address, amountToWithdraw, {from: alkemiTeam});
+      
+      let alkemiSettlementBalanceAfter = await tokenMock.balanceOf(alkemiSettlement.address);
+      let reserveBalanceAfter = await liquidityReserve1.balance(tokenMock.address);
+
+      assert.equal(parseInt(alkemiSettlementBalanceBefore)+parseInt(amountToWithdraw), alkemiSettlementBalanceAfter, "Wrong settlement contract balance");
+      assert.equal(reserveBalanceBefore-amountToWithdraw, reserveBalanceAfter, "Wrong reserve balance");
     });
-    
   });
 
 });
