@@ -58,12 +58,14 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
 
     liquidityReserve1 = await LiquidityReserve.at(liquidityReserve1Address);    
     
-    // Mint tokens for liquidity providers (testing purpose)
+    // Mint tokens
+    await tokenMock.mint(alkemiSettlement.address, supplyToMint);
     await tokenMock.mint(liquidityProvider1, supplyToMint);
     await tokenMock.mint(liquidityProvider2, supplyToMint);
     await tokenMock.mint(liquidityProvider3, supplyToMint);
     await tokenMock.mint(liquidityProvider4, supplyToMint);
     await tokenMock.mint(liquidityProvider5, supplyToMint);
+    await tokenMock.mint(random, supplyToMint);
   });
 
   describe("Liquidity Reserve", async() => {
@@ -79,8 +81,26 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
   
   describe("Deposit", async() => {
     const amountToDeposit = ether("300");
+
+    it("should revert when depositing token without aprroving transfer to the liquidity contract", async() => {
+      await liquidityReserve1.deposit(tokenMock.address, amountToDeposit, {from: liquidityProvider1}).should.be.rejectedWith(EVMRevert);
+    });
+
+    it("should revert when depositing token from address that have no permission", async() => {
+      //aprove the reserve to transfer tokens
+      await tokenMock.approve(liquidityReserve1.address, amountToDeposit, {from: random});
+
+      await liquidityReserve1.deposit(tokenMock.address, amountToDeposit, {from: random}).should.be.rejectedWith(EVMRevert);
+    });
+
+    it("should revert when depositing token amount equal to zero", async() => {
+      //aprove the reserve to transfer tokens
+      await tokenMock.approve(liquidityReserve1.address, amountToDeposit, {from: liquidityProvider1});
+
+      await liquidityReserve1.deposit(tokenMock.address, ether("0"), {from: liquidityProvider1}).should.be.rejectedWith(EVMRevert);
+    });
     
-    it("deposit tokens into liquidity reserve", async() => {
+    it("provider deposit tokens into liquidity reserve", async() => {
       //aprove the reserve to transfer tokens
       await tokenMock.approve(liquidityReserve1.address, amountToDeposit, {from: liquidityProvider1});
 
@@ -90,10 +110,27 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
       await liquidityReserve1.deposit(tokenMock.address, amountToDeposit, {from: liquidityProvider1});
       
       let providerBalanceAfter = await tokenMock.balanceOf(liquidityProvider1);
-      let reserveBalanceAfter = await tokenMock.balanceOf(liquidityReserve1.address);
+      let reserveBalance = await liquidityReserve1.balance(tokenMock.address);
 
       assert.equal(providerBalanceBefore-providerBalanceAfter, amountToDeposit, "Wrong deposited amount");
-      assert.equal(reserveBalanceAfter.toString(), amountToDeposit.toString(), "Wrong reserve balance");
+      assert.equal(reserveBalance.toString(), amountToDeposit.toString(), "Wrong reserve balance");
+    });
+
+    it("settlement contract deposit tokens into liquidity reserve", async() => {
+      //aprove the reserve to transfer tokens
+      await alkemiSettlement.approveTokenTransfer(liquidityReserve1.address, tokenMock.address, amountToDeposit, {from: alkemiTeam});
+
+      let alkemiSettlementBalanceBefore = await tokenMock.balanceOf(alkemiSettlement.address);
+      let reserveBalanceBefore = await liquidityReserve1.balance(tokenMock.address);
+
+      //deposit tokens
+      await alkemiSettlement.depositIntoLiquidityReserve(liquidityReserve1.address, tokenMock.address, amountToDeposit, {from: alkemiTeam});
+      
+      let alkemiSettlementBalanceAfter = await tokenMock.balanceOf(alkemiSettlement.address);
+      let reserveBalanceAfter = await liquidityReserve1.balance(tokenMock.address);
+
+      assert.equal(alkemiSettlementBalanceBefore-alkemiSettlementBalanceAfter, amountToDeposit, "Wrong deposited amount");
+      assert.equal(reserveBalanceAfter.toString(), parseInt(reserveBalanceBefore)+parseInt(amountToDeposit), "Wrong reserve balance");
     });
     
   });
