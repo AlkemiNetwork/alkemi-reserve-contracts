@@ -22,7 +22,7 @@ $ npm i
 # Compile contracts
 $ npm run compile
 
-# Run all tests
+# Run all tests (make sure to run ganache before)
 $ npm run test
 
 # Run coverage
