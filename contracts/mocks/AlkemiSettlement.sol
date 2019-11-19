@@ -9,6 +9,8 @@ import "../interfaces/ILiquidityReserve.sol";
 contract AlkemiSettlement {
 
   address internal constant ETH = address(0);
+
+  uint256 public oraclePrice = 200;
     
   /**
    * @dev deposit ERC20 or ETH into a specific liquidity reserve
@@ -43,14 +45,29 @@ contract AlkemiSettlement {
     ERC20(_token).approve(_liquidityReserve, _amount);
   }
 
+  /******************************* Mocking Oracle prices **********************************************************************/
+
   /**
    * @dev Returns the price of specific token
    * @notice this is just  mock for testing purpose
    * @param _token token address
    * @return token price
    */
-  function priceOf(address _token) external pure returns (uint256) {
-    return 200;
+  function priceOf(address _token) external view returns (uint256) {
+    return oraclePrice ;
+  }
+
+  function incerementPriceOf(address _token, uint256 _increment) external {
+    oraclePrice += _increment;
+  }
+
+  function decerementPriceOf(address _token, uint256 _decrement) external {
+    oraclePrice -= _decrement;
+  }
+
+  function resetPriceOf(address _token, uint256 _price) external returns (uint256) {
+    oraclePrice = _price;
+    return oraclePrice;
   }
 
 }
