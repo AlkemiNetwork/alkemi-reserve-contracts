@@ -172,14 +172,14 @@ contract LiquidityReserve is LiquidityReserveState {
   }
 
   /**
-   * @dev Returns true if the caller is the current liquidity provider.
+   * @dev Returns true if one of the liquidity provder's conditions are valid
    */
   function isUnlocked(address _token) public view returns (bool) {
     if(isLiquidityprovider()) {
       if(now > lockingPeriod) return true;
 
       // get token price from settlement contract
-      uint256 tokenOraclePrice = IAlkemiSettlement(settlementContract()).priceOf(_token);
+      uint256 tokenOraclePrice = getTokenPrice(_token);
       if(lockingPricePosition == 0) {
         if(tokenOraclePrice < lockingPrice) return true;
       }
@@ -193,6 +193,20 @@ contract LiquidityReserve is LiquidityReserveState {
     }
   }
 
+  /**
+   * @dev Return token price for settlement contract
+   * @param _token token address
+   * @return token price
+   */
+  function getTokenPrice(_token) internal view returns (uint256) {
+    return IAlkemiSettlement(settlementContract()).priceOf(_token);
+  }
+
+  /**
+   * @dev Get liquidity reserve of a specific token
+   * @param _token token address
+   * @return liquidity reserve token balance
+   */
   function balance(address _token) public view returns (uint256) {
     if (_token == ETH) {
         return address(this).balance;

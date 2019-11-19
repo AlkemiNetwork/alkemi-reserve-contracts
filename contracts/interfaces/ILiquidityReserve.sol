@@ -22,6 +22,19 @@ contract ILiquidityReserve {
   function withdraw(address _token, uint256 _value) external;
 
   /**
+   * @dev Returns true if one of the liquidity provder's conditions are valid
+   */
+  function isUnlocked(address _token) public view returns (bool);
+
+  /**
+   * @dev Return token price for settlement contract
+   * @param _token token address
+   * @return token price
+   */
+  function getTokenPrice(_token) internal view returns (uint256);
+
+
+  /**
    * @dev Returns true if the beneficiary is the current reserve.
    */
   function isBeneficiary() external view returns (bool);
