@@ -152,29 +152,7 @@ contract LiquidityReserve is LiquidityReserveState {
     emit ReserveDeposit(_token, msg.sender, _value);
   }
 
-  function _withdraw(address _token, uint256 _value) internal {
-    if(isLiquidityprovider()) {
-      require(
-        now > lockingPeriod,
-        "LiquidityReserve: funds time locked"
-      );
-
-      // get token price from settlement contract
-      uint256 tokenPrice = IAlkemiSettlement(settlementContract()).priceOf(_token);
-      if(lockingPricePosition == 0) {
-        require(
-          tokenPrice < lockingPrice,
-          "LiquidityReserve: funds locked - token price still above locking price"
-        );
-      }
-      else {
-        require(
-          tokenPrice >= lockingPrice,
-          "LiquidityReserve: funds locked - token price still below locking price"
-        );
-      }
-    }
-
+  function _withdraw(address _token, uint256 _value) internal onlyUnlocked(_token) {
     if (_token == ETH) {
       require(address(this).balance >= _value, "LiquidityReserve: insufficient balance");
       msg.sender.transfer(_value);
@@ -183,6 +161,36 @@ contract LiquidityReserve is LiquidityReserveState {
     }
 
     emit ReserveWithdraw(_token, msg.sender, _value);
+  }
+
+  /**
+   * @dev Throws if locking conditions are still valid
+   */
+  modifier onlyUnlocked(address _token) {
+    require(isUnlocked(_token), "LiquidityReserve: provider locking conditions still valid");
+    _;
+  }
+
+  /**
+   * @dev Returns true if the caller is the current liquidity provider.
+   */
+  function isUnlocked(address _token) public view returns (bool) {
+    if(isLiquidityprovider()) {
+      if(now > lockingPeriod) return true;
+
+      // get token price from settlement contract
+      uint256 tokenOraclePrice = IAlkemiSettlement(settlementContract()).priceOf(_token);
+      if(lockingPricePosition == 0) {
+        if(tokenOraclePrice < lockingPrice) return true;
+      }
+      else {
+        if(tokenOraclePrice > lockingPrice) return true;
+      }
+      return false;
+    }
+    else {
+      return true;
+    }
   }
 
   function balance(address _token) public view returns (uint256) {
