@@ -137,14 +137,17 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
   });
 
   describe("Withdraw", async() => {
-    const amountToWithdraw = ether("110");
+    const amountToWithdraw = ether("100");
 
     describe("Liquidity provider withdraw", async() => {
-      it("should revert withdrawing during locking period", async() => {
+      it("should revert withdrawing during locking period and price locking", async() => {
         await liquidityReserve1.withdraw(tokenMock.address, amountToWithdraw, {from: liquidityProvider1}).should.be.rejectedWith(EVMRevert);
       });
 
-      it("should revert withdrawing during locking period even if price unlocking condition is set", async() => {
+      it("withdraw when price locking condition is valid even if locking period is not valid", async() => {
+        let reserveBalanceBefore = await liquidityReserve1.balance(tokenMock.address);
+        let providerBalanceBefore = await tokenMock.balanceOf(liquidityProvider1);
+
         let _lockingPricePosition = await liquidityReserve1.lockingPricePosition();
         let _lockingPrice = await liquidityReserve1.lockingPrice();
         let _oraclePrice = await alkemiSettlement.priceOf(tokenMock.address);
@@ -159,14 +162,23 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
           _oraclePrice = await alkemiSettlement.priceOf(tokenMock.address);
           assert.ok(_oraclePrice > _lockingPrice, "Oracle price is not greater than locking price"); 
         }
-        await liquidityReserve1.withdraw(tokenMock.address, amountToWithdraw, {from: liquidityProvider1}).should.be.rejectedWith(EVMRevert);
+
+        await liquidityReserve1.withdraw(tokenMock.address, amountToWithdraw, {from: liquidityProvider1});
+
+        let reserveBalanceAfter = await liquidityReserve1.balance(tokenMock.address);
+        let providerBalanceAfter = await tokenMock.balanceOf(liquidityProvider1);
+        assert.equal(reserveBalanceBefore-amountToWithdraw, reserveBalanceAfter, "Wrong reserve balance");
+        assert.equal(parseInt(providerBalanceBefore)+parseInt(amountToWithdraw), parseInt(providerBalanceAfter), "Wrong liqudity provider balance");
       }); 
 
-      it("should revert withdrawing when price is locked even if locking period condition is set", async() => {
+      it("withdraw when locking period is valid even if price locking is not valid", async() => {
         //reset oracle price
         await alkemiSettlement.resetPriceOf(tokenMock.address, 200);
         // increase time
         await increaseTimeTo(lockingPeriod+1);
+
+        let reserveBalanceBefore = await liquidityReserve1.balance(tokenMock.address);
+        let providerBalanceBefore = await tokenMock.balanceOf(liquidityProvider1);
 
         let _lockingPricePosition = await liquidityReserve1.lockingPricePosition();
         let _lockingPrice = await liquidityReserve1.lockingPrice();
@@ -182,10 +194,16 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
           _oraclePrice = await alkemiSettlement.priceOf(tokenMock.address);
           assert.ok(_oraclePrice < _lockingPrice, "Oracle price is not less than locking price"); 
         }
-        await liquidityReserve1.withdraw(tokenMock.address, amountToWithdraw, {from: liquidityProvider1}).should.be.rejectedWith(EVMRevert);
+
+        await liquidityReserve1.withdraw(tokenMock.address, amountToWithdraw, {from: liquidityProvider1});
+
+        let reserveBalanceAfter = await liquidityReserve1.balance(tokenMock.address);
+        let providerBalanceAfter = await tokenMock.balanceOf(liquidityProvider1);
+        assert.equal(reserveBalanceBefore-amountToWithdraw, reserveBalanceAfter, "Wrong reserve balance");
+        assert.equal(parseInt(providerBalanceBefore)+parseInt(amountToWithdraw), parseInt(providerBalanceAfter), "Wrong liqudity provider balance");
       }); 
 
-      it("liquidity provider withdraw from liquidity reserve", async() => {
+      it("withdraw when both locking period and price locking are valid ", async() => {
         //reset oracle price
         await alkemiSettlement.resetPriceOf(tokenMock.address, 200);
 
@@ -215,7 +233,7 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
         assert.equal(parseInt(providerBalanceBefore)+parseInt(amountToWithdraw), parseInt(providerBalanceAfter), "Wrong liqudity provider balance");
       }); 
 
-      it("should revert withdrawing from another liqudity provider", async() => {
+      it("should revert another liqudity provider withdrawing from liquidity reserve", async() => {
         await liquidityReserve1.withdraw(tokenMock.address, amountToWithdraw, {from: liquidityProvider2}).should.be.rejectedWith(EVMRevert);
       });
 
