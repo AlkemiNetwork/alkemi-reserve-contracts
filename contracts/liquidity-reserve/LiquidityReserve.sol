@@ -194,7 +194,7 @@ contract LiquidityReserve is LiquidityReserveState {
   }
 
   /**
-   * @dev Return token price for settlement contract
+   * @dev Return token price from settlement contract
    * @param _token token address
    * @return token price
    */
