@@ -198,7 +198,7 @@ contract LiquidityReserve is LiquidityReserveState {
    * @param _token token address
    * @return token price
    */
-  function getTokenPrice(_token) internal view returns (uint256) {
+  function getTokenPrice(address _token) internal view returns (uint256) {
     return IAlkemiSettlement(settlementContract()).priceOf(_token);
   }
 
