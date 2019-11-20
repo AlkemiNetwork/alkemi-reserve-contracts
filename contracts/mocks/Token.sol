@@ -5,5 +5,5 @@ import "@openzeppelin/contracts/token/ERC20/ERC20Mintable.sol";
 /**
  * @notice ERC20 Mintable token mock
  */
-contract AlkemiToken is ERC20Mintable {
+contract Token is ERC20Mintable {
 }
