@@ -20,8 +20,9 @@
   },
   "scripts": {
     "ganache": "ganache-cli --port 8545",
+    "ganache-ci": "ganache-cli --port 8545 > /dev/null &",
     "test": "truffle test",
-    "test-ci": "ganache-cli --port 8545 > /dev/null & sleep 5 && truffle test",
+    "test-ci": "truffle test",
     "compile": "truffle compile --all",
     "deploy": "truffle deploy",
     "lint": "npm run prettier",
