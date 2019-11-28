@@ -22,8 +22,13 @@ contract OracleGuard {
   // Authorized nodes, set by an auth
   mapping (uint256 => address) public slot;
 
+  uint256 nodesCounter;
+
   constructor() public {
     auths[msg.sender] = 1;
+
+    _oracleContract = address(0);
+    nodesCounter = 0;
   }
 
   /**
@@ -46,7 +51,7 @@ contract OracleGuard {
   }
 
   /**
-   * @dev Check if node is authorized to call oracle
+   * @dev Check if node is authorized to submit book to oracle
    * @param _node node address
    * @return true if authorized
    */
@@ -83,6 +88,7 @@ contract OracleGuard {
     require(slot[s] == address(0), "OracleGuard: oracle already authorized");
     nodes[a] = 1;
     slot[s] = a;
+    nodesCounter++;
   }
 
   /**
@@ -93,6 +99,7 @@ contract OracleGuard {
   function dropNode(address a) external auth {
     //nodes[a[i]] = 0;
     slot[uint8(uint256(a) >> 152)] = address(0);
+    nodesCounter--;
   }
 
   /**
@@ -107,6 +114,7 @@ contract OracleGuard {
       require(slot[s] == address(0), "OracleGuard: oracle already authorized");
       nodes[a[i]] = 1;
       slot[s] = a[i];
+      nodesCounter++;
     }
   }
 
@@ -119,6 +127,7 @@ contract OracleGuard {
     for (uint i = 0; i < a.length; i++) {
       //nodes[a[i]] = 0;
       slot[uint8(uint256(a[i]) >> 152)] = address(0);
+      nodesCounter--;
     }
   }
 
