@@ -22,13 +22,13 @@ contract OracleGuard {
   // Authorized nodes, set by an auth
   mapping (uint256 => address) public slot;
 
-  uint256 nodesCounter;
+  uint256 internal _nodesCounter;
 
   constructor() public {
     auths[msg.sender] = 1;
 
     _oracleContract = address(0);
-    nodesCounter = 0;
+    _nodesCounter = 0;
   }
 
   /**
@@ -88,7 +88,7 @@ contract OracleGuard {
     require(slot[s] == address(0), "OracleGuard: oracle already authorized");
     nodes[a] = 1;
     slot[s] = a;
-    nodesCounter++;
+    _nodesCounter++;
   }
 
   /**
@@ -99,7 +99,7 @@ contract OracleGuard {
   function dropNode(address a) external auth {
     //nodes[a[i]] = 0;
     slot[uint8(uint256(a) >> 152)] = address(0);
-    nodesCounter--;
+    _nodesCounter--;
   }
 
   /**
@@ -114,7 +114,7 @@ contract OracleGuard {
       require(slot[s] == address(0), "OracleGuard: oracle already authorized");
       nodes[a[i]] = 1;
       slot[s] = a[i];
-      nodesCounter++;
+      _nodesCounter++;
     }
   }
 
@@ -127,7 +127,7 @@ contract OracleGuard {
     for (uint i = 0; i < a.length; i++) {
       //nodes[a[i]] = 0;
       slot[uint8(uint256(a[i]) >> 152)] = address(0);
-      nodesCounter--;
+      _nodesCounter--;
     }
   }
 
@@ -211,5 +211,12 @@ contract OracleGuard {
    */
   function token() public view returns (address) {
     return _alkemiToken;
+  }
+
+  /**
+   * @dev Get number of nodes available to vote
+   */
+  function nodesAvailable() public view returns (uint256) {
+    return _nodesCounter;
   }
 }

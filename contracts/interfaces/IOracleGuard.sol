@@ -34,8 +34,27 @@ contract IOracleGuard {
   function dropNode(address[] calldata a) external;
 
   /**
+   * @dev Check if contract is authorized to call oracle
+   * @param _contract contract address
+   * @return true if authorized
+   */
+  function isContractAuth(address _contract) external view returns (bool);
+
+  /**
+   * @dev Check if node is authorized to submit book to oracle
+   * @param _node node address
+   * @return true if authorized
+   */
+  function isNodeAuth(address _node) external view returns (bool);
+
+  /**
    * @dev Get Alkemi Token address
    */
   function token() public view returns (address);
+
+  /**
+   * @dev Get number of nodes available to vote
+   */
+  function nodesAvailable() public view returns (uint256);
 
 }
