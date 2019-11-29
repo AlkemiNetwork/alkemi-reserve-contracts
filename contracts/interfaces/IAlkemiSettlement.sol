@@ -39,4 +39,9 @@ contract IAlkemiSettlement {
    * @return token price
    */
   function priceOf(address _token) external view returns (uint256);
+
+  /**
+   * @dev Return the current settlement id
+   */
+  function settlementId() external view returns (uint256);
 }
