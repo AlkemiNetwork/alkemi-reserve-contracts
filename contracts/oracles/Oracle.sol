@@ -30,10 +30,10 @@ contract Oracle {
     uint256 yesVotes;
     uint256 noVotes;
     address[] exchangesAddresses;
-    address[] surplusTokens;
-    address[] deficitTokens;
-    uint256[] surplus;
-    uint256[] deficit;
+    address[] surplusTokensAddresses;
+    address[] deficitTokensAddresses;
+    uint128[] surplus;
+    uint128[] deficit;
   }
 
   event RequestAccountingBook(uint256 indexed settlementId);
@@ -43,10 +43,10 @@ contract Oracle {
 
   function submitBook(
     address[] calldata exchangesAddresses,
-    address[] calldata surplusTokens,
-    address[] calldata deficitTokens,
-    uint256[] calldata surplus,
-    uint256[] calldata deficit,
+    address[] calldata surplusTokensAddresses,
+    address[] calldata deficitTokensAddresses,
+    uint128[] calldata surplus,
+    uint128[] calldata deficit,
     uint256 _settlementId,
     bytes32 _bookHash
   ) external {
@@ -62,8 +62,8 @@ contract Oracle {
       yesVotes: 0,
       noVotes: 0,
       exchangesAddresses: exchangesAddresses,
-      surplusTokens: surplusTokens,
-      deficitTokens: deficitTokens,
+      surplusTokensAddresses: surplusTokensAddresses,
+      deficitTokensAddresses: deficitTokensAddresses,
       surplus: surplus,
       deficit: deficit
     });
