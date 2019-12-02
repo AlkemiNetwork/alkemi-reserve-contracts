@@ -11,8 +11,8 @@ contract Oracle {
   // mapping of book hash by settlement id
   mapping (uint256 => bytes32) public settlementBookHash;
 
-  // mapping accounting book by book hash
-  mapping (bytes32 => AccountingBook) public accountingBook;
+  // mapping settlement voting by book hash
+  mapping (bytes32 => SettlementVoting) public settlementVoting;
 
   mapping(bytes32 => mapping (address => bool)) public accountingVotedNode;
     
@@ -23,12 +23,17 @@ contract Oracle {
     NO
   }
 
-  // TODO: define book data structure
-  struct AccountingBook {
+  struct SettlementVoting {
     address node;
+    bytes32 bookHash;
     uint256 minimumVotes;
     uint256 yesVotes;
     uint256 noVotes;
+    address[] exchangesAddresses;
+    address[] surplusTokens;
+    address[] deficitTokens;
+    uint256[] surplus;
+    uint256[] deficit;
   }
 
   event RequestAccountingBook(uint256 indexed settlementId);
@@ -36,25 +41,41 @@ contract Oracle {
   event RequestStopTrade();
   event RequestContinueTrade();
 
-  // TODO: add book data params
-  function submitBook(uint256 _settlementId, bytes32 _bookHash) external {
+  function submitBook(
+    address[] calldata exchangesAddresses,
+    address[] calldata surplusTokens,
+    address[] calldata deficitTokens,
+    uint256[] calldata surplus,
+    uint256[] calldata deficit,
+    uint256 _settlementId,
+    bytes32 _bookHash
+  ) external {
     require(_oracleGuard.isNodeAuth(msg.sender) == true, "Oracle: not authorized node");
     require(settlementBookHash[_settlementId] == bytes32(0), "Oracle: book already submitted for this settlement id");
 
     uint256 _minimumVotes = _oracleGuard.nodesAvailable();
 
-    AccountingBook memory book = AccountingBook({
+    SettlementVoting memory voting = SettlementVoting({
       node: msg.sender,
+      bookHash: _bookHash,
       minimumVotes: _minimumVotes,
       yesVotes: 0,
-      noVotes: 0
+      noVotes: 0,
+      exchangesAddresses: exchangesAddresses,
+      surplusTokens: surplusTokens,
+      deficitTokens: deficitTokens,
+      surplus: surplus,
+      deficit: deficit
     });
 
     settlementBookHash[_settlementId] = _bookHash;
-    accountingBook[_bookHash] = book;
+    settlementVoting[_bookHash] = voting;
+
+    // stop exchanges containers
+    stopContainersTrading();
   }
 
-  function voting(uint256 _settlementId, bytes32 _bookHash, uint8 _vote) external {
+  function settlementVote(uint256 _settlementId, bytes32 _bookHash, uint8 _vote) external {
     require(_oracleGuard.isNodeAuth(msg.sender) == true, "Oracle: not authorized node");
     require(settlementBookHash[_settlementId] == _bookHash, "Oracle: invalid accounting book to vote on for the current settlement id");
     require(accountingVotedNode[_bookHash][msg.sender] != true, "Oracle: node already voted");
@@ -63,27 +84,24 @@ contract Oracle {
 
     Vote vote = Vote(_vote);
 
-    AccountingBook storage book = accountingBook[_bookHash];
+    SettlementVoting storage voting = settlementVoting[_bookHash];
     if(vote == Vote.YES) {
-      book.yesVotes++;
+      voting.yesVotes++;
 
-      if(book.yesVotes >= book.minimumVotes) {
+      if(voting.yesVotes >= voting.minimumVotes) {
         // un-ban nodes
        _oracleGuard.authNode(settlementBannedNode[_settlementId]);
 
        //call settlement contract
-
-       // stop exchanges containers
-       stopContainersTrading();
       }
     }
     else {
-      book.noVotes++;
+      voting.noVotes++;
 
-      if(book.noVotes >= book.minimumVotes) {
+      if(voting.noVotes >= voting.minimumVotes) {
         // ban book submitter for the current settlement id
-        _oracleGuard.dropNode(book.node);
-        settlementBannedNode[_settlementId].push(book.node);
+        _oracleGuard.dropNode(voting.node);
+        settlementBannedNode[_settlementId].push(voting.node);
         settlementBookHash[_settlementId] == bytes32(0);
 
         // request re-submittig book from the rest of the nodes
