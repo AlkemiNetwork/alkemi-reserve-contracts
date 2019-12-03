@@ -2,8 +2,11 @@ pragma solidity ^0.5.0;
 
 import "../interfaces/IOracleGuard.sol";
 import "../interfaces/IAlkemiToken.sol";
+import "../interfaces/IAlkemiSettlement.sol";
 
 contract Oracle {
+
+  uint256 internal _currentSettlementId;
 
   // mapping of banned nodes by settlement id
   mapping(uint256 => address[]) public settlementBannedNode;
@@ -15,7 +18,9 @@ contract Oracle {
   mapping (bytes32 => SettlementVoting) public settlementVoting;
 
   mapping(bytes32 => mapping (address => bool)) public accountingVotedNode;
-    
+
+  IAlkemiSettlement internal _settlementContract;
+
   IOracleGuard internal _oracleGuard;
 
   enum Vote {
@@ -41,6 +46,22 @@ contract Oracle {
   event RequestStopTrade();
   event RequestContinueTrade();
 
+  constructor(address settlementContract, address oracleGuard) public {
+    require(settlementContract != address(0), "Oracle: invalid settlement contract address");
+    require(oracleGuard != address(0), "Oracle: invalid guard address");
+
+    _settlementContract = IAlkemiSettlement(settlementContract);
+    _oracleGuard = IOracleGuard(oracleGuard);
+  }
+
+  function getSettlementId() external returns (uint256) {
+    require(_oracleGuard.isNodeAuth(msg.sender) == true, "Oracle: not authorized node");
+
+    _currentSettlementId = _settlementContract.settlementId();
+
+    return _currentSettlementId;
+  }
+
   function submitBook(
     address[] calldata exchangesAddresses,
     address[] calldata surplusTokensAddresses,
@@ -51,6 +72,7 @@ contract Oracle {
     bytes32 _bookHash
   ) external {
     require(_oracleGuard.isNodeAuth(msg.sender) == true, "Oracle: not authorized node");
+    require(_settlementId == _currentSettlementId, "Oracle: invalid settlement id");
     require(settlementBookHash[_settlementId] == bytes32(0), "Oracle: book already submitted for this settlement id");
 
     uint256 _minimumVotes = _oracleGuard.nodesAvailable();
@@ -77,6 +99,7 @@ contract Oracle {
 
   function settlementVote(uint256 _settlementId, bytes32 _bookHash, uint8 _vote) external {
     require(_oracleGuard.isNodeAuth(msg.sender) == true, "Oracle: not authorized node");
+    require(_settlementId == _currentSettlementId, "Oracle: invalid settlement id");
     require(settlementBookHash[_settlementId] == _bookHash, "Oracle: invalid accounting book to vote on for the current settlement id");
     require(accountingVotedNode[_bookHash][msg.sender] != true, "Oracle: node already voted");
 

@@ -10,6 +10,7 @@ contract AlkemiSettlement {
 
   address internal constant ETH = address(0);
 
+  uint256 public settlementId;
   uint256 public oraclePrice = 200;
     
   /**
