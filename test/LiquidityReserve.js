@@ -9,8 +9,8 @@ const increaseTimeTo = increaseTime.increaseTimeTo;
 
 const ZERO_ADDR = '0x0000000000000000000000000000000000000000';
 
-const TokenMock = artifacts.require("Token");
-const AlkemiSettlement = artifacts.require("AlkemiSettlement");
+const TokenMock = artifacts.require("TokenMock");
+const AlkemiSettlementMock = artifacts.require("AlkemiSettlementMock");
 const LiquidityReserveManager = artifacts.require("LiquidityReserveManager");
 const LiquidityReserve = artifacts.require("LiquidityReserve");
 
@@ -38,7 +38,7 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
       from: alkemiTeam
     });
 
-    alkemiSettlement = await AlkemiSettlement.new({
+    alkemiSettlement = await AlkemiSettlementMock.new({
       from: alkemiTeam
     });
     
