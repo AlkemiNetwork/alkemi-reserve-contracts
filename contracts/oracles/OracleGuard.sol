@@ -106,6 +106,32 @@ contract OracleGuard {
   }
 
   /**
+   * @dev Register node
+   * @notice Node can only be registered by Alkemi
+   * @param a node address
+   */
+  function registerNode(address a) external auth(1) {
+    require(a != address(0), "OracleGuard: invalid oracle address");
+    uint8 s = uint8(uint256(a) >> 152);
+    require(slot[s] == address(0), "OracleGuard: oracle already authorized");
+    nodes[a] = 1;
+    slot[s] = a;
+    _nodesCounter++;
+  }
+
+  function registerNode(address[] calldata a) external auth(1) {
+    for (uint i = 0; i < a.length; i++) {
+      require(a[i] != address(0), "OracleGuard: invalid oracle address");
+      uint8 s = uint8(uint256(a[i]) >> 152);
+      require(slot[s] == address(0), "OracleGuard: oracle already authorized");
+      nodes[a[i]] = 1;
+      slot[s] = a[i];
+      _nodesCounter++;
+    }
+  }
+
+
+  /**
    * @dev Auth node to call oracle
    * @notice can only be called from an authorized sender
    * @param a node address
