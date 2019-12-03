@@ -6,7 +6,7 @@ import "../interfaces/ILiquidityReserve.sol";
 /**
  * @notice Alkemi Settlement contract mock
  */
-contract AlkemiSettlement {
+contract AlkemiSettlementMock {
 
   address internal constant ETH = address(0);
 
@@ -44,6 +44,24 @@ contract AlkemiSettlement {
    */
   function approveTokenTransfer(address _liquidityReserve, address _token, uint256 _amount) public {
     ERC20(_token).approve(_liquidityReserve, _amount);
+  }
+
+  /**
+   * @dev settlement function
+   * @param exchangesAddresses list of exchanges addresses
+   * @param surplusTokensAddresses list of surplus tokens
+   * @param deficitTokensAddresses list of dificit tokens
+   * @param surplus list of surplus amount
+   * @param deficit list of deficit
+   */
+  function doSettlement(
+    address[] calldata exchangesAddresses,
+    address[] calldata surplusTokensAddresses,
+    address[] calldata deficitTokensAddresses,
+    uint128[] calldata surplus,
+    uint128[] calldata deficit
+  ) external pure returns (bool) {
+    return true;
   }
 
   /******************************* Mocking Oracle prices **********************************************************************/

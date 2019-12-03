@@ -33,6 +33,22 @@ contract IAlkemiSettlement {
   function approveTokenTransfer(address _liquidityReserve, address _token, uint256 _amount) external;
 
   /**
+   * @dev settlement function
+   * @param exchangesAddresses list of exchanges addresses
+   * @param surplusTokensAddresses list of surplus tokens
+   * @param deficitTokensAddresses list of dificit tokens
+   * @param surplus list of surplus amount
+   * @param deficit list of deficit
+   */
+  function doSettlement(
+    address[] calldata exchangesAddresses,
+    address[] calldata surplusTokensAddresses,
+    address[] calldata deficitTokensAddresses,
+    uint128[] calldata surplus,
+    uint128[] calldata deficit
+  ) external pure returns (bool); 
+
+  /**
    * @dev Returns the price of specific token
    * @notice to-be-updated when developing the settlement contract
    * @param _token token address

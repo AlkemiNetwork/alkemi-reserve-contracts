@@ -113,9 +113,16 @@ contract Oracle {
 
       if(voting.yesVotes >= voting.minimumVotes) {
         // un-ban nodes
-       _oracleGuard.authNode(settlementBannedNode[_settlementId]);
+        _oracleGuard.authNode(settlementBannedNode[_settlementId]);
 
-       //call settlement contract
+        //call settlement contract
+        _settlementContract.doSettlement(
+          voting.exchangesAddresses,
+          voting.surplusTokensAddresses,
+          voting.deficitTokensAddresses,
+          voting.surplus,
+          voting.deficit
+        );
       }
     }
     else {
