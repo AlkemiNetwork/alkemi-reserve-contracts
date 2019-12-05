@@ -43,8 +43,8 @@ contract Oracle {
 
   event RequestAccountingBook(uint256 indexed settlementId);
   event RequestVote(uint256 indexed settlementId, bytes32 bookHash);
-  event RequestStopTrade();
-  event RequestContinueTrade();
+  event RequestStopTrade(uint256 settlementId);
+  event RequestContinueTrade(uint256 settlementId, uint256 settlementTimeStamp);
 
   constructor(address settlementContract, address oracleGuard) public {
     require(settlementContract != address(0), "Oracle: invalid settlement contract address");
@@ -62,6 +62,16 @@ contract Oracle {
     return _currentSettlementId;
   }
 
+  /**
+   * @dev submit book hash and settlement details to vote for
+   * @param exchangesAddresses list of exchanges addresses
+   * @param surplusTokensAddresses list of tokens for surplus
+   * @param deficitTokensAddresses list of tokens for deficit
+   * @param surplus list of surplus values
+   * @param deficit list of deficit values
+   * @param _settlementId book settlement id
+   * @param _bookHash book hash
+   */
   function submitBook(
     address[] calldata exchangesAddresses,
     address[] calldata surplusTokensAddresses,
@@ -94,7 +104,9 @@ contract Oracle {
     settlementVoting[_bookHash] = voting;
 
     // stop exchanges containers
-    stopContainersTrading();
+    // thinking about moving this off-chain in the nodes side:
+    // If votes yes, nodes receive a request with the settlement id, then nodes stop containers from trading the two pairs corresponding to the settlement id
+    stopContainersTrading(_settlementId);
   }
 
   function settlementVote(uint256 _settlementId, bytes32 _bookHash, uint8 _vote) external {
@@ -140,17 +152,17 @@ contract Oracle {
     }
   }
 
-  function restartContainersTrading() external {
+  function restartContainersTrading(uint256 settlementId, uint256 settlementTime) external {
     require(_oracleGuard.isContractAuth(msg.sender) == true, "Oracle: not authorized contract");
 
-    emit RequestContinueTrade();
+    emit RequestContinueTrade(settlementId, settlementTime);
   }
 
   function requestAccountingBook(uint256 _settlementId) internal {
     emit RequestAccountingBook(_settlementId);
   }
 
-  function stopContainersTrading() internal {
-    emit RequestStopTrade();
+  function stopContainersTrading(uint256 settlementId) internal {
+    emit RequestStopTrade(settlementId);
   }
 }

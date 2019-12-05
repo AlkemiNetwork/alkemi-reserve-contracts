@@ -8,20 +8,6 @@ contract IOracleGuard {
   /**
    * @dev Auth node to call oracle
    * @notice can only be called from an authorized sender
-   * @param a node address
-   */
-  function authNode(address a) external;
-
-  /**
-   * @dev Ban node
-   * @notice can only be called from an authorized sender
-   * @param a node address
-   */
-  function dropNode(address a) external;
-
-  /**
-   * @dev Auth node to call oracle
-   * @notice can only be called from an authorized sender
    * @param a nodes addresses
    */
   function authNode(address[] calldata a) external;
@@ -29,17 +15,10 @@ contract IOracleGuard {
   /**
    * @dev Ban node
    * @notice can only be called from an authorized sender
-   * @param a nodes addresses
+   * @param a node address
    */
-  function dropNode(address[] calldata a) external;
-
-  /**
-   * @dev Slash nodes
-   * @notice can only be called from an authorized sender
-   * @param a nodes addresses
-   */
-  function slashNode(address[] calldata a) external;
-
+  function dropNode(address a) external;
+  
   /**
    * @dev Check if contract is authorized to call oracle
    * @param _contract contract address

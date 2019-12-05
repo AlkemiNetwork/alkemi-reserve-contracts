@@ -110,15 +110,6 @@ contract OracleGuard {
    * @notice Node can only be registered by Alkemi
    * @param a node address
    */
-  function registerNode(address a) external auth(1) {
-    require(a != address(0), "OracleGuard: invalid oracle address");
-    uint8 s = uint8(uint256(a) >> 152);
-    require(slot[s] == address(0), "OracleGuard: oracle already authorized");
-    nodes[a] = 1;
-    slot[s] = a;
-    _nodesCounter++;
-  }
-
   function registerNode(address[] calldata a) external auth(1) {
     for (uint i = 0; i < a.length; i++) {
       require(a[i] != address(0), "OracleGuard: invalid oracle address");
@@ -128,32 +119,6 @@ contract OracleGuard {
       slot[s] = a[i];
       _nodesCounter++;
     }
-  }
-
-
-  /**
-   * @dev Auth node to call oracle
-   * @notice can only be called from an authorized sender
-   * @param a node address
-   */
-  function authNode(address a) external auth(2) {
-    require(a != address(0), "OracleGuard: invalid oracle address");
-    uint8 s = uint8(uint256(a) >> 152);
-    require(slot[s] == address(0), "OracleGuard: oracle already authorized");
-    nodes[a] = 1;
-    slot[s] = a;
-    _nodesCounter++;
-  }
-
-  /**
-   * @dev Ban node
-   * @notice can only be called from an authorized sender
-   * @param a node address
-   */
-  function dropNode(address a) external auth(2) {
-    nodes[a] = 2;
-    slot[uint8(uint256(a) >> 152)] = address(0);
-    _nodesCounter--;
   }
 
   /**
@@ -175,46 +140,12 @@ contract OracleGuard {
   /**
    * @dev Ban node
    * @notice can only be called from an authorized sender
-   * @param a nodes addresses
+   * @param a node address
    */
-  function dropNode(address[] calldata a) external auth(2) {
-    for (uint i = 0; i < a.length; i++) {
-      nodes[a[i]] = 2;
-      slot[uint8(uint256(a[i]) >> 152)] = address(0);
-      _nodesCounter--;
-    }
-  }
-
-  /**
-   * @dev Slash nodes
-   * @notice can only be called from an authorized sender
-   * @param a nodes addresses
-   */
-  function slashNode(address[] calldata a) external auth(2) {
-    for (uint i = 0; i < a.length; i++) {
-      nodes[a[i]] = 3;
-      slot[uint8(uint256(a[i]) >> 152)] = address(0);
-      _nodesCounter--;
-    }
-  }
-
-  /**
-   * @dev Auth contract to call oracle
-   * @notice can only be called from an authorized sender
-   * @param a contract addresses
-   */
-  function authContract(address a) external auth(1) {
-    require(a != address(0), "OracleGuard: invalid contract address");
-    contracts[a] = 1;
-  }
-
-  /**
-   * @dev Ban contract
-   * @notice can only be called from an authorized sender
-   * @param a contract address
-   */
-  function dropContract(address a) external auth(1) {
-    contracts[a] = 0;
+  function dropNode(address a) external auth(2) {
+    nodes[a] = 2;
+    slot[uint8(uint256(a) >> 152)] = address(0);
+    _nodesCounter--;
   }
 
   /**
@@ -230,14 +161,12 @@ contract OracleGuard {
   }
 
   /**
-   * @dev Ban contracts
+   * @dev Ban contract
    * @notice can only be called from an authorized sender
-   * @param a contracts addresses
+   * @param a contract address
    */
-  function dropContract(address[] calldata a) external auth(1) {
-    for(uint i = 0; i < a.length; i++) {
-      contracts[a[i]] = 0;
-    }
+  function dropContract(address a) external auth(1) {
+    contracts[a] = 0;
   }
 
   /**

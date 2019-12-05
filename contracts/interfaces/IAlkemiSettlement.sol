@@ -46,7 +46,7 @@ contract IAlkemiSettlement {
     address[] calldata deficitTokensAddresses,
     uint128[] calldata surplus,
     uint128[] calldata deficit
-  ) external pure returns (bool); 
+  ) external pure returns (bool);
 
   /**
    * @dev Returns the price of specific token

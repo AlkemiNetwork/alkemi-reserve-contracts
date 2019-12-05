@@ -2,6 +2,7 @@ pragma solidity ^0.5.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "../interfaces/ILiquidityReserve.sol";
+import "../interfaces/IOracle.sol";
 
 /**
  * @notice Alkemi Settlement contract mock
@@ -9,9 +10,14 @@ import "../interfaces/ILiquidityReserve.sol";
 contract AlkemiSettlementMock {
 
   address internal constant ETH = address(0);
+  address public oracle;
 
-  uint256 public settlementId;
+  uint256 public settlementId = 1;
   uint256 public oraclePrice = 200;
+
+  function setOracleAddress(address _oracle) external {
+    oracle = _oracle;
+  }
     
   /**
    * @dev deposit ERC20 or ETH into a specific liquidity reserve
@@ -60,7 +66,8 @@ contract AlkemiSettlementMock {
     address[] calldata deficitTokensAddresses,
     uint128[] calldata surplus,
     uint128[] calldata deficit
-  ) external pure returns (bool) {
+  ) external returns (bool) {
+    IOracle(oracle).restartContainersTrading(settlementId, now);
     return true;
   }
 
