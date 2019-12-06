@@ -148,6 +148,7 @@ contract('Oracle System', ([alkemiTeam, oracle1, oracle2, oracle3, exchange1, ex
       assert.equal(await oracle.settlementBookHash(settlementDetails._settlementId), settlementDetails._bookHash, "Wrong book hash for settlement id");
       // check stop container trading event
       truffleAssert.eventEmitted(tx, 'RequestStopTrade');
+      truffleAssert.eventEmitted(tx, 'RequestVote');
     });
 
     it("should revert submitting book for a settlement id that have already a submitted book and settlement details", async() => {

@@ -110,6 +110,9 @@ contract Oracle {
     // thinking about moving this off-chain in the nodes side:
     // If votes yes, nodes receive a request with the settlement id, then nodes stop containers from trading the two pairs corresponding to the settlement id
     stopContainersTrading(_settlementId);
+
+    // Request vote from nodes
+    requestNodesVoting(_settlementId, _bookHash);
   }
 
   function settlementVote(uint256 _settlementId, bytes32 _bookHash, uint8 _vote) external {
@@ -157,14 +160,18 @@ contract Oracle {
     }
   }
 
-  function restartContainersTrading(uint256 settlementId, uint256 settlementTime) external {
-    require(_oracleGuard.isContractAuth(msg.sender) == true, "Oracle: not authorized contract");
-
-    emit RequestContinueTrade(settlementId, settlementTime);
+  function requestNodesVoting(uint256 _settlementId, bytes32 _bookHash) internal {
+    emit RequestVote(_settlementId, _bookHash);
   }
 
   function requestAccountingBook(uint256 _settlementId) internal {
     emit RequestAccountingBook(_settlementId);
+  }
+
+  function restartContainersTrading(uint256 settlementId, uint256 settlementTime) external {
+    require(_oracleGuard.isContractAuth(msg.sender) == true, "Oracle: not authorized contract");
+
+    emit RequestContinueTrade(settlementId, settlementTime);
   }
 
   function stopContainersTrading(uint256 settlementId) internal {
