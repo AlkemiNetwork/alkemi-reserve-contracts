@@ -67,8 +67,11 @@ contract AlkemiSettlementMock {
     uint128[] calldata surplus,
     uint128[] calldata deficit
   ) external returns (bool) {
-    IOracle(oracle).restartContainersTrading(settlementId, now);
     return true;
+  }
+
+  function RequestContinueTrading() internal {
+    IOracle(oracle).restartContainersTrading(settlementId, now);
   }
 
   /******************************* Mocking Oracle prices **********************************************************************/

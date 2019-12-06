@@ -3,10 +3,11 @@ pragma solidity ^0.5.0;
 import "../interfaces/IOracleGuard.sol";
 import "../interfaces/IAlkemiToken.sol";
 import "../interfaces/IAlkemiSettlement.sol";
+import "@openzeppelin/contracts/math/SafeMath.sol";
 
 contract Oracle {
 
-  uint256 internal _currentSettlementId;
+  using SafeMath for uint256;
 
   // mapping of banned nodes by settlement id
   mapping(uint256 => address[]) public settlementBannedNode;
@@ -30,10 +31,12 @@ contract Oracle {
 
   struct SettlementVoting {
     address node;
+    uint256 settlementId;
     bytes32 bookHash;
     uint256 minimumVotes;
     uint256 yesVotes;
     uint256 noVotes;
+    bool isSettled;
     address[] exchangesAddresses;
     address[] surplusTokensAddresses;
     address[] deficitTokensAddresses;
@@ -41,9 +44,10 @@ contract Oracle {
     uint128[] deficit;
   }
 
+  event Settlement(uint256 indexed settlementId, bytes32 bookHash);
   event RequestAccountingBook(uint256 indexed settlementId);
   event RequestVote(uint256 indexed settlementId, bytes32 bookHash);
-  event RequestStopTrade(uint256 settlementId);
+  event RequestStopTrade(uint256 indexed settlementId);
   event RequestContinueTrade(uint256 settlementId, uint256 settlementTimeStamp);
 
   constructor(address settlementContract, address oracleGuard) public {
@@ -54,12 +58,10 @@ contract Oracle {
     _oracleGuard = IOracleGuard(oracleGuard);
   }
 
-  function getSettlementId() external returns (uint256) {
+  function getSettlementId() external view returns (uint256) {
     require(_oracleGuard.isNodeAuth(msg.sender) == true, "Oracle: not authorized node");
 
-    _currentSettlementId = _settlementContract.settlementId();
-
-    return _currentSettlementId;
+    return _settlementContract.settlementId();
   }
 
   /**
@@ -82,17 +84,18 @@ contract Oracle {
     bytes32 _bookHash
   ) external {
     require(_oracleGuard.isNodeAuth(msg.sender) == true, "Oracle: not authorized node");
-    require(_settlementId == _currentSettlementId, "Oracle: invalid settlement id");
     require(settlementBookHash[_settlementId] == bytes32(0), "Oracle: book already submitted for this settlement id");
 
     uint256 _minimumVotes = _oracleGuard.nodesAvailable();
 
     SettlementVoting memory voting = SettlementVoting({
       node: msg.sender,
+      settlementId: _settlementId,
       bookHash: _bookHash,
-      minimumVotes: _minimumVotes,
+      minimumVotes: _minimumVotes.div(2) + 1,
       yesVotes: 0,
       noVotes: 0,
+      isSettled: false,
       exchangesAddresses: exchangesAddresses,
       surplusTokensAddresses: surplusTokensAddresses,
       deficitTokensAddresses: deficitTokensAddresses,
@@ -111,7 +114,6 @@ contract Oracle {
 
   function settlementVote(uint256 _settlementId, bytes32 _bookHash, uint8 _vote) external {
     require(_oracleGuard.isNodeAuth(msg.sender) == true, "Oracle: not authorized node");
-    require(_settlementId == _currentSettlementId, "Oracle: invalid settlement id");
     require(settlementBookHash[_settlementId] == _bookHash, "Oracle: invalid accounting book to vote on for the current settlement id");
     require(accountingVotedNode[_bookHash][msg.sender] != true, "Oracle: node already voted");
 
@@ -123,7 +125,8 @@ contract Oracle {
     if(vote == Vote.YES) {
       voting.yesVotes++;
 
-      if(voting.yesVotes >= voting.minimumVotes) {
+      if((voting.yesVotes >= voting.minimumVotes) && (voting.isSettled == false)) {
+        voting.isSettled = true;
         // un-ban nodes
         _oracleGuard.authNode(settlementBannedNode[_settlementId]);
 
@@ -135,6 +138,8 @@ contract Oracle {
           voting.surplus,
           voting.deficit
         );
+
+        emit Settlement(voting.settlementId, voting.bookHash);
       }
     }
     else {
