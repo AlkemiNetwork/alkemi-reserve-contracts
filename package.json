@@ -8,11 +8,16 @@
   },
   "devDependencies": {
     "@openzeppelin/test-helpers": "^0.5.3",
+    "@typescript-eslint/eslint-plugin": "^2.11.0",
+    "@typescript-eslint/parser": "^2.11.0",
     "bignumber.js": "^9.0.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "chai-bignumber": "^3.0.0",
     "coveralls": "^3.0.9",
+    "eslint": "^6.7.2",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.19.1",
     "eth-gas-reporter": "^0.2.12",
     "ganache-cli": "^6.7.0",
     "prettier": "^1.18.2",
@@ -25,8 +30,8 @@
     "test": "truffle test",
     "compile": "truffle compile --all",
     "deploy": "truffle deploy",
-    "lint": "npm run prettier",
-    "prettier": "prettier --write **/*.sol",
+    "lint:contracts": "prettier --write **/*.sol",
+    "lint:tests": "eslint ./test --fix",
     "coverage": "npx solidity-coverage"
   },
   "repository": {

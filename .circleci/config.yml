@@ -20,7 +20,13 @@ jobs:
           paths:
             - ./node_modules
       - run:
-          name: test Alkemi Protocol contracts
+          name: Lint tests
+          command: npm run lint:tests
+      - run:
+          name: Lint contracts
+          command: npm run lint:contracts      
+      - run:
+          name: Test Alkemi Protocol contracts
           command: npm run test
       - store_artifacts:
           path: test-results.xml
