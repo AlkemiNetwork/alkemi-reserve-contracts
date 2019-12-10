@@ -1,6 +1,6 @@
 # Alkemi Protocol Contracts
 
-This reporitory contains Alkemi Protocol cmart contracts.
+This reporitory contains Alkemi Protocol smart contracts.
 
 ## Local development chain
 
