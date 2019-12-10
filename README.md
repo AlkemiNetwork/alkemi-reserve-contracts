@@ -1,4 +1,4 @@
-# Alkemi Protocol Contracts
+# Alkemi Protocol Contracts [![Build Status](https://travis-ci.com/project-alkemi/alkemi-protocol.svg?branch=master)](https://travis-ci.com/project-alkemi/alkemi-protocol)
 
 This reporitory contains Alkemi Protocol smart contracts.
 
