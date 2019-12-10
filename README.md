@@ -1,5 +1,7 @@
 # Alkemi Protocol Contracts
 
+This reporitory contains Alkemi Protocol cmart contracts.
+
 ## Local development chain
 
 For local development it is recommended to use 
@@ -25,11 +27,12 @@ $ npm run compile
 # Run all tests (make sure to run ganache before)
 $ npm run test
 
+# Deploy contracts
+$ npm run deploy
+
 # Run coverage
 $ npm run coverage
 ```
-
-## Deployment
 
 ## Issues
 
