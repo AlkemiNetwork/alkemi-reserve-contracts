@@ -68,10 +68,10 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
       { from: liquidityProvider2 }
     );
 
-    let liquidityReserve1Address = await liquidityReserveManager.liquidityReserveOf(liquidityProvider1);
+    let liquidityReserve1Address = await liquidityReserveManager.liquidityReserveOf.call(liquidityProvider1);
     liquidityReserve1 = await LiquidityReserve.at(liquidityReserve1Address);  
     
-    let liquidityReserve2Address = await liquidityReserveManager.liquidityReserveOf(liquidityProvider2);
+    let liquidityReserve2Address = await liquidityReserveManager.liquidityReserveOf.call(liquidityProvider2);
     liquidityReserve2 = await LiquidityReserve.at(liquidityReserve2Address);    
     
     // Mint tokens
@@ -88,9 +88,9 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
 
   describe("Liquidity Reserve", async() => {
     it("check deployment", async() => {
-      let _liquidityReserveProvider = await liquidityReserve1.liquidityProvider();
-      let _liquidityReserveManager = await liquidityReserve1.liquidityReserveManager();
-      let _liquidityReserveSettlementContract = await liquidityReserve1.settlementContract();
+      let _liquidityReserveProvider = await liquidityReserve1.liquidityProvider.call();
+      let _liquidityReserveManager = await liquidityReserve1.liquidityReserveManager.call();
+      let _liquidityReserveSettlementContract = await liquidityReserve1.settlementContract.call();
       assert.equal(_liquidityReserveProvider, liquidityProvider1, "Wrong liquidity reserve owner");
       assert.equal(_liquidityReserveManager, liquidityReserveManager.address, "Wrong liqudity reserve manager address");
       assert.equal(_liquidityReserveSettlementContract, alkemiSettlement.address, "Wrong settlement contract address for the liquidity reserve");
@@ -122,13 +122,13 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
       //aprove the reserve to transfer tokens
       await token1.approve(liquidityReserve1.address, amountToDeposit, {from: liquidityProvider1});
 
-      let providerBalanceBefore = await token1.balanceOf(liquidityProvider1);
+      let providerBalanceBefore = await token1.balanceOf.call(liquidityProvider1);
 
       //deposit tokens
       await liquidityReserve1.deposit(token1.address, amountToDeposit, {from: liquidityProvider1});
       
-      let providerBalanceAfter = await token1.balanceOf(liquidityProvider1);
-      let reserveBalance = await liquidityReserve1.balance(token1.address);
+      let providerBalanceAfter = await token1.balanceOf.call(liquidityProvider1);
+      let reserveBalance = await liquidityReserve1.balance.call(token1.address);
 
       assert.equal(providerBalanceBefore-providerBalanceAfter, amountToDeposit, "Wrong deposited amount");
       assert.equal(reserveBalance.toString(), amountToDeposit.toString(), "Wrong reserve balance");
@@ -138,14 +138,14 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
       //aprove the reserve to transfer tokens
       await alkemiSettlement.approveTokenTransfer(liquidityReserve1.address, token1.address, amountToDeposit, {from: alkemiTeam});
 
-      let alkemiSettlementBalanceBefore = await token1.balanceOf(alkemiSettlement.address);
-      let reserveBalanceBefore = await liquidityReserve1.balance(token1.address);
+      let alkemiSettlementBalanceBefore = await token1.balanceOf.call(alkemiSettlement.address);
+      let reserveBalanceBefore = await liquidityReserve1.balance.call(token1.address);
 
       //deposit tokens
       await alkemiSettlement.depositIntoLiquidityReserve(liquidityReserve1.address, token1.address, amountToDeposit, {from: alkemiTeam});
       
-      let alkemiSettlementBalanceAfter = await token1.balanceOf(alkemiSettlement.address);
-      let reserveBalanceAfter = await liquidityReserve1.balance(token1.address);
+      let alkemiSettlementBalanceAfter = await token1.balanceOf.call(alkemiSettlement.address);
+      let reserveBalanceAfter = await liquidityReserve1.balance.call(token1.address);
 
       assert.equal(alkemiSettlementBalanceBefore-alkemiSettlementBalanceAfter, amountToDeposit, "Wrong deposited amount");
       assert.equal(reserveBalanceAfter.toString(), parseInt(reserveBalanceBefore)+parseInt(amountToDeposit), "Wrong reserve balance");
@@ -156,17 +156,17 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
       await token1.approve(liquidityReserve2.address, amountToDeposit, {from: liquidityProvider2});
       await token2.approve(liquidityReserve2.address, amountToDeposit, {from: liquidityProvider2});
 
-      let providerBalanceToken1Before = await token1.balanceOf(liquidityProvider2);
-      let providerBalanceToken2Before = await token2.balanceOf(liquidityProvider2);
+      let providerBalanceToken1Before = await token1.balanceOf.call(liquidityProvider2);
+      let providerBalanceToken2Before = await token2.balanceOf.call(liquidityProvider2);
 
       //deposit tokens
       await liquidityReserve2.deposit(token1.address, amountToDeposit, {from: liquidityProvider2});
       await liquidityReserve2.deposit(token2.address, amountToDeposit, {from: liquidityProvider2});
 
-      let providerBalanceToken1After = await token1.balanceOf(liquidityProvider2);
-      let providerBalanceToken2After = await token1.balanceOf(liquidityProvider2);
-      let reserveToken1Balance = await liquidityReserve2.balance(token1.address);
-      let reserveToken2Balance = await liquidityReserve2.balance(token2.address);
+      let providerBalanceToken1After = await token1.balanceOf.call(liquidityProvider2);
+      let providerBalanceToken2After = await token1.balanceOf.call(liquidityProvider2);
+      let reserveToken1Balance = await liquidityReserve2.balance.call(token1.address);
+      let reserveToken2Balance = await liquidityReserve2.balance.call(token2.address);
 
       assert.equal(providerBalanceToken1Before-providerBalanceToken1After, amountToDeposit, "Wrong deposited amount");
       assert.equal(providerBalanceToken2Before-providerBalanceToken2After, amountToDeposit, "Wrong deposited amount");
@@ -184,28 +184,28 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
       });
 
       it("withdraw when price locking condition is valid even if locking period is not valid", async() => {
-        let reserveBalanceBefore = await liquidityReserve1.balance(token1.address);
-        let providerBalanceBefore = await token1.balanceOf(liquidityProvider1);
+        let reserveBalanceBefore = await liquidityReserve1.balance.call(token1.address);
+        let providerBalanceBefore = await token1.balanceOf.call(liquidityProvider1);
 
-        let _lockingPricePosition = await liquidityReserve1.lockingPricePosition();
-        let _lockingPrice = await liquidityReserve1.lockingPrice();
-        let _oraclePrice = await alkemiSettlement.priceOf(token1.address);
+        let _lockingPricePosition = await liquidityReserve1.lockingPricePosition.call();
+        let _lockingPrice = await liquidityReserve1.lockingPrice.call();
+        let _oraclePrice = await alkemiSettlement.priceOf.call(token1.address);
 
         if(_lockingPricePosition.toNumber() == 0) {
           await alkemiSettlement.decerementPriceOf(token1.address, 10);
-          _oraclePrice = await alkemiSettlement.priceOf(token1.address);
+          _oraclePrice = await alkemiSettlement.priceOf.call(token1.address);
           assert.ok(_oraclePrice < _lockingPrice, "Oracle price is not less than locking price");
         }
         else {
           await alkemiSettlement.incerementPriceOf(token1.address, 10);
-          _oraclePrice = await alkemiSettlement.priceOf(token1.address);
+          _oraclePrice = await alkemiSettlement.priceOf.call(token1.address);
           assert.ok(_oraclePrice > _lockingPrice, "Oracle price is not greater than locking price"); 
         }
 
         await liquidityReserve1.withdraw(token1.address, amountToWithdraw, {from: liquidityProvider1});
 
-        let reserveBalanceAfter = await liquidityReserve1.balance(token1.address);
-        let providerBalanceAfter = await token1.balanceOf(liquidityProvider1);
+        let reserveBalanceAfter = await liquidityReserve1.balance.call(token1.address);
+        let providerBalanceAfter = await token1.balanceOf.call(liquidityProvider1);
         assert.equal(reserveBalanceBefore-amountToWithdraw, reserveBalanceAfter, "Wrong reserve balance");
         assert.equal(parseInt(providerBalanceBefore)+parseInt(amountToWithdraw), parseInt(providerBalanceAfter), "Wrong liqudity provider balance");
       }); 
@@ -216,28 +216,28 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
         // increase time
         await increaseTimeTo(lockingPeriod+1);
 
-        let reserveBalanceBefore = await liquidityReserve1.balance(token1.address);
-        let providerBalanceBefore = await token1.balanceOf(liquidityProvider1);
+        let reserveBalanceBefore = await liquidityReserve1.balance.call(token1.address);
+        let providerBalanceBefore = await token1.balanceOf.call(liquidityProvider1);
 
-        let _lockingPricePosition = await liquidityReserve1.lockingPricePosition();
-        let _lockingPrice = await liquidityReserve1.lockingPrice();
-        let _oraclePrice = await alkemiSettlement.priceOf(token1.address);
+        let _lockingPricePosition = await liquidityReserve1.lockingPricePosition.call();
+        let _lockingPrice = await liquidityReserve1.lockingPrice.call();
+        let _oraclePrice = await alkemiSettlement.priceOf.call(token1.address);
 
         if(_lockingPricePosition.toNumber() == 0) {
           await alkemiSettlement.incerementPriceOf(token1.address, 10);
-          _oraclePrice = await alkemiSettlement.priceOf(token1.address);
+          _oraclePrice = await alkemiSettlement.priceOf.call(token1.address);
           assert.ok(_oraclePrice > _lockingPrice, "Oracle price is not greater than locking price");
         }
         else {
           await alkemiSettlement.decerementPriceOf(token1.address, 10);
-          _oraclePrice = await alkemiSettlement.priceOf(token1.address);
+          _oraclePrice = await alkemiSettlement.priceOf.call(token1.address);
           assert.ok(_oraclePrice < _lockingPrice, "Oracle price is not less than locking price"); 
         }
 
         await liquidityReserve1.withdraw(token1.address, amountToWithdraw, {from: liquidityProvider1});
 
-        let reserveBalanceAfter = await liquidityReserve1.balance(token1.address);
-        let providerBalanceAfter = await token1.balanceOf(liquidityProvider1);
+        let reserveBalanceAfter = await liquidityReserve1.balance.call(token1.address);
+        let providerBalanceAfter = await token1.balanceOf.call(liquidityProvider1);
         assert.equal(reserveBalanceBefore-amountToWithdraw, reserveBalanceAfter, "Wrong reserve balance");
         assert.equal(parseInt(providerBalanceBefore)+parseInt(amountToWithdraw), parseInt(providerBalanceAfter), "Wrong liqudity provider balance");
       }); 
@@ -246,28 +246,28 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
         //reset oracle price
         await alkemiSettlement.resetPriceOf(token1.address, 200);
 
-        let reserveBalanceBefore = await liquidityReserve1.balance(token1.address);
-        let providerBalanceBefore = await token1.balanceOf(liquidityProvider1);
+        let reserveBalanceBefore = await liquidityReserve1.balance.call(token1.address);
+        let providerBalanceBefore = await token1.balanceOf.call(liquidityProvider1);
 
-        let _lockingPricePosition = await liquidityReserve1.lockingPricePosition();
-        let _lockingPrice = await liquidityReserve1.lockingPrice();
-        let _oraclePrice = await alkemiSettlement.priceOf(token1.address);
+        let _lockingPricePosition = await liquidityReserve1.lockingPricePosition.call();
+        let _lockingPrice = await liquidityReserve1.lockingPrice.call();
+        let _oraclePrice = await alkemiSettlement.priceOf.call(token1.address);
 
         if(_lockingPricePosition.toNumber() == 0) {
           await alkemiSettlement.decerementPriceOf(token1.address, 10);
-          _oraclePrice = await alkemiSettlement.priceOf(token1.address);
+          _oraclePrice = await alkemiSettlement.priceOf.call(token1.address);
           assert.ok(_oraclePrice < _lockingPrice, "Oracle price is not less than locking price");
         }
         else {
           await alkemiSettlement.incerementPriceOf(token1.address, 10);
-          _oraclePrice = await alkemiSettlement.priceOf(token1.address);
+          _oraclePrice = await alkemiSettlement.priceOf.call(token1.address);
           assert.ok(_oraclePrice > _lockingPrice, "Oracle price is not greater than locking price"); 
         }
 
         await liquidityReserve1.withdraw(token1.address, amountToWithdraw, {from: liquidityProvider1});
 
-        let reserveBalanceAfter = await liquidityReserve1.balance(token1.address);
-        let providerBalanceAfter = await token1.balanceOf(liquidityProvider1);
+        let reserveBalanceAfter = await liquidityReserve1.balance.call(token1.address);
+        let providerBalanceAfter = await token1.balanceOf.call(liquidityProvider1);
         assert.equal(reserveBalanceBefore-amountToWithdraw, reserveBalanceAfter, "Wrong reserve balance");
         assert.equal(parseInt(providerBalanceBefore)+parseInt(amountToWithdraw), parseInt(providerBalanceAfter), "Wrong liqudity provider balance");
       }); 
