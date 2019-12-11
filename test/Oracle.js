@@ -1,16 +1,10 @@
 const {
-  BN,
-  constants,
-  expectEvent,
-  expectRevert,
   ether
 } = require("@openzeppelin/test-helpers");
   
 const truffleAssert = require('truffle-assertions');
 const BigNumber = require('bignumber.js');
 const EVMRevert = require('./helpers/EVMRevert').EVMRevert;
-
-const ZERO_ADDR = '0x0000000000000000000000000000000000000000';
 
 const EtherTokenConstantMock = artifacts.require("EtherTokenConstantMock");
 const TokenMock = artifacts.require("TokenMock");
@@ -24,20 +18,15 @@ require('chai')
   .should();
 
 contract('Oracle System', ([alkemiTeam, oracle1, oracle2, oracle3, exchange1, exchange2, random]) => {
-  const minimumTokens = ether("200");   // Required minimum token for oracle to submit book
+  const minimumTokens = ether("200"); // Required minimum token for oracle to submit book
   const _currentSettlementId = 1;
 
-  let settlementDetails, ETH, DAI, USDC, alkemiToken, alkemiSettlement, oracleGuard, oracle;
+  let settlementDetails, ETH, USDC, alkemiToken, alkemiSettlement, oracleGuard, oracle;
 
   before(async() => {
     // ERC20/ETH token mock for testing
-    const etherMock = await EtherTokenConstantMock.new(
-      { from: alkemiTeam }
-    );
+    const etherMock = await EtherTokenConstantMock.new({ from: alkemiTeam });
     ETH = await etherMock.getETHConstant();
-    DAI = await TokenMock.new({
-      from: alkemiTeam
-    });
     USDC = await TokenMock.new({
       from: alkemiTeam
     });
@@ -75,8 +64,10 @@ contract('Oracle System', ([alkemiTeam, oracle1, oracle2, oracle3, exchange1, ex
     // Authenticate nodes
     await oracleGuard.registerNode([oracle1, oracle2, oracle3], { from: alkemiTeam });
 
-    // Exchange1: +40ETH, -150USDC
-    // Exchange2: +300USDC, -40ETH 
+    /*
+     * Exchange1: +40ETH, -150USDC
+     * Exchange2: +300USDC, -40ETH 
+     */
     settlementDetails = {
       exchangesAddresses: [exchange1, exchange2],
       surplusTokensAddresses: [ETH, USDC.address], // address(0) = ETH
@@ -171,7 +162,7 @@ contract('Oracle System', ([alkemiTeam, oracle1, oracle2, oracle3, exchange1, ex
       await oracle.settlementVote(
         settlementDetails._settlementId,
         settlementDetails._bookHash,
-        1,  // Yes vote
+        1, // Yes vote
         { from: random }
       ).should.be.rejectedWith(EVMRevert);
     });  
@@ -180,14 +171,14 @@ contract('Oracle System', ([alkemiTeam, oracle1, oracle2, oracle3, exchange1, ex
       await oracle.settlementVote(
         settlementDetails._settlementId,
         settlementDetails._bookHash,
-        0,  // Yes vote
+        0, // Yes vote
         { from: oracle1 }
       );
 
       let tx1 = await oracle.settlementVote(
         settlementDetails._settlementId,
         settlementDetails._bookHash,
-        0,  // Yes vote
+        0, // Yes vote
         { from: oracle2 }
       );
 
@@ -201,7 +192,7 @@ contract('Oracle System', ([alkemiTeam, oracle1, oracle2, oracle3, exchange1, ex
       let tx2 = await oracle.settlementVote(
         settlementDetails._settlementId,
         settlementDetails._bookHash,
-        0,  // Yes vote
+        0, // Yes vote
         { from: oracle3 }
       );
       // check settlement event not emitted
