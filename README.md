@@ -101,7 +101,7 @@ The contract addresses deployed on `Mainnet` Mainnet:
 
 ## Documentation
 
-* [Contracts Documentation](doc/index.html)
+* [Contracts Documentation](doc/index.md)
 
 ## Issues
 
