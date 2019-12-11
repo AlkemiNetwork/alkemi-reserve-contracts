@@ -68,12 +68,20 @@ $ npm run deploy
 Run tests with:
 
 ```bash
-npm run test
+$ npm run test
 ```
 
 ### Code Linting
 
 Linting is setup for `JavaScript` with [ESLint](https://eslint.org) & Solidity with [Prettier](https://prettier.io/).
+
+```bash
+# lint solidity contracts
+$ npm run lint:contracts
+
+# lint tests
+$ npm run lint:tests
+```
 
 Code style is enforced through the CI test process, builds will fail if there're any linting errors.
 
