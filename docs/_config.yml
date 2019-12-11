@@ -25,12 +25,15 @@ description: >- # this means to ignore newlines until "baseurl:"
   for stakeholders to earn incentives on their idle crypto assets
   while providing the infrastructure required for exchanges to stabilize market prices.
 
-baseurl: "alkemi-protocol" # the subpath of your site, e.g. /blog
+baseurl: "/alkemi-protocol" # the subpath of your site, e.g. /blog
 url: "https://project-alkemi.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: AlkemiOfficial
 github_username:  project-alkemi
 
 # Build settings
+header_pages:
+  - index.md
+  - about.md
 theme: minima
 plugins:
   - jekyll-feed
