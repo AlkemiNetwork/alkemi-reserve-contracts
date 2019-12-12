@@ -2,6 +2,7 @@ pragma solidity ^0.5.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
+import "@openzeppelin/contracts/math/SafeMath.sol";
 import "./LiquidityReserveState.sol";
 
 import "../interfaces/IAlkemiSettlement.sol";
@@ -12,6 +13,7 @@ import "../interfaces/IAlkemiSettlement.sol";
   */
 contract LiquidityReserve is LiquidityReserveState {
   using SafeERC20 for ERC20;
+  using SafeMath for uint256;
 
   address internal constant ETH = address(0);
 
@@ -19,6 +21,9 @@ contract LiquidityReserve is LiquidityReserveState {
   address public beneficiary;
   uint256 public lockingPeriod;
   uint256 public lockingPrice;
+  uint256 public totalBalance;
+  uint256 public deposited;
+  uint256 public earned;
   uint8 public lockingPricePosition;      // 0=below the lockingPrice; 1=above the lockingPrice
   bool public isDepositable = true;
 
@@ -30,15 +35,6 @@ contract LiquidityReserve is LiquidityReserveState {
     ABOVE
   }
 
-  event ReserveCreate(
-    address indexed liquidityProvider,
-    address liquidityReserveManager,
-    address settlementContract,
-    address indexed beneficiary,
-    uint256 lockingPeriod,
-    uint256 lockingPrice,
-    uint8 lockingPricePosition
-  );
   event ReserveDeposit(
     address indexed token,
     address indexed sender,
@@ -72,7 +68,6 @@ contract LiquidityReserve is LiquidityReserveState {
   constructor(
     address _liquidityProvider,
     address _alkemiNetwork,
-    address _settlementContract,
     address _beneficiary,
     address _asset,
     uint256 _lockingPeriod,
@@ -105,46 +100,33 @@ contract LiquidityReserve is LiquidityReserveState {
     if(priceLockout == PriceLockout.ABOVE) {
       lockingPricePosition = 1;
     }
-
-    emit ReserveCreate(
-      liquidityProvider(),
-      beneficiary,
-      lockingPeriod,
-      lockingPrice,
-      _lockingPricePosition
-    );
-  }
-
-  function() external payable onlyPermissioned {
-    _deposit(ETH, _value);
   }
 
   /**
    * @dev check if reserve is active
    */
   function isActive() external view returns(bool) {
-    return ERC20(asset).balanceOf(address(this)) > 0;
+    return isDepositable || totalBalance > 0;
   }
 
   /**
-   * @dev Deposit `_value` `_token` to the reserve
+   * @dev Deposit `_value` to the reserve
    * @notice this function can only be called by the liquidity provider or by the settlement contract
-   * @param _token Address of the token being transferred
    * @param _value Amount of tokens being transferred
    */
   function deposit(uint256 _value) external payable onlyPermissioned {
+    require(_value > 0, "LiquidityReserve: can not deposit amount equal to zero");
     require(isDepositable, "LiquidityReserve: can not deposit into this reserve");
     _deposit(asset, _value);
   }
 
   /**
-   * @dev Withdraw `_value` `_token` from the reserve
+   * @dev Withdraw `_value` from the reserve
    * @notice this function can only be called by the liquidity provider or by the settlement contract
-   * @param _token Address of the token being transferred
    * @param _value Amount of tokens being transferred
    */
-  function withdraw(address _token, uint256 _value) external onlyPermissioned {
-    _withdraw(_token, _value);
+  function withdraw(uint256 _value) external onlyPermissioned {
+    _withdraw(asset, _value);
   }
 
   function _deposit(address _token, uint256 _value) internal {
@@ -158,6 +140,8 @@ contract LiquidityReserve is LiquidityReserveState {
     }
 
     isDepositable = false;
+    deposited = deposited.add(_value);
+    totalBalance = deposited;
 
     emit ReserveDeposit(_token, msg.sender, _value);
   }
@@ -167,10 +151,38 @@ contract LiquidityReserve is LiquidityReserveState {
       require(address(this).balance >= _value, "LiquidityReserve: insufficient balance");
       msg.sender.transfer(_value);
     } else {
-      ERC20(_token).safeTransfer(msg.sender, _value);
+      ERC20(_token).transfer(msg.sender, _value);
     }
 
+    totalBalance = totalBalance.sub(_value);
+
     emit ReserveWithdraw(_token, msg.sender, _value);
+  }
+
+  /**
+   * @dev Transfer asset to a specific address
+   * @notice can only be called from the Alkemi Network contract when ETH are locked
+   * @param _to recepient address
+   * @param _value value to send
+   */
+  function transferFromReserve(address payable _to, uint256 _value) external onlyAlkemi() {
+    require(now < lockingPeriod, "LiquidityReserve: funds are unlocked");
+
+    if (asset == ETH) {
+      require(address(this).balance >= _value, "LiquidityReserve: insufficient balance");
+      _to.transfer(_value);
+    } else {
+      ERC20(asset).transfer(_to, _value);
+    }
+  }
+
+  /**
+   * @dev increment reserve earning
+   * @notice can only be called from Alkemi Network contract
+   */
+  function earn(uint256 _value) external onlyAlkemi() {
+    earned = earned.add(_value);
+    totalBalance = totalBalance.add(_value);
   }
 
   /**
@@ -185,22 +197,17 @@ contract LiquidityReserve is LiquidityReserveState {
    * @dev Returns true if one of the liquidity provder's conditions are valid
    */
   function isUnlocked(address _token) public view returns (bool) {
-    if(isLiquidityprovider()) {
-      if(now > lockingPeriod) return true;
+    if(now > lockingPeriod) return true;
 
-      // get token price from settlement contract
-      uint256 tokenOraclePrice = getTokenPrice(_token);
-      if(lockingPricePosition == 0) {
-        if(tokenOraclePrice < lockingPrice) return true;
-      }
-      else {
-        if(tokenOraclePrice > lockingPrice) return true;
-      }
-      return false;
+    // get token price from settlement contract
+    uint256 tokenOraclePrice = getTokenPrice(_token);
+    if(lockingPricePosition == 0) {
+      if(tokenOraclePrice < lockingPrice) return true;
     }
     else {
-      return true;
+      if(tokenOraclePrice > lockingPrice) return true;
     }
+    return false;
   }
 
   /**
@@ -209,7 +216,8 @@ contract LiquidityReserve is LiquidityReserveState {
    * @return token price
    */
   function getTokenPrice(address _token) internal view returns (uint256) {
-    return IAlkemiSettlement(settlementContract()).priceOf(_token);
+    // return IAlkemiSettlement(settlementContract()).priceOf(_token);
+    return 200;
   }
 
   /**

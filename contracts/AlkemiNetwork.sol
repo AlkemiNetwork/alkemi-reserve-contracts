@@ -1,19 +1,27 @@
 pragma solidity ^0.5.0;
 
-import "./liquidity-reserve/factory/LiquidityReserveFactory.sol";
 import "./interfaces/ILiquidityReserve.sol";
-
+import "./liquidity-reserve/factory/LiquidityReserveFactory.sol";
 
 /**
  * @title AlkemiNetwork
  * @dev This contract manage Alkemi Network on-chain process
  */
-contract AlkemiNetwork is LiquidityReserveFactory{
+contract AlkemiNetwork is LiquidityReserveFactory {
 
   address public owner;
+  
+  mapping(address => address[]) public providerReserves;
+  mapping(address => address[]) public tokenReserves;
 
-  mapping(address => address[]) internal _providerReserves;
-  mapping(address => address[]) internal _tokenReserves;
+  event ReserveCreate(
+    address indexed reserve,
+    address indexed liquidityProvider,
+    address indexed beneficiary,
+    uint256 lockingPeriod,
+    uint256 lockingPrice,
+    uint8 lockingPricePosition
+  );
 
   constructor() public {
     _setOwner(msg.sender);
@@ -30,6 +38,7 @@ contract AlkemiNetwork is LiquidityReserveFactory{
   /**
    * @dev Creates and initialises a new LiquidityReserve
    * @param _beneficiary earnings beneficiary (address(0) if the earnings goes to the current reserve address)
+   * @param _asset asset address
    * @param _lockingPeriod funds locking period
    * @param _lockingPrice release funds when hitting this price
    * @param _lockingPricePosition locking price position
@@ -38,24 +47,32 @@ contract AlkemiNetwork is LiquidityReserveFactory{
   function createLiquidityReserve(
     address _beneficiary,
     address _asset,
-    uint256 _amount,
     uint256 _lockingPeriod,
     uint256 _lockingPrice,
     uint8 _lockingPricePosition
-  ) public {
-    address memory _reserve = _createLiquidityReserve(
+  ) public returns(address) {
+
+    address r = _createLiquidityReserve(
       msg.sender,
       address(this),
       _beneficiary,
       _asset,
-      _amount,
       _lockingPeriod,
       _lockingPrice,
       _lockingPricePosition
     );
 
-    providerReserves[msg.sender].push(_reserve);
-    tokenReserves[_asset].push(_reserve);
+    providerReserves[msg.sender].push(r);
+    tokenReserves[_asset].push(r);
+
+    emit ReserveCreate(
+      r,
+      msg.sender,
+      _beneficiary,
+      _lockingPeriod,
+      _lockingPrice,
+      _lockingPricePosition
+    );
   }
 
   /**
@@ -63,13 +80,15 @@ contract AlkemiNetwork is LiquidityReserveFactory{
    * @param _liquidityProvider liquidity provider address
    * @return active liquidity reserve contract addresses
    */
-  function providerReserves(address _liquidityProvider) public view returns (address[] memory) {
+  function providerLiquidityReserves(address _liquidityProvider) public view returns (address[] memory) {
     address[] memory _reserves = providerReserves[_liquidityProvider];
     address[] memory _activeReserves = new address[](_reserves.length);
 
-    for(uint = 0; uint < _reserves.length; i++) {
-      if(ILiquidityReserve(_reserves[i]).isAtive()) {
-        _activeReserves.push(_reserves[i]);
+    uint j = 0;
+    for(uint i = 0; i < _reserves.length; i++) {
+      if(ILiquidityReserve(_reserves[i]).isActive()) {
+        _activeReserves[j] = _reserves[i];
+        j++;
       }
     }
     return _activeReserves;
@@ -80,13 +99,15 @@ contract AlkemiNetwork is LiquidityReserveFactory{
    * @param _asset asset address
    * @return liquidity reserves addresses
    */
-  function tokenReserves(address _asset) public view returns (address[] memory) {
-    address[] memory _reserves = _tokenReserves[_asset];
+  function tokenLiquidityReserves(address _asset) public view returns (address[] memory) {
+    address[] memory _reserves = tokenReserves[_asset];
     address[] memory _activeReserves = new address[](_reserves.length);
 
-    for(uint = 0; uint < _reserves.length; i++) {
-      if(ILiquidityReserve(_reserves[i]).isAtive()) {
-        _activeReserves.push(_reserves[i]);
+    uint j = 0;
+    for(uint i = 0; i < _reserves.length; i++) {
+      if(ILiquidityReserve(_reserves[i]).isActive()) {
+        _activeReserves[i] = _reserves[i];
+        j++;
       }
     }
     return _activeReserves;

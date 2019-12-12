@@ -23,7 +23,6 @@ contract LiquidityReserveFactory {
     address _alkemiNetwork,
     address _beneficiary,
     address _asset,
-    uint256 _amount,
     uint256 _lockingPeriod,
     uint256 _lockingPrice,
     uint8 _lockingPricePosition
@@ -34,7 +33,6 @@ contract LiquidityReserveFactory {
         _alkemiNetwork,
         _beneficiary,
         _asset,
-        _amount,
         _lockingPeriod,
         _lockingPrice,
         _lockingPricePosition

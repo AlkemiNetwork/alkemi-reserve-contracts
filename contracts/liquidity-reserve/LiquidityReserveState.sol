@@ -73,6 +73,21 @@ contract LiquidityReserveState {
   }
 
   /**
+   * @dev Throws if called by any account other than the Alkemi Network contract.
+   */
+  modifier onlyAlkemi() {
+    require(isAlkemiNetwork(), "LiquidityReserveState: caller is not the Alkemi Network contract");
+    _;
+  }
+
+  /**
+   * @dev Returns true if the caller is Alkemi Network contract.
+   */
+  function isAlkemiNetwork() public view returns (bool) {
+    return msg.sender == _alkemiNetwork;
+  }
+
+  /**
    * @dev Transfers ownership of the contract to a new account (`newLiquidityprovider`).
    * Can only be called by the current liquidity provider.
    */
