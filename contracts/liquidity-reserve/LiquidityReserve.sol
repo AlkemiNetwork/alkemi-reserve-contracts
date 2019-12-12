@@ -103,10 +103,55 @@ contract LiquidityReserve is LiquidityReserveState {
   }
 
   /**
+   * @dev Throws if locking conditions are still valid
+   */
+  modifier onlyUnlocked(address _token) {
+    require(isUnlocked(_token), "LiquidityReserve: provider locking conditions still valid");
+    _;
+  }
+
+  /**
+   * @dev Returns true if one of the liquidity provder's conditions are valid
+   */
+  function isUnlocked(address _token) public view returns (bool) {
+    if(now > lockingPeriod) return true;
+
+    // get token price from settlement contract
+    uint256 tokenOraclePrice = getTokenPrice(_token);
+    if(lockingPricePosition == 0) {
+      if(tokenOraclePrice < lockingPrice) return true;
+    }
+    else {
+      if(tokenOraclePrice > lockingPrice) return true;
+    }
+    return false;
+  }
+
+  /**
    * @dev check if reserve is active
    */
   function isActive() external view returns(bool) {
     return isDepositable || totalBalance > 0;
+  }
+
+  /**
+   * @dev Get liquidity reserve of a specific token
+   * @param _token token address
+   * @return liquidity reserve token balance
+   */
+  function balance(address _token) public view returns (uint256) {
+    if (_token == ETH) {
+        return address(this).balance;
+    } else {
+        return ERC20(_token).balanceOf(address(this));
+    }
+  }
+
+  /**
+   * @dev Returns true if the beneficiary is the current reserve.
+   */
+  function isBeneficiary() public view returns (bool) {
+    return beneficiary == address(0);
   }
 
   /**
@@ -127,6 +172,32 @@ contract LiquidityReserve is LiquidityReserveState {
    */
   function withdraw(uint256 _value) external onlyPermissioned {
     _withdraw(asset, _value);
+  }
+
+  /**
+   * @dev Transfer asset from reserve to a specific address
+   * @notice can only be called from the Alkemi Network contract when ETH are locked
+   * @param _to recepient address
+   * @param _value value to send
+   */
+  function transferFromReserve(address payable _to, uint256 _value) external onlyAlkemi() {
+    require(now < lockingPeriod, "LiquidityReserve: funds are unlocked");
+
+    if (asset == ETH) {
+      require(address(this).balance >= _value, "LiquidityReserve: insufficient balance");
+      _to.transfer(_value);
+    } else {
+      ERC20(asset).transfer(_to, _value);
+    }
+  }
+
+  /**
+   * @dev increment reserve earning
+   * @notice can only be called from Alkemi Network contract
+   */
+  function earn(uint256 _value) external onlyAlkemi() {
+    earned = earned.add(_value);
+    totalBalance = totalBalance.add(_value);
   }
 
   function _deposit(address _token, uint256 _value) internal {
@@ -160,57 +231,6 @@ contract LiquidityReserve is LiquidityReserveState {
   }
 
   /**
-   * @dev Transfer asset to a specific address
-   * @notice can only be called from the Alkemi Network contract when ETH are locked
-   * @param _to recepient address
-   * @param _value value to send
-   */
-  function transferFromReserve(address payable _to, uint256 _value) external onlyAlkemi() {
-    require(now < lockingPeriod, "LiquidityReserve: funds are unlocked");
-
-    if (asset == ETH) {
-      require(address(this).balance >= _value, "LiquidityReserve: insufficient balance");
-      _to.transfer(_value);
-    } else {
-      ERC20(asset).transfer(_to, _value);
-    }
-  }
-
-  /**
-   * @dev increment reserve earning
-   * @notice can only be called from Alkemi Network contract
-   */
-  function earn(uint256 _value) external onlyAlkemi() {
-    earned = earned.add(_value);
-    totalBalance = totalBalance.add(_value);
-  }
-
-  /**
-   * @dev Throws if locking conditions are still valid
-   */
-  modifier onlyUnlocked(address _token) {
-    require(isUnlocked(_token), "LiquidityReserve: provider locking conditions still valid");
-    _;
-  }
-
-  /**
-   * @dev Returns true if one of the liquidity provder's conditions are valid
-   */
-  function isUnlocked(address _token) public view returns (bool) {
-    if(now > lockingPeriod) return true;
-
-    // get token price from settlement contract
-    uint256 tokenOraclePrice = getTokenPrice(_token);
-    if(lockingPricePosition == 0) {
-      if(tokenOraclePrice < lockingPrice) return true;
-    }
-    else {
-      if(tokenOraclePrice > lockingPrice) return true;
-    }
-    return false;
-  }
-
-  /**
    * @dev Return token price from settlement contract
    * @param _token token address
    * @return token price
@@ -218,26 +238,6 @@ contract LiquidityReserve is LiquidityReserveState {
   function getTokenPrice(address _token) internal view returns (uint256) {
     // return IAlkemiSettlement(settlementContract()).priceOf(_token);
     return 200;
-  }
-
-  /**
-   * @dev Get liquidity reserve of a specific token
-   * @param _token token address
-   * @return liquidity reserve token balance
-   */
-  function balance(address _token) public view returns (uint256) {
-    if (_token == ETH) {
-        return address(this).balance;
-    } else {
-        return ERC20(_token).balanceOf(address(this));
-    }
-  }
-
-  /**
-   * @dev Returns true if the beneficiary is the current reserve.
-   */
-  function isBeneficiary() public view returns (bool) {
-    return beneficiary == address(0);
   }
   
 }

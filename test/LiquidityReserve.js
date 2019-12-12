@@ -60,11 +60,7 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
 
   describe("Liquidity Reserve", async() => {
     it("check deployment", async() => {
-      /*let _liquidityReserveProvider = await liquidityReserve1.liquidityProvider.call();
-      let _alkemiNetwork = await liquidityReserve1.alkemiNetwork.call();
-      console.log(_alkemiNetwork);
-      assert.equal(_liquidityReserveProvider, liquidityProvider1, "Wrong liquidity reserve owner");
-      assert.equal(_alkemiNetwork, alkemiNetwork.address, "Wrong liqudity reserve manager address");*/
+      assert.equal(await alkemiNetwork.owner.call(), alkemiTeam, "Wrong Alkemi Network owner");
     });
   });
   
