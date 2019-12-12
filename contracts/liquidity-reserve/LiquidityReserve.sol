@@ -15,10 +15,12 @@ contract LiquidityReserve is LiquidityReserveState {
 
   address internal constant ETH = address(0);
 
+  address public asset;
   address public beneficiary;
   uint256 public lockingPeriod;
   uint256 public lockingPrice;
   uint8 public lockingPricePosition;      // 0=below the lockingPrice; 1=above the lockingPrice
+  bool public isDepositable = true;
 
   /**
    * @dev Price lockout actions
@@ -61,8 +63,7 @@ contract LiquidityReserve is LiquidityReserveState {
   /**
    * @dev constructor
    * @param _liquidityProvider liquidity provider address
-   * @param _liquidityReserveManager Lequidity Reserve Manager contract address
-   * @param _settlementContract Settlement contract address
+   * @param _alkemiNetwork Alkemi Network contract address
    * @param _beneficiary earnings beneficiary (address(0) if the earnings goes to the current reserve address)
    * @param _lockingPeriod funds locking period
    * @param _lockingPrice release funds when hitting this price
@@ -70,15 +71,16 @@ contract LiquidityReserve is LiquidityReserveState {
    */
   constructor(
     address _liquidityProvider,
-    address _liquidityReserveManager,
+    address _alkemiNetwork,
     address _settlementContract,
     address _beneficiary,
+    address _asset,
     uint256 _lockingPeriod,
     uint256 _lockingPrice,
     uint8 _lockingPricePosition
   )
     public
-    LiquidityReserveState(_liquidityReserveManager, _settlementContract, _liquidityProvider)
+    LiquidityReserveState(_alkemiNetwork, _liquidityProvider)
   {
     require(
       _lockingPeriod > now,
@@ -89,6 +91,7 @@ contract LiquidityReserve is LiquidityReserveState {
       "LiquidityReserve: invalid price lockout"
     );
 
+    asset = _asset;
     beneficiary = _beneficiary;
     lockingPeriod = _lockingPeriod;
     lockingPrice = _lockingPrice;
@@ -105,8 +108,6 @@ contract LiquidityReserve is LiquidityReserveState {
 
     emit ReserveCreate(
       liquidityProvider(),
-      liquidityReserveManager(),
-      settlementContract(),
       beneficiary,
       lockingPeriod,
       lockingPrice,
@@ -115,8 +116,14 @@ contract LiquidityReserve is LiquidityReserveState {
   }
 
   function() external payable onlyPermissioned {
-    require(msg.data.length == 0, "LiquidityReserve: data non zero");
-    _deposit(ETH, msg.value);
+    _deposit(ETH, _value);
+  }
+
+  /**
+   * @dev check if reserve is active
+   */
+  function isActive() external view returns(bool) {
+    return ERC20(asset).balanceOf(address(this)) > 0;
   }
 
   /**
@@ -125,8 +132,9 @@ contract LiquidityReserve is LiquidityReserveState {
    * @param _token Address of the token being transferred
    * @param _value Amount of tokens being transferred
    */
-  function deposit(address _token, uint256 _value) external payable onlyPermissioned {
-    _deposit(_token, _value);
+  function deposit(uint256 _value) external payable onlyPermissioned {
+    require(isDepositable, "LiquidityReserve: can not deposit into this reserve");
+    _deposit(asset, _value);
   }
 
   /**
@@ -148,6 +156,8 @@ contract LiquidityReserve is LiquidityReserveState {
     } else {
       ERC20(_token).safeTransferFrom(msg.sender, address(this), _value);
     }
+
+    isDepositable = false;
 
     emit ReserveDeposit(_token, msg.sender, _value);
   }

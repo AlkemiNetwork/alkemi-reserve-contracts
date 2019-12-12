@@ -7,6 +7,11 @@ pragma solidity ^0.5.0;
 contract ILiquidityReserve {
 
   /**
+   * @dev check if reserve is active
+   */
+  function isActive() external view returns(bool);
+
+  /**
    * @notice Deposit `_value` `_token` to the reserve
    * @param _token Address of the token being transferred
    * @param _value Amount of tokens being transferred

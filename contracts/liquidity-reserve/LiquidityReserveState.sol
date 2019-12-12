@@ -1,8 +1,7 @@
 pragma solidity ^0.5.0;
 
 contract LiquidityReserveState {
-  address private _liquidityReserveManager;   // address of the LiquidityReserveManager contract
-  address private _settlementContract;        // address of the settlement contract
+  address private _alkemiNetwork;   // address of the LiquidityReserveManager contract
   address private _liquidityProvider;         // liqudity provider wallet address
 
   event LiquidityProviderChanged(
@@ -17,18 +16,15 @@ contract LiquidityReserveState {
 
 
   /**
-   * @dev Initializes the liquidity reserve state setting the provider and the settlement contract addresses.
+   * @dev Initializes the liquidity reserve state setting the Alkemi Network and the provider address.
    */
-  constructor(address liquidityReserveManager, address settlementContract, address liquidityProvider) internal {
-    require(liquidityReserveManager != address(0), "LiquidityReserveState: invalid liquidity manager contract address");
-    require(settlementContract != address(0), "LiquidityReserveState: invalid settlement contract address");
+  constructor(address alkemiNetwork, address liquidityProvider) internal {
+    require(alkemiNetwork != address(0), "LiquidityReserveState: invalid liquidity manager contract address");
     require(liquidityProvider != address(0), "LiquidityReserveState: invalid liquidity provider address");
 
-    _liquidityReserveManager = liquidityReserveManager;
-    _settlementContract = settlementContract;
+    _alkemiNetwork = alkemiNetwork;
     _liquidityProvider = liquidityProvider;
 
-    emit settlementContractChanged(address(0), _settlementContract);
     emit LiquidityProviderChanged(address(0), _liquidityProvider);
   }
 
@@ -40,21 +36,14 @@ contract LiquidityReserveState {
   }
 
   /**
-   * @dev Returns the address of the liquidity reserve manager contract.
+   * @dev Returns the address of the Alkemi Network contract address.
    */
-  function liquidityReserveManager() public view returns (address) {
-    return _liquidityReserveManager;
+  function alkemiNetwork() public view returns (address) {
+    return _alkemiNetwork;
   }
 
   /**
-   * @dev Returns the address of the settlement contract.
-   */
-  function settlementContract() public view returns (address) {
-    return _settlementContract;
-  }
-
-  /**
-   * @dev Throws if called by any account other than the liquidity provider or settlement contract.
+   * @dev Throws if called by any account other than the liquidity provider
    */
   modifier onlyPermissioned() {
     require(havePermission(), "LiquidityReserveState: caller does not have permission");
@@ -62,10 +51,10 @@ contract LiquidityReserveState {
   }
 
   /**
-   * @dev Returns true if the caller is the current liquidity provider or the settlement contract.
+   * @dev Returns true if the caller is the current liquidity provider
    */
   function havePermission() public view returns (bool) {
-    return ((msg.sender == _liquidityProvider) || (msg.sender == _settlementContract));
+    return msg.sender == _liquidityProvider;
   }
 
   /**
@@ -81,29 +70,6 @@ contract LiquidityReserveState {
    */
   function isLiquidityprovider() public view returns (bool) {
     return msg.sender == _liquidityProvider;
-  }
-
-  /**
-   * @dev Throws if called by any account other than the settlement contract.
-   */
-  modifier onlySettlementContract() {
-    require(isSettlementContract(), "LiquidityReserveState: caller is not the settlement contract");
-    _;
-  }
-
-  /**
-   * @dev Returns true if the caller is the settlement contract.
-   */
-  function isSettlementContract() public view returns (bool) {
-    return msg.sender == _settlementContract;
-  }
-
-  /**
-   * @dev Throws if called by any account other than the liquidity reserve manager contract.
-   */
-  modifier onlyLiqudityReserveManager() {
-    require(msg.sender == _liquidityReserveManager, "LiquidityReserve: caller is not the liquidity reserve manager contract");
-    _;
   }
 
   /**
@@ -123,25 +89,6 @@ contract LiquidityReserveState {
     emit LiquidityProviderChanged(_liquidityProvider, newLiquidityprovider);
 
     _liquidityProvider = newLiquidityprovider;
-  }
-
-    /**
-   * @dev Change settlement contract address to a new address (`newSettlementContract`).
-   * Can only be called by the liquidty reserve manager.
-   */
-  function transferSettlementContract(address newSettlementContract) public onlyLiqudityReserveManager {
-    _transferSettlementContract(newSettlementContract);
-  }
-
-  /**
-   * @dev Change settlement contract address to (`newLiquidityprovider`).
-   */
-  function _transferSettlementContract(address newSettlementContract) internal {
-    require(newSettlementContract != address(0), "Ownable: new owner is the zero address");
-
-    emit settlementContractChanged(_settlementContract, newSettlementContract);
-
-    _settlementContract = newSettlementContract;
   }
 
 }
