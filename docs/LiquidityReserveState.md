@@ -10,8 +10,7 @@ View Source: [contracts/liquidity-reserve/LiquidityReserveState.sol](../contract
 **Constants & Variables**
 
 ```js
-address private _liquidityReserveManager;
-address private _settlementContract;
+address private _alkemiNetwork;
 address private _liquidityProvider;
 
 ```
@@ -27,12 +26,11 @@ event settlementContractChanged(address indexed previousContract, address indexe
 
 - [onlyPermissioned](#onlypermissioned)
 - [onlyLiquidityProvider](#onlyliquidityprovider)
-- [onlySettlementContract](#onlysettlementcontract)
-- [onlyLiqudityReserveManager](#onlyliqudityreservemanager)
+- [onlyAlkemi](#onlyalkemi)
 
 ### onlyPermissioned
 
-Throws if called by any account other than the liquidity provider or settlement contract.
+Throws if called by any account other than the liquidity provider
 
 ```js
 modifier onlyPermissioned() internal
@@ -56,25 +54,12 @@ modifier onlyLiquidityProvider() internal
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
 
-### onlySettlementContract
+### onlyAlkemi
 
-Throws if called by any account other than the settlement contract.
-
-```js
-modifier onlySettlementContract() internal
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-
-### onlyLiqudityReserveManager
-
-Throws if called by any account other than the liquidity reserve manager contract.
+Throws if called by any account other than the Alkemi Network contract.
 
 ```js
-modifier onlyLiqudityReserveManager() internal
+modifier onlyAlkemi() internal
 ```
 
 **Arguments**
@@ -84,32 +69,28 @@ modifier onlyLiqudityReserveManager() internal
 
 ## Functions
 
-- [(address liquidityReserveManager, address settlementContract, address liquidityProvider)](#)
+- [(address alkemiNetwork, address liquidityProvider)](#)
 - [liquidityProvider()](#liquidityprovider)
-- [liquidityReserveManager()](#liquidityreservemanager)
-- [settlementContract()](#settlementcontract)
+- [alkemiNetwork()](#alkeminetwork)
 - [havePermission()](#havepermission)
 - [isLiquidityprovider()](#isliquidityprovider)
-- [isSettlementContract()](#issettlementcontract)
+- [isAlkemiNetwork()](#isalkeminetwork)
 - [transferLiquidityProvider(address newLiquidityprovider)](#transferliquidityprovider)
 - [_transferLiquidityProvider(address newLiquidityprovider)](#_transferliquidityprovider)
-- [transferSettlementContract(address newSettlementContract)](#transfersettlementcontract)
-- [_transferSettlementContract(address newSettlementContract)](#_transfersettlementcontract)
 
 ### 
 
-Initializes the liquidity reserve state setting the provider and the settlement contract addresses.
+Initializes the liquidity reserve state setting the Alkemi Network and the provider address.
 
 ```js
-function (address liquidityReserveManager, address settlementContract, address liquidityProvider) internal nonpayable
+function (address alkemiNetwork, address liquidityProvider) internal nonpayable
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| liquidityReserveManager | address |  | 
-| settlementContract | address |  | 
+| alkemiNetwork | address |  | 
 | liquidityProvider | address |  | 
 
 ### liquidityProvider
@@ -126,26 +107,12 @@ returns(address)
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
 
-### liquidityReserveManager
+### alkemiNetwork
 
-Returns the address of the liquidity reserve manager contract.
-
-```js
-function liquidityReserveManager() public view
-returns(address)
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-
-### settlementContract
-
-Returns the address of the settlement contract.
+Returns the address of the Alkemi Network contract address.
 
 ```js
-function settlementContract() public view
+function alkemiNetwork() public view
 returns(address)
 ```
 
@@ -156,7 +123,7 @@ returns(address)
 
 ### havePermission
 
-Returns true if the caller is the current liquidity provider or the settlement contract.
+Returns true if the caller is the current liquidity provider
 
 ```js
 function havePermission() public view
@@ -182,12 +149,12 @@ returns(bool)
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
 
-### isSettlementContract
+### isAlkemiNetwork
 
-Returns true if the caller is the settlement contract.
+Returns true if the caller is Alkemi Network contract.
 
 ```js
-function isSettlementContract() public view
+function isAlkemiNetwork() public view
 returns(bool)
 ```
 
@@ -225,43 +192,16 @@ function _transferLiquidityProvider(address newLiquidityprovider) internal nonpa
 | ------------- |------------- | -----|
 | newLiquidityprovider | address |  | 
 
-### transferSettlementContract
-
-Change settlement contract address to a new address (`newSettlementContract`).
-Can only be called by the liquidty reserve manager.
-
-```js
-function transferSettlementContract(address newSettlementContract) public nonpayable onlyLiqudityReserveManager 
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| newSettlementContract | address |  | 
-
-### _transferSettlementContract
-
-Change settlement contract address to (`newLiquidityprovider`).
-
-```js
-function _transferSettlementContract(address newSettlementContract) internal nonpayable
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| newSettlementContract | address |  | 
-
 ## Contracts
 
 * [Address](Address.md)
+* [AlkemiNetwork](AlkemiNetwork.md)
 * [AlkemiSettlement](AlkemiSettlement.md)
 * [AlkemiSettlementMock](AlkemiSettlementMock.md)
 * [Context](Context.md)
 * [ERC20](ERC20.md)
 * [ERC20Mintable](ERC20Mintable.md)
+* [EtherTokenConstantMock](EtherTokenConstantMock.md)
 * [IAlkemiSettlement](IAlkemiSettlement.md)
 * [IAlkemiToken](IAlkemiToken.md)
 * [IERC20](IERC20.md)

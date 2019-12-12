@@ -2,7 +2,7 @@
 
 View Source: [contracts/liquidity-reserve/factory/LiquidityReserveFactory.sol](../contracts/liquidity-reserve/factory/LiquidityReserveFactory.sol)
 
-**↘ Derived Contracts: [LiquidityReserveManager](LiquidityReserveManager.md)**
+**↘ Derived Contracts: [AlkemiNetwork](AlkemiNetwork.md), [LiquidityReserveManager](LiquidityReserveManager.md)**
 
 **LiquidityReserveFactory**
 
@@ -10,14 +10,14 @@ This Factory creates a Liquidity Reserve
 
 ## Functions
 
-- [_createLiquidityReserve(address _liquidityProvider, address _liquidityReserveManager, address _settlementContract, address _beneficiary, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition)](#_createliquidityreserve)
+- [_createLiquidityReserve(address _liquidityProvider, address _alkemiNetwork, address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition)](#_createliquidityreserve)
 
 ### _createLiquidityReserve
 
 Creates and initialises a new LiquidityReserve
 
 ```js
-function _createLiquidityReserve(address _liquidityProvider, address _liquidityReserveManager, address _settlementContract, address _beneficiary, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition) internal nonpayable
+function _createLiquidityReserve(address _liquidityProvider, address _alkemiNetwork, address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition) internal nonpayable
 returns(address)
 ```
 
@@ -30,9 +30,9 @@ Address of new Liquidity Reserve
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
 | _liquidityProvider | address | Lequidity provider address | 
-| _liquidityReserveManager | address | Lequidity Reserve Manager contract address | 
-| _settlementContract | address | Settlement contract address | 
+| _alkemiNetwork | address | Alkemi Network contract address | 
 | _beneficiary | address | earnings beneficiary (address(0) if the earnings goes to the current reserve address) | 
+| _asset | address |  | 
 | _lockingPeriod | uint256 | funds locking period | 
 | _lockingPrice | uint256 | release funds when hitting this price | 
 | _lockingPricePosition | uint8 | locking price position | 
@@ -40,11 +40,13 @@ Address of new Liquidity Reserve
 ## Contracts
 
 * [Address](Address.md)
+* [AlkemiNetwork](AlkemiNetwork.md)
 * [AlkemiSettlement](AlkemiSettlement.md)
 * [AlkemiSettlementMock](AlkemiSettlementMock.md)
 * [Context](Context.md)
 * [ERC20](ERC20.md)
 * [ERC20Mintable](ERC20Mintable.md)
+* [EtherTokenConstantMock](EtherTokenConstantMock.md)
 * [IAlkemiSettlement](IAlkemiSettlement.md)
 * [IAlkemiToken](IAlkemiToken.md)
 * [IERC20](IERC20.md)
