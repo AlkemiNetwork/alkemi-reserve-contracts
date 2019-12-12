@@ -6,7 +6,6 @@ const BigNumber = require('bignumber.js');
 const EVMRevert = require('./helpers/EVMRevert').EVMRevert;
 const increaseTime = require('./helpers/increaseTime');
 const increaseTimeTo = increaseTime.increaseTimeTo;
-const truffleAssert = require('truffle-assertions');
 
 const ZERO_ADDR = '0x0000000000000000000000000000000000000000';
 
@@ -24,11 +23,12 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
   const dayTime = 24 * 3600;
   const now = Math.floor(Date.now() / 1000);
   const lockingPeriod = now + dayTime*5;
+  const newLockingPeriod = lockingPeriod+5;
   const lockingPrice = 200;
   const lockingPricePosition = 0; // unlock funds if oracle price is below lockingPrice  
   const supplyToMint = ether("1000");
 
-  let token1, token2, alkemiNetwork, liquidityReserve1, liquidityReserve2;
+  let token1, token2, alkemiNetwork, liquidityReserve1;
   let alkemiSettlement;
 
   before(async() => {
@@ -44,9 +44,7 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
       from: alkemiTeam
     });
     
-    alkemiNetwork = await AlkemiNetwork.new(
-      { from: alkemiTeam }
-    );
+    alkemiNetwork = await AlkemiNetwork.new({ from: alkemiTeam });
 
     // Mint tokens
     await token1.mint(liquidityProvider1, supplyToMint);
@@ -131,32 +129,34 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
         await liquidityReserve1.withdraw(amountToWithdraw, {from: liquidityProvider1}).should.be.rejectedWith(EVMRevert);
       });
       
-      /*it("withdraw when price locking condition is valid even if locking period is not valid", async() => {
-        let reserveBalanceBefore = await liquidityReserve1.balance.call(token1.address);
-        let providerBalanceBefore = await token1.balanceOf.call(liquidityProvider1);
-
-        let _lockingPricePosition = await liquidityReserve1.lockingPricePosition.call();
-        let _lockingPrice = await liquidityReserve1.lockingPrice.call();
-        let _oraclePrice = await alkemiSettlement.priceOf.call(token1.address);
-
-        if(_lockingPricePosition.toNumber() == 0) {
-          await alkemiSettlement.decerementPriceOf(token1.address, 10);
-          _oraclePrice = await alkemiSettlement.priceOf.call(token1.address);
-          assert.ok(_oraclePrice < _lockingPrice, "Oracle price is not less than locking price");
-        }
-        else {
-          await alkemiSettlement.incerementPriceOf(token1.address, 10);
-          _oraclePrice = await alkemiSettlement.priceOf.call(token1.address);
-          assert.ok(_oraclePrice > _lockingPrice, "Oracle price is not greater than locking price"); 
-        }
-
-        await liquidityReserve1.withdraw(amountToWithdraw, {from: liquidityProvider1});
-
-        let reserveBalanceAfter = await liquidityReserve1.balance.call(token1.address);
-        let providerBalanceAfter = await token1.balanceOf.call(liquidityProvider1);
-        assert.equal(reserveBalanceBefore-amountToWithdraw, reserveBalanceAfter, "Wrong reserve balance");
-        assert.equal(parseInt(providerBalanceBefore)+parseInt(amountToWithdraw), parseInt(providerBalanceAfter), "Wrong liqudity provider balance");
-      });*/
+      /*
+       *it("withdraw when price locking condition is valid even if locking period is not valid", async() => {
+       *let reserveBalanceBefore = await liquidityReserve1.balance.call(token1.address);
+       *let providerBalanceBefore = await token1.balanceOf.call(liquidityProvider1);
+       *
+       *let _lockingPricePosition = await liquidityReserve1.lockingPricePosition.call();
+       *let _lockingPrice = await liquidityReserve1.lockingPrice.call();
+       *let _oraclePrice = await alkemiSettlement.priceOf.call(token1.address);
+       *
+       *if(_lockingPricePosition.toNumber() == 0) {
+       *  await alkemiSettlement.decerementPriceOf(token1.address, 10);
+       *  _oraclePrice = await alkemiSettlement.priceOf.call(token1.address);
+       *  assert.ok(_oraclePrice < _lockingPrice, "Oracle price is not less than locking price");
+       *}
+       *else {
+       *  await alkemiSettlement.incerementPriceOf(token1.address, 10);
+       *  _oraclePrice = await alkemiSettlement.priceOf.call(token1.address);
+       *  assert.ok(_oraclePrice > _lockingPrice, "Oracle price is not greater than locking price"); 
+       *}
+       *
+       *await liquidityReserve1.withdraw(amountToWithdraw, {from: liquidityProvider1});
+       *
+       *let reserveBalanceAfter = await liquidityReserve1.balance.call(token1.address);
+       *let providerBalanceAfter = await token1.balanceOf.call(liquidityProvider1);
+       *assert.equal(reserveBalanceBefore-amountToWithdraw, reserveBalanceAfter, "Wrong reserve balance");
+       *assert.equal(parseInt(providerBalanceBefore)+parseInt(amountToWithdraw), parseInt(providerBalanceAfter), "Wrong liqudity provider balance");
+       *});
+       */
 
       it("withdraw when locking period is valid even if price locking is not valid", async() => {
         //reset oracle price
@@ -224,6 +224,23 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
         await liquidityReserve1.withdraw(amountToWithdraw, {from: liquidityProvider2}).should.be.rejectedWith(EVMRevert);
       });
     });    
+
+    describe("Locking period", async() => {
+      it("should revert extending locking period from an address other than provider", async() => {
+        //reset oracle price
+        await alkemiSettlement.resetPriceOf(token1.address, 200);
+        
+        await liquidityReserve1.extendLockingPeriod(lockingPeriod, { from: liquidityProvider1 }).should.be.rejectedWith(EVMRevert);
+      })
+      it("extend locking period", async() => {
+        //reset oracle price
+        await alkemiSettlement.resetPriceOf(token1.address, 200);
+
+        await liquidityReserve1.extendLockingPeriod(newLockingPeriod, { from: liquidityProvider1 });
+
+        await liquidityReserve1.withdraw(amountToWithdraw, {from: liquidityProvider1}).should.be.rejectedWith(EVMRevert);
+      })
+    });
   });
 
 });

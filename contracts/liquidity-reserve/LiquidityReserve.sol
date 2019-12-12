@@ -200,6 +200,15 @@ contract LiquidityReserve is LiquidityReserveState {
     totalBalance = totalBalance.add(_value);
   }
 
+  /**
+   * @dev extend reserve locking period
+   */
+  function extendLockingPeriod(uint256 _newPeriod) external onlyPermissioned {
+    require(_newPeriod > lockingPeriod, "LiquidityReserve: invalid new locking period");
+    
+    lockingPeriod = _newPeriod;
+  }
+
   function _deposit(address _token, uint256 _value) internal {
     require(_value > 0, "LiquidityReserve: can not deposit 0 amount");
 
