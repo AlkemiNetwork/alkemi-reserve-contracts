@@ -155,6 +155,14 @@ contract LiquidityReserve is LiquidityReserveState {
   }
 
   /**
+   * @dev Get reserve details
+   * @return asset address, locking period, locking price, total balance, deposited amount, earned amount
+   */
+  function details() public view returns (address, uint256, uint256, uint256, uint256, uint256) {
+    return (asset, lockingPeriod, lockingPrice, totalBalance, deposited, earned);
+  }
+
+  /**
    * @dev Deposit `_value` to the reserve
    * @notice this function can only be called by the liquidity provider or by the settlement contract
    * @param _value Amount of tokens being transferred
