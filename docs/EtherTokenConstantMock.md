@@ -1,45 +1,26 @@
-# Context.sol
+# EtherTokenConstantMock.sol
 
-View Source: [@openzeppelin/contracts/GSN/Context.sol](../@openzeppelin/contracts/GSN/Context.sol)
+View Source: [contracts/mocks/EtherTokenContantMock.sol](../contracts/mocks/EtherTokenContantMock.sol)
 
-**↘ Derived Contracts: [ERC20](ERC20.md), [MinterRole](MinterRole.md)**
+**EtherTokenConstantMock**
 
-**Context**
+## Contract Members
+**Constants & Variables**
+
+```js
+address internal constant ETH;
+
+```
 
 ## Functions
 
-- [()](#)
-- [_msgSender()](#_msgsender)
-- [_msgData()](#_msgdata)
+- [getETHConstant()](#getethconstant)
 
-### 
+### getETHConstant
 
 ```js
-function () internal nonpayable
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-
-### _msgSender
-
-```js
-function _msgSender() internal view
-returns(address payable)
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-
-### _msgData
-
-```js
-function _msgData() internal view
-returns(bytes)
+function getETHConstant() external pure
+returns(address)
 ```
 
 **Arguments**

@@ -1,18 +1,27 @@
 pragma solidity ^0.5.0;
 
-import "./factory/LiquidityReserveFactory.sol";
-import "../interfaces/ILiquidityReserve.sol";
-
+import "./interfaces/ILiquidityReserve.sol";
+import "./liquidity-reserve/factory/LiquidityReserveFactory.sol";
 
 /**
- * @title LiquidityReserveManager
- * @dev This contract manages a specific Liquidity Reserve
+ * @title AlkemiNetwork
+ * @dev This contract manage Alkemi Network on-chain process
  */
-contract LiquidityReserveManager is LiquidityReserveFactory{
+contract AlkemiNetwork is LiquidityReserveFactory {
 
   address public owner;
+  
+  mapping(address => address[]) public providerReserves;
+  mapping(address => address[]) public tokenReserves;
 
-  mapping(address => address) private _liquidityReserves;
+  event ReserveCreate(
+    address indexed reserve,
+    address indexed liquidityProvider,
+    address indexed beneficiary,
+    uint256 lockingPeriod,
+    uint256 lockingPrice,
+    uint8 lockingPricePosition
+  );
 
   constructor() public {
     _setOwner(msg.sender);
@@ -28,24 +37,37 @@ contract LiquidityReserveManager is LiquidityReserveFactory{
 
   /**
    * @dev Creates and initialises a new LiquidityReserve
-   * @param _settlementContract Settlement contract address
    * @param _beneficiary earnings beneficiary (address(0) if the earnings goes to the current reserve address)
+   * @param _asset asset address
    * @param _lockingPeriod funds locking period
    * @param _lockingPrice release funds when hitting this price
    * @param _lockingPricePosition locking price position
    * @return Address of new Liquidity Reserve
    */
   function createLiquidityReserve(
-    address _settlementContract,
     address _beneficiary,
+    address _asset,
     uint256 _lockingPeriod,
     uint256 _lockingPrice,
     uint8 _lockingPricePosition
-  ) public {
-    _liquidityReserves[msg.sender] = _createLiquidityReserve(
+  ) public returns(address) {
+
+    address r = _createLiquidityReserve(
       msg.sender,
       address(this),
-      _settlementContract,
+      _beneficiary,
+      _asset,
+      _lockingPeriod,
+      _lockingPrice,
+      _lockingPricePosition
+    );
+
+    providerReserves[msg.sender].push(r);
+    tokenReserves[_asset].push(r);
+
+    emit ReserveCreate(
+      r,
+      msg.sender,
       _beneficiary,
       _lockingPeriod,
       _lockingPrice,
@@ -54,12 +76,41 @@ contract LiquidityReserveManager is LiquidityReserveFactory{
   }
 
   /**
-   * @dev Get liquidity reserve address of a liquidity provider
+   * @dev Get liquidity reserves addresses of a liquidity provider
    * @param _liquidityProvider liquidity provider address
-   * @return liquidity reserve contract address
+   * @return active liquidity reserve contract addresses
    */
-  function liquidityReserveOf(address _liquidityProvider) public view returns (address) {
-    return _liquidityReserves[_liquidityProvider];
+  function providerLiquidityReserves(address _liquidityProvider) public view returns (address[] memory) {
+    address[] memory _reserves = providerReserves[_liquidityProvider];
+    address[] memory _activeReserves = new address[](_reserves.length);
+
+    uint j = 0;
+    for(uint i = 0; i < _reserves.length; i++) {
+      if(ILiquidityReserve(_reserves[i]).isActive()) {
+        _activeReserves[j] = _reserves[i];
+        j++;
+      }
+    }
+    return _activeReserves;
+  }
+
+  /**
+   * @dev Get liquidity reserves addresses that hold a specific asset
+   * @param _asset asset address
+   * @return liquidity reserves addresses
+   */
+  function tokenLiquidityReserves(address _asset) public view returns (address[] memory) {
+    address[] memory _reserves = tokenReserves[_asset];
+    address[] memory _activeReserves = new address[](_reserves.length);
+
+    uint j = 0;
+    for(uint i = 0; i < _reserves.length; i++) {
+      if(ILiquidityReserve(_reserves[i]).isActive()) {
+        _activeReserves[i] = _reserves[i];
+        j++;
+      }
+    }
+    return _activeReserves;
   }
 
   /**

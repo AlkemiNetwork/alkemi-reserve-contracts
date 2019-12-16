@@ -6,11 +6,26 @@ View Source: [contracts/interfaces/ILiquidityReserve.sol](../contracts/interface
 
 ## Functions
 
+- [isActive()](#isactive)
 - [deposit(address _token, uint256 _value)](#deposit)
 - [withdraw(address _token, uint256 _value)](#withdraw)
 - [isUnlocked(address _token)](#isunlocked)
 - [isBeneficiary()](#isbeneficiary)
 - [balance(address _token)](#balance)
+
+### isActive
+
+check if reserve is active
+
+```js
+function isActive() external view
+returns(bool)
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
 
 ### deposit
 
@@ -87,11 +102,13 @@ returns(uint256)
 ## Contracts
 
 * [Address](Address.md)
+* [AlkemiNetwork](AlkemiNetwork.md)
 * [AlkemiSettlement](AlkemiSettlement.md)
 * [AlkemiSettlementMock](AlkemiSettlementMock.md)
 * [Context](Context.md)
 * [ERC20](ERC20.md)
 * [ERC20Mintable](ERC20Mintable.md)
+* [EtherTokenConstantMock](EtherTokenConstantMock.md)
 * [IAlkemiSettlement](IAlkemiSettlement.md)
 * [IAlkemiToken](IAlkemiToken.md)
 * [IERC20](IERC20.md)

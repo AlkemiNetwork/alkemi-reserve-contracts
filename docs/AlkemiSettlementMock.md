@@ -27,6 +27,7 @@ uint256 public oraclePrice;
 - [withdrawFromLiquidityReserve(address _liquidityReserve, address _token, uint256 _amount)](#withdrawfromliquidityreserve)
 - [approveTokenTransfer(address _liquidityReserve, address _token, uint256 _amount)](#approvetokentransfer)
 - [doSettlement(address[] exchangesAddresses, address[] surplusTokensAddresses, address[] deficitTokensAddresses, uint128[] surplus, uint128[] deficit)](#dosettlement)
+- [RequestContinueTrading()](#requestcontinuetrading)
 - [priceOf(address _token)](#priceof)
 - [incerementPriceOf(address _token, uint256 _increment)](#incerementpriceof)
 - [decerementPriceOf(address _token, uint256 _decrement)](#decerementpriceof)
@@ -111,6 +112,17 @@ returns(bool)
 | surplus | uint128[] | TokensAddresses list of surplus tokens | 
 | deficit | uint128[] | TokensAddresses list of dificit tokens | 
 
+### RequestContinueTrading
+
+```js
+function RequestContinueTrading() internal nonpayable
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+
 ### priceOf
 
 this is just  mock for testing purpose
@@ -173,11 +185,13 @@ returns(uint256)
 ## Contracts
 
 * [Address](Address.md)
+* [AlkemiNetwork](AlkemiNetwork.md)
 * [AlkemiSettlement](AlkemiSettlement.md)
 * [AlkemiSettlementMock](AlkemiSettlementMock.md)
 * [Context](Context.md)
 * [ERC20](ERC20.md)
 * [ERC20Mintable](ERC20Mintable.md)
+* [EtherTokenConstantMock](EtherTokenConstantMock.md)
 * [IAlkemiSettlement](IAlkemiSettlement.md)
 * [IAlkemiToken](IAlkemiToken.md)
 * [IERC20](IERC20.md)

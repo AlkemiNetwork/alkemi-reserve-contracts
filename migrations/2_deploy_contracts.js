@@ -1,7 +1,7 @@
-var LiquidityReserveManager = artifacts.require("./LiquidityReserveManager.sol");
+var AlkemiNetwork = artifacts.require("./AlkemiNetwork.sol");
 
 async function doDeploy(deployer) {
-    await deployer.deploy(LiquidityReserveManager);
+    await deployer.deploy(AlkemiNetwork);
 }
 
 module.exports = (deployer) => {

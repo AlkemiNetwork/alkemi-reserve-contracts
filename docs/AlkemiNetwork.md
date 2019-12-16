@@ -1,12 +1,12 @@
-# LiquidityReserveManager (LiquidityReserveManager.sol)
+# AlkemiNetwork (AlkemiNetwork.sol)
 
-View Source: [-contracts/contracts/liquidity-reserve/LiquidityReserveManager.sol](../-contracts/contracts/liquidity-reserve/LiquidityReserveManager.sol)
+View Source: [contracts/AlkemiNetwork.sol](../contracts/AlkemiNetwork.sol)
 
 **↗ Extends: [LiquidityReserveFactory](LiquidityReserveFactory.md)**
 
-**LiquidityReserveManager**
+**AlkemiNetwork**
 
-This contract manages a specific Liquidity Reserve
+This contract manage Alkemi Network on-chain process
 
 ## Contract Members
 **Constants & Variables**
@@ -15,8 +15,9 @@ This contract manages a specific Liquidity Reserve
 //public members
 address public owner;
 
-//private members
-mapping(address => address) private _liquidityReserves;
+//internal members
+mapping(address => address[]) internal _providerReserves;
+mapping(address => address[]) internal _tokenReserves;
 
 ```
 
@@ -40,8 +41,9 @@ modifier onlyOwner() internal
 ## Functions
 
 - [()](#)
-- [createLiquidityReserve(address _settlementContract, address _beneficiary, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition)](#createliquidityreserve)
-- [liquidityReserveOf(address _liquidityProvider)](#liquidityreserveof)
+- [createLiquidityReserve(address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition)](#createliquidityreserve)
+- [providerLiquidityReserves(address _liquidityProvider)](#providerliquidityreserves)
+- [tokenLiquidityReserves(address _asset)](#tokenliquidityreserves)
 - [setNewOwner(address _owner)](#setnewowner)
 - [_setOwner(address _owner)](#_setowner)
 
@@ -61,7 +63,7 @@ function () public nonpayable
 Creates and initialises a new LiquidityReserve
 
 ```js
-function createLiquidityReserve(address _settlementContract, address _beneficiary, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition) public nonpayable
+function createLiquidityReserve(address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition) public nonpayable
 ```
 
 **Returns**
@@ -72,30 +74,49 @@ Address of new Liquidity Reserve
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _settlementContract | address | Settlement contract address | 
 | _beneficiary | address | earnings beneficiary (address(0) if the earnings goes to the current reserve address) | 
+| _asset | address | asset address | 
 | _lockingPeriod | uint256 | funds locking period | 
 | _lockingPrice | uint256 | release funds when hitting this price | 
 | _lockingPricePosition | uint8 | locking price position | 
 
-### liquidityReserveOf
+### providerLiquidityReserves
 
-Get liquidity reserve address of a liquidity provider
+Get liquidity reserves addresses of a liquidity provider
 
 ```js
-function liquidityReserveOf(address _liquidityProvider) public view
-returns(address)
+function providerLiquidityReserves(address _liquidityProvider) public view
+returns(address[])
 ```
 
 **Returns**
 
-liquidity reserve contract address
+active liquidity reserve contract addresses
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
 | _liquidityProvider | address | liquidity provider address | 
+
+### tokenLiquidityReserves
+
+Get liquidity reserves addresses that hold a specific asset
+
+```js
+function tokenLiquidityReserves(address _asset) public view
+returns(address[])
+```
+
+**Returns**
+
+liquidity reserves addresses
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| _asset | address | asset address | 
 
 ### setNewOwner
 

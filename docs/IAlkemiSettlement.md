@@ -9,7 +9,9 @@ View Source: [contracts/interfaces/IAlkemiSettlement.sol](../contracts/interface
 - [depositIntoLiquidityReserve(address _liquidityReserve, address _token, uint256 _amount)](#depositintoliquidityreserve)
 - [withdrawFromLiquidityReserve(address _liquidityReserve, address _token, uint256 _amount)](#withdrawfromliquidityreserve)
 - [approveTokenTransfer(address _liquidityReserve, address _token, uint256 _amount)](#approvetokentransfer)
+- [doSettlement(address[] exchangesAddresses, address[] surplusTokensAddresses, address[] deficitTokensAddresses, uint128[] surplus, uint128[] deficit)](#dosettlement)
 - [priceOf(address _token)](#priceof)
+- [settlementId()](#settlementid)
 
 ### depositIntoLiquidityReserve
 
@@ -59,6 +61,25 @@ function approveTokenTransfer(address _liquidityReserve, address _token, uint256
 | _token | address | erc20 token address to deposit | 
 | _amount | uint256 | amount to deposit | 
 
+### doSettlement
+
+settlement function
+
+```js
+function doSettlement(address[] exchangesAddresses, address[] surplusTokensAddresses, address[] deficitTokensAddresses, uint128[] surplus, uint128[] deficit) external pure
+returns(bool)
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| exchangesAddresses | address[] | list of exchanges addresses | 
+| surplusTokensAddresses | address[] | list of surplus tokens | 
+| deficitTokensAddresses | address[] | list of dificit tokens | 
+| surplus | uint128[] | TokensAddresses list of surplus tokens | 
+| deficit | uint128[] | TokensAddresses list of dificit tokens | 
+
 ### priceOf
 
 to-be-updated when developing the settlement contract
@@ -78,14 +99,30 @@ token price
 | ------------- |------------- | -----|
 | _token | address | token address | 
 
+### settlementId
+
+Return the current settlement id
+
+```js
+function settlementId() external view
+returns(uint256)
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+
 ## Contracts
 
 * [Address](Address.md)
+* [AlkemiNetwork](AlkemiNetwork.md)
 * [AlkemiSettlement](AlkemiSettlement.md)
 * [AlkemiSettlementMock](AlkemiSettlementMock.md)
 * [Context](Context.md)
 * [ERC20](ERC20.md)
 * [ERC20Mintable](ERC20Mintable.md)
+* [EtherTokenConstantMock](EtherTokenConstantMock.md)
 * [IAlkemiSettlement](IAlkemiSettlement.md)
 * [IAlkemiToken](IAlkemiToken.md)
 * [IERC20](IERC20.md)
