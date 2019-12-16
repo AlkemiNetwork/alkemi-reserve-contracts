@@ -3,6 +3,7 @@ pragma solidity ^0.5.0;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
+import "chainlink/contracts/ChainlinkClient.sol";
 import "./LiquidityReserveState.sol";
 
 import "../interfaces/IAlkemiSettlement.sol";
@@ -26,6 +27,8 @@ contract LiquidityReserve is LiquidityReserveState {
   uint256 public earned;
   uint8 public lockingPricePosition;      // 0=below the lockingPrice; 1=above the lockingPrice
   bool public isDepositable = true;
+
+  uint256 oraclePrice;
 
   /**
    * @dev Price lockout actions
@@ -85,6 +88,15 @@ contract LiquidityReserve is LiquidityReserveState {
       _lockingPrice > 0,
       "LiquidityReserve: invalid price lockout"
     );
+
+    // Set the address for the LINK token for the network.
+    if(_link == address(0)) {
+      // Useful for deploying to public networks.
+      setPublicChainlinkToken();
+    } else {
+      // Useful if you're deploying to a local network.
+      setChainlinkToken(_link);
+    }
 
     asset = _asset;
     beneficiary = _beneficiary;
@@ -245,6 +257,41 @@ contract LiquidityReserve is LiquidityReserveState {
     totalBalance = totalBalance.sub(_value);
 
     emit ReserveWithdraw(_token, msg.sender, _value);
+  }
+
+  /**
+   * @dev send request to Chainlink nodes to get asset price
+   * @param _oracle oracle address
+   * @param _jobId oracle job id
+   * @param _market market currency needed
+   */
+  function requestAssetPrice(
+    address _oracle,
+    bytes32 _jobId,
+    string _market
+  ) internal {
+    Chainlink.Request memory req = buildChainlinkRequest(_jobId, this, this.fulfill.selector);
+    req.add("sym", ERC20(asset).symbol());
+    req.add("convert", _market);
+    string[] memory path = new string[](5);
+    path[0] = "data";
+    path[1] = ERC20(asset).symbol();
+    path[2] = "quote";
+    path[3] = _market;
+    path[4] = "price";
+    req.addStringArray("copyPath", path);
+    req.addInt("times", 100);
+    sendChainlinkRequestTo(_oracle, req, oraclePayment);
+  }
+
+  /**
+   * @dev update asset price
+   * @notice can only be called by Chainlink oracles when request get fulfilled
+   * @param _requestId chainlink request id
+   * @param _price returned price
+   */
+  function fulfill(bytes32 _requestId, uint256 _price) public recordChainlinkFulfillment(_requestId) returns (uint256) {
+    oraclePrice = _price;
   }
 
   /**
