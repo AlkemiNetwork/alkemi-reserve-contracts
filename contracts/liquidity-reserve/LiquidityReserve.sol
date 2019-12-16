@@ -69,6 +69,7 @@ contract LiquidityReserve is LiquidityReserveState {
    * @param _lockingPricePosition locking price position
    */
   constructor(
+    address _link,
     address _liquidityProvider,
     address _alkemiNetwork,
     address _beneficiary,
@@ -268,7 +269,7 @@ contract LiquidityReserve is LiquidityReserveState {
   function requestAssetPrice(
     address _oracle,
     bytes32 _jobId,
-    string _market
+    string memory _market
   ) internal {
     Chainlink.Request memory req = buildChainlinkRequest(_jobId, this, this.fulfill.selector);
     req.add("sym", ERC20(asset).symbol());
