@@ -299,6 +299,23 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   }
 
   /**
+   * @notice Allows the owner to withdraw any LINK balance on the contract
+   */
+  function withdrawLink() public onlyPermissioned {
+    LinkTokenInterface link = LinkTokenInterface(chainlinkTokenAddress());
+    require(link.transfer(msg.sender, link.balanceOf(address(this))), "Unable to transfer");
+  }
+
+  /**
+   * @notice Returns the address of the LINK token
+   * @dev This is the public implementation for chainlinkTokenAddress, which is
+   * an internal method of the ChainlinkClient contract
+   */
+  function getChainlinkToken() public view returns (address) {
+    return chainlinkTokenAddress();
+  }
+
+  /**
    * @dev Return token price from settlement contract
    * @param _token token address
    * @return token price
