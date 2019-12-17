@@ -12,7 +12,7 @@ import "../interfaces/IAlkemiSettlement.sol";
   * @title LiquidityReserve
   * @dev Base layer functionality for the Liquidity Reserve
   */
-contract LiquidityReserve is LiquidityReserveState {
+contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   using SafeERC20 for ERC20;
   using SafeMath for uint256;
 
@@ -70,6 +70,7 @@ contract LiquidityReserve is LiquidityReserveState {
    */
   constructor(
     address _link,
+    address _oracle,
     address _liquidityProvider,
     address _alkemiNetwork,
     address _beneficiary,
@@ -98,6 +99,8 @@ contract LiquidityReserve is LiquidityReserveState {
       // Useful if you're deploying to a local network.
       setChainlinkToken(_link);
     }
+
+    setChainlinkOracle(_oracle);
 
     asset = _asset;
     beneficiary = _beneficiary;
