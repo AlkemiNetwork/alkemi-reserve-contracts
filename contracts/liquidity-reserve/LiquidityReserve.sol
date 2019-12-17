@@ -3,7 +3,7 @@ pragma solidity ^0.5.0;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
-import "chainlink/contracts/ChainlinkClient.sol";
+import "chainlink/v0.5/contracts/ChainlinkClient.sol";
 import "./LiquidityReserveState.sol";
 
 import "../interfaces/IAlkemiSettlement.sol";
@@ -70,7 +70,6 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
    */
   constructor(
     address _link,
-    address _oracle,
     address _liquidityProvider,
     address _alkemiNetwork,
     address _beneficiary,
@@ -99,8 +98,6 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
       // Useful if you're deploying to a local network.
       setChainlinkToken(_link);
     }
-
-    setChainlinkOracle(_oracle);
 
     asset = _asset;
     beneficiary = _beneficiary;
@@ -220,8 +217,9 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
    * @notice can only be called from Alkemi Network contract
    */
   function earn(uint256 _value) external onlyAlkemi() {
-    earned = earned.add(_value);
-    totalBalance = totalBalance.add(_value);
+    //earned = earned.add(_value);
+    earned = SafeMath.add(earned, _value);
+    totalBalance = SafeMath.add(totalBalance, _value);
   }
 
   /**
@@ -244,7 +242,7 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
     }
 
     isDepositable = false;
-    deposited = deposited.add(_value);
+    deposited = SafeMath.add(deposited,_value);
     totalBalance = deposited;
 
     emit ReserveDeposit(_token, msg.sender, _value);
@@ -258,7 +256,7 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
       ERC20(_token).transfer(msg.sender, _value);
     }
 
-    totalBalance = totalBalance.sub(_value);
+    totalBalance = SafeMath.sub(totalBalance, _value);
 
     emit ReserveWithdraw(_token, msg.sender, _value);
   }
@@ -272,20 +270,22 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   function requestAssetPrice(
     address _oracle,
     bytes32 _jobId,
-    string memory _market
+    string memory _sym,
+    string memory _market,
+    uint256 _oraclePayment
   ) internal {
-    Chainlink.Request memory req = buildChainlinkRequest(_jobId, this, this.fulfill.selector);
-    req.add("sym", ERC20(asset).symbol());
+    Chainlink.Request memory req = buildChainlinkRequest(_jobId, address(this), this.fulfill.selector);
+    req.add("sym", _sym);
     req.add("convert", _market);
     string[] memory path = new string[](5);
     path[0] = "data";
-    path[1] = ERC20(asset).symbol();
+    path[1] = _sym;
     path[2] = "quote";
     path[3] = _market;
     path[4] = "price";
     req.addStringArray("copyPath", path);
     req.addInt("times", 100);
-    sendChainlinkRequestTo(_oracle, req, oraclePayment);
+    sendChainlinkRequestTo(_oracle, req, _oraclePayment);
   }
 
   /**

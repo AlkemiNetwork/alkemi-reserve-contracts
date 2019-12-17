@@ -45,6 +45,7 @@ contract AlkemiNetwork is LiquidityReserveFactory {
    * @return Address of new Liquidity Reserve
    */
   function createLiquidityReserve(
+    address _linkToken,
     address _beneficiary,
     address _asset,
     uint256 _lockingPeriod,
@@ -53,6 +54,7 @@ contract AlkemiNetwork is LiquidityReserveFactory {
   ) public returns(address) {
 
     address r = _createLiquidityReserve(
+      _linkToken,
       msg.sender,
       address(this),
       _beneficiary,
