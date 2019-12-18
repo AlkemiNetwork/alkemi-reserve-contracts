@@ -1,8 +1,14 @@
-# IAlkemiSettlement (IAlkemiSettlement.sol)
+---
+layout: default
+title: Alkemi Settlement
+nav_order: 1
+---
+
+# Alkemi Settlement Contract
 
 View Source: [contracts/interfaces/IAlkemiSettlement.sol](../contracts/interfaces/IAlkemiSettlement.sol)
 
-**IAlkemiSettlement**
+**Alkemi Settlement Contract**
 
 ## Functions
 
