@@ -1,8 +1,14 @@
-# EtherTokenConstantMock.sol
+---
+layout: default
+title: ERC Mock Token Constant
+nav_order: 1
+---
+
+# Ether Token Constant Mock
 
 View Source: [contracts/mocks/EtherTokenContantMock.sol](../contracts/mocks/EtherTokenContantMock.sol)
 
-**EtherTokenConstantMock**
+**Ether Token Constant Mock**
 
 ## Contract Members
 **Constants & Variables**
