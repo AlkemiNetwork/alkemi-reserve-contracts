@@ -10,7 +10,6 @@ View Source: [@openzeppelin/contracts/GSN/Context.sol](../@openzeppelin/contract
 
 ** Derived Contracts: [ERC20](ERC20.md), [MinterRole](MinterRole.md)**
 
-**Context**
 
 ## Functions
 
