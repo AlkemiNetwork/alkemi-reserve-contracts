@@ -1,10 +1,15 @@
-# TokenMock.sol
+---
+layout: default
+title: Token Mock
+nav_order: 1
+---
+
+# Token Mock
 
 View Source: [contracts/mocks/TokenMock.sol](../contracts/mocks/TokenMock.sol)
 
-**↗ Extends: [ERC20Mintable](ERC20Mintable.md)**
+**↗ Extends: [ERC20 Mintable](ERC20Mintable.md)**
 
-**TokenMock**
 
 ERC20 Mintable token mock
 
