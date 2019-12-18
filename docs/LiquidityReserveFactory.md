@@ -1,10 +1,15 @@
-# LiquidityReserveFactory (LiquidityReserveFactory.sol)
+---
+layout: default
+title: Liquidity Reserve Factory
+nav_order: 1
+---
+
+# Liquidity Reserve Factory 
 
 View Source: [contracts/liquidity-reserve/factory/LiquidityReserveFactory.sol](../contracts/liquidity-reserve/factory/LiquidityReserveFactory.sol)
 
 **↘ Derived Contracts: [AlkemiNetwork](AlkemiNetwork.md), [LiquidityReserveManager](LiquidityReserveManager.md)**
 
-**LiquidityReserveFactory**
 
 This Factory creates a Liquidity Reserve
 
