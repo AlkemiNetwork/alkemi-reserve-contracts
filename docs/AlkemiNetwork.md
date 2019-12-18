@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Alkemi Network
-nav_order: 2
+nav_order: 1
 ---
 
 # Alkemi Network
