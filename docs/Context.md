@@ -1,8 +1,14 @@
-# Context.sol
+---
+layout: default
+title: Context
+nav_order: 1
+---
+
+# Context
 
 View Source: [@openzeppelin/contracts/GSN/Context.sol](../@openzeppelin/contracts/GSN/Context.sol)
 
-**↘ Derived Contracts: [ERC20](ERC20.md), [MinterRole](MinterRole.md)**
+** Derived Contracts: [ERC20](ERC20.md), [MinterRole](MinterRole.md)**
 
 **Context**
 
