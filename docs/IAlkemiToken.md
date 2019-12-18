@@ -1,14 +1,12 @@
 ---
 layout: default
-title: Context
+title: Alkemi Token (Interface)
 nav_order: 1
 ---
 
-# IAlkemi Token
+# Alkemi Token (Interface)
 
 View Source: [contracts/interfaces/IAlkemiToken.sol](../contracts/interfaces/IAlkemiToken.sol)
-
-**IAlkemi Token**
 
 **Events**
 
