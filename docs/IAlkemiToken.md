@@ -1,8 +1,14 @@
-# IAlkemiToken.sol
+---
+layout: default
+title: Context
+nav_order: 1
+---
+
+# IAlkemi Token
 
 View Source: [contracts/interfaces/IAlkemiToken.sol](../contracts/interfaces/IAlkemiToken.sol)
 
-**IAlkemiToken**
+**IAlkemi Token**
 
 **Events**
 
