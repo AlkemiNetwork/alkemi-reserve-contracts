@@ -1,8 +1,12 @@
-# Roles (Roles.sol)
+---
+layout: default
+title: Roles
+nav_order: 1
+---
 
+# Roles 
 View Source: [@openzeppelin/contracts/access/Roles.sol](../@openzeppelin/contracts/access/Roles.sol)
 
-**Roles**
 
 Library for managing addresses assigned to a Role.
 
