@@ -1,8 +1,13 @@
-# SafeMath.sol
+---
+layout: default
+title: Safe Math
+nav_order: 1
+---
+
+# Safe Math
 
 View Source: [@openzeppelin/contracts/math/SafeMath.sol](../@openzeppelin/contracts/math/SafeMath.sol)
 
-**SafeMath**
 
 Wrappers over Solidity's arithmetic operations with added overflow
 checks.
