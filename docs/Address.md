@@ -1,4 +1,10 @@
-# Address.sol
+---
+layout: default
+title: Address
+nav_order: 1
+---
+
+# Address
 
 View Source: [@openzeppelin/contracts/utils/Address.sol](../@openzeppelin/contracts/utils/Address.sol)
 
