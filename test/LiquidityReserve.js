@@ -2,6 +2,7 @@ const {
   ether
 } = require("@openzeppelin/test-helpers");
   
+const h = require('chainlink').helpers;
 const BigNumber = require('bignumber.js');
 const EVMRevert = require('./helpers/EVMRevert').EVMRevert;
 const increaseTime = require('./helpers/increaseTime');
@@ -9,6 +10,8 @@ const increaseTimeTo = increaseTime.increaseTimeTo;
 
 const ZERO_ADDR = '0x0000000000000000000000000000000000000000';
 
+const LinkToken = artifacts.require("LinkToken");
+const Oracle = artifacts.require("ChainlinkOracle");
 const TokenMock = artifacts.require("TokenMock");
 const AlkemiSettlementMock = artifacts.require("AlkemiSettlementMock");
 const AlkemiNetwork = artifacts.require("AlkemiNetwork");
@@ -19,7 +22,7 @@ require('chai')
   .use(require('chai-bignumber')(BigNumber))
   .should();
 
-contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidityProvider2, liquidityProvider3, liquidityProvider4, liquidityProvider5, random]) => {
+contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidityProvider2, liquidityProvider3, liquidityProvider4, liquidityProvider5, oracleChainlinkNode, random]) => {
   const dayTime = 24 * 3600;
   const now = Math.floor(Date.now() / 1000);
   const lockingPeriod = now + dayTime*5;
@@ -28,7 +31,11 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
   const lockingPricePosition = 0; // unlock funds if oracle price is below lockingPrice  
   const supplyToMint = ether("1000");
 
-  let token1, token2, alkemiNetwork, liquidityReserve1;
+  const jobId = web3.utils.toHex('0e9e244b9c374cd1a5c714caf25b0be5')
+  // Represents 1 LINK for testnet requests
+  const payment = web3.utils.toWei('1')
+
+  let token1, token2, linkToken, oc, alkemiNetwork, liquidityReserve1;
   let alkemiSettlement;
 
   before(async() => {
@@ -39,6 +46,16 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
     token2 = await TokenMock.new({
       from: alkemiTeam
     });
+
+    linkToken = await LinkToken.new({
+      from: alkemiTeam
+    });
+    oc = await Oracle.new(linkToken.address, { from: alkemiTeam })
+    await oc.setFulfillmentPermission(
+      oracleChainlinkNode,
+      true,
+      { from: alkemiTeam }
+    );
 
     alkemiSettlement = await AlkemiSettlementMock.new({
       from: alkemiTeam
@@ -65,6 +82,7 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
   describe("Create liquidity reserve", async() => {
     it("create liquidity reserve", async() => {
       await alkemiNetwork.createLiquidityReserve(
+        linkToken.address,
         ZERO_ADDR,
         token1.address,
         lockingPeriod,
