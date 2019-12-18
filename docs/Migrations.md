@@ -1,8 +1,13 @@
-# Migrations.sol
+---
+layout: default
+title: Migrations
+nav_order: 1
+---
+
+# Migrations
 
 View Source: [contracts/Migrations.sol](../contracts/Migrations.sol)
 
-**Migrations**
 
 ## Contract Members
 **Constants & Variables**
