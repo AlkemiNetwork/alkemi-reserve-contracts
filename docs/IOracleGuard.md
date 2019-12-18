@@ -1,8 +1,13 @@
-# IOracleGuard (IOracleGuard.sol)
+---
+layout: default
+title: Oracle Guard (Interface)
+nav_order: 1
+---
+
+# Oracle Guard (Interface)
 
 View Source: [contracts/interfaces/IOracleGuard.sol](../contracts/interfaces/IOracleGuard.sol)
 
-**IOracleGuard**
 
 ## Functions
 
