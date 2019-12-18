@@ -6,11 +6,10 @@ nav_order: 1
 
 # Address
 
-View Source: [@openzeppelin/contracts/utils/Address.sol](../@openzeppelin/contracts/utils/Address.sol)
-
-**Address**
 
 Collection of functions related to the address type
+
+View Source: [@openzeppelin/contracts/utils/Address.sol](../@openzeppelin/contracts/utils/Address.sol)
 
 ## Functions
 
