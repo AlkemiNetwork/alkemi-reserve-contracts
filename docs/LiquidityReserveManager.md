@@ -1,10 +1,15 @@
-# LiquidityReserveManager (LiquidityReserveManager.sol)
+---
+layout: default
+title: Liquidity Reserve Manager
+nav_order: 1
+---
+
+# Liquidity Reserve Manager 
 
 View Source: [-contracts/contracts/liquidity-reserve/LiquidityReserveManager.sol](../-contracts/contracts/liquidity-reserve/LiquidityReserveManager.sol)
 
 **↗ Extends: [LiquidityReserveFactory](LiquidityReserveFactory.md)**
 
-**LiquidityReserveManager**
 
 This contract manages a specific Liquidity Reserve
 
