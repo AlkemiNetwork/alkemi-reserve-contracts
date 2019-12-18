@@ -10,7 +10,7 @@ const EtherTokenConstantMock = artifacts.require("EtherTokenConstantMock");
 const TokenMock = artifacts.require("TokenMock");
 const AlkemiSettlementMock = artifacts.require("AlkemiSettlementMock");
 const OracleGuard = artifacts.require("OracleGuard");
-const Oracle = artifacts.require("Oracle");
+const AlkemiOracle = artifacts.require("AlkemiOracle");
 
 require('chai')
   .use(require('chai-as-promised'))
@@ -43,7 +43,7 @@ contract('Oracle System', ([alkemiTeam, oracle1, oracle2, oracle3, exchange1, ex
       { from: alkemiTeam }
     );
        
-    oracle = await Oracle.new(
+    oracle = await AlkemiOracle.new(
       alkemiSettlement.address,
       oracleGuard.address,
       { from: alkemiTeam }
