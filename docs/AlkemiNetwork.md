@@ -1,4 +1,4 @@
-# AlkemiNetwork (AlkemiNetwork.sol)
+# AlkemiNetwork 
 
 View Source: [contracts/AlkemiNetwork.sol](../contracts/AlkemiNetwork.sol)
 
