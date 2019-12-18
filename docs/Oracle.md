@@ -1,8 +1,13 @@
-# Oracle.sol
+---
+layout: default
+title: Oracle
+nav_order: 1
+---
+
+# Oracle
 
 View Source: [contracts/oracles/Oracle.sol](../contracts/oracles/Oracle.sol)
 
-**Oracle**
 
 **Enums**
 ### Vote
