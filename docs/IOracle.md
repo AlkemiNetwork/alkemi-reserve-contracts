@@ -1,8 +1,13 @@
-# IOracle (IOracle.sol)
+---
+layout: default
+title: Oracle (Interface)
+nav_order: 1
+---
+
+# Oracle (Interface)
 
 View Source: [contracts/interfaces/IOracle.sol](../contracts/interfaces/IOracle.sol)
 
-**IOracle**
 
 ## Functions
 
