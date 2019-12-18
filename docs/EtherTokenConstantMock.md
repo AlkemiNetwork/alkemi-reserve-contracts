@@ -8,7 +8,6 @@ nav_order: 1
 
 View Source: [contracts/mocks/EtherTokenContantMock.sol](../contracts/mocks/EtherTokenContantMock.sol)
 
-**Ether Token Constant Mock**
 
 ## Contract Members
 **Constants & Variables**
