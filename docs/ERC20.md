@@ -1,4 +1,11 @@
-# ERC20.sol
+---
+layout: default
+title: ERC20
+nav_order: 1
+---
+
+
+# ERC20
 
 View Source: [@openzeppelin/contracts/token/ERC20/ERC20.sol](../@openzeppelin/contracts/token/ERC20/ERC20.sol)
 
