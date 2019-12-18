@@ -1,11 +1,16 @@
-# MinterRole.sol
+---
+layout: default
+title: Minter Role
+nav_order: 1
+---
+
+# Minter Role
 
 View Source: [@openzeppelin/contracts/access/roles/MinterRole.sol](../@openzeppelin/contracts/access/roles/MinterRole.sol)
 
 **↗ Extends: [Context](Context.md)**
 **↘ Derived Contracts: [ERC20Mintable](ERC20Mintable.md)**
 
-**MinterRole**
 
 ## Contract Members
 **Constants & Variables**
