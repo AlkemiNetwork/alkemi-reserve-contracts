@@ -1,10 +1,15 @@
-# LiquidityReserve (LiquidityReserve.sol)
+---
+layout: default
+title: Liquidity Reserve 
+nav_order: 1
+---
+
+# Liquidity Reserve
 
 View Source: [contracts/liquidity-reserve/LiquidityReserve.sol](../contracts/liquidity-reserve/LiquidityReserve.sol)
 
 **↗ Extends: [LiquidityReserveState](LiquidityReserveState.md)**
 
-**LiquidityReserve**
 
 Base layer functionality for the Liquidity Reserve
 
