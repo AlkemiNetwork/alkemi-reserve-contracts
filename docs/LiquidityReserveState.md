@@ -1,10 +1,15 @@
-# LiquidityReserveState.sol
+---
+layout: default
+title: Liquidity Reserve State
+nav_order: 1
+---
+
+# Liquidity Reserve State
 
 View Source: [contracts/liquidity-reserve/LiquidityReserveState.sol](../contracts/liquidity-reserve/LiquidityReserveState.sol)
 
-**↘ Derived Contracts: [LiquidityReserve](LiquidityReserve.md)**
+**↘ Derived Contracts: [Liquidity Reserve](LiquidityReserve.md)**
 
-**LiquidityReserveState**
 
 ## Contract Members
 **Constants & Variables**
