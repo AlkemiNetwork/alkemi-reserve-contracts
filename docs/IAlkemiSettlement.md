@@ -4,7 +4,7 @@ title: Alkemi Settlement (Interface)
 nav_order: 1
 ---
 
-# Alkemi Settlement Contract
+# Alkemi Settlement (Interface)
 
 View Source: [contracts/interfaces/IAlkemiSettlement.sol](../contracts/interfaces/IAlkemiSettlement.sol)
 
