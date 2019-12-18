@@ -1,8 +1,13 @@
-# OracleGuard.sol
+---
+layout: default
+title: Oracle Guard
+nav_order: 1
+---
+
+# Oracle Guard
 
 View Source: [contracts/oracles/OracleGuard.sol](../contracts/oracles/OracleGuard.sol)
 
-**OracleGuard**
 
 ## Contract Members
 **Constants & Variables**
