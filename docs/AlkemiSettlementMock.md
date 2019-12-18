@@ -9,9 +9,6 @@ nav_order: 1
 
 View Source: [contracts/mocks/AlkemiSettlementMock.sol](../contracts/mocks/AlkemiSettlementMock.sol)
 
-**Alkemi Mock Settlement Contract**
-
-Alkemi Settlement contract mock
 
 ## Contract Members
 **Constants & Variables**
