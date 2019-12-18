@@ -8,7 +8,7 @@ nav_order: 1
 
 View Source: [-contracts/contracts/liquidity-reserve/LiquidityReserveManager.sol](../-contracts/contracts/liquidity-reserve/LiquidityReserveManager.sol)
 
-**↗ Extends: [LiquidityReserveFactory](LiquidityReserveFactory.md)**
+**↗ Extends: [Liquidity Reserve Factory](LiquidityReserveFactory.md)**
 
 
 This contract manages a specific Liquidity Reserve
