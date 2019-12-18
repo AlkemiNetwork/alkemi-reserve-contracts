@@ -8,8 +8,6 @@ nav_order: 1
 
 View Source: [contracts/interfaces/IAlkemiSettlement.sol](../contracts/interfaces/IAlkemiSettlement.sol)
 
-**Alkemi Settlement Contract**
-
 ## Functions
 
 - [depositIntoLiquidityReserve(address _liquidityReserve, address _token, uint256 _amount)](#depositintoliquidityreserve)
