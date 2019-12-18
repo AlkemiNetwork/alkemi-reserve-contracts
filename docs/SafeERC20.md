@@ -1,8 +1,13 @@
-# SafeERC20 (SafeERC20.sol)
+---
+layout: default
+title: Safe ERC20
+nav_order: 1
+---
+
+# Safe ERC20 
 
 View Source: [@openzeppelin/contracts/token/ERC20/SafeERC20.sol](../@openzeppelin/contracts/token/ERC20/SafeERC20.sol)
 
-**SafeERC20**
 
 Wrappers around ERC20 operations that throw on failure (when the token
 contract returns false). Tokens that return no value (and instead revert or
