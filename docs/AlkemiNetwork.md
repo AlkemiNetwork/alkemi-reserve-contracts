@@ -1,8 +1,10 @@
 ---
 layout: default
-title: Alkemi Networks
+title: Alkemi Network
 nav_order: 2
 ---
+
+#Alkemi Network
 
 View Source: [contracts/AlkemiNetwork.sol](../contracts/AlkemiNetwork.sol)
 
