@@ -1,11 +1,17 @@
-# ERC20Mintable.sol
+---
+layout: default
+title: ERC20 Mintable
+nav_order: 1
+---
+
+# ERC20 Mintable
 
 View Source: [@openzeppelin/contracts/token/ERC20/ERC20Mintable.sol](../@openzeppelin/contracts/token/ERC20/ERC20Mintable.sol)
 
 **↗ Extends: [ERC20](ERC20.md), [MinterRole](MinterRole.md)**
 **↘ Derived Contracts: [Token](Token.md), [TokenMock](TokenMock.md)**
 
-**ERC20Mintable**
+**ERC20 Mintable**
 
 Extension of {ERC20} that adds a set of accounts with the {MinterRole},
 which have permission to mint (create) new tokens as they see fit.
