@@ -6,13 +6,12 @@ nav_order: 1
 
 # Alkemi Network
 
+This contract manage Alkemi Network on-chain process
+
 View Source: [contracts/AlkemiNetwork.sol](../contracts/AlkemiNetwork.sol)
 
 **↗ Extends: [LiquidityReserveFactory](LiquidityReserveFactory.md)**
 
-**AlkemiNetwork**
-
-This contract manage Alkemi Network on-chain process
 
 ## Contract Members
 **Constants & Variables**
