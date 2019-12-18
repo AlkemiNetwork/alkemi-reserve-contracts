@@ -1,8 +1,13 @@
-# ILiquidityReserveManager (ILiquidityReserveManager.sol)
+---
+layout: default
+title: Liquidity Reserve Manager (Interface)
+nav_order: 1
+---
+
+# Liquidity Reserve Manager (Interface)
 
 View Source: [contracts/interfaces/ILiquidityReserveManager.sol](../contracts/interfaces/ILiquidityReserveManager.sol)
 
-**ILiquidityReserveManager**
 
 ## Functions
 
