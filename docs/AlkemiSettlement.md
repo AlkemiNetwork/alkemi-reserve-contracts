@@ -1,8 +1,15 @@
+---
+layout: default
+title: Alkemi Settlement
+nav_order: 1
+---
+
+
 # Alkemi Settlement
 
 View Source: [-contracts/contracts/mocks/AlkemiSettlement.sol](../-contracts/contracts/mocks/AlkemiSettlement.sol)
 
-**AlkemiSettlement**
+**Alkemi Settlement**
 
 Alkemi Settlement contract mock
 
