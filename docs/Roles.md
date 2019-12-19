@@ -1,12 +1,8 @@
----
-layout: default
-title: Roles
-nav_order: 15
----
+# Roles (Roles.sol)
 
-# Roles
 View Source: [@openzeppelin/contracts/access/Roles.sol](../@openzeppelin/contracts/access/Roles.sol)
 
+**Roles**
 
 Library for managing addresses assigned to a Role.
 
@@ -37,8 +33,8 @@ function add(struct Roles.Role role, address account) internal nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| role | struct Roles.Role |  |
-| account | address |  |
+| role | struct Roles.Role |  | 
+| account | address |  | 
 
 ### remove
 
@@ -52,8 +48,8 @@ function remove(struct Roles.Role role, address account) internal nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| role | struct Roles.Role |  |
-| account | address |  |
+| role | struct Roles.Role |  | 
+| account | address |  | 
 
 ### has
 
@@ -72,5 +68,33 @@ bool
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| role | struct Roles.Role |  |
-| account | address |  |
+| role | struct Roles.Role |  | 
+| account | address |  | 
+
+## Contracts
+
+* [Address](Address.md)
+* [AlkemiNetwork](AlkemiNetwork.md)
+* [AlkemiSettlementMock](AlkemiSettlementMock.md)
+* [Context](Context.md)
+* [ERC20](ERC20.md)
+* [ERC20Mintable](ERC20Mintable.md)
+* [EtherTokenConstantMock](EtherTokenConstantMock.md)
+* [IAlkemiSettlement](IAlkemiSettlement.md)
+* [IAlkemiToken](IAlkemiToken.md)
+* [IERC20](IERC20.md)
+* [ILiquidityReserve](ILiquidityReserve.md)
+* [ILiquidityReserveFactory](ILiquidityReserveFactory.md)
+* [IOracle](IOracle.md)
+* [IOracleGuard](IOracleGuard.md)
+* [LiquidityReserve](LiquidityReserve.md)
+* [LiquidityReserveFactory](LiquidityReserveFactory.md)
+* [LiquidityReserveState](LiquidityReserveState.md)
+* [Migrations](Migrations.md)
+* [MinterRole](MinterRole.md)
+* [Oracle](Oracle.md)
+* [OracleGuard](OracleGuard.md)
+* [Roles](Roles.md)
+* [SafeERC20](SafeERC20.md)
+* [SafeMath](SafeMath.md)
+* [TokenMock](TokenMock.md)
