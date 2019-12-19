@@ -10,7 +10,7 @@ This contract manage Alkemi Network on-chain process
 
 View Source: [contracts/AlkemiNetwork.sol](../contracts/AlkemiNetwork.sol)
 
-**↗ Extends: [LiquidityReserveFactory](LiquidityReserveFactory.md)**
+**↗ Extends: [Liquidity Reserve Factory](LiquidityReserveFactory.md)**
 
 
 ## Contract Members
