@@ -13,6 +13,6 @@ nav_order: 1
 Official Alkemi Protocol documentation.
 {: .fs-6 .fw-300 }
 
-[View it on GitHub](https://github.com/project-alkemi/alkemi-protocol){: .btn .fs-5 .mb-4 .mb-md-0 }
+[View it on GitHub](https://github.com/project-alkemi/alkemi-protocol){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 ---
