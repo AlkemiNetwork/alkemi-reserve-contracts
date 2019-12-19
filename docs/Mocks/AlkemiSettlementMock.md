@@ -2,7 +2,7 @@
 layout: default
 title: Alkemi Mock Settlement Contract
 nav_order: 2
-Parents: Mocks
+parent: Mocks
 ---
 
 
