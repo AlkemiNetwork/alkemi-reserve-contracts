@@ -2,7 +2,7 @@ const {
   ether
 } = require("@openzeppelin/test-helpers");
   
-const h = require('chainlink').helpers;
+const { helpers, generated } = require('chainlink');
 const BigNumber = require('bignumber.js');
 const EVMRevert = require('./helpers/EVMRevert').EVMRevert;
 const increaseTime = require('./helpers/increaseTime');
@@ -10,7 +10,6 @@ const increaseTimeTo = increaseTime.increaseTimeTo;
 
 const ZERO_ADDR = '0x0000000000000000000000000000000000000000';
 
-const LinkToken = artifacts.require("LinkToken");
 const Oracle = artifacts.require("ChainlinkOracle");
 const TokenMock = artifacts.require("TokenMock");
 const AlkemiSettlementMock = artifacts.require("AlkemiSettlementMock");
@@ -40,16 +39,20 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
 
   before(async() => {
     // ERC20 token mock for testing
-    token1 = await TokenMock.new({
-      from: alkemiTeam
-    });
-    token2 = await TokenMock.new({
-      from: alkemiTeam
-    });
+    token1 = await TokenMock.new(
+      "token1",
+      "tk1",
+      18,
+      { from: alkemiTeam }
+    );
+    token2 = await TokenMock.new(
+      "token2",
+      "tk2",
+      18,
+      { from: alkemiTeam }
+    );
 
-    linkToken = await LinkToken.new({
-      from: alkemiTeam
-    });
+    linkToken = await helpers.create(generated.LinkTokenFactory, alkemiTeam).deploy();
     oc = await Oracle.new(linkToken.address, { from: alkemiTeam })
     await oc.setFulfillmentPermission(
       oracleChainlinkNode,
@@ -241,8 +244,8 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
       it("should revert another liqudity provider withdrawing from liquidity reserve", async() => {
         await liquidityReserve1.withdraw(amountToWithdraw, {from: liquidityProvider2}).should.be.rejectedWith(EVMRevert);
       });
-    });    
-
+    });  
+    
     describe("Locking period", async() => {
       it("should revert extending locking period from an address other than provider", async() => {
         //reset oracle price
@@ -253,12 +256,18 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
       it("extend locking period", async() => {
         //reset oracle price
         await alkemiSettlement.resetPriceOf(token1.address, 200);
-
+  
         await liquidityReserve1.extendLockingPeriod(newLockingPeriod, { from: liquidityProvider1 });
-
+  
         await liquidityReserve1.withdraw(amountToWithdraw, {from: liquidityProvider1}).should.be.rejectedWith(EVMRevert);
       })
-    });
+    });  
   });
 
+  describe("Create request", () => {
+    it("should revert when sending request without tokens", async () => {
+      await liquidityReserve1.requestAssetPrice(oc.address, jobId, await token1.symbol.call(), "USD", payment, { from: liquidityProvider1 }).should.be.rejectedWith(EVMRevert);
+    });
+
+  });
 });

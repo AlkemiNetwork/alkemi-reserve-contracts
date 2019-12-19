@@ -273,7 +273,9 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
     string memory _sym,
     string memory _market,
     uint256 _oraclePayment
-  ) internal {
+  ) public {
+    require((msg.sender == address(this)) || havePermission(), "LiquidityReserve: not authorized to call price feed oracle");
+    
     Chainlink.Request memory req = buildChainlinkRequest(_jobId, address(this), this.fulfill.selector);
     req.add("sym", _sym);
     req.add("convert", _market);

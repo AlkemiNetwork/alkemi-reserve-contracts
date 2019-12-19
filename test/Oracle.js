@@ -27,12 +27,18 @@ contract('Oracle System', ([alkemiTeam, oracle1, oracle2, oracle3, exchange1, ex
     // ERC20/ETH token mock for testing
     const etherMock = await EtherTokenConstantMock.new({ from: alkemiTeam });
     ETH = await etherMock.getETHConstant();
-    USDC = await TokenMock.new({
-      from: alkemiTeam
-    });
-    alkemiToken = await TokenMock.new({
-      from: alkemiTeam
-    });
+    USDC = await TokenMock.new(
+      "USDC",
+      "USDC",
+      18,
+      { from: alkemiTeam }
+    );
+    alkemiToken = await TokenMock.new(
+      "Alkemi Token",
+      "ALK",
+      18,
+      { from: alkemiTeam }
+    );
 
     alkemiSettlement = await AlkemiSettlementMock.new({
       from: alkemiTeam
