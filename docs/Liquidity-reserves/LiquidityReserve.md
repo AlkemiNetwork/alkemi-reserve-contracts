@@ -1,14 +1,15 @@
 ---
 layout: default
-title: Liquidity Reserve 
+title: Liquidity Reserve
 nav_order: 1
+has_children: true
 ---
 
 # Liquidity Reserve
 
 View Source: [contracts/liquidity-reserve/LiquidityReserve.sol](../contracts/liquidity-reserve/LiquidityReserve.sol)
 
-**↗ Extends: [LiquidityReserveState](LiquidityReserveState.md)**
+**↗ Extends: [Liquidity Reserve State](LiquidityReserveState.md)**
 
 
 Base layer functionality for the Liquidity Reserve
@@ -69,7 +70,7 @@ modifier onlyUnlocked(address _token) internal
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _token | address |  | 
+| _token | address |  |
 
 ## Functions
 
@@ -86,25 +87,25 @@ modifier onlyUnlocked(address _token) internal
 - [balance(address _token)](#balance)
 - [isBeneficiary()](#isbeneficiary)
 
-### 
+###
 
 constructor
 
 ```js
-function (address _liquidityProvider, address _alkemiNetwork, address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition) public nonpayable LiquidityReserveState 
+function (address _liquidityProvider, address _alkemiNetwork, address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition) public nonpayable LiquidityReserveState
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _liquidityProvider | address | liquidity provider address | 
-| _alkemiNetwork | address | Alkemi Network contract address | 
-| _beneficiary | address | earnings beneficiary (address(0) if the earnings goes to the current reserve address) | 
-| _asset | address |  | 
-| _lockingPeriod | uint256 | funds locking period | 
-| _lockingPrice | uint256 | release funds when hitting this price | 
-| _lockingPricePosition | uint8 | locking price position | 
+| _liquidityProvider | address | liquidity provider address |
+| _alkemiNetwork | address | Alkemi Network contract address |
+| _beneficiary | address | earnings beneficiary (address(0) if the earnings goes to the current reserve address) |
+| _asset | address |  |
+| _lockingPeriod | uint256 | funds locking period |
+| _lockingPrice | uint256 | release funds when hitting this price |
+| _lockingPricePosition | uint8 | locking price position |
 
 ### isActive
 
@@ -125,28 +126,28 @@ returns(bool)
 this function can only be called by the liquidity provider or by the settlement contract
 
 ```js
-function deposit(uint256 _value) external payable onlyPermissioned 
+function deposit(uint256 _value) external payable onlyPermissioned
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _value | uint256 | Amount of tokens being transferred | 
+| _value | uint256 | Amount of tokens being transferred |
 
 ### withdraw
 
 this function can only be called by the liquidity provider or by the settlement contract
 
 ```js
-function withdraw(uint256 _value) external nonpayable onlyPermissioned 
+function withdraw(uint256 _value) external nonpayable onlyPermissioned
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _value | uint256 | Amount of tokens being transferred | 
+| _value | uint256 | Amount of tokens being transferred |
 
 ### _deposit
 
@@ -158,50 +159,50 @@ function _deposit(address _token, uint256 _value) internal nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _token | address |  | 
-| _value | uint256 |  | 
+| _token | address |  |
+| _value | uint256 |  |
 
 ### _withdraw
 
 ```js
-function _withdraw(address _token, uint256 _value) internal nonpayable onlyUnlocked 
+function _withdraw(address _token, uint256 _value) internal nonpayable onlyUnlocked
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _token | address |  | 
-| _value | uint256 |  | 
+| _token | address |  |
+| _value | uint256 |  |
 
 ### transferEth
 
 can only be called from the Alkemi Network contract when ETH are locked
 
 ```js
-function transferEth(address payable _to, uint256 _value) external nonpayable onlyAlkemi 
+function transferEth(address payable _to, uint256 _value) external nonpayable onlyAlkemi
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _to | address payable | recepient address | 
-| _value | uint256 | value to send | 
+| _to | address payable | recepient address |
+| _value | uint256 | value to send |
 
 ### earn
 
 can only be called from Alkemi Network contract
 
 ```js
-function earn(uint256 _value) external nonpayable onlyAlkemi 
+function earn(uint256 _value) external nonpayable onlyAlkemi
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _value | uint256 |  | 
+| _value | uint256 |  |
 
 ### isUnlocked
 
@@ -216,7 +217,7 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _token | address |  | 
+| _token | address |  |
 
 ### getTokenPrice
 
@@ -235,7 +236,7 @@ token price
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _token | address | token address | 
+| _token | address | token address |
 
 ### balance
 
@@ -254,7 +255,7 @@ liquidity reserve token balance
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _token | address | token address | 
+| _token | address | token address |
 
 ### isBeneficiary
 
