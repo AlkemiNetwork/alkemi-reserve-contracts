@@ -5,6 +5,9 @@ nav_order: 5
 parent: Interfaces
 ---
 
+* TOC
+{:toc}
+
 # Liquidity Reserve (Interface)
 
 View Source: [contracts/interfaces/ILiquidityReserve.sol](../contracts/interfaces/ILiquidityReserve.sol)
