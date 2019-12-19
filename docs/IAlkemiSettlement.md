@@ -1,61 +1,33 @@
 ---
 layout: default
-title: Alkemi Mock Settlement Contract
+title: Alkemi Settlement (Interface)
 nav_order: 2
-parent: Mocks
+parent: Interfaces
 ---
 
+# Alkemi Settlement (Interface)
 
-# Alkemi Mock Settlement Contract
+---
 
-View Source: [contracts/mocks/AlkemiSettlementMock.sol](../contracts/mocks/AlkemiSettlementMock.sol)
+View Source: [contracts/interfaces/IAlkemiSettlement.sol](../contracts/interfaces/IAlkemiSettlement.sol)
 
-
-## Contract Members
-**Constants & Variables**
-
-```js
-//internal members
-address internal constant ETH;
-
-//public members
-address public oracle;
-uint256 public settlementId;
-uint256 public oraclePrice;
-
-```
+---
 
 ## Functions
 
-- [setOracleAddress(address _oracle)](#setoracleaddress)
 - [depositIntoLiquidityReserve(address _liquidityReserve, address _token, uint256 _amount)](#depositintoliquidityreserve)
 - [withdrawFromLiquidityReserve(address _liquidityReserve, address _token, uint256 _amount)](#withdrawfromliquidityreserve)
 - [approveTokenTransfer(address _liquidityReserve, address _token, uint256 _amount)](#approvetokentransfer)
 - [doSettlement(address[] exchangesAddresses, address[] surplusTokensAddresses, address[] deficitTokensAddresses, uint128[] surplus, uint128[] deficit)](#dosettlement)
-- [RequestContinueTrading()](#requestcontinuetrading)
 - [priceOf(address _token)](#priceof)
-- [incerementPriceOf(address _token, uint256 _increment)](#incerementpriceof)
-- [decerementPriceOf(address _token, uint256 _decrement)](#decerementpriceof)
-- [resetPriceOf(address _token, uint256 _price)](#resetpriceof)
-
-### setOracleAddress
-
-```js
-function setOracleAddress(address _oracle) external nonpayable
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| _oracle | address |  |
+- [settlementId()](#settlementid)
 
 ### depositIntoLiquidityReserve
 
 this is just a mock for testing purpose
 
 ```js
-function depositIntoLiquidityReserve(address _liquidityReserve, address _token, uint256 _amount) public payable
+function depositIntoLiquidityReserve(address _liquidityReserve, address _token, uint256 _amount) external payable
 ```
 
 **Arguments**
@@ -87,7 +59,7 @@ function withdrawFromLiquidityReserve(address _liquidityReserve, address _token,
 this is just a mock for testing purpose
 
 ```js
-function approveTokenTransfer(address _liquidityReserve, address _token, uint256 _amount) public nonpayable
+function approveTokenTransfer(address _liquidityReserve, address _token, uint256 _amount) external nonpayable
 ```
 
 **Arguments**
@@ -103,7 +75,7 @@ function approveTokenTransfer(address _liquidityReserve, address _token, uint256
 settlement function
 
 ```js
-function doSettlement(address[] exchangesAddresses, address[] surplusTokensAddresses, address[] deficitTokensAddresses, uint128[] surplus, uint128[] deficit) external nonpayable
+function doSettlement(address[] exchangesAddresses, address[] surplusTokensAddresses, address[] deficitTokensAddresses, uint128[] surplus, uint128[] deficit) external pure
 returns(bool)
 ```
 
@@ -117,20 +89,9 @@ returns(bool)
 | surplus | uint128[] | TokensAddresses list of surplus tokens |
 | deficit | uint128[] | TokensAddresses list of dificit tokens |
 
-### RequestContinueTrading
-
-```js
-function RequestContinueTrading() internal nonpayable
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-
 ### priceOf
 
-this is just  mock for testing purpose
+to-be-updated when developing the settlement contract
 
 ```js
 function priceOf(address _token) external view
@@ -147,36 +108,12 @@ token price
 | ------------- |------------- | -----|
 | _token | address | token address |
 
-### incerementPriceOf
+### settlementId
+
+Return the current settlement id
 
 ```js
-function incerementPriceOf(address _token, uint256 _increment) external nonpayable
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| _token | address |  |
-| _increment | uint256 |  |
-
-### decerementPriceOf
-
-```js
-function decerementPriceOf(address _token, uint256 _decrement) external nonpayable
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| _token | address |  |
-| _decrement | uint256 |  |
-
-### resetPriceOf
-
-```js
-function resetPriceOf(address _token, uint256 _price) external nonpayable
+function settlementId() external view
 returns(uint256)
 ```
 
@@ -184,5 +121,3 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _token | address |  |
-| _price | uint256 |  |

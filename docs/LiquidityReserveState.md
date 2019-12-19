@@ -1,10 +1,16 @@
-# LiquidityReserveState.sol
+---
+layout: default
+title: Liquidity Reserve State
+nav_order: 4
+parent: Liquidity Reserve
+---
+
+# Liquidity Reserve State
 
 View Source: [contracts/liquidity-reserve/LiquidityReserveState.sol](../contracts/liquidity-reserve/LiquidityReserveState.sol)
 
-**↘ Derived Contracts: [LiquidityReserve](LiquidityReserve.md)**
+**↘ Derived Contracts: [Liquidity Reserve](LiquidityReserve.md)**
 
-**LiquidityReserveState**
 
 ## Contract Members
 **Constants & Variables**
@@ -78,7 +84,7 @@ modifier onlyAlkemi() internal
 - [transferLiquidityProvider(address newLiquidityprovider)](#transferliquidityprovider)
 - [_transferLiquidityProvider(address newLiquidityprovider)](#_transferliquidityprovider)
 
-### 
+###
 
 Initializes the liquidity reserve state setting the Alkemi Network and the provider address.
 
@@ -90,8 +96,8 @@ function (address alkemiNetwork, address liquidityProvider) internal nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| alkemiNetwork | address |  | 
-| liquidityProvider | address |  | 
+| alkemiNetwork | address |  |
+| liquidityProvider | address |  |
 
 ### liquidityProvider
 
@@ -169,14 +175,14 @@ Transfers ownership of the contract to a new account (`newLiquidityprovider`).
 Can only be called by the current liquidity provider.
 
 ```js
-function transferLiquidityProvider(address newLiquidityprovider) public nonpayable onlyLiquidityProvider 
+function transferLiquidityProvider(address newLiquidityprovider) public nonpayable onlyLiquidityProvider
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| newLiquidityprovider | address |  | 
+| newLiquidityprovider | address |  |
 
 ### _transferLiquidityProvider
 
@@ -190,32 +196,4 @@ function _transferLiquidityProvider(address newLiquidityprovider) internal nonpa
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| newLiquidityprovider | address |  | 
-
-## Contracts
-
-* [Address](Address.md)
-* [AlkemiNetwork](AlkemiNetwork.md)
-* [AlkemiSettlementMock](AlkemiSettlementMock.md)
-* [Context](Context.md)
-* [ERC20](ERC20.md)
-* [ERC20Mintable](ERC20Mintable.md)
-* [EtherTokenConstantMock](EtherTokenConstantMock.md)
-* [IAlkemiSettlement](IAlkemiSettlement.md)
-* [IAlkemiToken](IAlkemiToken.md)
-* [IERC20](IERC20.md)
-* [ILiquidityReserve](ILiquidityReserve.md)
-* [ILiquidityReserveFactory](ILiquidityReserveFactory.md)
-* [IOracle](IOracle.md)
-* [IOracleGuard](IOracleGuard.md)
-* [LiquidityReserve](LiquidityReserve.md)
-* [LiquidityReserveFactory](LiquidityReserveFactory.md)
-* [LiquidityReserveState](LiquidityReserveState.md)
-* [Migrations](Migrations.md)
-* [MinterRole](MinterRole.md)
-* [Oracle](Oracle.md)
-* [OracleGuard](OracleGuard.md)
-* [Roles](Roles.md)
-* [SafeERC20](SafeERC20.md)
-* [SafeMath](SafeMath.md)
-* [TokenMock](TokenMock.md)
+| newLiquidityprovider | address |  |

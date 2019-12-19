@@ -1,19 +1,17 @@
 ---
 layout: default
-title: ERC20 (Interface)
-nav_order: 4
+title: Alkemi Token (Interface)
+nav_order: 3
 parent: Interfaces
 ---
 
-# ERC20 (Interface)
+# Alkemi Token (Interface)
 
-View Source: [@openzeppelin/contracts/token/ERC20/IERC20.sol](../@openzeppelin/contracts/token/ERC20/IERC20.sol)
+---
 
-**↘ Derived Contracts: [ERC20](ERC20.md)**
+View Source: [contracts/interfaces/IAlkemiToken.sol](../contracts/interfaces/IAlkemiToken.sol)
 
-
-Interface of the ERC20 standard as defined in the EIP. Does not include
-the optional functions; to access them see {ERC20Detailed}.
+---
 
 **Events**
 
@@ -33,8 +31,6 @@ event Approval(address indexed owner, address indexed spender, uint256  value);
 
 ### totalSupply
 
-⤿ Overridden Implementation(s): [ERC20.totalSupply](ERC20.md#totalsupply)
-
 Returns the amount of tokens in existence.
 
 ```js
@@ -48,8 +44,6 @@ returns(uint256)
 | ------------- |------------- | -----|
 
 ### balanceOf
-
-⤿ Overridden Implementation(s): [ERC20.balanceOf](ERC20.md#balanceof)
 
 Returns the amount of tokens owned by `account`.
 
@@ -66,11 +60,9 @@ returns(uint256)
 
 ### transfer
 
-⤿ Overridden Implementation(s): [ERC20.transfer](ERC20.md#transfer)
-
 Moves `amount` tokens from the caller's account to `recipient`.
-     * Returns a boolean value indicating whether the operation succeeded.
-     * Emits a {Transfer} event.
+    * Returns a boolean value indicating whether the operation succeeded.
+    * Emits a {Transfer} event.
 
 ```js
 function transfer(address recipient, uint256 amount) external nonpayable
@@ -86,12 +78,10 @@ returns(bool)
 
 ### allowance
 
-⤿ Overridden Implementation(s): [ERC20.allowance](ERC20.md#allowance)
-
 Returns the remaining number of tokens that `spender` will be
 allowed to spend on behalf of `owner` through {transferFrom}. This is
 zero by default.
-     * This value changes when {approve} or {transferFrom} are called.
+    * This value changes when {approve} or {transferFrom} are called.
 
 ```js
 function allowance(address owner, address spender) external view
@@ -107,17 +97,15 @@ returns(uint256)
 
 ### approve
 
-⤿ Overridden Implementation(s): [ERC20.approve](ERC20.md#approve)
-
 Sets `amount` as the allowance of `spender` over the caller's tokens.
-     * Returns a boolean value indicating whether the operation succeeded.
-     * IMPORTANT: Beware that changing an allowance with this method brings the risk
+    * Returns a boolean value indicating whether the operation succeeded.
+    * IMPORTANT: Beware that changing an allowance with this method brings the risk
 that someone may use both the old and the new allowance by unfortunate
 transaction ordering. One possible solution to mitigate this race
 condition is to first reduce the spender's allowance to 0 and set the
 desired value afterwards:
 https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
-     * Emits an {Approval} event.
+    * Emits an {Approval} event.
 
 ```js
 function approve(address spender, uint256 amount) external nonpayable
@@ -133,13 +121,11 @@ returns(bool)
 
 ### transferFrom
 
-⤿ Overridden Implementation(s): [ERC20.transferFrom](ERC20.md#transferfrom)
-
 Moves `amount` tokens from `sender` to `recipient` using the
 allowance mechanism. `amount` is then deducted from the caller's
 allowance.
-     * Returns a boolean value indicating whether the operation succeeded.
-     * Emits a {Transfer} event.
+    * Returns a boolean value indicating whether the operation succeeded.
+    * Emits a {Transfer} event.
 
 ```js
 function transferFrom(address sender, address recipient, uint256 amount) external nonpayable

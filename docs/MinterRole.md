@@ -1,11 +1,16 @@
-# MinterRole.sol
+---
+layout: default
+title: Minter Role
+nav_order: 12
+---
+
+# Minter Role
 
 View Source: [@openzeppelin/contracts/access/roles/MinterRole.sol](../@openzeppelin/contracts/access/roles/MinterRole.sol)
 
 **↗ Extends: [Context](Context.md)**
 **↘ Derived Contracts: [ERC20Mintable](ERC20Mintable.md)**
 
-**MinterRole**
 
 ## Contract Members
 **Constants & Variables**
@@ -46,7 +51,7 @@ modifier onlyMinter() internal
 - [_addMinter(address account)](#_addminter)
 - [_removeMinter(address account)](#_removeminter)
 
-### 
+###
 
 ```js
 function () internal nonpayable
@@ -68,19 +73,19 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
+| account | address |  |
 
 ### addMinter
 
 ```js
-function addMinter(address account) public nonpayable onlyMinter 
+function addMinter(address account) public nonpayable onlyMinter
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
+| account | address |  |
 
 ### renounceMinter
 
@@ -103,7 +108,7 @@ function _addMinter(address account) internal nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
+| account | address |  |
 
 ### _removeMinter
 
@@ -115,32 +120,4 @@ function _removeMinter(address account) internal nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
-
-## Contracts
-
-* [Address](Address.md)
-* [AlkemiNetwork](AlkemiNetwork.md)
-* [AlkemiSettlementMock](AlkemiSettlementMock.md)
-* [Context](Context.md)
-* [ERC20](ERC20.md)
-* [ERC20Mintable](ERC20Mintable.md)
-* [EtherTokenConstantMock](EtherTokenConstantMock.md)
-* [IAlkemiSettlement](IAlkemiSettlement.md)
-* [IAlkemiToken](IAlkemiToken.md)
-* [IERC20](IERC20.md)
-* [ILiquidityReserve](ILiquidityReserve.md)
-* [ILiquidityReserveFactory](ILiquidityReserveFactory.md)
-* [IOracle](IOracle.md)
-* [IOracleGuard](IOracleGuard.md)
-* [LiquidityReserve](LiquidityReserve.md)
-* [LiquidityReserveFactory](LiquidityReserveFactory.md)
-* [LiquidityReserveState](LiquidityReserveState.md)
-* [Migrations](Migrations.md)
-* [MinterRole](MinterRole.md)
-* [Oracle](Oracle.md)
-* [OracleGuard](OracleGuard.md)
-* [Roles](Roles.md)
-* [SafeERC20](SafeERC20.md)
-* [SafeMath](SafeMath.md)
-* [TokenMock](TokenMock.md)
+| account | address |  |

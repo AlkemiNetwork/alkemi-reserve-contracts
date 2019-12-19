@@ -1,11 +1,15 @@
-# Address.sol
+---
+layout: default
+title: Address
+nav_order: 2
+---
 
-View Source: [@openzeppelin/contracts/utils/Address.sol](../@openzeppelin/contracts/utils/Address.sol)
-
-**Address**
+# Address
+---
 
 Collection of functions related to the address type
 
+---
 ## Functions
 
 - [isContract(address account)](#iscontract)
@@ -31,7 +35,7 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
+| account | address |  |
 
 ### toPayable
 
@@ -48,7 +52,7 @@ returns(address payable)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
+| account | address |  |
 
 ### sendValue
 
@@ -73,33 +77,5 @@ function sendValue(address payable recipient, uint256 amount) internal nonpayabl
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| recipient | address payable |  | 
-| amount | uint256 |  | 
-
-## Contracts
-
-* [Address](Address.md)
-* [AlkemiNetwork](AlkemiNetwork.md)
-* [AlkemiSettlementMock](AlkemiSettlementMock.md)
-* [Context](Context.md)
-* [ERC20](ERC20.md)
-* [ERC20Mintable](ERC20Mintable.md)
-* [EtherTokenConstantMock](EtherTokenConstantMock.md)
-* [IAlkemiSettlement](IAlkemiSettlement.md)
-* [IAlkemiToken](IAlkemiToken.md)
-* [IERC20](IERC20.md)
-* [ILiquidityReserve](ILiquidityReserve.md)
-* [ILiquidityReserveFactory](ILiquidityReserveFactory.md)
-* [IOracle](IOracle.md)
-* [IOracleGuard](IOracleGuard.md)
-* [LiquidityReserve](LiquidityReserve.md)
-* [LiquidityReserveFactory](LiquidityReserveFactory.md)
-* [LiquidityReserveState](LiquidityReserveState.md)
-* [Migrations](Migrations.md)
-* [MinterRole](MinterRole.md)
-* [Oracle](Oracle.md)
-* [OracleGuard](OracleGuard.md)
-* [Roles](Roles.md)
-* [SafeERC20](SafeERC20.md)
-* [SafeMath](SafeMath.md)
-* [TokenMock](TokenMock.md)
+| recipient | address payable |  |
+| amount | uint256 |  |
