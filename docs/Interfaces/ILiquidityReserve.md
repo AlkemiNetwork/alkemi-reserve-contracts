@@ -9,9 +9,6 @@ parent: Interfaces
 
 View Source: [contracts/interfaces/ILiquidityReserve.sol](../contracts/interfaces/ILiquidityReserve.sol)
 
-* TOC
-{:toc}
-
 
 ## Functions
 
