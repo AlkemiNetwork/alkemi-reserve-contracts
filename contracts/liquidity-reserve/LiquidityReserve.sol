@@ -25,10 +25,10 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   uint256 public totalBalance;
   uint256 public deposited;
   uint256 public earned;
+  uint256 public oraclePrice;
+  uint256 public lastPriceCheck;
   uint8 public lockingPricePosition;      // 0=below the lockingPrice; 1=above the lockingPrice
   bool public isDepositable = true;
-
-  uint256 oraclePrice;
 
   /**
    * @dev Price lockout actions
@@ -298,6 +298,7 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
    */
   function fulfill(bytes32 _requestId, uint256 _price) public recordChainlinkFulfillment(_requestId) returns (uint256) {
     oraclePrice = _price;
+    lastPriceCheck = now;
   }
 
   /**
