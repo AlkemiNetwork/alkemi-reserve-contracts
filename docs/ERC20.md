@@ -10,7 +10,7 @@ nav_order: 1
 View Source: [@openzeppelin/contracts/token/ERC20/ERC20.sol](../@openzeppelin/contracts/token/ERC20/ERC20.sol)
 
 **↗ Extends: [Context](Context.md), [IERC20](IERC20.md)**
-**↘ Derived Contracts: [ERC20Mintable](ERC20Mintable.md)**
+**↘ Derived Contracts: [ERC20Mintable](ERC20 Mintable.md)**
 
 
 Implementation of the {IERC20} interface.
