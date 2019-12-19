@@ -1,6 +1,6 @@
 ---
-layout: home
-title: "Alkemi Protocol Contract"
+layout: default
+title: Alkemi Protocol Contracts
 permalink: /
 ---
 
