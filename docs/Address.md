@@ -5,12 +5,12 @@ nav_order: 2
 ---
 
 # Address
-
+---
 
 Collection of functions related to the address type
 
 View Source: [@openzeppelin/contracts/utils/Address.sol](../@openzeppelin/contracts/utils/Address.sol)
-
+---
 ## Functions
 
 - [isContract(address account)](#iscontract)
