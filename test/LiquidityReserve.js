@@ -17,7 +17,7 @@ const AlkemiSettlementMock = artifacts.require("AlkemiSettlementMock");
 const AlkemiNetwork = artifacts.require("AlkemiNetwork");
 const LiquidityReserve = artifacts.require("LiquidityReserve");
 
-const encodeUint256 = int => {
+const encodeUint256 = (int) => {
   const zeros = '0000000000000000000000000000000000000000000000000000000000000000'
   const payload = int.toString(16)
   return (zeros + payload).slice(payload.length)
@@ -286,16 +286,14 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
       assert.equal(oc.address, tx.receipt.rawLogs[3].address);
       assert.equal(
         request.topic,
-        web3.utils.keccak256(
-          'OracleRequest(bytes32,address,bytes32,uint256,address,bytes4,uint256,uint256,bytes)'
-        )
+        web3.utils.keccak256('OracleRequest(bytes32,address,bytes32,uint256,address,bytes4,uint256,uint256,bytes)')
       );
     });
   });
 
   describe("fulfill", () => {
     const expected = 50000
-    const response = '0x' + encodeUint256(expected)
+    const response = `0x${encodeUint256(expected)}`
     let request;
 
     beforeEach(async () => {
