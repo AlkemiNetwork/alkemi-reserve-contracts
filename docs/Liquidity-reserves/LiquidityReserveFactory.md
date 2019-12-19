@@ -2,9 +2,10 @@
 layout: default
 title: Liquidity Reserve Factory
 nav_order: 1
+parent: Liquidity Reserve
 ---
 
-# Liquidity Reserve Factory 
+# Liquidity Reserve Factory
 
 View Source: [contracts/liquidity-reserve/factory/LiquidityReserveFactory.sol](../contracts/liquidity-reserve/factory/LiquidityReserveFactory.sol)
 
@@ -34,13 +35,13 @@ Address of new Liquidity Reserve
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _liquidityProvider | address | Lequidity provider address | 
-| _alkemiNetwork | address | Alkemi Network contract address | 
-| _beneficiary | address | earnings beneficiary (address(0) if the earnings goes to the current reserve address) | 
-| _asset | address |  | 
-| _lockingPeriod | uint256 | funds locking period | 
-| _lockingPrice | uint256 | release funds when hitting this price | 
-| _lockingPricePosition | uint8 | locking price position | 
+| _liquidityProvider | address | Lequidity provider address |
+| _alkemiNetwork | address | Alkemi Network contract address |
+| _beneficiary | address | earnings beneficiary (address(0) if the earnings goes to the current reserve address) |
+| _asset | address |  |
+| _lockingPeriod | uint256 | funds locking period |
+| _lockingPrice | uint256 | release funds when hitting this price |
+| _lockingPricePosition | uint8 | locking price position |
 
 ## Contracts
 

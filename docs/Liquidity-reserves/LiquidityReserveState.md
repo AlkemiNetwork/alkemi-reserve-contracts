@@ -2,6 +2,7 @@
 layout: default
 title: Liquidity Reserve State
 nav_order: 1
+parent: Liquidity Reserve
 ---
 
 # Liquidity Reserve State
@@ -83,7 +84,7 @@ modifier onlyAlkemi() internal
 - [transferLiquidityProvider(address newLiquidityprovider)](#transferliquidityprovider)
 - [_transferLiquidityProvider(address newLiquidityprovider)](#_transferliquidityprovider)
 
-### 
+###
 
 Initializes the liquidity reserve state setting the Alkemi Network and the provider address.
 
@@ -95,8 +96,8 @@ function (address alkemiNetwork, address liquidityProvider) internal nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| alkemiNetwork | address |  | 
-| liquidityProvider | address |  | 
+| alkemiNetwork | address |  |
+| liquidityProvider | address |  |
 
 ### liquidityProvider
 
@@ -174,14 +175,14 @@ Transfers ownership of the contract to a new account (`newLiquidityprovider`).
 Can only be called by the current liquidity provider.
 
 ```js
-function transferLiquidityProvider(address newLiquidityprovider) public nonpayable onlyLiquidityProvider 
+function transferLiquidityProvider(address newLiquidityprovider) public nonpayable onlyLiquidityProvider
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| newLiquidityprovider | address |  | 
+| newLiquidityprovider | address |  |
 
 ### _transferLiquidityProvider
 
@@ -195,7 +196,7 @@ function _transferLiquidityProvider(address newLiquidityprovider) internal nonpa
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| newLiquidityprovider | address |  | 
+| newLiquidityprovider | address |  |
 
 ## Contracts
 
