@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Liquidity Reserve State
-nav_order: 1
+nav_order: 4
 parent: Liquidity Reserve
 ---
 
