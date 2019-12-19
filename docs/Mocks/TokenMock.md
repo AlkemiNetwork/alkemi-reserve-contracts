@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Token Mock
-nav_order: 1
+nav_order: 4
+parent: Mocks
 ---
 
 # Token Mock

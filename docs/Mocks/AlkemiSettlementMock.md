@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Alkemi Mock Settlement Contract
-nav_order: 1
+nav_order: 2
+Parents: Mocks
 ---
 
 
@@ -47,7 +48,7 @@ function setOracleAddress(address _oracle) external nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _oracle | address |  | 
+| _oracle | address |  |
 
 ### depositIntoLiquidityReserve
 
@@ -61,9 +62,9 @@ function depositIntoLiquidityReserve(address _liquidityReserve, address _token, 
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _liquidityReserve | address | liquidity reserve address | 
-| _token | address | erc20 token address to deposit | 
-| _amount | uint256 | amount to deposit | 
+| _liquidityReserve | address | liquidity reserve address |
+| _token | address | erc20 token address to deposit |
+| _amount | uint256 | amount to deposit |
 
 ### withdrawFromLiquidityReserve
 
@@ -77,9 +78,9 @@ function withdrawFromLiquidityReserve(address _liquidityReserve, address _token,
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _liquidityReserve | address | liquidity reserve address | 
-| _token | address | erc20 token address to deposit | 
-| _amount | uint256 | amount to deposit | 
+| _liquidityReserve | address | liquidity reserve address |
+| _token | address | erc20 token address to deposit |
+| _amount | uint256 | amount to deposit |
 
 ### approveTokenTransfer
 
@@ -93,9 +94,9 @@ function approveTokenTransfer(address _liquidityReserve, address _token, uint256
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _liquidityReserve | address | liquidity reserve address | 
-| _token | address | erc20 token address to deposit | 
-| _amount | uint256 | amount to deposit | 
+| _liquidityReserve | address | liquidity reserve address |
+| _token | address | erc20 token address to deposit |
+| _amount | uint256 | amount to deposit |
 
 ### doSettlement
 
@@ -110,11 +111,11 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| exchangesAddresses | address[] | list of exchanges addresses | 
-| surplusTokensAddresses | address[] | list of surplus tokens | 
-| deficitTokensAddresses | address[] | list of dificit tokens | 
-| surplus | uint128[] | TokensAddresses list of surplus tokens | 
-| deficit | uint128[] | TokensAddresses list of dificit tokens | 
+| exchangesAddresses | address[] | list of exchanges addresses |
+| surplusTokensAddresses | address[] | list of surplus tokens |
+| deficitTokensAddresses | address[] | list of dificit tokens |
+| surplus | uint128[] | TokensAddresses list of surplus tokens |
+| deficit | uint128[] | TokensAddresses list of dificit tokens |
 
 ### RequestContinueTrading
 
@@ -144,7 +145,7 @@ token price
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _token | address | token address | 
+| _token | address | token address |
 
 ### incerementPriceOf
 
@@ -156,8 +157,8 @@ function incerementPriceOf(address _token, uint256 _increment) external nonpayab
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _token | address |  | 
-| _increment | uint256 |  | 
+| _token | address |  |
+| _increment | uint256 |  |
 
 ### decerementPriceOf
 
@@ -169,8 +170,8 @@ function decerementPriceOf(address _token, uint256 _decrement) external nonpayab
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _token | address |  | 
-| _decrement | uint256 |  | 
+| _token | address |  |
+| _decrement | uint256 |  |
 
 ### resetPriceOf
 
@@ -183,8 +184,8 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _token | address |  | 
-| _price | uint256 |  | 
+| _token | address |  |
+| _price | uint256 |  |
 
 ## Contracts
 

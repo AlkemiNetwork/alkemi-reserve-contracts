@@ -1,7 +1,8 @@
 ---
 layout: default
 title: ERC Mock Token Constant
-nav_order: 1
+nav_order: 3
+parent: Mocks
 ---
 
 # Ether Token Constant Mock
