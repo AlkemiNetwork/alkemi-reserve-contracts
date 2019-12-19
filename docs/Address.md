@@ -9,7 +9,6 @@ nav_order: 2
 
 Collection of functions related to the address type
 
-View Source: [@openzeppelin/contracts/utils/Address.sol](../@openzeppelin/contracts/utils/Address.sol)
 ---
 ## Functions
 
