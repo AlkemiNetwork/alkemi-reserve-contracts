@@ -12,8 +12,6 @@ Alkemi Settlement contract mock
 
 View Source: [-contracts/contracts/mocks/AlkemiSettlement.sol](../-contracts/contracts/mocks/AlkemiSettlement.sol)
 
-## Table of contents
-{:toc}
 
 ## Contract Members
 **Constants & Variables**
