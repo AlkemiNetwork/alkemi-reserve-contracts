@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Liquidity Reserve (Interface)
-nav_order: 1
+nav_order: 5
+parent: Interfaces
 ---
 
 # Liquidity Reserve (Interface)
@@ -44,8 +45,8 @@ function deposit(address _token, uint256 _value) external payable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _token | address | Address of the token being transferred | 
-| _value | uint256 | Amount of tokens being transferred | 
+| _token | address | Address of the token being transferred |
+| _value | uint256 | Amount of tokens being transferred |
 
 ### withdraw
 
@@ -59,8 +60,8 @@ function withdraw(address _token, uint256 _value) external nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _token | address | Address of the token being transferred | 
-| _value | uint256 | Amount of tokens being transferred | 
+| _token | address | Address of the token being transferred |
+| _value | uint256 | Amount of tokens being transferred |
 
 ### isUnlocked
 
@@ -75,7 +76,7 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _token | address |  | 
+| _token | address |  |
 
 ### isBeneficiary
 
@@ -102,7 +103,7 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _token | address |  | 
+| _token | address |  |
 
 ## Contracts
 

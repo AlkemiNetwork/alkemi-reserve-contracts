@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Liquidity Reserve Manager (Interface)
-nav_order: 1
+nav_order: 6
+parent: Interfaces
 ---
 
 # Liquidity Reserve Manager (Interface)
@@ -31,10 +32,10 @@ Address of new Liquidity Reserve
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _beneficiary | address | earnings beneficiary (address(0) if the earnings goes to the current reserve address) | 
-| _lockingPeriod | uint256 | funds locking period | 
-| _lockingPrice | uint256 | release funds when hitting this price | 
-| _lockingPricePosition | uint8 | locking price position | 
+| _beneficiary | address | earnings beneficiary (address(0) if the earnings goes to the current reserve address) |
+| _lockingPeriod | uint256 | funds locking period |
+| _lockingPrice | uint256 | release funds when hitting this price |
+| _lockingPricePosition | uint8 | locking price position |
 
 ### liquidityReserveOf
 
@@ -53,7 +54,7 @@ liquidity reserve contract address
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _liquidityProvider | address | liquidity provider address | 
+| _liquidityProvider | address | liquidity provider address |
 
 ### setNewOwner
 
@@ -67,7 +68,7 @@ function setNewOwner(address _owner) external nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _owner | address | Address of the new Owner | 
+| _owner | address | Address of the new Owner |
 
 ## Contracts
 

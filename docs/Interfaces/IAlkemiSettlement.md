@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Alkemi Settlement (Interface)
-nav_order: 1
-has_children: true
+nav_order: 2
+parent: Interfaces
 ---
 
 # Alkemi Settlement (Interface)
@@ -30,9 +30,9 @@ function depositIntoLiquidityReserve(address _liquidityReserve, address _token, 
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _liquidityReserve | address | liquidity reserve address | 
-| _token | address | erc20 token address to deposit | 
-| _amount | uint256 | amount to deposit | 
+| _liquidityReserve | address | liquidity reserve address |
+| _token | address | erc20 token address to deposit |
+| _amount | uint256 | amount to deposit |
 
 ### withdrawFromLiquidityReserve
 
@@ -46,9 +46,9 @@ function withdrawFromLiquidityReserve(address _liquidityReserve, address _token,
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _liquidityReserve | address | liquidity reserve address | 
-| _token | address | erc20 token address to deposit | 
-| _amount | uint256 | amount to deposit | 
+| _liquidityReserve | address | liquidity reserve address |
+| _token | address | erc20 token address to deposit |
+| _amount | uint256 | amount to deposit |
 
 ### approveTokenTransfer
 
@@ -62,9 +62,9 @@ function approveTokenTransfer(address _liquidityReserve, address _token, uint256
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _liquidityReserve | address | liquidity reserve address | 
-| _token | address | erc20 token address to deposit | 
-| _amount | uint256 | amount to deposit | 
+| _liquidityReserve | address | liquidity reserve address |
+| _token | address | erc20 token address to deposit |
+| _amount | uint256 | amount to deposit |
 
 ### doSettlement
 
@@ -79,11 +79,11 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| exchangesAddresses | address[] | list of exchanges addresses | 
-| surplusTokensAddresses | address[] | list of surplus tokens | 
-| deficitTokensAddresses | address[] | list of dificit tokens | 
-| surplus | uint128[] | TokensAddresses list of surplus tokens | 
-| deficit | uint128[] | TokensAddresses list of dificit tokens | 
+| exchangesAddresses | address[] | list of exchanges addresses |
+| surplusTokensAddresses | address[] | list of surplus tokens |
+| deficitTokensAddresses | address[] | list of dificit tokens |
+| surplus | uint128[] | TokensAddresses list of surplus tokens |
+| deficit | uint128[] | TokensAddresses list of dificit tokens |
 
 ### priceOf
 
@@ -102,7 +102,7 @@ token price
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _token | address | token address | 
+| _token | address | token address |
 
 ### settlementId
 

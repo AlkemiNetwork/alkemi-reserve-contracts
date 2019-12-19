@@ -1,7 +1,8 @@
 ---
 layout: default
 title: ERC20 (Interface)
-nav_order: 1
+nav_order: 4
+parent: Interfaces
 ---
 
 # ERC20 (Interface)
@@ -61,7 +62,7 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
+| account | address |  |
 
 ### transfer
 
@@ -80,8 +81,8 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| recipient | address |  | 
-| amount | uint256 |  | 
+| recipient | address |  |
+| amount | uint256 |  |
 
 ### allowance
 
@@ -101,8 +102,8 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| owner | address |  | 
-| spender | address |  | 
+| owner | address |  |
+| spender | address |  |
 
 ### approve
 
@@ -127,8 +128,8 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| spender | address |  | 
-| amount | uint256 |  | 
+| spender | address |  |
+| amount | uint256 |  |
 
 ### transferFrom
 
@@ -149,9 +150,9 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| sender | address |  | 
-| recipient | address |  | 
-| amount | uint256 |  | 
+| sender | address |  |
+| recipient | address |  |
+| amount | uint256 |  |
 
 ## Contracts
 

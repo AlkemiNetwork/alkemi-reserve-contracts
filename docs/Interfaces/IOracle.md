@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Oracle (Interface)
-nav_order: 1
+nav_order: 7
+parent: Interfaces
 ---
 
 # Oracle (Interface)
@@ -23,8 +24,8 @@ function restartContainersTrading(uint256 settlementId, uint256 settlementTime) 
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| settlementId | uint256 |  | 
-| settlementTime | uint256 |  | 
+| settlementId | uint256 |  |
+| settlementTime | uint256 |  |
 
 ## Contracts
 

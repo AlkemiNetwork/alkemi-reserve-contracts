@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Oracle Guard (Interface)
-nav_order: 1
+nav_order: 8
+parent: Interfaces
 ---
 
 # Oracle Guard (Interface)
@@ -33,7 +34,7 @@ function authNode(address[] a) external nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | address[] | nodes addresses | 
+| a | address[] | nodes addresses |
 
 ### dropNode
 
@@ -47,7 +48,7 @@ function dropNode(address a) external nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | address | node address | 
+| a | address | node address |
 
 ### isContractAuth
 
@@ -66,7 +67,7 @@ true if authorized
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _contract | address | contract address | 
+| _contract | address | contract address |
 
 ### isNodeAuth
 
@@ -85,7 +86,7 @@ true if authorized
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _node | address | node address | 
+| _node | address | node address |
 
 ### isNodeBan
 
@@ -104,7 +105,7 @@ true if banned
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _node | address | node address | 
+| _node | address | node address |
 
 ### isNodeSlashed
 
@@ -123,7 +124,7 @@ true if banned
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _node | address | node address | 
+| _node | address | node address |
 
 ### token
 
