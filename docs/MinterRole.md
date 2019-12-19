@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Minter Role
-nav_order: 9
+nav_order: 12
 ---
 
 # Minter Role

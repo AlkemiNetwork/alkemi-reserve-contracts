@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Safe Math
-nav_order: 12
+nav_order: 17
 ---
 
 # Safe Math
