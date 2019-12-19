@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Oracle Guard
-nav_order: 1
+nav_order: 2
+parent: Oracle
 ---
 
 # Oracle Guard
@@ -43,7 +44,7 @@ modifier auth(uint256 permission) internal
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| permission | uint256 |  | 
+| permission | uint256 |  |
 
 ## Functions
 
@@ -66,7 +67,7 @@ modifier auth(uint256 permission) internal
 - [requiredToken()](#requiredtoken)
 - [nodesAvailable()](#nodesavailable)
 
-### 
+###
 
 ```js
 function (uint256 minimumTokens) public nonpayable
@@ -76,7 +77,7 @@ function (uint256 minimumTokens) public nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| minimumTokens | uint256 |  | 
+| minimumTokens | uint256 |  |
 
 ### isContractAuth
 
@@ -95,7 +96,7 @@ true if authorized
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _contract | address | contract address | 
+| _contract | address | contract address |
 
 ### isNodeAuth
 
@@ -114,7 +115,7 @@ true if authorized
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _node | address | node address | 
+| _node | address | node address |
 
 ### isNodeBan
 
@@ -133,7 +134,7 @@ true if banned
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _node | address | node address | 
+| _node | address | node address |
 
 ### isNodeSlashed
 
@@ -152,135 +153,135 @@ true if banned
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _node | address | node address | 
+| _node | address | node address |
 
 ### rely
 
 can only be called from an authorized sender
 
 ```js
-function rely(address usr, uint256 permission) external nonpayable auth 
+function rely(address usr, uint256 permission) external nonpayable auth
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| usr | address | address | 
-| permission | uint256 | Permission type | 
+| usr | address | address |
+| permission | uint256 | Permission type |
 
 ### deny
 
 can only be called from an authorized sender
 
 ```js
-function deny(address usr, uint256 permission) external nonpayable auth 
+function deny(address usr, uint256 permission) external nonpayable auth
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| usr | address | address | 
-| permission | uint256 | Permission type | 
+| usr | address | address |
+| permission | uint256 | Permission type |
 
 ### registerNode
 
 Node can only be registered by Alkemi
 
 ```js
-function registerNode(address[] a) external nonpayable auth 
+function registerNode(address[] a) external nonpayable auth
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | address[] | node address | 
+| a | address[] | node address |
 
 ### authNode
 
 can only be called from an authorized sender
 
 ```js
-function authNode(address[] a) external nonpayable auth 
+function authNode(address[] a) external nonpayable auth
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | address[] | nodes addresses | 
+| a | address[] | nodes addresses |
 
 ### dropNode
 
 can only be called from an authorized sender
 
 ```js
-function dropNode(address a) external nonpayable auth 
+function dropNode(address a) external nonpayable auth
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | address | node address | 
+| a | address | node address |
 
 ### authContract
 
 can only be called from an authorized sender
 
 ```js
-function authContract(address[] a) external nonpayable auth 
+function authContract(address[] a) external nonpayable auth
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | address[] | contracts addresseses | 
+| a | address[] | contracts addresseses |
 
 ### dropContract
 
 can only be called from an authorized sender
 
 ```js
-function dropContract(address a) external nonpayable auth 
+function dropContract(address a) external nonpayable auth
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | address | contract address | 
+| a | address | contract address |
 
 ### setOracleContract
 
 can only be called from an authorized sender
 
 ```js
-function setOracleContract(address oracleContract) external nonpayable auth 
+function setOracleContract(address oracleContract) external nonpayable auth
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| oracleContract | address | oracle contract address | 
+| oracleContract | address | oracle contract address |
 
 ### setTokenContract
 
 can only be called from an authorized sender
 
 ```js
-function setTokenContract(address alkemiToken) external nonpayable auth 
+function setTokenContract(address alkemiToken) external nonpayable auth
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| alkemiToken | address | Alkemi Token address | 
+| alkemiToken | address | Alkemi Token address |
 
 ### oracle
 

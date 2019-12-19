@@ -2,6 +2,8 @@
 layout: default
 title: Oracle
 nav_order: 1
+has_children: true
+
 ---
 
 # Oracle
@@ -76,7 +78,7 @@ event RequestContinueTrade(uint256  settlementId, uint256  settlementTimeStamp);
 - [restartContainersTrading(uint256 settlementId, uint256 settlementTime)](#restartcontainerstrading)
 - [stopContainersTrading(uint256 settlementId)](#stopcontainerstrading)
 
-### 
+###
 
 ```js
 function (address settlementContract, address oracleGuard) public nonpayable
@@ -86,8 +88,8 @@ function (address settlementContract, address oracleGuard) public nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| settlementContract | address |  | 
-| oracleGuard | address |  | 
+| settlementContract | address |  |
+| oracleGuard | address |  |
 
 ### getSettlementId
 
@@ -113,13 +115,13 @@ function submitBook(address[] exchangesAddresses, address[] surplusTokensAddress
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| exchangesAddresses | address[] | list of exchanges addresses | 
-| surplusTokensAddresses | address[] | list of tokens for surplus | 
-| deficitTokensAddresses | address[] | list of tokens for deficit | 
-| surplus | uint128[] | TokensAddresses list of tokens for surplus | 
-| deficit | uint128[] | TokensAddresses list of tokens for deficit | 
-| _settlementId | uint256 | book settlement id | 
-| _bookHash | bytes32 | book hash | 
+| exchangesAddresses | address[] | list of exchanges addresses |
+| surplusTokensAddresses | address[] | list of tokens for surplus |
+| deficitTokensAddresses | address[] | list of tokens for deficit |
+| surplus | uint128[] | TokensAddresses list of tokens for surplus |
+| deficit | uint128[] | TokensAddresses list of tokens for deficit |
+| _settlementId | uint256 | book settlement id |
+| _bookHash | bytes32 | book hash |
 
 ### settlementVote
 
@@ -131,9 +133,9 @@ function settlementVote(uint256 _settlementId, bytes32 _bookHash, uint8 _vote) e
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _settlementId | uint256 |  | 
-| _bookHash | bytes32 |  | 
-| _vote | uint8 |  | 
+| _settlementId | uint256 |  |
+| _bookHash | bytes32 |  |
+| _vote | uint8 |  |
 
 ### requestNodesVoting
 
@@ -145,8 +147,8 @@ function requestNodesVoting(uint256 _settlementId, bytes32 _bookHash) internal n
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _settlementId | uint256 |  | 
-| _bookHash | bytes32 |  | 
+| _settlementId | uint256 |  |
+| _bookHash | bytes32 |  |
 
 ### requestAccountingBook
 
@@ -158,7 +160,7 @@ function requestAccountingBook(uint256 _settlementId) internal nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _settlementId | uint256 |  | 
+| _settlementId | uint256 |  |
 
 ### restartContainersTrading
 
@@ -170,8 +172,8 @@ function restartContainersTrading(uint256 settlementId, uint256 settlementTime) 
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| settlementId | uint256 |  | 
-| settlementTime | uint256 |  | 
+| settlementId | uint256 |  |
+| settlementTime | uint256 |  |
 
 ### stopContainersTrading
 
@@ -183,7 +185,7 @@ function stopContainersTrading(uint256 settlementId) internal nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| settlementId | uint256 |  | 
+| settlementId | uint256 |  |
 
 ## Contracts
 
