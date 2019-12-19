@@ -2,6 +2,7 @@
 layout: default
 title: Alkemi Token (Interface)
 nav_order: 1
+parent: Alkemi Settlement (Interface)
 ---
 
 # Alkemi Token (Interface)
