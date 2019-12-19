@@ -1,7 +1,7 @@
 ---
 layout: default
 title: ERC20
-nav_order: 1
+nav_order: 6
 ---
 
 
@@ -88,7 +88,7 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
+| account | address |  |
 
 ### transfer
 
@@ -108,8 +108,8 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| recipient | address |  | 
-| amount | uint256 |  | 
+| recipient | address |  |
+| amount | uint256 |  |
 
 ### allowance
 
@@ -126,8 +126,8 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| owner | address |  | 
-| spender | address |  | 
+| owner | address |  |
+| spender | address |  |
 
 ### approve
 
@@ -146,8 +146,8 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| spender | address |  | 
-| amount | uint256 |  | 
+| spender | address |  |
+| amount | uint256 |  |
 
 ### transferFrom
 
@@ -171,9 +171,9 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| sender | address |  | 
-| recipient | address |  | 
-| amount | uint256 |  | 
+| sender | address |  |
+| recipient | address |  |
+| amount | uint256 |  |
 
 ### increaseAllowance
 
@@ -193,8 +193,8 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| spender | address |  | 
-| addedValue | uint256 |  | 
+| spender | address |  |
+| addedValue | uint256 |  |
 
 ### decreaseAllowance
 
@@ -216,8 +216,8 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| spender | address |  | 
-| subtractedValue | uint256 |  | 
+| spender | address |  |
+| subtractedValue | uint256 |  |
 
 ### _transfer
 
@@ -238,9 +238,9 @@ function _transfer(address sender, address recipient, uint256 amount) internal n
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| sender | address |  | 
-| recipient | address |  | 
-| amount | uint256 |  | 
+| sender | address |  |
+| recipient | address |  |
+| amount | uint256 |  |
 
 ### _mint
 
@@ -258,8 +258,8 @@ function _mint(address account, uint256 amount) internal nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
-| amount | uint256 |  | 
+| account | address |  |
+| amount | uint256 |  |
 
 ### _burn
 
@@ -278,8 +278,8 @@ function _burn(address account, uint256 amount) internal nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
-| amount | uint256 |  | 
+| account | address |  |
+| amount | uint256 |  |
 
 ### _approve
 
@@ -299,9 +299,9 @@ function _approve(address owner, address spender, uint256 amount) internal nonpa
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| owner | address |  | 
-| spender | address |  | 
-| amount | uint256 |  | 
+| owner | address |  |
+| spender | address |  |
+| amount | uint256 |  |
 
 ### _burnFrom
 
@@ -317,8 +317,8 @@ function _burnFrom(address account, uint256 amount) internal nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
-| amount | uint256 |  | 
+| account | address |  |
+| amount | uint256 |  |
 
 ## Contracts
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Migrations
-nav_order: 1
+nav_order: 8
 ---
 
 # Migrations
@@ -39,7 +39,7 @@ modifier restricted() internal
 - [setCompleted(uint256 completed)](#setcompleted)
 - [upgrade(address new_address)](#upgrade)
 
-### 
+###
 
 ```js
 function () public nonpayable
@@ -53,26 +53,26 @@ function () public nonpayable
 ### setCompleted
 
 ```js
-function setCompleted(uint256 completed) public nonpayable restricted 
+function setCompleted(uint256 completed) public nonpayable restricted
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| completed | uint256 |  | 
+| completed | uint256 |  |
 
 ### upgrade
 
 ```js
-function upgrade(address new_address) public nonpayable restricted 
+function upgrade(address new_address) public nonpayable restricted
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| new_address | address |  | 
+| new_address | address |  |
 
 ## Contracts
 

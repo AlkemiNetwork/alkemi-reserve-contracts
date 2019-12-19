@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Address
-nav_order: 1
+nav_order: 2
 ---
 
 # Address
@@ -36,7 +36,7 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
+| account | address |  |
 
 ### toPayable
 
@@ -53,7 +53,7 @@ returns(address payable)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
+| account | address |  |
 
 ### sendValue
 
@@ -78,8 +78,8 @@ function sendValue(address payable recipient, uint256 amount) internal nonpayabl
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| recipient | address payable |  | 
-| amount | uint256 |  | 
+| recipient | address payable |  |
+| amount | uint256 |  |
 
 ## Contracts
 

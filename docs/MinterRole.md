@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Minter Role
-nav_order: 1
+nav_order: 9
 ---
 
 # Minter Role
@@ -51,7 +51,7 @@ modifier onlyMinter() internal
 - [_addMinter(address account)](#_addminter)
 - [_removeMinter(address account)](#_removeminter)
 
-### 
+###
 
 ```js
 function () internal nonpayable
@@ -73,19 +73,19 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
+| account | address |  |
 
 ### addMinter
 
 ```js
-function addMinter(address account) public nonpayable onlyMinter 
+function addMinter(address account) public nonpayable onlyMinter
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
+| account | address |  |
 
 ### renounceMinter
 
@@ -108,7 +108,7 @@ function _addMinter(address account) internal nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
+| account | address |  |
 
 ### _removeMinter
 
@@ -120,7 +120,7 @@ function _removeMinter(address account) internal nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
+| account | address |  |
 
 ## Contracts
 

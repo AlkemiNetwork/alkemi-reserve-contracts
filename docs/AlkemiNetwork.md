@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Alkemi Network
-nav_order: 1
+nav_order: 3
 ---
 
 # Alkemi Network
@@ -52,7 +52,7 @@ modifier onlyOwner() internal
 - [setNewOwner(address _owner)](#setnewowner)
 - [_setOwner(address _owner)](#_setowner)
 
-### 
+###
 
 ```js
 function () public nonpayable
@@ -79,11 +79,11 @@ Address of new Liquidity Reserve
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _beneficiary | address | earnings beneficiary (address(0) if the earnings goes to the current reserve address) | 
-| _asset | address | asset address | 
-| _lockingPeriod | uint256 | funds locking period | 
-| _lockingPrice | uint256 | release funds when hitting this price | 
-| _lockingPricePosition | uint8 | locking price position | 
+| _beneficiary | address | earnings beneficiary (address(0) if the earnings goes to the current reserve address) |
+| _asset | address | asset address |
+| _lockingPeriod | uint256 | funds locking period |
+| _lockingPrice | uint256 | release funds when hitting this price |
+| _lockingPricePosition | uint8 | locking price position |
 
 ### providerLiquidityReserves
 
@@ -102,7 +102,7 @@ active liquidity reserve contract addresses
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _liquidityProvider | address | liquidity provider address | 
+| _liquidityProvider | address | liquidity provider address |
 
 ### tokenLiquidityReserves
 
@@ -121,21 +121,21 @@ liquidity reserves addresses
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _asset | address | asset address | 
+| _asset | address | asset address |
 
 ### setNewOwner
 
 Manager can set the address of the new Owner here
 
 ```js
-function setNewOwner(address _owner) public nonpayable onlyOwner 
+function setNewOwner(address _owner) public nonpayable onlyOwner
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _owner | address | Address of the new Owner | 
+| _owner | address | Address of the new Owner |
 
 ### _setOwner
 
@@ -147,7 +147,7 @@ function _setOwner(address _owner) internal nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _owner | address |  | 
+| _owner | address |  |
 
 ## Contracts
 

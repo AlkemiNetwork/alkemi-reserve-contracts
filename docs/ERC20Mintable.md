@@ -1,7 +1,7 @@
 ---
 layout: default
 title: ERC20 Mintable
-nav_order: 1
+nav_order: 7
 ---
 
 # ERC20 Mintable
@@ -27,7 +27,7 @@ See {ERC20-_mint}.
      * - the caller must have the {MinterRole}.
 
 ```js
-function mint(address account, uint256 amount) public nonpayable onlyMinter 
+function mint(address account, uint256 amount) public nonpayable onlyMinter
 returns(bool)
 ```
 
@@ -35,8 +35,8 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
-| amount | uint256 |  | 
+| account | address |  |
+| amount | uint256 |  |
 
 ## Contracts
 

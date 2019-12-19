@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Safe Math
-nav_order: 1
+nav_order: 12
 ---
 
 # Safe Math
@@ -47,8 +47,8 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | uint256 |  | 
-| b | uint256 |  | 
+| a | uint256 |  |
+| b | uint256 |  |
 
 ### sub
 
@@ -67,8 +67,8 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | uint256 |  | 
-| b | uint256 |  | 
+| a | uint256 |  |
+| b | uint256 |  |
 
 ### sub
 
@@ -88,9 +88,9 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | uint256 |  | 
-| b | uint256 |  | 
-| errorMessage | string |  | 
+| a | uint256 |  |
+| b | uint256 |  |
+| errorMessage | string |  |
 
 ### mul
 
@@ -109,8 +109,8 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | uint256 |  | 
-| b | uint256 |  | 
+| a | uint256 |  |
+| b | uint256 |  |
 
 ### div
 
@@ -131,8 +131,8 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | uint256 |  | 
-| b | uint256 |  | 
+| a | uint256 |  |
+| b | uint256 |  |
 
 ### div
 
@@ -154,9 +154,9 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | uint256 |  | 
-| b | uint256 |  | 
-| errorMessage | string |  | 
+| a | uint256 |  |
+| b | uint256 |  |
+| errorMessage | string |  |
 
 ### mod
 
@@ -177,8 +177,8 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | uint256 |  | 
-| b | uint256 |  | 
+| a | uint256 |  |
+| b | uint256 |  |
 
 ### mod
 
@@ -200,9 +200,9 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | uint256 |  | 
-| b | uint256 |  | 
-| errorMessage | string |  | 
+| a | uint256 |  |
+| b | uint256 |  |
+| errorMessage | string |  |
 
 ## Contracts
 

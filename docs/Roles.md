@@ -1,10 +1,10 @@
 ---
 layout: default
 title: Roles
-nav_order: 1
+nav_order: 10
 ---
 
-# Roles 
+# Roles
 View Source: [@openzeppelin/contracts/access/Roles.sol](../@openzeppelin/contracts/access/Roles.sol)
 
 
@@ -37,8 +37,8 @@ function add(struct Roles.Role role, address account) internal nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| role | struct Roles.Role |  | 
-| account | address |  | 
+| role | struct Roles.Role |  |
+| account | address |  |
 
 ### remove
 
@@ -52,8 +52,8 @@ function remove(struct Roles.Role role, address account) internal nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| role | struct Roles.Role |  | 
-| account | address |  | 
+| role | struct Roles.Role |  |
+| account | address |  |
 
 ### has
 
@@ -72,8 +72,8 @@ bool
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| role | struct Roles.Role |  | 
-| account | address |  | 
+| role | struct Roles.Role |  |
+| account | address |  |
 
 ## Contracts
 
