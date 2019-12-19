@@ -9,4 +9,4 @@ permalink: /
 
 ## Contracts Documentation
 
-{:toc}
+{: .no_toc }
