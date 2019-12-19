@@ -1,13 +1,8 @@
----
-layout: default
-title: Alkemi Token (Interface)
-nav_order: 3
-parent: Interfaces
----
-
-# Alkemi Token (Interface)
+# IAlkemiToken.sol
 
 View Source: [contracts/interfaces/IAlkemiToken.sol](../contracts/interfaces/IAlkemiToken.sol)
+
+**IAlkemiToken**
 
 **Events**
 
@@ -52,7 +47,7 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  |
+| account | address |  | 
 
 ### transfer
 
@@ -69,8 +64,8 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| recipient | address |  |
-| amount | uint256 |  |
+| recipient | address |  | 
+| amount | uint256 |  | 
 
 ### allowance
 
@@ -88,8 +83,8 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| owner | address |  |
-| spender | address |  |
+| owner | address |  | 
+| spender | address |  | 
 
 ### approve
 
@@ -112,8 +107,8 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| spender | address |  |
-| amount | uint256 |  |
+| spender | address |  | 
+| amount | uint256 |  | 
 
 ### transferFrom
 
@@ -132,6 +127,34 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| sender | address |  |
-| recipient | address |  |
-| amount | uint256 |  |
+| sender | address |  | 
+| recipient | address |  | 
+| amount | uint256 |  | 
+
+## Contracts
+
+* [Address](Address.md)
+* [AlkemiNetwork](AlkemiNetwork.md)
+* [AlkemiSettlementMock](AlkemiSettlementMock.md)
+* [Context](Context.md)
+* [ERC20](ERC20.md)
+* [ERC20Mintable](ERC20Mintable.md)
+* [EtherTokenConstantMock](EtherTokenConstantMock.md)
+* [IAlkemiSettlement](IAlkemiSettlement.md)
+* [IAlkemiToken](IAlkemiToken.md)
+* [IERC20](IERC20.md)
+* [ILiquidityReserve](ILiquidityReserve.md)
+* [ILiquidityReserveFactory](ILiquidityReserveFactory.md)
+* [IOracle](IOracle.md)
+* [IOracleGuard](IOracleGuard.md)
+* [LiquidityReserve](LiquidityReserve.md)
+* [LiquidityReserveFactory](LiquidityReserveFactory.md)
+* [LiquidityReserveState](LiquidityReserveState.md)
+* [Migrations](Migrations.md)
+* [MinterRole](MinterRole.md)
+* [Oracle](Oracle.md)
+* [OracleGuard](OracleGuard.md)
+* [Roles](Roles.md)
+* [SafeERC20](SafeERC20.md)
+* [SafeMath](SafeMath.md)
+* [TokenMock](TokenMock.md)

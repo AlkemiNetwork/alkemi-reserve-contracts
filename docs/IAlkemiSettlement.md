@@ -1,13 +1,8 @@
----
-layout: default
-title: Alkemi Settlement (Interface)
-nav_order: 2
-parent: Interfaces
----
-
-# Alkemi Settlement (Interface)
+# IAlkemiSettlement (IAlkemiSettlement.sol)
 
 View Source: [contracts/interfaces/IAlkemiSettlement.sol](../contracts/interfaces/IAlkemiSettlement.sol)
+
+**IAlkemiSettlement**
 
 ## Functions
 
@@ -30,9 +25,9 @@ function depositIntoLiquidityReserve(address _liquidityReserve, address _token, 
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _liquidityReserve | address | liquidity reserve address |
-| _token | address | erc20 token address to deposit |
-| _amount | uint256 | amount to deposit |
+| _liquidityReserve | address | liquidity reserve address | 
+| _token | address | erc20 token address to deposit | 
+| _amount | uint256 | amount to deposit | 
 
 ### withdrawFromLiquidityReserve
 
@@ -46,9 +41,9 @@ function withdrawFromLiquidityReserve(address _liquidityReserve, address _token,
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _liquidityReserve | address | liquidity reserve address |
-| _token | address | erc20 token address to deposit |
-| _amount | uint256 | amount to deposit |
+| _liquidityReserve | address | liquidity reserve address | 
+| _token | address | erc20 token address to deposit | 
+| _amount | uint256 | amount to deposit | 
 
 ### approveTokenTransfer
 
@@ -62,9 +57,9 @@ function approveTokenTransfer(address _liquidityReserve, address _token, uint256
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _liquidityReserve | address | liquidity reserve address |
-| _token | address | erc20 token address to deposit |
-| _amount | uint256 | amount to deposit |
+| _liquidityReserve | address | liquidity reserve address | 
+| _token | address | erc20 token address to deposit | 
+| _amount | uint256 | amount to deposit | 
 
 ### doSettlement
 
@@ -79,11 +74,11 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| exchangesAddresses | address[] | list of exchanges addresses |
-| surplusTokensAddresses | address[] | list of surplus tokens |
-| deficitTokensAddresses | address[] | list of dificit tokens |
-| surplus | uint128[] | TokensAddresses list of surplus tokens |
-| deficit | uint128[] | TokensAddresses list of dificit tokens |
+| exchangesAddresses | address[] | list of exchanges addresses | 
+| surplusTokensAddresses | address[] | list of surplus tokens | 
+| deficitTokensAddresses | address[] | list of dificit tokens | 
+| surplus | uint128[] | TokensAddresses list of surplus tokens | 
+| deficit | uint128[] | TokensAddresses list of dificit tokens | 
 
 ### priceOf
 
@@ -102,7 +97,7 @@ token price
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _token | address | token address |
+| _token | address | token address | 
 
 ### settlementId
 
@@ -117,3 +112,31 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
+
+## Contracts
+
+* [Address](Address.md)
+* [AlkemiNetwork](AlkemiNetwork.md)
+* [AlkemiSettlementMock](AlkemiSettlementMock.md)
+* [Context](Context.md)
+* [ERC20](ERC20.md)
+* [ERC20Mintable](ERC20Mintable.md)
+* [EtherTokenConstantMock](EtherTokenConstantMock.md)
+* [IAlkemiSettlement](IAlkemiSettlement.md)
+* [IAlkemiToken](IAlkemiToken.md)
+* [IERC20](IERC20.md)
+* [ILiquidityReserve](ILiquidityReserve.md)
+* [ILiquidityReserveFactory](ILiquidityReserveFactory.md)
+* [IOracle](IOracle.md)
+* [IOracleGuard](IOracleGuard.md)
+* [LiquidityReserve](LiquidityReserve.md)
+* [LiquidityReserveFactory](LiquidityReserveFactory.md)
+* [LiquidityReserveState](LiquidityReserveState.md)
+* [Migrations](Migrations.md)
+* [MinterRole](MinterRole.md)
+* [Oracle](Oracle.md)
+* [OracleGuard](OracleGuard.md)
+* [Roles](Roles.md)
+* [SafeERC20](SafeERC20.md)
+* [SafeMath](SafeMath.md)
+* [TokenMock](TokenMock.md)

@@ -1,29 +1,27 @@
----
-layout: default
-title: Alkemi Network
-nav_order: 3
----
+# AlkemiNetwork (AlkemiNetwork.sol)
 
-# Alkemi Network
----
+View Source: [contracts/AlkemiNetwork.sol](../contracts/AlkemiNetwork.sol)
+
+**↗ Extends: [LiquidityReserveFactory](LiquidityReserveFactory.md)**
+
+**AlkemiNetwork**
+
 This contract manage Alkemi Network on-chain process
-
-View Source: [contracts/AlkemiNetwork.sol](https://github.com/project-alkemi/alkemi-protocol/blob/master/contracts/AlkemiNetwork.sol)
-**↗ Extends: [Liquidity Reserve Factory](LiquidityReserveFactory.md)**
-
----
 
 ## Contract Members
 **Constants & Variables**
 
 ```js
-//public members
 address public owner;
+mapping(address => address[]) public providerReserves;
+mapping(address => address[]) public tokenReserves;
 
-//internal members
-mapping(address => address[]) internal _providerReserves;
-mapping(address => address[]) internal _tokenReserves;
+```
 
+**Events**
+
+```js
+event ReserveCreate(address indexed reserve, address indexed liquidityProvider, address indexed beneficiary, uint256  lockingPeriod, uint256  lockingPrice, uint8  lockingPricePosition);
 ```
 
 ## Modifiers
@@ -52,7 +50,7 @@ modifier onlyOwner() internal
 - [setNewOwner(address _owner)](#setnewowner)
 - [_setOwner(address _owner)](#_setowner)
 
-###
+### 
 
 ```js
 function () public nonpayable
@@ -69,6 +67,7 @@ Creates and initialises a new LiquidityReserve
 
 ```js
 function createLiquidityReserve(address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition) public nonpayable
+returns(address)
 ```
 
 **Returns**
@@ -79,11 +78,11 @@ Address of new Liquidity Reserve
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _beneficiary | address | earnings beneficiary (address(0) if the earnings goes to the current reserve address) |
-| _asset | address | asset address |
-| _lockingPeriod | uint256 | funds locking period |
-| _lockingPrice | uint256 | release funds when hitting this price |
-| _lockingPricePosition | uint8 | locking price position |
+| _beneficiary | address | earnings beneficiary (address(0) if the earnings goes to the current reserve address) | 
+| _asset | address | asset address | 
+| _lockingPeriod | uint256 | funds locking period | 
+| _lockingPrice | uint256 | release funds when hitting this price | 
+| _lockingPricePosition | uint8 | locking price position | 
 
 ### providerLiquidityReserves
 
@@ -102,7 +101,7 @@ active liquidity reserve contract addresses
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _liquidityProvider | address | liquidity provider address |
+| _liquidityProvider | address | liquidity provider address | 
 
 ### tokenLiquidityReserves
 
@@ -121,21 +120,21 @@ liquidity reserves addresses
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _asset | address | asset address |
+| _asset | address | asset address | 
 
 ### setNewOwner
 
 Manager can set the address of the new Owner here
 
 ```js
-function setNewOwner(address _owner) public nonpayable onlyOwner
+function setNewOwner(address _owner) public nonpayable onlyOwner 
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _owner | address | Address of the new Owner |
+| _owner | address | Address of the new Owner | 
 
 ### _setOwner
 
@@ -147,4 +146,32 @@ function _setOwner(address _owner) internal nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _owner | address |  |
+| _owner | address |  | 
+
+## Contracts
+
+* [Address](Address.md)
+* [AlkemiNetwork](AlkemiNetwork.md)
+* [AlkemiSettlementMock](AlkemiSettlementMock.md)
+* [Context](Context.md)
+* [ERC20](ERC20.md)
+* [ERC20Mintable](ERC20Mintable.md)
+* [EtherTokenConstantMock](EtherTokenConstantMock.md)
+* [IAlkemiSettlement](IAlkemiSettlement.md)
+* [IAlkemiToken](IAlkemiToken.md)
+* [IERC20](IERC20.md)
+* [ILiquidityReserve](ILiquidityReserve.md)
+* [ILiquidityReserveFactory](ILiquidityReserveFactory.md)
+* [IOracle](IOracle.md)
+* [IOracleGuard](IOracleGuard.md)
+* [LiquidityReserve](LiquidityReserve.md)
+* [LiquidityReserveFactory](LiquidityReserveFactory.md)
+* [LiquidityReserveState](LiquidityReserveState.md)
+* [Migrations](Migrations.md)
+* [MinterRole](MinterRole.md)
+* [Oracle](Oracle.md)
+* [OracleGuard](OracleGuard.md)
+* [Roles](Roles.md)
+* [SafeERC20](SafeERC20.md)
+* [SafeMath](SafeMath.md)
+* [TokenMock](TokenMock.md)

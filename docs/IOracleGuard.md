@@ -1,14 +1,8 @@
----
-layout: default
-title: Oracle Guard (Interface)
-nav_order: 8
-parent: Interfaces
----
-
-# Oracle Guard (Interface)
+# IOracleGuard (IOracleGuard.sol)
 
 View Source: [contracts/interfaces/IOracleGuard.sol](../contracts/interfaces/IOracleGuard.sol)
 
+**IOracleGuard**
 
 ## Functions
 
@@ -34,7 +28,7 @@ function authNode(address[] a) external nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | address[] | nodes addresses |
+| a | address[] | nodes addresses | 
 
 ### dropNode
 
@@ -48,7 +42,7 @@ function dropNode(address a) external nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | address | node address |
+| a | address | node address | 
 
 ### isContractAuth
 
@@ -67,7 +61,7 @@ true if authorized
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _contract | address | contract address |
+| _contract | address | contract address | 
 
 ### isNodeAuth
 
@@ -86,7 +80,7 @@ true if authorized
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _node | address | node address |
+| _node | address | node address | 
 
 ### isNodeBan
 
@@ -105,7 +99,7 @@ true if banned
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _node | address | node address |
+| _node | address | node address | 
 
 ### isNodeSlashed
 
@@ -124,7 +118,7 @@ true if banned
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _node | address | node address |
+| _node | address | node address | 
 
 ### token
 
@@ -167,3 +161,31 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
+
+## Contracts
+
+* [Address](Address.md)
+* [AlkemiNetwork](AlkemiNetwork.md)
+* [AlkemiSettlementMock](AlkemiSettlementMock.md)
+* [Context](Context.md)
+* [ERC20](ERC20.md)
+* [ERC20Mintable](ERC20Mintable.md)
+* [EtherTokenConstantMock](EtherTokenConstantMock.md)
+* [IAlkemiSettlement](IAlkemiSettlement.md)
+* [IAlkemiToken](IAlkemiToken.md)
+* [IERC20](IERC20.md)
+* [ILiquidityReserve](ILiquidityReserve.md)
+* [ILiquidityReserveFactory](ILiquidityReserveFactory.md)
+* [IOracle](IOracle.md)
+* [IOracleGuard](IOracleGuard.md)
+* [LiquidityReserve](LiquidityReserve.md)
+* [LiquidityReserveFactory](LiquidityReserveFactory.md)
+* [LiquidityReserveState](LiquidityReserveState.md)
+* [Migrations](Migrations.md)
+* [MinterRole](MinterRole.md)
+* [Oracle](Oracle.md)
+* [OracleGuard](OracleGuard.md)
+* [Roles](Roles.md)
+* [SafeERC20](SafeERC20.md)
+* [SafeMath](SafeMath.md)
+* [TokenMock](TokenMock.md)
