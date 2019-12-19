@@ -6,10 +6,11 @@ nav_order: 5
 
 # Context
 
-View Source: [@openzeppelin/contracts/GSN/Context.sol](../@openzeppelin/contracts/GSN/Context.sol)
+---
 
 ** Derived Contracts: [ERC20](ERC20.md), [MinterRole](MinterRole.md)**
 
+---
 
 ## Functions
 

@@ -7,11 +7,12 @@ nav_order: 4
 
 # Alkemi Settlement
 
+---
 Alkemi Settlement contract mock
-
 
 View Source: [-contracts/contracts/mocks/AlkemiSettlement.sol](../-contracts/contracts/mocks/AlkemiSettlement.sol)
 
+---
 
 ## Contract Members
 **Constants & Variables**

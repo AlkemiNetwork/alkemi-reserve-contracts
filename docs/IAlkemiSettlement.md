@@ -7,7 +7,11 @@ parent: Interfaces
 
 # Alkemi Settlement (Interface)
 
+---
+
 View Source: [contracts/interfaces/IAlkemiSettlement.sol](../contracts/interfaces/IAlkemiSettlement.sol)
+
+---
 
 ## Functions
 

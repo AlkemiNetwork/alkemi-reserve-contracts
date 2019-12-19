@@ -7,7 +7,7 @@ nav_order: 6
 
 # ERC20
 
-View Source: [@openzeppelin/contracts/token/ERC20/ERC20.sol](../@openzeppelin/contracts/token/ERC20/ERC20.sol)
+---
 
 **↗ Extends: [Context](Context.md), [IERC20](IERC20.md)**
 **↘ Derived Contracts: [ERC20Mintable](ERC20 Mintable.md)**
@@ -30,6 +30,8 @@ these events, as it isn't required by the specification.
  * Finally, the non-standard {decreaseAllowance} and {increaseAllowance}
 functions have been added to mitigate the well-known issues around setting
 allowances. See {IERC20-approve}.
+
+---
 
 ## Contract Members
 **Constants & Variables**

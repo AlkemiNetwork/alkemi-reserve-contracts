@@ -9,7 +9,7 @@ nav_order: 3
 This contract manage Alkemi Network on-chain process
 
 View Source: [contracts/AlkemiNetwork.sol](https://github.com/project-alkemi/alkemi-protocol/blob/master/contracts/AlkemiNetwork.sol)
-**↗ Extends: [Liquidity Reserve Factory](LiquidityReserveFactory.md)**
+ **↗ Extends: [Liquidity Reserve Factory](LiquidityReserveFactory.md)**
 
 ---
 

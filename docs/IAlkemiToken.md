@@ -7,7 +7,11 @@ parent: Interfaces
 
 # Alkemi Token (Interface)
 
+---
+
 View Source: [contracts/interfaces/IAlkemiToken.sol](../contracts/interfaces/IAlkemiToken.sol)
+
+---
 
 **Events**
 

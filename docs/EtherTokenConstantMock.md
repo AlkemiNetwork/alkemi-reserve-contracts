@@ -7,8 +7,11 @@ parent: Mocks
 
 # Ether Token Constant Mock
 
+---
+
 View Source: [contracts/mocks/EtherTokenContantMock.sol](../contracts/mocks/EtherTokenContantMock.sol)
 
+---
 
 ## Contract Members
 **Constants & Variables**
