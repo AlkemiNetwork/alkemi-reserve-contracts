@@ -27,6 +27,7 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   uint256 public earned;
   uint256 public oraclePrice;
   uint256 public lastPriceCheck;
+  uint256 internal _amountToWithdraw;
   uint8 public lockingPricePosition;      // 0=below the lockingPrice; 1=above the lockingPrice
   bool public isDepositable = true;
 
@@ -116,31 +117,6 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   }
 
   /**
-   * @dev Throws if locking conditions are still valid
-   */
-  modifier onlyUnlocked(address _token) {
-    require(isUnlocked(_token), "LiquidityReserve: provider locking conditions still valid");
-    _;
-  }
-
-  /**
-   * @dev Returns true if one of the liquidity provder's conditions are valid
-   */
-  function isUnlocked(address _token) public view returns (bool) {
-    if(now > lockingPeriod) return true;
-
-    // get token price from settlement contract
-    uint256 tokenOraclePrice = getTokenPrice(_token);
-    if(lockingPricePosition == 0) {
-      if(tokenOraclePrice < lockingPrice) return true;
-    }
-    else {
-      if(tokenOraclePrice > lockingPrice) return true;
-    }
-    return false;
-  }
-
-  /**
    * @dev check if reserve is active
    */
   function isActive() external view returns(bool) {
@@ -190,9 +166,27 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
    * @dev Withdraw `_value` from the reserve
    * @notice this function can only be called by the liquidity provider or by the settlement contract
    * @param _value Amount of tokens being transferred
+   * @param _oracle oracle address
+   * @param _jobId oracle job id
+   * @param _sym asset symbol
+   * @param _market market currency needed
+   * @param _oraclePayment amount of Link tokens for node
    */
-  function withdraw(uint256 _value) external onlyPermissioned {
-    _withdraw(asset, _value);
+  function withdraw(
+    uint256 _value,
+    address _oracle,
+    bytes32 _jobId,
+    string calldata _sym,
+    string calldata _market,
+    uint256 _oraclePayment
+  ) external onlyPermissioned {
+    if (now > lockingPeriod) {
+      _withdraw(asset, _value);
+    }
+    else {
+      _amountToWithdraw = _value;
+      requestAssetPrice(_oracle, _jobId, _sym, _market, _oraclePayment);
+    }
   }
 
   /**
@@ -217,7 +211,6 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
    * @notice can only be called from Alkemi Network contract
    */
   function earn(uint256 _value) external onlyAlkemi() {
-    //earned = earned.add(_value);
     earned = SafeMath.add(earned, _value);
     totalBalance = SafeMath.add(totalBalance, _value);
   }
@@ -248,7 +241,7 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
     emit ReserveDeposit(_token, msg.sender, _value);
   }
 
-  function _withdraw(address _token, uint256 _value) internal onlyUnlocked(_token) {
+  function _withdraw(address _token, uint256 _value) internal {
     if (_token == ETH) {
       require(address(this).balance >= _value, "LiquidityReserve: insufficient balance");
       msg.sender.transfer(_value);
@@ -265,7 +258,9 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
    * @dev send request to Chainlink nodes to get asset price
    * @param _oracle oracle address
    * @param _jobId oracle job id
+   * @param _sym asset symbol
    * @param _market market currency needed
+   * @param _oraclePayment amount of Link tokens for node
    */
   function requestAssetPrice(
     address _oracle,
@@ -296,9 +291,18 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
    * @param _requestId chainlink request id
    * @param _price returned price
    */
-  function fulfill(bytes32 _requestId, uint256 _price) public recordChainlinkFulfillment(_requestId) returns (uint256) {
+  function fulfill(bytes32 _requestId, uint256 _price) public recordChainlinkFulfillment(_requestId) {
     oraclePrice = _price;
     lastPriceCheck = now;
+
+    if(lockingPricePosition == 0) {
+      if(oraclePrice < lockingPrice) _withdraw(asset, _amountToWithdraw);
+    }
+    else {
+      if(oraclePrice > lockingPrice) _withdraw(asset, _amountToWithdraw);
+    }
+
+    _amountToWithdraw = 0;
   }
 
   /**
