@@ -154,7 +154,7 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
 
     describe("Liquidity provider withdraw", async() => {
       it("should revert withdrawing during locking period and price locking", async() => {
-        await liquidityReserve1.withdraw(amountToWithdraw, {from: liquidityProvider1}).should.be.rejectedWith(EVMRevert);
+        await liquidityReserve1.withdraw(amountToWithdraw, oc.address, jobId, await token1.symbol.call(), "USD", payment, {from: liquidityProvider1}).should.be.rejectedWith(EVMRevert);
       });
       
       /*
@@ -210,7 +210,7 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
           assert.ok(_oraclePrice < _lockingPrice, "Oracle price is not less than locking price"); 
         }
 
-        await liquidityReserve1.withdraw(amountToWithdraw, {from: liquidityProvider1});
+        await liquidityReserve1.withdraw(amountToWithdraw, oc.address, jobId, await token1.symbol.call(), "USD", payment, {from: liquidityProvider1});
 
         let reserveBalanceAfter = await liquidityReserve1.balance.call(token1.address);
         let providerBalanceAfter = await token1.balanceOf.call(liquidityProvider1);
@@ -240,7 +240,7 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
           assert.ok(_oraclePrice > _lockingPrice, "Oracle price is not greater than locking price"); 
         }
 
-        await liquidityReserve1.withdraw(amountToWithdraw, {from: liquidityProvider1});
+        await liquidityReserve1.withdraw(amountToWithdraw, oc.address, jobId, await token1.symbol.call(), "USD", payment, {from: liquidityProvider1});
 
         let reserveBalanceAfter = await liquidityReserve1.balance.call(token1.address);
         let providerBalanceAfter = await token1.balanceOf.call(liquidityProvider1);
@@ -249,7 +249,7 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
       }); 
 
       it("should revert another liqudity provider withdrawing from liquidity reserve", async() => {
-        await liquidityReserve1.withdraw(amountToWithdraw, {from: liquidityProvider2}).should.be.rejectedWith(EVMRevert);
+        await liquidityReserve1.withdraw(amountToWithdraw, oc.address, jobId, await token1.symbol.call(), "USD", payment, {from: liquidityProvider2}).should.be.rejectedWith(EVMRevert);
       });
     });  
     
@@ -266,7 +266,7 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
   
         await liquidityReserve1.extendLockingPeriod(newLockingPeriod, { from: liquidityProvider1 });
   
-        await liquidityReserve1.withdraw(amountToWithdraw, {from: liquidityProvider1}).should.be.rejectedWith(EVMRevert);
+        await liquidityReserve1.withdraw(amountToWithdraw, oc.address, jobId, await token1.symbol.call(), "USD", payment, {from: liquidityProvider1}).should.be.rejectedWith(EVMRevert);
       })
     });  
   });
