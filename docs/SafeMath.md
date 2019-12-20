@@ -1,12 +1,8 @@
----
-layout: default
-title: Safe Math
-nav_order: 17
----
+# SafeMath.sol
 
-# Safe Math
+View Source: [@openzeppelin/contracts/math/SafeMath.sol](../@openzeppelin/contracts/math/SafeMath.sol)
 
----
+**SafeMath**
 
 Wrappers over Solidity's arithmetic operations with added overflow
 checks.
@@ -17,8 +13,6 @@ error, which is the standard behavior in high level programming languages.
 operation overflows.
  * Using this library instead of the unchecked operations eliminates an entire
 class of bugs, so it's recommended to use it always.
-
----
 
 ## Functions
 
@@ -48,8 +42,8 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | uint256 |  |
-| b | uint256 |  |
+| a | uint256 |  | 
+| b | uint256 |  | 
 
 ### sub
 
@@ -68,8 +62,8 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | uint256 |  |
-| b | uint256 |  |
+| a | uint256 |  | 
+| b | uint256 |  | 
 
 ### sub
 
@@ -89,9 +83,9 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | uint256 |  |
-| b | uint256 |  |
-| errorMessage | string |  |
+| a | uint256 |  | 
+| b | uint256 |  | 
+| errorMessage | string |  | 
 
 ### mul
 
@@ -110,8 +104,8 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | uint256 |  |
-| b | uint256 |  |
+| a | uint256 |  | 
+| b | uint256 |  | 
 
 ### div
 
@@ -132,8 +126,8 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | uint256 |  |
-| b | uint256 |  |
+| a | uint256 |  | 
+| b | uint256 |  | 
 
 ### div
 
@@ -155,9 +149,9 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | uint256 |  |
-| b | uint256 |  |
-| errorMessage | string |  |
+| a | uint256 |  | 
+| b | uint256 |  | 
+| errorMessage | string |  | 
 
 ### mod
 
@@ -178,8 +172,8 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | uint256 |  |
-| b | uint256 |  |
+| a | uint256 |  | 
+| b | uint256 |  | 
 
 ### mod
 
@@ -201,6 +195,34 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | uint256 |  |
-| b | uint256 |  |
-| errorMessage | string |  |
+| a | uint256 |  | 
+| b | uint256 |  | 
+| errorMessage | string |  | 
+
+## Contracts
+
+* [Address](Address.md)
+* [AlkemiNetwork](AlkemiNetwork.md)
+* [AlkemiSettlementMock](AlkemiSettlementMock.md)
+* [Context](Context.md)
+* [ERC20](ERC20.md)
+* [ERC20Mintable](ERC20Mintable.md)
+* [EtherTokenConstantMock](EtherTokenConstantMock.md)
+* [IAlkemiSettlement](IAlkemiSettlement.md)
+* [IAlkemiToken](IAlkemiToken.md)
+* [IERC20](IERC20.md)
+* [ILiquidityReserve](ILiquidityReserve.md)
+* [ILiquidityReserveFactory](ILiquidityReserveFactory.md)
+* [IOracle](IOracle.md)
+* [IOracleGuard](IOracleGuard.md)
+* [LiquidityReserve](LiquidityReserve.md)
+* [LiquidityReserveFactory](LiquidityReserveFactory.md)
+* [LiquidityReserveState](LiquidityReserveState.md)
+* [Migrations](Migrations.md)
+* [MinterRole](MinterRole.md)
+* [Oracle](Oracle.md)
+* [OracleGuard](OracleGuard.md)
+* [Roles](Roles.md)
+* [SafeERC20](SafeERC20.md)
+* [SafeMath](SafeMath.md)
+* [TokenMock](TokenMock.md)

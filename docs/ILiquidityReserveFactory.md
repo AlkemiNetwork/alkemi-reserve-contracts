@@ -1,23 +1,19 @@
-# LiquidityReserveFactory (LiquidityReserveFactory.sol)
+# ILiquidityReserveFactory (ILiquidityReserveFactory.sol)
 
-View Source: [contracts/liquidity-reserve/factory/LiquidityReserveFactory.sol](../contracts/liquidity-reserve/factory/LiquidityReserveFactory.sol)
+View Source: [contracts/interfaces/ILiquidityReserveFactory.sol](../contracts/interfaces/ILiquidityReserveFactory.sol)
 
-**↘ Derived Contracts: [AlkemiNetwork](AlkemiNetwork.md)**
-
-**LiquidityReserveFactory**
-
-This Factory creates a Liquidity Reserve
+**ILiquidityReserveFactory**
 
 ## Functions
 
-- [_createLiquidityReserve(address _liquidityProvider, address _alkemiNetwork, address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition)](#_createliquidityreserve)
+- [createLiquidityReserve(address _liquidityProvider, address _alkemiNetwork, address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition)](#createliquidityreserve)
 
-### _createLiquidityReserve
+### createLiquidityReserve
 
 Creates and initialises a new LiquidityReserve
 
 ```js
-function _createLiquidityReserve(address _liquidityProvider, address _alkemiNetwork, address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition) internal nonpayable
+function createLiquidityReserve(address _liquidityProvider, address _alkemiNetwork, address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition) external nonpayable
 returns(address)
 ```
 
