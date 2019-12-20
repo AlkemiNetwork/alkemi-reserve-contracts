@@ -1,8 +1,17 @@
-# ILiquidityReserve (ILiquidityReserve.sol)
+---
+layout: default
+title: Liquidity Reserve (Interface)
+nav_order: 5
+parent: Interfaces
+---
 
-View Source: [contracts/interfaces/ILiquidityReserve.sol](../contracts/interfaces/ILiquidityReserve.sol)
+# Liquidity Reserve (Interface)
 
-**ILiquidityReserve**
+---
+
+View Source: [contracts/interfaces/ILiquidityReserve.sol](https://github.com/project-alkemi/alkemi-protocol/blob/master/contracts/interfaces/ILiquidityReserve.sol)
+
+---
 
 ## Functions
 
@@ -39,8 +48,8 @@ function deposit(address _token, uint256 _value) external payable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _token | address | Address of the token being transferred | 
-| _value | uint256 | Amount of tokens being transferred | 
+| _token | address | Address of the token being transferred |
+| _value | uint256 | Amount of tokens being transferred |
 
 ### withdraw
 
@@ -54,8 +63,8 @@ function withdraw(address _token, uint256 _value) external nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _token | address | Address of the token being transferred | 
-| _value | uint256 | Amount of tokens being transferred | 
+| _token | address | Address of the token being transferred |
+| _value | uint256 | Amount of tokens being transferred |
 
 ### isUnlocked
 
@@ -70,7 +79,7 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _token | address |  | 
+| _token | address |  |
 
 ### isBeneficiary
 
@@ -97,35 +106,4 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _token | address |  | 
-
-## Contracts
-
-* [Address](Address.md)
-* [AlkemiNetwork](AlkemiNetwork.md)
-* [AlkemiSettlement](AlkemiSettlement.md)
-* [AlkemiSettlementMock](AlkemiSettlementMock.md)
-* [Context](Context.md)
-* [ERC20](ERC20.md)
-* [ERC20Mintable](ERC20Mintable.md)
-* [EtherTokenConstantMock](EtherTokenConstantMock.md)
-* [IAlkemiSettlement](IAlkemiSettlement.md)
-* [IAlkemiToken](IAlkemiToken.md)
-* [IERC20](IERC20.md)
-* [ILiquidityReserve](ILiquidityReserve.md)
-* [ILiquidityReserveManager](ILiquidityReserveManager.md)
-* [IOracle](IOracle.md)
-* [IOracleGuard](IOracleGuard.md)
-* [LiquidityReserve](LiquidityReserve.md)
-* [LiquidityReserveFactory](LiquidityReserveFactory.md)
-* [LiquidityReserveManager](LiquidityReserveManager.md)
-* [LiquidityReserveState](LiquidityReserveState.md)
-* [Migrations](Migrations.md)
-* [MinterRole](MinterRole.md)
-* [Oracle](Oracle.md)
-* [OracleGuard](OracleGuard.md)
-* [Roles](Roles.md)
-* [SafeERC20](SafeERC20.md)
-* [SafeMath](SafeMath.md)
-* [Token](Token.md)
-* [TokenMock](TokenMock.md)
+| _token | address |  |

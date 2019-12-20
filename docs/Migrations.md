@@ -1,8 +1,16 @@
-# Migrations.sol
+---
+layout: default
+title: Migrations
+nav_order: 11
+---
 
-View Source: [contracts/Migrations.sol](../contracts/Migrations.sol)
+# Migrations
 
-**Migrations**
+---
+
+View Source: [contracts/Migrations.sol](https://github.com/project-alkemi/alkemi-protocol/blob/master/contracts/Migrations.sol)
+
+---
 
 ## Contract Members
 **Constants & Variables**
@@ -34,7 +42,7 @@ modifier restricted() internal
 - [setCompleted(uint256 completed)](#setcompleted)
 - [upgrade(address new_address)](#upgrade)
 
-### 
+###
 
 ```js
 function () public nonpayable
@@ -48,54 +56,23 @@ function () public nonpayable
 ### setCompleted
 
 ```js
-function setCompleted(uint256 completed) public nonpayable restricted 
+function setCompleted(uint256 completed) public nonpayable restricted
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| completed | uint256 |  | 
+| completed | uint256 |  |
 
 ### upgrade
 
 ```js
-function upgrade(address new_address) public nonpayable restricted 
+function upgrade(address new_address) public nonpayable restricted
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| new_address | address |  | 
-
-## Contracts
-
-* [Address](Address.md)
-* [AlkemiNetwork](AlkemiNetwork.md)
-* [AlkemiSettlement](AlkemiSettlement.md)
-* [AlkemiSettlementMock](AlkemiSettlementMock.md)
-* [Context](Context.md)
-* [ERC20](ERC20.md)
-* [ERC20Mintable](ERC20Mintable.md)
-* [EtherTokenConstantMock](EtherTokenConstantMock.md)
-* [IAlkemiSettlement](IAlkemiSettlement.md)
-* [IAlkemiToken](IAlkemiToken.md)
-* [IERC20](IERC20.md)
-* [ILiquidityReserve](ILiquidityReserve.md)
-* [ILiquidityReserveManager](ILiquidityReserveManager.md)
-* [IOracle](IOracle.md)
-* [IOracleGuard](IOracleGuard.md)
-* [LiquidityReserve](LiquidityReserve.md)
-* [LiquidityReserveFactory](LiquidityReserveFactory.md)
-* [LiquidityReserveManager](LiquidityReserveManager.md)
-* [LiquidityReserveState](LiquidityReserveState.md)
-* [Migrations](Migrations.md)
-* [MinterRole](MinterRole.md)
-* [Oracle](Oracle.md)
-* [OracleGuard](OracleGuard.md)
-* [Roles](Roles.md)
-* [SafeERC20](SafeERC20.md)
-* [SafeMath](SafeMath.md)
-* [Token](Token.md)
-* [TokenMock](TokenMock.md)
+| new_address | address |  |

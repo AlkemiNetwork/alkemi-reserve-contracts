@@ -1,8 +1,17 @@
-# ILiquidityReserveManager (ILiquidityReserveManager.sol)
+---
+layout: default
+title: Liquidity Reserve Manager (Interface)
+nav_order: 6
+parent: Interfaces
+---
 
-View Source: [contracts/interfaces/ILiquidityReserveManager.sol](../contracts/interfaces/ILiquidityReserveManager.sol)
+# Liquidity Reserve Manager (Interface)
 
-**ILiquidityReserveManager**
+---
+
+View Source: [contracts/interfaces/ILiquidityReserveManager.sol](https://github.com/project-alkemi/alkemi-protocol/blob/master/contracts/interfaces/ILiquidityReserveFactory.sol)
+
+---
 
 ## Functions
 
@@ -26,10 +35,10 @@ Address of new Liquidity Reserve
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _beneficiary | address | earnings beneficiary (address(0) if the earnings goes to the current reserve address) | 
-| _lockingPeriod | uint256 | funds locking period | 
-| _lockingPrice | uint256 | release funds when hitting this price | 
-| _lockingPricePosition | uint8 | locking price position | 
+| _beneficiary | address | earnings beneficiary (address(0) if the earnings goes to the current reserve address) |
+| _lockingPeriod | uint256 | funds locking period |
+| _lockingPrice | uint256 | release funds when hitting this price |
+| _lockingPricePosition | uint8 | locking price position |
 
 ### liquidityReserveOf
 
@@ -48,7 +57,7 @@ liquidity reserve contract address
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _liquidityProvider | address | liquidity provider address | 
+| _liquidityProvider | address | liquidity provider address |
 
 ### setNewOwner
 
@@ -62,35 +71,4 @@ function setNewOwner(address _owner) external nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _owner | address | Address of the new Owner | 
-
-## Contracts
-
-* [Address](Address.md)
-* [AlkemiNetwork](AlkemiNetwork.md)
-* [AlkemiSettlement](AlkemiSettlement.md)
-* [AlkemiSettlementMock](AlkemiSettlementMock.md)
-* [Context](Context.md)
-* [ERC20](ERC20.md)
-* [ERC20Mintable](ERC20Mintable.md)
-* [EtherTokenConstantMock](EtherTokenConstantMock.md)
-* [IAlkemiSettlement](IAlkemiSettlement.md)
-* [IAlkemiToken](IAlkemiToken.md)
-* [IERC20](IERC20.md)
-* [ILiquidityReserve](ILiquidityReserve.md)
-* [ILiquidityReserveManager](ILiquidityReserveManager.md)
-* [IOracle](IOracle.md)
-* [IOracleGuard](IOracleGuard.md)
-* [LiquidityReserve](LiquidityReserve.md)
-* [LiquidityReserveFactory](LiquidityReserveFactory.md)
-* [LiquidityReserveManager](LiquidityReserveManager.md)
-* [LiquidityReserveState](LiquidityReserveState.md)
-* [Migrations](Migrations.md)
-* [MinterRole](MinterRole.md)
-* [Oracle](Oracle.md)
-* [OracleGuard](OracleGuard.md)
-* [Roles](Roles.md)
-* [SafeERC20](SafeERC20.md)
-* [SafeMath](SafeMath.md)
-* [Token](Token.md)
-* [TokenMock](TokenMock.md)
+| _owner | address | Address of the new Owner |

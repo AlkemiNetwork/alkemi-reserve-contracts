@@ -1,10 +1,16 @@
-# Roles (Roles.sol)
+---
+layout: default
+title: Roles
+nav_order: 15
+---
 
-View Source: [@openzeppelin/contracts/access/Roles.sol](../@openzeppelin/contracts/access/Roles.sol)
+# Roles
 
-**Roles**
+---
 
 Library for managing addresses assigned to a Role.
+
+---
 
 ## Structs
 ### Role
@@ -33,8 +39,8 @@ function add(struct Roles.Role role, address account) internal nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| role | struct Roles.Role |  | 
-| account | address |  | 
+| role | struct Roles.Role |  |
+| account | address |  |
 
 ### remove
 
@@ -48,8 +54,8 @@ function remove(struct Roles.Role role, address account) internal nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| role | struct Roles.Role |  | 
-| account | address |  | 
+| role | struct Roles.Role |  |
+| account | address |  |
 
 ### has
 
@@ -68,36 +74,5 @@ bool
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| role | struct Roles.Role |  | 
-| account | address |  | 
-
-## Contracts
-
-* [Address](Address.md)
-* [AlkemiNetwork](AlkemiNetwork.md)
-* [AlkemiSettlement](AlkemiSettlement.md)
-* [AlkemiSettlementMock](AlkemiSettlementMock.md)
-* [Context](Context.md)
-* [ERC20](ERC20.md)
-* [ERC20Mintable](ERC20Mintable.md)
-* [EtherTokenConstantMock](EtherTokenConstantMock.md)
-* [IAlkemiSettlement](IAlkemiSettlement.md)
-* [IAlkemiToken](IAlkemiToken.md)
-* [IERC20](IERC20.md)
-* [ILiquidityReserve](ILiquidityReserve.md)
-* [ILiquidityReserveManager](ILiquidityReserveManager.md)
-* [IOracle](IOracle.md)
-* [IOracleGuard](IOracleGuard.md)
-* [LiquidityReserve](LiquidityReserve.md)
-* [LiquidityReserveFactory](LiquidityReserveFactory.md)
-* [LiquidityReserveManager](LiquidityReserveManager.md)
-* [LiquidityReserveState](LiquidityReserveState.md)
-* [Migrations](Migrations.md)
-* [MinterRole](MinterRole.md)
-* [Oracle](Oracle.md)
-* [OracleGuard](OracleGuard.md)
-* [Roles](Roles.md)
-* [SafeERC20](SafeERC20.md)
-* [SafeMath](SafeMath.md)
-* [Token](Token.md)
-* [TokenMock](TokenMock.md)
+| role | struct Roles.Role |  |
+| account | address |  |

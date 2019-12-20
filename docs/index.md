@@ -1,37 +1,18 @@
 ---
-layout: home
-title: "Alkemi Protocol Contract"
+layout: default
+title: Alkemi Protocol Contracts
 permalink: /
+nav_order: 1
 ---
 
 # Alkemi Protocol Contracts ![GitHub](https://img.shields.io/github/license/project-alkemi/alkemi-protocol) [![Build Status](https://travis-ci.com/project-alkemi/alkemi-protocol.svg?branch=master)](https://travis-ci.com/project-alkemi/alkemi-protocol)
 
+---
+{: .fs-9 }
 
-## Contracts Documentation
+Official Alkemi Protocol documentation.
+{: .fs-6 .fw-300 }
 
-* [Address](Address.md)
-* [AlkemiSettlement](AlkemiSettlement.md)
-* [AlkemiSettlementMock](AlkemiSettlementMock.md)
-* [Context](Context.md)
-* [ERC20](ERC20.md)
-* [ERC20Mintable](ERC20Mintable.md)
-* [IAlkemiSettlement](IAlkemiSettlement.md)
-* [IAlkemiToken](IAlkemiToken.md)
-* [IERC20](IERC20.md)
-* [ILiquidityReserve](ILiquidityReserve.md)
-* [ILiquidityReserveManager](ILiquidityReserveManager.md)
-* [IOracle](IOracle.md)
-* [IOracleGuard](IOracleGuard.md)
-* [LiquidityReserve](LiquidityReserve.md)
-* [LiquidityReserveFactory](LiquidityReserveFactory.md)
-* [LiquidityReserveManager](LiquidityReserveManager.md)
-* [LiquidityReserveState](LiquidityReserveState.md)
-* [Migrations](Migrations.md)
-* [MinterRole](MinterRole.md)
-* [Oracle](Oracle.md)
-* [OracleGuard](OracleGuard.md)
-* [Roles](Roles.md)
-* [SafeERC20](SafeERC20.md)
-* [SafeMath](SafeMath.md)
-* [Token](Token.md)
-* [TokenMock](TokenMock.md)
+[View it on GitHub](https://github.com/project-alkemi/alkemi-protocol){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+
+---

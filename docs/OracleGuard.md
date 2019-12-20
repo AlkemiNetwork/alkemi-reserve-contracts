@@ -1,8 +1,17 @@
-# OracleGuard.sol
+---
+layout: default
+title: Oracle Guard
+nav_order: 2
+parent: Oracle
+---
 
-View Source: [contracts/oracles/OracleGuard.sol](../contracts/oracles/OracleGuard.sol)
+# Oracle Guard
 
-**OracleGuard**
+---
+
+View Source: [contracts/oracles/OracleGuard.sol](https://github.com/project-alkemi/alkemi-protocol/blob/master/contracts/oracles/OracleGuard.sol)
+
+---
 
 ## Contract Members
 **Constants & Variables**
@@ -38,7 +47,7 @@ modifier auth(uint256 permission) internal
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| permission | uint256 |  | 
+| permission | uint256 |  |
 
 ## Functions
 
@@ -61,7 +70,7 @@ modifier auth(uint256 permission) internal
 - [requiredToken()](#requiredtoken)
 - [nodesAvailable()](#nodesavailable)
 
-### 
+###
 
 ```js
 function (uint256 minimumTokens) public nonpayable
@@ -71,7 +80,7 @@ function (uint256 minimumTokens) public nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| minimumTokens | uint256 |  | 
+| minimumTokens | uint256 |  |
 
 ### isContractAuth
 
@@ -90,7 +99,7 @@ true if authorized
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _contract | address | contract address | 
+| _contract | address | contract address |
 
 ### isNodeAuth
 
@@ -109,7 +118,7 @@ true if authorized
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _node | address | node address | 
+| _node | address | node address |
 
 ### isNodeBan
 
@@ -128,7 +137,7 @@ true if banned
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _node | address | node address | 
+| _node | address | node address |
 
 ### isNodeSlashed
 
@@ -147,135 +156,135 @@ true if banned
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _node | address | node address | 
+| _node | address | node address |
 
 ### rely
 
 can only be called from an authorized sender
 
 ```js
-function rely(address usr, uint256 permission) external nonpayable auth 
+function rely(address usr, uint256 permission) external nonpayable auth
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| usr | address | address | 
-| permission | uint256 | Permission type | 
+| usr | address | address |
+| permission | uint256 | Permission type |
 
 ### deny
 
 can only be called from an authorized sender
 
 ```js
-function deny(address usr, uint256 permission) external nonpayable auth 
+function deny(address usr, uint256 permission) external nonpayable auth
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| usr | address | address | 
-| permission | uint256 | Permission type | 
+| usr | address | address |
+| permission | uint256 | Permission type |
 
 ### registerNode
 
 Node can only be registered by Alkemi
 
 ```js
-function registerNode(address[] a) external nonpayable auth 
+function registerNode(address[] a) external nonpayable auth
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | address[] | node address | 
+| a | address[] | node address |
 
 ### authNode
 
 can only be called from an authorized sender
 
 ```js
-function authNode(address[] a) external nonpayable auth 
+function authNode(address[] a) external nonpayable auth
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | address[] | nodes addresses | 
+| a | address[] | nodes addresses |
 
 ### dropNode
 
 can only be called from an authorized sender
 
 ```js
-function dropNode(address a) external nonpayable auth 
+function dropNode(address a) external nonpayable auth
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | address | node address | 
+| a | address | node address |
 
 ### authContract
 
 can only be called from an authorized sender
 
 ```js
-function authContract(address[] a) external nonpayable auth 
+function authContract(address[] a) external nonpayable auth
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | address[] | contracts addresseses | 
+| a | address[] | contracts addresseses |
 
 ### dropContract
 
 can only be called from an authorized sender
 
 ```js
-function dropContract(address a) external nonpayable auth 
+function dropContract(address a) external nonpayable auth
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | address | contract address | 
+| a | address | contract address |
 
 ### setOracleContract
 
 can only be called from an authorized sender
 
 ```js
-function setOracleContract(address oracleContract) external nonpayable auth 
+function setOracleContract(address oracleContract) external nonpayable auth
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| oracleContract | address | oracle contract address | 
+| oracleContract | address | oracle contract address |
 
 ### setTokenContract
 
 can only be called from an authorized sender
 
 ```js
-function setTokenContract(address alkemiToken) external nonpayable auth 
+function setTokenContract(address alkemiToken) external nonpayable auth
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| alkemiToken | address | Alkemi Token address | 
+| alkemiToken | address | Alkemi Token address |
 
 ### oracle
 
@@ -332,34 +341,3 @@ returns(uint256)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-
-## Contracts
-
-* [Address](Address.md)
-* [AlkemiNetwork](AlkemiNetwork.md)
-* [AlkemiSettlement](AlkemiSettlement.md)
-* [AlkemiSettlementMock](AlkemiSettlementMock.md)
-* [Context](Context.md)
-* [ERC20](ERC20.md)
-* [ERC20Mintable](ERC20Mintable.md)
-* [EtherTokenConstantMock](EtherTokenConstantMock.md)
-* [IAlkemiSettlement](IAlkemiSettlement.md)
-* [IAlkemiToken](IAlkemiToken.md)
-* [IERC20](IERC20.md)
-* [ILiquidityReserve](ILiquidityReserve.md)
-* [ILiquidityReserveManager](ILiquidityReserveManager.md)
-* [IOracle](IOracle.md)
-* [IOracleGuard](IOracleGuard.md)
-* [LiquidityReserve](LiquidityReserve.md)
-* [LiquidityReserveFactory](LiquidityReserveFactory.md)
-* [LiquidityReserveManager](LiquidityReserveManager.md)
-* [LiquidityReserveState](LiquidityReserveState.md)
-* [Migrations](Migrations.md)
-* [MinterRole](MinterRole.md)
-* [Oracle](Oracle.md)
-* [OracleGuard](OracleGuard.md)
-* [Roles](Roles.md)
-* [SafeERC20](SafeERC20.md)
-* [SafeMath](SafeMath.md)
-* [Token](Token.md)
-* [TokenMock](TokenMock.md)

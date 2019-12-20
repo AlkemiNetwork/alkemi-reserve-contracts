@@ -34,7 +34,7 @@ github_username:  project-alkemi
 header_pages:
   - index.md
   - about.md
-theme: jekyll-theme-hacker
+remote_theme: pmarsceill/just-the-docs
 plugins:
   - jekyll-feed
 
