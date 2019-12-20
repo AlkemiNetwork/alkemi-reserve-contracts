@@ -7,8 +7,11 @@ parent: Interfaces
 
 # Liquidity Reserve (Interface)
 
-View Source: [contracts/interfaces/ILiquidityReserve.sol](../contracts/interfaces/ILiquidityReserve.sol)
+---
 
+View Source: [contracts/interfaces/ILiquidityReserve.sol](https://github.com/project-alkemi/alkemi-protocol/blob/master/contracts/interfaces/ILiquidityReserve.sol)
+
+---
 
 ## Functions
 

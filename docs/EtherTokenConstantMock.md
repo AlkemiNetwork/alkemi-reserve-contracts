@@ -9,7 +9,7 @@ parent: Mocks
 
 ---
 
-View Source: [contracts/mocks/EtherTokenContantMock.sol](../contracts/mocks/EtherTokenContantMock.sol)
+View Source: [contracts/mocks/EtherTokenContantMock.sol](https://github.com/project-alkemi/alkemi-protocol/blob/master/contracts/mocks/EtherTokenContantMock.sol)
 
 ---
 

@@ -5,6 +5,7 @@ nav_order: 2
 ---
 
 # Address
+
 ---
 
 Collection of functions related to the address type

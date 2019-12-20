@@ -7,12 +7,16 @@ has_children: true
 
 # Liquidity Reserve
 
-View Source: [contracts/liquidity-reserve/LiquidityReserve.sol](../contracts/liquidity-reserve/LiquidityReserve.sol)
+---
+
+View Source: [contracts/liquidity-reserve/LiquidityReserve.sol](https://github.com/project-alkemi/alkemi-protocol/blob/master/contracts/liquidity-reserve/LiquidityReserve.sol)
 
 **↗ Extends: [Liquidity Reserve State](LiquidityReserveState.md)**
 
 
 Base layer functionality for the Liquidity Reserve
+
+---
 
 **Enums**
 ### PriceLockout

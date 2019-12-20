@@ -6,8 +6,7 @@ nav_order: 17
 
 # Safe Math
 
-View Source: [@openzeppelin/contracts/math/SafeMath.sol](../@openzeppelin/contracts/math/SafeMath.sol)
-
+---
 
 Wrappers over Solidity's arithmetic operations with added overflow
 checks.
@@ -18,6 +17,8 @@ error, which is the standard behavior in high level programming languages.
 operation overflows.
  * Using this library instead of the unchecked operations eliminates an entire
 class of bugs, so it's recommended to use it always.
+
+---
 
 ## Functions
 

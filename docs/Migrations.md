@@ -6,8 +6,11 @@ nav_order: 11
 
 # Migrations
 
-View Source: [contracts/Migrations.sol](../contracts/Migrations.sol)
+---
 
+View Source: [contracts/Migrations.sol](https://github.com/project-alkemi/alkemi-protocol/blob/master/contracts/Migrations.sol)
+
+---
 
 ## Contract Members
 **Constants & Variables**

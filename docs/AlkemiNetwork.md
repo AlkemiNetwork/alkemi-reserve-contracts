@@ -1,15 +1,18 @@
 ---
 layout: default
-title: Alkemi Network
+title: Alkemi Settlement
 nav_order: 3
 ---
 
 # Alkemi Network
+
 ---
-This contract manage Alkemi Network on-chain process
 
 View Source: [contracts/AlkemiNetwork.sol](https://github.com/project-alkemi/alkemi-protocol/blob/master/contracts/AlkemiNetwork.sol)
- **↗ Extends: [Liquidity Reserve Factory](LiquidityReserveFactory.md)**
+
+**↗ Extends: [Liquidity Reserve Factory](LiquidityReserveFactory.md)**
+
+This contract manage Alkemi Network on-chain process
 
 ---
 
@@ -17,13 +20,16 @@ View Source: [contracts/AlkemiNetwork.sol](https://github.com/project-alkemi/alk
 **Constants & Variables**
 
 ```js
-//public members
 address public owner;
+mapping(address => address[]) public providerReserves;
+mapping(address => address[]) public tokenReserves;
 
-//internal members
-mapping(address => address[]) internal _providerReserves;
-mapping(address => address[]) internal _tokenReserves;
+```
 
+**Events**
+
+```js
+event ReserveCreate(address indexed reserve, address indexed liquidityProvider, address indexed beneficiary, uint256  lockingPeriod, uint256  lockingPrice, uint8  lockingPricePosition);
 ```
 
 ## Modifiers
@@ -69,6 +75,7 @@ Creates and initialises a new LiquidityReserve
 
 ```js
 function createLiquidityReserve(address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition) public nonpayable
+returns(address)
 ```
 
 **Returns**

@@ -6,11 +6,12 @@ nav_order: 12
 
 # Minter Role
 
-View Source: [@openzeppelin/contracts/access/roles/MinterRole.sol](../@openzeppelin/contracts/access/roles/MinterRole.sol)
+---
 
 **↗ Extends: [Context](Context.md)**
 **↘ Derived Contracts: [ERC20Mintable](ERC20Mintable.md)**
 
+---
 
 ## Contract Members
 **Constants & Variables**

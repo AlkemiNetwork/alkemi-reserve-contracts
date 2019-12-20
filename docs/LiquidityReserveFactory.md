@@ -7,12 +7,16 @@ parent: Liquidity Reserve
 
 # Liquidity Reserve Factory
 
-View Source: [contracts/liquidity-reserve/factory/LiquidityReserveFactory.sol](../contracts/liquidity-reserve/factory/LiquidityReserveFactory.sol)
+---
 
-**↘ Derived Contracts: [AlkemiNetwork](AlkemiNetwork.md), [LiquidityReserveManager](LiquidityReserveManager.md)**
+View Source: [contracts/liquidity-reserve/factory/LiquidityReserveFactory.sol](https://github.com/project-alkemi/alkemi-protocol/blob/master/contracts/liquidity-reserve/factory/LiquidityReserveFactory.sol)
+
+**↘ Derived Contracts: [Alkemi Network](AlkemiNetwork.md), [Liquidity Reserve Manager](LiquidityReserveManager.md)**
 
 
 This Factory creates a Liquidity Reserve
+
+---
 
 ## Functions
 

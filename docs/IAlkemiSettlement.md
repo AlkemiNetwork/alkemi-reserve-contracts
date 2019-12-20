@@ -9,7 +9,7 @@ parent: Interfaces
 
 ---
 
-View Source: [contracts/interfaces/IAlkemiSettlement.sol](../contracts/interfaces/IAlkemiSettlement.sol)
+View Source: [contracts/interfaces/IAlkemiSettlement.sol](https://github.com/project-alkemi/alkemi-protocol/blob/master/contracts/interfaces/IAlkemiSettlement.sol)
 
 ---
 

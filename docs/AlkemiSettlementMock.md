@@ -8,8 +8,11 @@ parent: Mocks
 
 # Alkemi Mock Settlement Contract
 
-View Source: [contracts/mocks/AlkemiSettlementMock.sol](../contracts/mocks/AlkemiSettlementMock.sol)
+---
 
+View Source: [contracts/mocks/AlkemiSettlementMock.sol](https://github.com/project-alkemi/alkemi-protocol/blob/master/contracts/mocks/AlkemiSettlementMock.sol)
+
+---
 
 ## Contract Members
 **Constants & Variables**

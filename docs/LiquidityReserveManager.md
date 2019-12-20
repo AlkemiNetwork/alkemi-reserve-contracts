@@ -7,12 +7,13 @@ parent: Liquidity Reserve
 
 # Liquidity Reserve Manager
 
-View Source: [-contracts/contracts/liquidity-reserve/LiquidityReserveManager.sol](../-contracts/contracts/liquidity-reserve/LiquidityReserveManager.sol)
+---
 
 **↗ Extends: [Liquidity Reserve Factory](LiquidityReserveFactory.md)**
 
-
 This contract manages a specific Liquidity Reserve
+
+---
 
 ## Contract Members
 **Constants & Variables**

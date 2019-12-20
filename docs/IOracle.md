@@ -7,8 +7,11 @@ parent: Interfaces
 
 # Oracle (Interface)
 
-View Source: [contracts/interfaces/IOracle.sol](../contracts/interfaces/IOracle.sol)
+---
 
+View Source: [contracts/interfaces/IOracle.sol](https://github.com/project-alkemi/alkemi-protocol/blob/master/contracts/interfaces/IOracle.sol)
+
+---
 
 ## Functions
 

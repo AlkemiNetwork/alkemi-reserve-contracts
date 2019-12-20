@@ -8,8 +8,11 @@ has_children: true
 
 # Oracle
 
-View Source: [contracts/oracles/Oracle.sol](../contracts/oracles/Oracle.sol)
+---
 
+View Source: [contracts/oracles/Oracle.sol](https://github.com/project-alkemi/alkemi-protocol/blob/master/contracts/oracles/Oracle.sol)
+
+---
 
 **Enums**
 ### Vote

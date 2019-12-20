@@ -16,7 +16,7 @@ Extension of {ERC20} that adds a set of accounts with the {MinterRole},
 which have permission to mint (create) new tokens as they see fit.
  * At construction, the deployer of the contract is the only minter.
 
- ---
+---
 
 ## Functions
 

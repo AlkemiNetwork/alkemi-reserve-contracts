@@ -7,8 +7,11 @@ parent: Interfaces
 
 # Oracle Guard (Interface)
 
-View Source: [contracts/interfaces/IOracleGuard.sol](../contracts/interfaces/IOracleGuard.sol)
+---
 
+View Source: [contracts/interfaces/IOracleGuard.sol](https://github.com/project-alkemi/alkemi-protocol/blob/master/contracts/interfaces/IOracleGuard.sol)
+
+---
 
 ## Functions
 

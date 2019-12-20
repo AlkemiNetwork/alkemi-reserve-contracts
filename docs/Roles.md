@@ -5,10 +5,12 @@ nav_order: 15
 ---
 
 # Roles
-View Source: [@openzeppelin/contracts/access/Roles.sol](../@openzeppelin/contracts/access/Roles.sol)
 
+---
 
 Library for managing addresses assigned to a Role.
+
+---
 
 ## Structs
 ### Role

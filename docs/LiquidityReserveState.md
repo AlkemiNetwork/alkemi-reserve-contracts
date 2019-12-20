@@ -7,10 +7,13 @@ parent: Liquidity Reserve
 
 # Liquidity Reserve State
 
-View Source: [contracts/liquidity-reserve/LiquidityReserveState.sol](../contracts/liquidity-reserve/LiquidityReserveState.sol)
+---
+
+View Source: [contracts/liquidity-reserve/LiquidityReserveState.sol](https://github.com/project-alkemi/alkemi-protocol/blob/master/contracts/liquidity-reserve/LiquidityReserveState.sol)
 
 **↘ Derived Contracts: [Liquidity Reserve](LiquidityReserve.md)**
 
+---
 
 ## Contract Members
 **Constants & Variables**

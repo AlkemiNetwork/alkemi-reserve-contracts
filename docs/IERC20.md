@@ -7,13 +7,16 @@ parent: Interfaces
 
 # ERC20 (Interface)
 
-View Source: [@openzeppelin/contracts/token/ERC20/IERC20.sol](../@openzeppelin/contracts/token/ERC20/IERC20.sol)
+---
+
 
 **↘ Derived Contracts: [ERC20](ERC20.md)**
 
 
 Interface of the ERC20 standard as defined in the EIP. Does not include
 the optional functions; to access them see {ERC20Detailed}.
+
+---
 
 **Events**
 

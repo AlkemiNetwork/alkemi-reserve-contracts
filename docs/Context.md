@@ -8,7 +8,7 @@ nav_order: 5
 
 ---
 
-** Derived Contracts: [ERC20](ERC20.md), [MinterRole](MinterRole.md)**
+** Derived Contracts: [ERC20](ERC20.md), [Minter Role](MinterRole.md)**
 
 ---
 

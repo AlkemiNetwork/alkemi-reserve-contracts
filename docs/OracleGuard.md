@@ -7,8 +7,11 @@ parent: Oracle
 
 # Oracle Guard
 
-View Source: [contracts/oracles/OracleGuard.sol](../contracts/oracles/OracleGuard.sol)
+---
 
+View Source: [contracts/oracles/OracleGuard.sol](https://github.com/project-alkemi/alkemi-protocol/blob/master/contracts/oracles/OracleGuard.sol)
+
+---
 
 ## Contract Members
 **Constants & Variables**
