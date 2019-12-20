@@ -33,7 +33,7 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
   const now = Math.floor(Date.now() / 1000);
   const lockingPeriod = now + dayTime*5;
   const newLockingPeriod = lockingPeriod+5;
-  const lockingPrice = 200;
+  const lockingPrice = ether("200");
   const lockingPricePosition = 0; // unlock funds if oracle price is below lockingPrice  
   const supplyToMint = ether("1000");
 
@@ -157,58 +157,50 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
         await liquidityReserve1.withdraw(amountToWithdraw, oc.address, jobId, await token1.symbol.call(), "USD", payment, {from: liquidityProvider1}).should.be.rejectedWith(EVMRevert);
       });
       
-      /*
-       *it("withdraw when price locking condition is valid even if locking period is not valid", async() => {
-       *let reserveBalanceBefore = await liquidityReserve1.balance.call(token1.address);
-       *let providerBalanceBefore = await token1.balanceOf.call(liquidityProvider1);
-       *
-       *let _lockingPricePosition = await liquidityReserve1.lockingPricePosition.call();
-       *let _lockingPrice = await liquidityReserve1.lockingPrice.call();
-       *let _oraclePrice = await alkemiSettlement.priceOf.call(token1.address);
-       *
-       *if(_lockingPricePosition.toNumber() == 0) {
-       *  await alkemiSettlement.decerementPriceOf(token1.address, 10);
-       *  _oraclePrice = await alkemiSettlement.priceOf.call(token1.address);
-       *  assert.ok(_oraclePrice < _lockingPrice, "Oracle price is not less than locking price");
-       *}
-       *else {
-       *  await alkemiSettlement.incerementPriceOf(token1.address, 10);
-       *  _oraclePrice = await alkemiSettlement.priceOf.call(token1.address);
-       *  assert.ok(_oraclePrice > _lockingPrice, "Oracle price is not greater than locking price"); 
-       *}
-       *
-       *await liquidityReserve1.withdraw(amountToWithdraw, {from: liquidityProvider1});
-       *
-       *let reserveBalanceAfter = await liquidityReserve1.balance.call(token1.address);
-       *let providerBalanceAfter = await token1.balanceOf.call(liquidityProvider1);
-       *assert.equal(reserveBalanceBefore-amountToWithdraw, reserveBalanceAfter, "Wrong reserve balance");
-       *assert.equal(parseInt(providerBalanceBefore)+parseInt(amountToWithdraw), parseInt(providerBalanceAfter), "Wrong liqudity provider balance");
-       *});
-       */
+      
+      it("withdraw when price locking condition is valid even if locking period is not valid", async() => {
+        const expected = 100;
+        const response = `0x${encodeUint256(expected)}`;    
+        let request;
+        
+        // send Link token to reserve address
+        await linkToken.transfer(liquidityReserve1.address, payment);
+  
+        let reserveBalanceBefore = await liquidityReserve1.balance.call(token1.address);
+        let providerBalanceBefore = await token1.balanceOf.call(liquidityProvider1);
+       
+        let _lockingPricePosition = await liquidityReserve1.lockingPricePosition.call();
+        let _lockingPrice = await liquidityReserve1.lockingPrice.call();
+
+        // withdraw
+        let tx = await liquidityReserve1.withdraw(amountToWithdraw, oc.address, jobId, await token1.symbol.call(), "USD", payment, {from: liquidityProvider1});
+
+        // fulfill tequest from oracle
+        request = helpers.decodeRunRequest(tx.receipt.rawLogs[3]);
+        await helpers.fulfillOracleRequest(oc, request, response, { from: oracleChainlinkNode });
+        
+        // fetch asset price
+        let _oraclePrice = await liquidityReserve1.oraclePrice.call();
+       
+        if(_lockingPricePosition.toNumber() == 0) {
+          assert.ok(_oraclePrice < _lockingPrice, "Oracle price is not less than locking price");
+        }
+        else {
+          assert.ok(_oraclePrice > _lockingPrice, "Oracle price is not greater than locking price"); 
+        }
+                
+        let reserveBalanceAfter = await liquidityReserve1.balance.call(token1.address);
+        let providerBalanceAfter = await token1.balanceOf.call(liquidityProvider1);
+        assert.equal(reserveBalanceBefore-amountToWithdraw, reserveBalanceAfter, "Wrong reserve balance");
+        assert.equal(parseInt(providerBalanceBefore)+parseInt(amountToWithdraw), parseInt(providerBalanceAfter), "Wrong liqudity provider balance");
+      });
 
       it("withdraw when locking period is valid even if price locking is not valid", async() => {
-        //reset oracle price
-        await alkemiSettlement.resetPriceOf(token1.address, 200);
         // increase time
         await increaseTimeTo(lockingPeriod+1);
 
         let reserveBalanceBefore = await liquidityReserve1.balance.call(token1.address);
         let providerBalanceBefore = await token1.balanceOf.call(liquidityProvider1);
-
-        let _lockingPricePosition = await liquidityReserve1.lockingPricePosition.call();
-        let _lockingPrice = await liquidityReserve1.lockingPrice.call();
-        let _oraclePrice = await alkemiSettlement.priceOf.call(token1.address);
-
-        if(_lockingPricePosition.toNumber() == 0) {
-          await alkemiSettlement.incerementPriceOf(token1.address, 10);
-          _oraclePrice = await alkemiSettlement.priceOf.call(token1.address);
-          assert.ok(_oraclePrice > _lockingPrice, "Oracle price is not greater than locking price");
-        }
-        else {
-          await alkemiSettlement.decerementPriceOf(token1.address, 10);
-          _oraclePrice = await alkemiSettlement.priceOf.call(token1.address);
-          assert.ok(_oraclePrice < _lockingPrice, "Oracle price is not less than locking price"); 
-        }
 
         await liquidityReserve1.withdraw(amountToWithdraw, oc.address, jobId, await token1.symbol.call(), "USD", payment, {from: liquidityProvider1});
 
@@ -218,36 +210,6 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
         assert.equal(parseInt(providerBalanceBefore)+parseInt(amountToWithdraw), parseInt(providerBalanceAfter), "Wrong liqudity provider balance");
       }); 
       
-      it("withdraw when both locking period and price locking are valid ", async() => {
-        //reset oracle price
-        await alkemiSettlement.resetPriceOf(token1.address, 200);
-
-        let reserveBalanceBefore = await liquidityReserve1.balance.call(token1.address);
-        let providerBalanceBefore = await token1.balanceOf.call(liquidityProvider1);
-
-        let _lockingPricePosition = await liquidityReserve1.lockingPricePosition.call();
-        let _lockingPrice = await liquidityReserve1.lockingPrice.call();
-        let _oraclePrice = await alkemiSettlement.priceOf.call(token1.address);
-
-        if(_lockingPricePosition.toNumber() == 0) {
-          await alkemiSettlement.decerementPriceOf(token1.address, 10);
-          _oraclePrice = await alkemiSettlement.priceOf.call(token1.address);
-          assert.ok(_oraclePrice < _lockingPrice, "Oracle price is not less than locking price");
-        }
-        else {
-          await alkemiSettlement.incerementPriceOf(token1.address, 10);
-          _oraclePrice = await alkemiSettlement.priceOf.call(token1.address);
-          assert.ok(_oraclePrice > _lockingPrice, "Oracle price is not greater than locking price"); 
-        }
-
-        await liquidityReserve1.withdraw(amountToWithdraw, oc.address, jobId, await token1.symbol.call(), "USD", payment, {from: liquidityProvider1});
-
-        let reserveBalanceAfter = await liquidityReserve1.balance.call(token1.address);
-        let providerBalanceAfter = await token1.balanceOf.call(liquidityProvider1);
-        assert.equal(reserveBalanceBefore-amountToWithdraw, reserveBalanceAfter, "Wrong reserve balance");
-        assert.equal(parseInt(providerBalanceBefore)+parseInt(amountToWithdraw), parseInt(providerBalanceAfter), "Wrong liqudity provider balance");
-      }); 
-
       it("should revert another liqudity provider withdrawing from liquidity reserve", async() => {
         await liquidityReserve1.withdraw(amountToWithdraw, oc.address, jobId, await token1.symbol.call(), "USD", payment, {from: liquidityProvider2}).should.be.rejectedWith(EVMRevert);
       });
@@ -277,7 +239,7 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
     });
 
     it("send price request", async () => {
-      let request
+      let request;
 
       await linkToken.transfer(liquidityReserve1.address, payment);
 
@@ -292,8 +254,8 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
   });
 
   describe("fulfill", () => {
-    const expected = 50000
-    const response = `0x${encodeUint256(expected)}`
+    const expected = 50000;
+    const response = `0x${encodeUint256(expected)}`;
     let request;
 
     beforeEach(async () => {

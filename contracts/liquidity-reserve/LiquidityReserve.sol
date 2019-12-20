@@ -6,8 +6,6 @@ import "@openzeppelin/contracts/math/SafeMath.sol";
 import "chainlinkv0.5/contracts/ChainlinkClient.sol";
 import "./LiquidityReserveState.sol";
 
-import "../interfaces/IAlkemiSettlement.sol";
-
 /**
   * @title LiquidityReserve
   * @dev Base layer functionality for the Liquidity Reserve
@@ -58,6 +56,11 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
     address indexed token,
     address indexed to,
     uint256 amount
+  );
+  event PriceUnlock(
+    uint256 lockingPrice,
+    uint256 oraclePrice,
+    uint256 lockingPricePosition
   );
 
   /**
@@ -181,7 +184,7 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
     uint256 _oraclePayment
   ) external onlyPermissioned {
     if (now > lockingPeriod) {
-      _withdraw(asset, _value);
+      _withdraw(msg.sender, asset, _value);
     }
     else {
       _amountToWithdraw = _value;
@@ -241,17 +244,17 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
     emit ReserveDeposit(_token, msg.sender, _value);
   }
 
-  function _withdraw(address _token, uint256 _value) internal {
+  function _withdraw(address payable _recepient, address _token, uint256 _value) internal {
     if (_token == ETH) {
       require(address(this).balance >= _value, "LiquidityReserve: insufficient balance");
-      msg.sender.transfer(_value);
+      _recepient.transfer(_value);
     } else {
-      ERC20(_token).transfer(msg.sender, _value);
+      ERC20(_token).transfer(_recepient, _value);
     }
 
     totalBalance = SafeMath.sub(totalBalance, _value);
 
-    emit ReserveWithdraw(_token, msg.sender, _value);
+    emit ReserveWithdraw(_token, _recepient, _value);
   }
 
   /**
@@ -286,7 +289,7 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   }
 
   /**
-   * @dev update asset price
+   * @dev update asset price and process withdraw
    * @notice can only be called by Chainlink oracles when request get fulfilled
    * @param _requestId chainlink request id
    * @param _price returned price
@@ -296,13 +299,15 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
     lastPriceCheck = now;
 
     if(lockingPricePosition == 0) {
-      if(oraclePrice < lockingPrice) _withdraw(asset, _amountToWithdraw);
+      if(oraclePrice < lockingPrice) _withdraw(address(uint160(liquidityProvider())), asset, _amountToWithdraw);
     }
     else {
-      if(oraclePrice > lockingPrice) _withdraw(asset, _amountToWithdraw);
+      if(oraclePrice > lockingPrice) _withdraw(address(uint160(liquidityProvider())), asset, _amountToWithdraw);
     }
 
     _amountToWithdraw = 0;
+
+    emit PriceUnlock(lockingPrice, oraclePrice, lockingPricePosition);
   }
 
   /**
@@ -321,15 +326,4 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   function getChainlinkToken() public view returns (address) {
     return chainlinkTokenAddress();
   }
-
-  /**
-   * @dev Return token price from settlement contract
-   * @param _token token address
-   * @return token price
-   */
-  function getTokenPrice(address _token) internal view returns (uint256) {
-    // return IAlkemiSettlement(settlementContract()).priceOf(_token);
-    return 200;
-  }
-  
 }
