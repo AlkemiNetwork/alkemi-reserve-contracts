@@ -16,8 +16,8 @@ module.exports = {
         "before": true,
         "expectEvent": true,
         "expectRevert": true,
-        "web3": true
-
+        "web3": true,
+        "beforeEach": true
     },
     "parserOptions": {
         "ecmaVersion": 2018
@@ -119,7 +119,7 @@ module.exports = {
         "max-classes-per-file": "error",
         "max-depth": "error",
         "max-len": "off",
-        "max-lines": "error",
+        //"max-lines": "error",
         "max-lines-per-function": "off",
         "max-nested-callbacks": "error",
         "max-params": "error",

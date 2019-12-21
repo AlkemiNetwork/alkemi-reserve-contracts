@@ -3,15 +3,14 @@ pragma solidity ^0.5.0;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
+import "chainlinkv0.5/contracts/ChainlinkClient.sol";
 import "./LiquidityReserveState.sol";
-
-import "../interfaces/IAlkemiSettlement.sol";
 
 /**
   * @title LiquidityReserve
   * @dev Base layer functionality for the Liquidity Reserve
   */
-contract LiquidityReserve is LiquidityReserveState {
+contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   using SafeERC20 for ERC20;
   using SafeMath for uint256;
 
@@ -24,6 +23,9 @@ contract LiquidityReserve is LiquidityReserveState {
   uint256 public totalBalance;
   uint256 public deposited;
   uint256 public earned;
+  uint256 public oraclePrice;
+  uint256 public lastPriceCheck;
+  uint256 internal _amountToWithdraw;
   uint8 public lockingPricePosition;      // 0=below the lockingPrice; 1=above the lockingPrice
   bool public isDepositable = true;
 
@@ -55,6 +57,11 @@ contract LiquidityReserve is LiquidityReserveState {
     address indexed to,
     uint256 amount
   );
+  event PriceUnlock(
+    uint256 lockingPrice,
+    uint256 oraclePrice,
+    uint256 lockingPricePosition
+  );
 
   /**
    * @dev constructor
@@ -66,6 +73,7 @@ contract LiquidityReserve is LiquidityReserveState {
    * @param _lockingPricePosition locking price position
    */
   constructor(
+    address _link,
     address _liquidityProvider,
     address _alkemiNetwork,
     address _beneficiary,
@@ -86,6 +94,15 @@ contract LiquidityReserve is LiquidityReserveState {
       "LiquidityReserve: invalid price lockout"
     );
 
+    // Set the address for the LINK token for the network.
+    if(_link == address(0)) {
+      // Useful for deploying to public networks.
+      setPublicChainlinkToken();
+    } else {
+      // Useful if you're deploying to a local network.
+      setChainlinkToken(_link);
+    }
+
     asset = _asset;
     beneficiary = _beneficiary;
     lockingPeriod = _lockingPeriod;
@@ -100,31 +117,6 @@ contract LiquidityReserve is LiquidityReserveState {
     if(priceLockout == PriceLockout.ABOVE) {
       lockingPricePosition = 1;
     }
-  }
-
-  /**
-   * @dev Throws if locking conditions are still valid
-   */
-  modifier onlyUnlocked(address _token) {
-    require(isUnlocked(_token), "LiquidityReserve: provider locking conditions still valid");
-    _;
-  }
-
-  /**
-   * @dev Returns true if one of the liquidity provder's conditions are valid
-   */
-  function isUnlocked(address _token) public view returns (bool) {
-    if(now > lockingPeriod) return true;
-
-    // get token price from settlement contract
-    uint256 tokenOraclePrice = getTokenPrice(_token);
-    if(lockingPricePosition == 0) {
-      if(tokenOraclePrice < lockingPrice) return true;
-    }
-    else {
-      if(tokenOraclePrice > lockingPrice) return true;
-    }
-    return false;
   }
 
   /**
@@ -177,9 +169,27 @@ contract LiquidityReserve is LiquidityReserveState {
    * @dev Withdraw `_value` from the reserve
    * @notice this function can only be called by the liquidity provider or by the settlement contract
    * @param _value Amount of tokens being transferred
+   * @param _oracle oracle address
+   * @param _jobId oracle job id
+   * @param _sym asset symbol
+   * @param _market market currency needed
+   * @param _oraclePayment amount of Link tokens for node
    */
-  function withdraw(uint256 _value) external onlyPermissioned {
-    _withdraw(asset, _value);
+  function withdraw(
+    uint256 _value,
+    address _oracle,
+    bytes32 _jobId,
+    string calldata _sym,
+    string calldata _market,
+    uint256 _oraclePayment
+  ) external onlyPermissioned {
+    if (now > lockingPeriod) {
+      _withdraw(msg.sender, asset, _value);
+    }
+    else {
+      _amountToWithdraw = _value;
+      requestAssetPrice(_oracle, _jobId, _sym, _market, _oraclePayment);
+    }
   }
 
   /**
@@ -204,8 +214,8 @@ contract LiquidityReserve is LiquidityReserveState {
    * @notice can only be called from Alkemi Network contract
    */
   function earn(uint256 _value) external onlyAlkemi() {
-    earned = earned.add(_value);
-    totalBalance = totalBalance.add(_value);
+    earned = SafeMath.add(earned, _value);
+    totalBalance = SafeMath.add(totalBalance, _value);
   }
 
   /**
@@ -228,33 +238,92 @@ contract LiquidityReserve is LiquidityReserveState {
     }
 
     isDepositable = false;
-    deposited = deposited.add(_value);
+    deposited = SafeMath.add(deposited,_value);
     totalBalance = deposited;
 
     emit ReserveDeposit(_token, msg.sender, _value);
   }
 
-  function _withdraw(address _token, uint256 _value) internal onlyUnlocked(_token) {
+  function _withdraw(address payable _recepient, address _token, uint256 _value) internal {
     if (_token == ETH) {
       require(address(this).balance >= _value, "LiquidityReserve: insufficient balance");
-      msg.sender.transfer(_value);
+      _recepient.transfer(_value);
     } else {
-      ERC20(_token).transfer(msg.sender, _value);
+      ERC20(_token).transfer(_recepient, _value);
     }
 
-    totalBalance = totalBalance.sub(_value);
+    totalBalance = SafeMath.sub(totalBalance, _value);
 
-    emit ReserveWithdraw(_token, msg.sender, _value);
+    emit ReserveWithdraw(_token, _recepient, _value);
   }
 
   /**
-   * @dev Return token price from settlement contract
-   * @param _token token address
-   * @return token price
+   * @dev send request to Chainlink nodes to get asset price
+   * @param _oracle oracle address
+   * @param _jobId oracle job id
+   * @param _sym asset symbol
+   * @param _market market currency needed
+   * @param _oraclePayment amount of Link tokens for node
    */
-  function getTokenPrice(address _token) internal view returns (uint256) {
-    // return IAlkemiSettlement(settlementContract()).priceOf(_token);
-    return 200;
+  function requestAssetPrice(
+    address _oracle,
+    bytes32 _jobId,
+    string memory _sym,
+    string memory _market,
+    uint256 _oraclePayment
+  ) public {
+    require((msg.sender == address(this)) || havePermission(), "LiquidityReserve: not authorized to call price feed oracle");
+    
+    Chainlink.Request memory req = buildChainlinkRequest(_jobId, address(this), this.fulfill.selector);
+    req.add("sym", _sym);
+    req.add("convert", _market);
+    string[] memory path = new string[](5);
+    path[0] = "data";
+    path[1] = _sym;
+    path[2] = "quote";
+    path[3] = _market;
+    path[4] = "price";
+    req.addStringArray("copyPath", path);
+    req.addInt("times", 100);
+    sendChainlinkRequestTo(_oracle, req, _oraclePayment);
   }
-  
+
+  /**
+   * @dev update asset price and process withdraw
+   * @notice can only be called by Chainlink oracles when request get fulfilled
+   * @param _requestId chainlink request id
+   * @param _price returned price
+   */
+  function fulfill(bytes32 _requestId, uint256 _price) public recordChainlinkFulfillment(_requestId) {
+    oraclePrice = _price;
+    lastPriceCheck = now;
+
+    if(lockingPricePosition == 0) {
+      if(oraclePrice <= lockingPrice) _withdraw(address(uint160(liquidityProvider())), asset, _amountToWithdraw);
+    }
+    else {
+      if(oraclePrice >= lockingPrice) _withdraw(address(uint160(liquidityProvider())), asset, _amountToWithdraw);
+    }
+
+    _amountToWithdraw = 0;
+
+    emit PriceUnlock(lockingPrice, oraclePrice, lockingPricePosition);
+  }
+
+  /**
+   * @notice Allows the owner to withdraw any LINK balance on the contract
+   */
+  function withdrawLink() public onlyPermissioned {
+    LinkTokenInterface link = LinkTokenInterface(chainlinkTokenAddress());
+    require(link.transfer(msg.sender, link.balanceOf(address(this))), "Unable to transfer");
+  }
+
+  /**
+   * @notice Returns the address of the LINK token
+   * @dev This is the public implementation for chainlinkTokenAddress, which is
+   * an internal method of the ChainlinkClient contract
+   */
+  function getChainlinkToken() public view returns (address) {
+    return chainlinkTokenAddress();
+  }
 }

@@ -1,18 +1,8 @@
----
-layout: default
-title: Oracle
-nav_order: 14
-has_children: true
+# Oracle.sol
 
----
+View Source: [contracts/oracles/Oracle.sol](../contracts/oracles/Oracle.sol)
 
-# Oracle
-
----
-
-View Source: [contracts/oracles/Oracle.sol](https://github.com/project-alkemi/alkemi-protocol/blob/master/contracts/oracles/Oracle.sol)
-
----
+**Oracle**
 
 **Enums**
 ### Vote
@@ -81,7 +71,7 @@ event RequestContinueTrade(uint256  settlementId, uint256  settlementTimeStamp);
 - [restartContainersTrading(uint256 settlementId, uint256 settlementTime)](#restartcontainerstrading)
 - [stopContainersTrading(uint256 settlementId)](#stopcontainerstrading)
 
-###
+### 
 
 ```js
 function (address settlementContract, address oracleGuard) public nonpayable
@@ -91,8 +81,8 @@ function (address settlementContract, address oracleGuard) public nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| settlementContract | address |  |
-| oracleGuard | address |  |
+| settlementContract | address |  | 
+| oracleGuard | address |  | 
 
 ### getSettlementId
 
@@ -118,13 +108,13 @@ function submitBook(address[] exchangesAddresses, address[] surplusTokensAddress
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| exchangesAddresses | address[] | list of exchanges addresses |
-| surplusTokensAddresses | address[] | list of tokens for surplus |
-| deficitTokensAddresses | address[] | list of tokens for deficit |
-| surplus | uint128[] | TokensAddresses list of tokens for surplus |
-| deficit | uint128[] | TokensAddresses list of tokens for deficit |
-| _settlementId | uint256 | book settlement id |
-| _bookHash | bytes32 | book hash |
+| exchangesAddresses | address[] | list of exchanges addresses | 
+| surplusTokensAddresses | address[] | list of tokens for surplus | 
+| deficitTokensAddresses | address[] | list of tokens for deficit | 
+| surplus | uint128[] | TokensAddresses list of tokens for surplus | 
+| deficit | uint128[] | TokensAddresses list of tokens for deficit | 
+| _settlementId | uint256 | book settlement id | 
+| _bookHash | bytes32 | book hash | 
 
 ### settlementVote
 
@@ -136,9 +126,9 @@ function settlementVote(uint256 _settlementId, bytes32 _bookHash, uint8 _vote) e
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _settlementId | uint256 |  |
-| _bookHash | bytes32 |  |
-| _vote | uint8 |  |
+| _settlementId | uint256 |  | 
+| _bookHash | bytes32 |  | 
+| _vote | uint8 |  | 
 
 ### requestNodesVoting
 
@@ -150,8 +140,8 @@ function requestNodesVoting(uint256 _settlementId, bytes32 _bookHash) internal n
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _settlementId | uint256 |  |
-| _bookHash | bytes32 |  |
+| _settlementId | uint256 |  | 
+| _bookHash | bytes32 |  | 
 
 ### requestAccountingBook
 
@@ -163,7 +153,7 @@ function requestAccountingBook(uint256 _settlementId) internal nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _settlementId | uint256 |  |
+| _settlementId | uint256 |  | 
 
 ### restartContainersTrading
 
@@ -175,8 +165,8 @@ function restartContainersTrading(uint256 settlementId, uint256 settlementTime) 
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| settlementId | uint256 |  |
-| settlementTime | uint256 |  |
+| settlementId | uint256 |  | 
+| settlementTime | uint256 |  | 
 
 ### stopContainersTrading
 
@@ -188,4 +178,32 @@ function stopContainersTrading(uint256 settlementId) internal nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| settlementId | uint256 |  |
+| settlementId | uint256 |  | 
+
+## Contracts
+
+* [Address](Address.md)
+* [AlkemiNetwork](AlkemiNetwork.md)
+* [AlkemiSettlementMock](AlkemiSettlementMock.md)
+* [Context](Context.md)
+* [ERC20](ERC20.md)
+* [ERC20Mintable](ERC20Mintable.md)
+* [EtherTokenConstantMock](EtherTokenConstantMock.md)
+* [IAlkemiSettlement](IAlkemiSettlement.md)
+* [IAlkemiToken](IAlkemiToken.md)
+* [IERC20](IERC20.md)
+* [ILiquidityReserve](ILiquidityReserve.md)
+* [ILiquidityReserveFactory](ILiquidityReserveFactory.md)
+* [IOracle](IOracle.md)
+* [IOracleGuard](IOracleGuard.md)
+* [LiquidityReserve](LiquidityReserve.md)
+* [LiquidityReserveFactory](LiquidityReserveFactory.md)
+* [LiquidityReserveState](LiquidityReserveState.md)
+* [Migrations](Migrations.md)
+* [MinterRole](MinterRole.md)
+* [Oracle](Oracle.md)
+* [OracleGuard](OracleGuard.md)
+* [Roles](Roles.md)
+* [SafeERC20](SafeERC20.md)
+* [SafeMath](SafeMath.md)
+* [TokenMock](TokenMock.md)

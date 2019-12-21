@@ -8,9 +8,8 @@ import "./liquidity-reserve/factory/LiquidityReserveFactory.sol";
  * @dev This contract manage Alkemi Network on-chain process
  */
 contract AlkemiNetwork is LiquidityReserveFactory {
-
   address public owner;
-  
+
   mapping(address => address[]) public providerReserves;
   mapping(address => address[]) public tokenReserves;
 
@@ -31,7 +30,10 @@ contract AlkemiNetwork is LiquidityReserveFactory {
    * @dev Verifies that the caller is the Owner
    */
   modifier onlyOwner() {
-    require(msg.sender == owner, "LiquidityReserveFactory: Only owner may perform this operation");
+    require(
+      msg.sender == owner,
+      "LiquidityReserveFactory: Only owner may perform this operation"
+    );
     _;
   }
 
@@ -45,14 +47,15 @@ contract AlkemiNetwork is LiquidityReserveFactory {
    * @return Address of new Liquidity Reserve
    */
   function createLiquidityReserve(
+    address _linkToken,
     address _beneficiary,
     address _asset,
     uint256 _lockingPeriod,
     uint256 _lockingPrice,
     uint8 _lockingPricePosition
-  ) public returns(address) {
-
+  ) public returns (address) {
     address r = _createLiquidityReserve(
+      _linkToken,
       msg.sender,
       address(this),
       _beneficiary,
@@ -80,13 +83,17 @@ contract AlkemiNetwork is LiquidityReserveFactory {
    * @param _liquidityProvider liquidity provider address
    * @return active liquidity reserve contract addresses
    */
-  function providerLiquidityReserves(address _liquidityProvider) public view returns (address[] memory) {
+  function providerLiquidityReserves(address _liquidityProvider)
+    public
+    view
+    returns (address[] memory)
+  {
     address[] memory _reserves = providerReserves[_liquidityProvider];
     address[] memory _activeReserves = new address[](_reserves.length);
 
-    uint j = 0;
-    for(uint i = 0; i < _reserves.length; i++) {
-      if(ILiquidityReserve(_reserves[i]).isActive()) {
+    uint256 j = 0;
+    for (uint256 i = 0; i < _reserves.length; i++) {
+      if (ILiquidityReserve(_reserves[i]).isActive()) {
         _activeReserves[j] = _reserves[i];
         j++;
       }
@@ -99,13 +106,17 @@ contract AlkemiNetwork is LiquidityReserveFactory {
    * @param _asset asset address
    * @return liquidity reserves addresses
    */
-  function tokenLiquidityReserves(address _asset) public view returns (address[] memory) {
+  function tokenLiquidityReserves(address _asset)
+    public
+    view
+    returns (address[] memory)
+  {
     address[] memory _reserves = tokenReserves[_asset];
     address[] memory _activeReserves = new address[](_reserves.length);
 
-    uint j = 0;
-    for(uint i = 0; i < _reserves.length; i++) {
-      if(ILiquidityReserve(_reserves[i]).isActive()) {
+    uint256 j = 0;
+    for (uint256 i = 0; i < _reserves.length; i++) {
+      if (ILiquidityReserve(_reserves[i]).isActive()) {
         _activeReserves[i] = _reserves[i];
         j++;
       }
@@ -149,4 +160,5 @@ contract AlkemiNetwork is LiquidityReserveFactory {
     ILiquidityReserve(_liquidityReserve).setToken(_token, _minAmount);
   }
   */
+
 }

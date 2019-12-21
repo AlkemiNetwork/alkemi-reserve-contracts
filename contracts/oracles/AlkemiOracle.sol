@@ -5,7 +5,7 @@ import "../interfaces/IAlkemiToken.sol";
 import "../interfaces/IAlkemiSettlement.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
 
-contract Oracle {
+contract AlkemiOracle {
 
   using SafeMath for uint256;
 

@@ -1,12 +1,8 @@
----
-layout: default
-title: Safe ERC20
-nav_order: 16
----
+# SafeERC20 (SafeERC20.sol)
 
-# Safe ERC20
+View Source: [@openzeppelin/contracts/token/ERC20/SafeERC20.sol](../@openzeppelin/contracts/token/ERC20/SafeERC20.sol)
 
----
+**SafeERC20**
 
 Wrappers around ERC20 operations that throw on failure (when the token
 contract returns false). Tokens that return no value (and instead revert or
@@ -14,8 +10,6 @@ throw on failure) are also supported, non-reverting calls are assumed to be
 successful.
 To use this library you can add a `using SafeERC20 for ERC20;` statement to your contract,
 which allows you to call the safe operations as `token.safeTransfer(...)`, etc.
-
----
 
 ## Functions
 
@@ -36,9 +30,9 @@ function safeTransfer(IERC20 token, address to, uint256 value) internal nonpayab
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| token | IERC20 |  |
-| to | address |  |
-| value | uint256 |  |
+| token | IERC20 |  | 
+| to | address |  | 
+| value | uint256 |  | 
 
 ### safeTransferFrom
 
@@ -50,10 +44,10 @@ function safeTransferFrom(IERC20 token, address from, address to, uint256 value)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| token | IERC20 |  |
-| from | address |  |
-| to | address |  |
-| value | uint256 |  |
+| token | IERC20 |  | 
+| from | address |  | 
+| to | address |  | 
+| value | uint256 |  | 
 
 ### safeApprove
 
@@ -65,9 +59,9 @@ function safeApprove(IERC20 token, address spender, uint256 value) internal nonp
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| token | IERC20 |  |
-| spender | address |  |
-| value | uint256 |  |
+| token | IERC20 |  | 
+| spender | address |  | 
+| value | uint256 |  | 
 
 ### safeIncreaseAllowance
 
@@ -79,9 +73,9 @@ function safeIncreaseAllowance(IERC20 token, address spender, uint256 value) int
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| token | IERC20 |  |
-| spender | address |  |
-| value | uint256 |  |
+| token | IERC20 |  | 
+| spender | address |  | 
+| value | uint256 |  | 
 
 ### safeDecreaseAllowance
 
@@ -93,9 +87,9 @@ function safeDecreaseAllowance(IERC20 token, address spender, uint256 value) int
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| token | IERC20 |  |
-| spender | address |  |
-| value | uint256 |  |
+| token | IERC20 |  | 
+| spender | address |  | 
+| value | uint256 |  | 
 
 ### callOptionalReturn
 
@@ -110,5 +104,33 @@ function callOptionalReturn(IERC20 token, bytes data) private nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| token | IERC20 | The token targeted by the call. |
-| data | bytes | The call data (encoded using abi.encode or one of its variants). |
+| token | IERC20 | The token targeted by the call. | 
+| data | bytes | The call data (encoded using abi.encode or one of its variants). | 
+
+## Contracts
+
+* [Address](Address.md)
+* [AlkemiNetwork](AlkemiNetwork.md)
+* [AlkemiSettlementMock](AlkemiSettlementMock.md)
+* [Context](Context.md)
+* [ERC20](ERC20.md)
+* [ERC20Mintable](ERC20Mintable.md)
+* [EtherTokenConstantMock](EtherTokenConstantMock.md)
+* [IAlkemiSettlement](IAlkemiSettlement.md)
+* [IAlkemiToken](IAlkemiToken.md)
+* [IERC20](IERC20.md)
+* [ILiquidityReserve](ILiquidityReserve.md)
+* [ILiquidityReserveFactory](ILiquidityReserveFactory.md)
+* [IOracle](IOracle.md)
+* [IOracleGuard](IOracleGuard.md)
+* [LiquidityReserve](LiquidityReserve.md)
+* [LiquidityReserveFactory](LiquidityReserveFactory.md)
+* [LiquidityReserveState](LiquidityReserveState.md)
+* [Migrations](Migrations.md)
+* [MinterRole](MinterRole.md)
+* [Oracle](Oracle.md)
+* [OracleGuard](OracleGuard.md)
+* [Roles](Roles.md)
+* [SafeERC20](SafeERC20.md)
+* [SafeMath](SafeMath.md)
+* [TokenMock](TokenMock.md)

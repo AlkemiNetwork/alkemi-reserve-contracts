@@ -19,6 +19,7 @@ contract LiquidityReserveFactory {
    * @return Address of new Liquidity Reserve
    */
   function _createLiquidityReserve(
+    address _linkToken,
     address _liquidityProvider,
     address _alkemiNetwork,
     address _beneficiary,
@@ -29,6 +30,7 @@ contract LiquidityReserveFactory {
   ) internal returns (address) {
     return address(
       new LiquidityReserve(
+        _linkToken,
         _liquidityProvider,
         _alkemiNetwork,
         _beneficiary,
