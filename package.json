@@ -38,7 +38,7 @@
     "lint:contracts": "prettier --write **/*.sol",
     "lint:tests": "eslint ./test --fix",
     "coverage": "npx solidity-coverage",
-    "generate:doc": "solidoc ./ ./docs true"
+    "generate:doc": "truffle compile && solidoc ./ ./docs true"
   },
   "repository": {
     "type": "git",
