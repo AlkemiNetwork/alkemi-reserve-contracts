@@ -8,9 +8,9 @@ jobs:
         command: ganache-cli --deterministic -e 300 -p 8545 -m 'candy maple cake sugar pudding cream honey rich smooth crumble sweet treat' --accounts 30
     steps: 
       - checkout 
-      - restore_cache:
-          name: Restore NPM Package Cache
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+      #- restore_cache:
+      #    name: Restore NPM Package Cache
+      #    key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: Install Dependencies
           command: npm install
