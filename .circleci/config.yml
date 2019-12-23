@@ -17,8 +17,6 @@ jobs:
       - save_cache:
           name: Save NPM Package Cache
           key: dependency-cache-{{ checksum "package-lock.json" }}
-          paths:
-            - ./node_modules
       - run:
           name: Lint tests
           command: npm run lint:tests
