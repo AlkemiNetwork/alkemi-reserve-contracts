@@ -1,3 +1,9 @@
+---
+layout: default
+title: Alkemi Network
+nav_order: 3
+---
+
 # {{ContractTitle}}
 
 {{ContractPath}}
