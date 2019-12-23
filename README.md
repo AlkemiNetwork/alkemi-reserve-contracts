@@ -1,4 +1,4 @@
-# Alkemi Protocol Contracts ![GitHub](https://img.shields.io/github/license/project-alkemi/alkemi-protocol) [![Build Status](https://travis-ci.com/project-alkemi/alkemi-protocol.svg?branch=master)](https://travis-ci.com/project-alkemi/alkemi-protocol)
+# Alkemi Protocol Contracts ![GitHub](https://img.shields.io/github/license/project-alkemi/alkemi-protocol) [![Build Status](https://travis-ci.com/project-alkemi/alkemi-protocol.svg?branch=master)](https://travis-ci.com/project-alkemi/alkemi-protocol) [![CircleCI](https://circleci.com/gh/project-alkemi/alkemi-protocol/tree/master.svg?style=svg)](https://circleci.com/gh/project-alkemi/alkemi-protocol/tree/master)
 
 > Implemetation of Alkemi Protocol in Solidity.
 > [alkemi.network](https://alkemi.network/)
