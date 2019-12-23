@@ -11,8 +11,8 @@ env:
   - TASK=lint:tests
   - TASK=lint:contracts
   - TASK=test
-  - TASK=generate:doc
 before_script:
+  - npm run generate:doc
   - npm run ganache-ci
   - sleep 5
 script:
