@@ -8,7 +8,7 @@ import "./LiquidityReserveState.sol";
 
 /**
   * @title LiquidityReserve
-  * @dev Base layer functionality for the Liquidity Reserve
+  * @notice Base layer functionality for the Liquidity Reserve
   */
 contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   using SafeERC20 for ERC20;
@@ -30,7 +30,7 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   bool public isDepositable = true;
 
   /**
-   * @dev Price lockout actions
+   * @notice Price lockout actions
    */
   enum PriceLockout {
     BELOW,
@@ -64,7 +64,7 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   );
 
   /**
-   * @dev constructor
+   * @notice constructor
    * @param _liquidityProvider liquidity provider address
    * @param _alkemiNetwork Alkemi Network contract address
    * @param _beneficiary earnings beneficiary (address(0) if the earnings goes to the current reserve address)
@@ -120,14 +120,14 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   }
 
   /**
-   * @dev check if reserve is active
+   * @notice check if reserve is active
    */
   function isActive() external view returns(bool) {
     return isDepositable || totalBalance > 0;
   }
 
   /**
-   * @dev Get liquidity reserve of a specific token
+   * @notice Get liquidity reserve of a specific token
    * @param _token token address
    * @return liquidity reserve token balance
    */
@@ -140,14 +140,14 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   }
 
   /**
-   * @dev Returns true if the beneficiary is the current reserve.
+   * @notice Returns true if the beneficiary is the current reserve.
    */
   function isBeneficiary() public view returns (bool) {
     return beneficiary == address(0);
   }
 
   /**
-   * @dev Get reserve details
+   * @notice Get reserve details
    * @return asset address, locking period, locking price, total balance, deposited amount, earned amount
    */
   function details() public view returns (address, uint256, uint256, uint256, uint256, uint256) {
@@ -155,8 +155,8 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   }
 
   /**
-   * @dev Deposit `_value` to the reserve
-   * @notice this function can only be called by the liquidity provider or by the settlement contract
+   * @notice Deposit `_value` to the reserve
+   * @dev this function can only be called by the liquidity provider or by the settlement contract
    * @param _value Amount of tokens being transferred
    */
   function deposit(uint256 _value) external payable onlyPermissioned {
@@ -166,8 +166,8 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   }
 
   /**
-   * @dev Withdraw `_value` from the reserve
-   * @notice this function can only be called by the liquidity provider or by the settlement contract
+   * @notice Withdraw `_value` from the reserve
+   * @dev this function can only be called by the liquidity provider or by the settlement contract
    * @param _value Amount of tokens being transferred
    * @param _oracle oracle address
    * @param _jobId oracle job id
@@ -193,8 +193,8 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   }
 
   /**
-   * @dev Transfer asset from reserve to a specific address
-   * @notice can only be called from the Alkemi Network contract when ETH are locked
+   * @notice Transfer asset from reserve to a specific address
+   * @dev can only be called from the Alkemi Network contract when ETH are locked
    * @param _to recepient address
    * @param _value value to send
    */
@@ -210,8 +210,8 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   }
 
   /**
-   * @dev increment reserve earning
-   * @notice can only be called from Alkemi Network contract
+   * @notice increment reserve earning
+   * @dev can only be called from Alkemi Network contract
    */
   function earn(uint256 _value) external onlyAlkemi() {
     earned = SafeMath.add(earned, _value);
@@ -219,7 +219,7 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   }
 
   /**
-   * @dev extend reserve locking period
+   * @notice extend reserve locking period
    */
   function extendLockingPeriod(uint256 _newPeriod) external onlyPermissioned {
     require(_newPeriod > lockingPeriod, "LiquidityReserve: invalid new locking period");
@@ -258,7 +258,7 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   }
 
   /**
-   * @dev send request to Chainlink nodes to get asset price
+   * @notice send request to Chainlink nodes to get asset price
    * @param _oracle oracle address
    * @param _jobId oracle job id
    * @param _sym asset symbol
@@ -289,8 +289,8 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   }
 
   /**
-   * @dev update asset price and process withdraw
-   * @notice can only be called by Chainlink oracles when request get fulfilled
+   * @notice update asset price and process withdraw
+   * @dev can only be called by Chainlink oracles when request get fulfilled
    * @param _requestId chainlink request id
    * @param _price returned price
    */
