@@ -2,26 +2,28 @@ pragma solidity ^0.5.0;
 
 import "../interfaces/IOracleGuard.sol";
 import "../interfaces/IAlkemiToken.sol";
-import "../interfaces/IAlkemiSettlement.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
 
 contract AlkemiOracle {
 
   using SafeMath for uint256;
 
-  // mapping of banned nodes by settlement id
+  /// @notice settlement id
+  uint256 internal currentSettlementId;
+
+  /// @notice mapping of banned nodes by settlement id
   mapping(uint256 => address[]) public settlementBannedNode;
 
-  // mapping of book hash by settlement id
+  /// @notice mapping of book hash by settlement id
   mapping (uint256 => bytes32) public settlementBookHash;
 
-  // mapping settlement voting by book hash
+  /// @notice mapping settlement voting by book hash
   mapping (bytes32 => SettlementVoting) public settlementVoting;
 
+  /// @notice mapping of voted nodes by book hash
   mapping(bytes32 => mapping (address => bool)) public accountingVotedNode;
 
-  IAlkemiSettlement internal _settlementContract;
-
+  /// @notice oracle guard instance
   IOracleGuard internal _oracleGuard;
 
   enum Vote {
@@ -50,22 +52,21 @@ contract AlkemiOracle {
   event RequestStopTrade(uint256 indexed settlementId);
   event RequestContinueTrade(uint256 settlementId, uint256 settlementTimeStamp);
 
-  constructor(address settlementContract, address oracleGuard) public {
-    require(settlementContract != address(0), "Oracle: invalid settlement contract address");
+  constructor(address oracleGuard) public {
     require(oracleGuard != address(0), "Oracle: invalid guard address");
 
-    _settlementContract = IAlkemiSettlement(settlementContract);
     _oracleGuard = IOracleGuard(oracleGuard);
+    currentSettlementId = 1;
   }
 
   function getSettlementId() external view returns (uint256) {
     require(_oracleGuard.isNodeAuth(msg.sender) == true, "Oracle: not authorized node");
 
-    return _settlementContract.settlementId();
+    return currentSettlementId;
   }
 
   /**
-   * @dev submit book hash and settlement details to vote for
+   * @notice submit book hash and settlement details to vote for
    * @param exchangesAddresses list of exchanges addresses
    * @param surplusTokensAddresses list of tokens for surplus
    * @param deficitTokensAddresses list of tokens for deficit
@@ -134,7 +135,7 @@ contract AlkemiOracle {
         _oracleGuard.authNode(settlementBannedNode[_settlementId]);
 
         //call settlement contract
-        _settlementContract.doSettlement(
+        doSettlement(
           voting.exchangesAddresses,
           voting.surplusTokensAddresses,
           voting.deficitTokensAddresses,
@@ -177,4 +178,24 @@ contract AlkemiOracle {
   function stopContainersTrading(uint256 settlementId) internal {
     emit RequestStopTrade(settlementId);
   }
+
+  // TODO: move to AlkemNetwork contract
+  /**
+   * @notice settlement function
+   * @param exchangesAddresses list of exchanges addresses
+   * @param surplusTokensAddresses list of surplus tokens
+   * @param deficitTokensAddresses list of dificit tokens
+   * @param surplus list of surplus amount
+   * @param deficit list of deficit
+   */
+  function doSettlement(
+    address[] memory exchangesAddresses,
+    address[] memory surplusTokensAddresses,
+    address[] memory deficitTokensAddresses,
+    uint128[] memory surplus,
+    uint128[] memory deficit
+  ) internal returns (bool) {
+    return true;
+  }
+
 }
