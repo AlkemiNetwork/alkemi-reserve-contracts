@@ -140,7 +140,6 @@ contract('Oracle System', ([alkemiTeam, oracle1, oracle2, oracle3, exchange1, ex
     });
 
     it("should revert submitting book for a settlement id that have already a submitted book and settlement details", async() => {
-
       await oracle.submitBook(
         settlementDetails.exchangesAddresses,
         settlementDetails.surplusTokensAddresses,
@@ -154,7 +153,7 @@ contract('Oracle System', ([alkemiTeam, oracle1, oracle2, oracle3, exchange1, ex
     });  
   });
 
-  /*describe("Vote for submitted book", async() => {
+  describe("Vote for submitted book", async() => {
     it("should revert voting from unauthorized node", async() => {
       await oracle.settlementVote(
         settlementDetails._settlementId,
@@ -197,6 +196,6 @@ contract('Oracle System', ([alkemiTeam, oracle1, oracle2, oracle3, exchange1, ex
       truffleAssert.eventNotEmitted(tx2, 'RequestAccountingBook');
     });
 
-  });*/
+  });
 
 });

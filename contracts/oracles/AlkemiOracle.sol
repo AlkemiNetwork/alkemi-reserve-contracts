@@ -87,7 +87,7 @@ contract AlkemiOracle {
     require(_oracleGuard.isNodeAuth(msg.sender) == true, "Oracle: not authorized node");
     require(settlementBookHash[_settlementId] == bytes32(0), "Oracle: book already submitted for this settlement id");
 
-    uint256 _minimumVotes = _oracleGuard.nodesAvailable();
+    uint256 _minimumVotes = _oracleGuard.nodesCounter();
 
     SettlementVoting memory voting = SettlementVoting({
       node: msg.sender,
