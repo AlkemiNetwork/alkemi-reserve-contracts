@@ -14,11 +14,11 @@ contract AlkemiNetwork is LiquidityReserveFactory {
   /// @notice alkemi oracle address
   address public alkemiOracle;
 
-  /// @notice settlement id
-  uint256 internal currentSettlementId;
-
   mapping(address => address[]) public providerReserves;
   mapping(address => address[]) public tokenReserves;
+
+  /// @notice settlement id
+  uint256 public currentSettlementId;
 
   event ReserveCreate(
     address indexed reserve,
@@ -36,12 +36,23 @@ contract AlkemiNetwork is LiquidityReserveFactory {
   }
 
   /**
-   * @dev Verifies that the caller is the Owner
+   * @notice Verifies that the caller is the Owner
    */
   modifier onlyOwner() {
     require(
       msg.sender == owner,
-      "LiquidityReserveFactory: Only owner may perform this operation"
+      "AlkemiNetwork: Only owner can perform this operation"
+    );
+    _;
+  }
+
+  /**
+   * @notice Verifies that the calles is Alkemi Oracle
+   */
+  modifier onlyAlkemiOracle() {
+    require(
+      msg.sender == alkemiOracle,
+      "AlkemiNetwork: Only Alkemi Oracle can perform this operation"
     );
     _;
   }
@@ -131,24 +142,6 @@ contract AlkemiNetwork is LiquidityReserveFactory {
       _lockingPrice,
       _lockingPricePosition
     );
-  }
-
-  /**
-   * @notice settlement function
-   * @param exchangesAddresses list of exchanges addresses
-   * @param surplusTokensAddresses list of surplus tokens
-   * @param deficitTokensAddresses list of dificit tokens
-   * @param surplus list of surplus amount
-   * @param deficit list of deficit
-   */
-  function doSettlement(
-    address[] calldata exchangesAddresses,
-    address[] calldata surplusTokensAddresses,
-    address[] calldata deficitTokensAddresses,
-    uint128[] calldata surplus,
-    uint128[] calldata deficit
-  ) external returns (bool) {
-    return true;
   }
 
   /**

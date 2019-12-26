@@ -10,6 +10,7 @@ const EtherTokenConstantMock = artifacts.require("EtherTokenConstantMock");
 const TokenMock = artifacts.require("TokenMock");
 const OracleGuard = artifacts.require("OracleGuard");
 const AlkemiOracle = artifacts.require("AlkemiOracle");
+const AlkemiNetworkMock = artifacts.require("AlkemiNetworkMock");
 
 require('chai')
   .use(require('chai-as-promised'))
@@ -20,7 +21,7 @@ contract('Oracle System', ([alkemiTeam, oracle1, oracle2, oracle3, exchange1, ex
   const minimumTokens = ether("200"); // Required minimum token for oracle to submit book
   const _currentSettlementId = 1;
 
-  let settlementDetails, ETH, USDC, alkemiToken, oracleGuard, oracle;
+  let settlementDetails, ETH, USDC, alkemiToken, alkemiNetwork, oracleGuard, oracle;
 
   before(async() => {
     // ERC20/ETH token mock for testing
@@ -38,6 +39,10 @@ contract('Oracle System', ([alkemiTeam, oracle1, oracle2, oracle3, exchange1, ex
       18,
       { from: alkemiTeam }
     );
+
+    alkemiNetwork = await AlkemiNetworkMock.new(
+      { from: alkemiTeam }
+    );
     
     oracleGuard = await OracleGuard.new(
       minimumTokens,
@@ -46,20 +51,21 @@ contract('Oracle System', ([alkemiTeam, oracle1, oracle2, oracle3, exchange1, ex
        
     oracle = await AlkemiOracle.new(
       oracleGuard.address,
+      alkemiNetwork.address,
       { from: alkemiTeam }
     );
 
     await oracleGuard.setOracleContract(oracle.address);
     await oracleGuard.setTokenContract(alkemiToken.address);
+    await oracleGuard.authContract([alkemiNetwork.address], { from: alkemiTeam });
 
-    //await oracleGuard.authContract([alkemiSettlement.address], { from: alkemiTeam });
+    await alkemiNetwork.setAlkemiOracle(oracle.address, { from: alkemiTeam });
            
     // Mint tokens for oracles(nodes)
     await alkemiToken.mint(oracle1, minimumTokens);
     await alkemiToken.mint(oracle2, minimumTokens);
     await alkemiToken.mint(oracle3, minimumTokens);
 
-    // Authenticate nodes
     await oracleGuard.registerNode([oracle1, oracle2, oracle3], { from: alkemiTeam });
 
     /*
@@ -117,7 +123,7 @@ contract('Oracle System', ([alkemiTeam, oracle1, oracle2, oracle3, exchange1, ex
         settlementDetails._bookHash,
         { from: random }
       ).should.be.rejectedWith(EVMRevert);
-    });  
+    });
 
     it("submit book", async() => {
       let tx = await oracle.submitBook(
@@ -150,7 +156,7 @@ contract('Oracle System', ([alkemiTeam, oracle1, oracle2, oracle3, exchange1, ex
         settlementDetails._bookHash,
         { from: oracle2 }
       ).should.be.rejectedWith(EVMRevert);
-    });  
+    });
   });
 
   describe("Vote for submitted book", async() => {
