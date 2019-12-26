@@ -8,8 +8,14 @@ import "./liquidity-reserve/factory/LiquidityReserveFactory.sol";
  * @notice This contract manage Alkemi Network on-chain process
  */
 contract AlkemiNetwork is LiquidityReserveFactory {
+  /// @notice owner address
   address public owner;
+
+  /// @notice alkemi oracle address
   address public alkemiOracle;
+
+  /// @notice settlement id
+  uint256 internal currentSettlementId;
 
   mapping(address => address[]) public providerReserves;
   mapping(address => address[]) public tokenReserves;
@@ -25,6 +31,8 @@ contract AlkemiNetwork is LiquidityReserveFactory {
 
   constructor() public {
     _setOwner(msg.sender);
+
+    currentSettlementId = 1;
   }
 
   /**
@@ -38,48 +46,7 @@ contract AlkemiNetwork is LiquidityReserveFactory {
     _;
   }
 
-  /**
-   * @notice Creates and initialises a new LiquidityReserve
-   * @param _beneficiary earnings beneficiary (address(0) if the earnings goes to the current reserve address)
-   * @param _asset asset address
-   * @param _lockingPeriod funds locking period
-   * @param _lockingPrice release funds when hitting this price
-   * @param _lockingPricePosition locking price position
-   * @return Address of new Liquidity Reserve
-   */
-  function createLiquidityReserve(
-    address _linkToken,
-    address _beneficiary,
-    address _asset,
-    uint256 _lockingPeriod,
-    uint256 _lockingPrice,
-    uint8 _lockingPricePosition
-  ) public returns (address) {
-    address r = _createLiquidityReserve(
-      _linkToken,
-      msg.sender,
-      address(this),
-      _beneficiary,
-      _asset,
-      _lockingPeriod,
-      _lockingPrice,
-      _lockingPricePosition
-    );
-
-    providerReserves[msg.sender].push(r);
-    tokenReserves[_asset].push(r);
-
-    emit ReserveCreate(
-      r,
-      msg.sender,
-      _beneficiary,
-      _lockingPeriod,
-      _lockingPrice,
-      _lockingPricePosition
-    );
-  }
-
-  /**
+   /**
    * @notice Get liquidity reserves addresses of a liquidity provider
    * @param _liquidityProvider liquidity provider address
    * @return active liquidity reserve contract addresses
@@ -123,6 +90,65 @@ contract AlkemiNetwork is LiquidityReserveFactory {
       }
     }
     return _activeReserves;
+  }
+  
+  /**
+   * @notice Creates and initialises a new LiquidityReserve
+   * @param _beneficiary earnings beneficiary (address(0) if the earnings goes to the current reserve address)
+   * @param _asset asset address
+   * @param _lockingPeriod funds locking period
+   * @param _lockingPrice release funds when hitting this price
+   * @param _lockingPricePosition locking price position
+   * @return Address of new Liquidity Reserve
+   */
+  function createLiquidityReserve(
+    address _linkToken,
+    address _beneficiary,
+    address _asset,
+    uint256 _lockingPeriod,
+    uint256 _lockingPrice,
+    uint8 _lockingPricePosition
+  ) public returns (address) {
+    address r = _createLiquidityReserve(
+      _linkToken,
+      msg.sender,
+      address(this),
+      _beneficiary,
+      _asset,
+      _lockingPeriod,
+      _lockingPrice,
+      _lockingPricePosition
+    );
+
+    providerReserves[msg.sender].push(r);
+    tokenReserves[_asset].push(r);
+
+    emit ReserveCreate(
+      r,
+      msg.sender,
+      _beneficiary,
+      _lockingPeriod,
+      _lockingPrice,
+      _lockingPricePosition
+    );
+  }
+
+  /**
+   * @notice settlement function
+   * @param exchangesAddresses list of exchanges addresses
+   * @param surplusTokensAddresses list of surplus tokens
+   * @param deficitTokensAddresses list of dificit tokens
+   * @param surplus list of surplus amount
+   * @param deficit list of deficit
+   */
+  function doSettlement(
+    address[] calldata exchangesAddresses,
+    address[] calldata surplusTokensAddresses,
+    address[] calldata deficitTokensAddresses,
+    uint128[] calldata surplus,
+    uint128[] calldata deficit
+  ) external returns (bool) {
+    return true;
   }
 
   /**
