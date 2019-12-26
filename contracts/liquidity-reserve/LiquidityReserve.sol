@@ -155,6 +155,15 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   }
 
   /**
+   * @notice Returns the address of the LINK token
+   * @dev This is the public implementation for chainlinkTokenAddress, which is
+   * an internal method of the ChainlinkClient contract
+   */
+  function getChainlinkToken() public view returns (address) {
+    return chainlinkTokenAddress();
+  }
+
+  /**
    * @notice Deposit `_value` to the reserve
    * @dev this function can only be called by the liquidity provider or by the settlement contract
    * @param _value Amount of tokens being transferred
@@ -167,7 +176,7 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
 
   /**
    * @notice Withdraw `_value` from the reserve
-   * @dev this function can only be called by the liquidity provider or by the settlement contract
+   * @dev this function can only be called by the liquidity provider
    * @param _value Amount of tokens being transferred
    * @param _oracle oracle address
    * @param _jobId oracle job id
@@ -194,7 +203,7 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
 
   /**
    * @notice Transfer asset from reserve to a specific address
-   * @dev can only be called from the Alkemi Network contract when ETH are locked
+   * @dev can only be called from the Alkemi Network contract when asset is locked
    * @param _to recepient address
    * @param _value value to send
    */
@@ -225,36 +234,6 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
     require(_newPeriod > lockingPeriod, "LiquidityReserve: invalid new locking period");
     
     lockingPeriod = _newPeriod;
-  }
-
-  function _deposit(address _token, uint256 _value) internal {
-    require(_value > 0, "LiquidityReserve: can not deposit 0 amount");
-
-    if (_token == ETH) {
-      // Deposit is implicit in this case
-      require(msg.value == _value, "LiquidityReserve: ETH value mismatch");
-    } else {
-      ERC20(_token).safeTransferFrom(msg.sender, address(this), _value);
-    }
-
-    isDepositable = false;
-    deposited = SafeMath.add(deposited,_value);
-    totalBalance = deposited;
-
-    emit ReserveDeposit(_token, msg.sender, _value);
-  }
-
-  function _withdraw(address payable _recepient, address _token, uint256 _value) internal {
-    if (_token == ETH) {
-      require(address(this).balance >= _value, "LiquidityReserve: insufficient balance");
-      _recepient.transfer(_value);
-    } else {
-      ERC20(_token).transfer(_recepient, _value);
-    }
-
-    totalBalance = SafeMath.sub(totalBalance, _value);
-
-    emit ReserveWithdraw(_token, _recepient, _value);
   }
 
   /**
@@ -318,12 +297,33 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
     require(link.transfer(msg.sender, link.balanceOf(address(this))), "Unable to transfer");
   }
 
-  /**
-   * @notice Returns the address of the LINK token
-   * @dev This is the public implementation for chainlinkTokenAddress, which is
-   * an internal method of the ChainlinkClient contract
-   */
-  function getChainlinkToken() public view returns (address) {
-    return chainlinkTokenAddress();
+  function _deposit(address _token, uint256 _value) internal {
+    require(_value > 0, "LiquidityReserve: can not deposit 0 amount");
+
+    if (_token == ETH) {
+      // Deposit is implicit in this case
+      require(msg.value == _value, "LiquidityReserve: ETH value mismatch");
+    } else {
+      ERC20(_token).safeTransferFrom(msg.sender, address(this), _value);
+    }
+
+    isDepositable = false;
+    deposited = SafeMath.add(deposited,_value);
+    totalBalance = deposited;
+
+    emit ReserveDeposit(_token, msg.sender, _value);
+  }
+
+  function _withdraw(address payable _recepient, address _token, uint256 _value) internal {
+    if (_token == ETH) {
+      require(address(this).balance >= _value, "LiquidityReserve: insufficient balance");
+      _recepient.transfer(_value);
+    } else {
+      ERC20(_token).transfer(_recepient, _value);
+    }
+
+    totalBalance = SafeMath.sub(totalBalance, _value);
+
+    emit ReserveWithdraw(_token, _recepient, _value);
   }
 }
