@@ -1,3 +1,9 @@
+---
+layout: default
+title: Alkemi Network
+nav_order: 3
+---
+
 # AlkemiNetwork (AlkemiNetwork.sol)
 
 View Source: [contracts/AlkemiNetwork.sol](../contracts/AlkemiNetwork.sol)
@@ -44,7 +50,7 @@ modifier onlyOwner() internal
 ## Functions
 
 - [()](#)
-- [createLiquidityReserve(address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition)](#createliquidityreserve)
+- [createLiquidityReserve(address _linkToken, address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition)](#createliquidityreserve)
 - [providerLiquidityReserves(address _liquidityProvider)](#providerliquidityreserves)
 - [tokenLiquidityReserves(address _asset)](#tokenliquidityreserves)
 - [setNewOwner(address _owner)](#setnewowner)
@@ -66,7 +72,7 @@ function () public nonpayable
 Creates and initialises a new LiquidityReserve
 
 ```js
-function createLiquidityReserve(address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition) public nonpayable
+function createLiquidityReserve(address _linkToken, address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition) public nonpayable
 returns(address)
 ```
 
@@ -78,6 +84,7 @@ Address of new Liquidity Reserve
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
+| _linkToken | address |  | 
 | _beneficiary | address | earnings beneficiary (address(0) if the earnings goes to the current reserve address) | 
 | _asset | address | asset address | 
 | _lockingPeriod | uint256 | funds locking period | 
@@ -152,9 +159,19 @@ function _setOwner(address _owner) internal nonpayable
 
 * [Address](Address.md)
 * [AlkemiNetwork](AlkemiNetwork.md)
+* [AlkemiOracle](AlkemiOracle.md)
 * [AlkemiSettlementMock](AlkemiSettlementMock.md)
+* [Buffer](Buffer.md)
+* [CBOR](CBOR.md)
+* [Chainlink](Chainlink.md)
+* [ChainlinkClient](ChainlinkClient.md)
+* [ChainlinkOracle](ChainlinkOracle.md)
+* [ChainlinkRequestInterface](ChainlinkRequestInterface.md)
 * [Context](Context.md)
+* [ENSInterface](ENSInterface.md)
+* [ENSResolver](ENSResolver.md)
 * [ERC20](ERC20.md)
+* [ERC20Detailed](ERC20Detailed.md)
 * [ERC20Mintable](ERC20Mintable.md)
 * [EtherTokenConstantMock](EtherTokenConstantMock.md)
 * [IAlkemiSettlement](IAlkemiSettlement.md)
@@ -164,6 +181,8 @@ function _setOwner(address _owner) internal nonpayable
 * [ILiquidityReserveFactory](ILiquidityReserveFactory.md)
 * [IOracle](IOracle.md)
 * [IOracleGuard](IOracleGuard.md)
+* [LinkTokenInterface](LinkTokenInterface.md)
+* [LinkTokenReceiver](LinkTokenReceiver.md)
 * [LiquidityReserve](LiquidityReserve.md)
 * [LiquidityReserveFactory](LiquidityReserveFactory.md)
 * [LiquidityReserveState](LiquidityReserveState.md)
@@ -171,6 +190,9 @@ function _setOwner(address _owner) internal nonpayable
 * [MinterRole](MinterRole.md)
 * [Oracle](Oracle.md)
 * [OracleGuard](OracleGuard.md)
+* [OracleInterface](OracleInterface.md)
+* [Ownable](Ownable.md)
+* [PointerInterface](PointerInterface.md)
 * [Roles](Roles.md)
 * [SafeERC20](SafeERC20.md)
 * [SafeMath](SafeMath.md)

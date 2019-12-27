@@ -4,45 +4,56 @@ title: Alkemi Network
 nav_order: 3
 ---
 
-# LiquidityReserveFactory (LiquidityReserveFactory.sol)
+# ChainlinkRequestInterface.sol
 
-View Source: [contracts/liquidity-reserve/factory/LiquidityReserveFactory.sol](../contracts/liquidity-reserve/factory/LiquidityReserveFactory.sol)
+View Source: [chainlinkv0.5/contracts/interfaces/ChainlinkRequestInterface.sol](../chainlinkv0.5/contracts/interfaces/ChainlinkRequestInterface.sol)
 
-**↘ Derived Contracts: [AlkemiNetwork](AlkemiNetwork.md)**
+**↘ Derived Contracts: [Oracle](Oracle.md)**
 
-**LiquidityReserveFactory**
-
-This Factory creates a Liquidity Reserve
+**ChainlinkRequestInterface**
 
 ## Functions
 
-- [_createLiquidityReserve(address _linkToken, address _liquidityProvider, address _alkemiNetwork, address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition)](#_createliquidityreserve)
+- [oracleRequest(address sender, uint256 requestPrice, bytes32 serviceAgreementID, address callbackAddress, bytes4 callbackFunctionId, uint256 nonce, uint256 dataVersion, bytes data)](#oraclerequest)
+- [cancelOracleRequest(bytes32 requestId, uint256 payment, bytes4 callbackFunctionId, uint256 expiration)](#canceloraclerequest)
 
-### _createLiquidityReserve
+### oracleRequest
 
-Creates and initialises a new LiquidityReserve
+⤿ Overridden Implementation(s): [Oracle.oracleRequest](Oracle.md#oraclerequest)
 
 ```js
-function _createLiquidityReserve(address _linkToken, address _liquidityProvider, address _alkemiNetwork, address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition) internal nonpayable
-returns(address)
+function oracleRequest(address sender, uint256 requestPrice, bytes32 serviceAgreementID, address callbackAddress, bytes4 callbackFunctionId, uint256 nonce, uint256 dataVersion, bytes data) external nonpayable
 ```
-
-**Returns**
-
-Address of new Liquidity Reserve
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _linkToken | address |  | 
-| _liquidityProvider | address | Lequidity provider address | 
-| _alkemiNetwork | address | Alkemi Network contract address | 
-| _beneficiary | address | earnings beneficiary (address(0) if the earnings goes to the current reserve address) | 
-| _asset | address |  | 
-| _lockingPeriod | uint256 | funds locking period | 
-| _lockingPrice | uint256 | release funds when hitting this price | 
-| _lockingPricePosition | uint8 | locking price position | 
+| sender | address |  | 
+| requestPrice | uint256 |  | 
+| serviceAgreementID | bytes32 |  | 
+| callbackAddress | address |  | 
+| callbackFunctionId | bytes4 |  | 
+| nonce | uint256 |  | 
+| dataVersion | uint256 |  | 
+| data | bytes |  | 
+
+### cancelOracleRequest
+
+⤿ Overridden Implementation(s): [Oracle.cancelOracleRequest](Oracle.md#canceloraclerequest)
+
+```js
+function cancelOracleRequest(bytes32 requestId, uint256 payment, bytes4 callbackFunctionId, uint256 expiration) external nonpayable
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| requestId | bytes32 |  | 
+| payment | uint256 |  | 
+| callbackFunctionId | bytes4 |  | 
+| expiration | uint256 |  | 
 
 ## Contracts
 
