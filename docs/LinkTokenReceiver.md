@@ -4,124 +4,106 @@ title: Alkemi Network
 nav_order: 3
 ---
 
-# MinterRole.sol
+# LinkTokenReceiver.sol
 
-View Source: [@openzeppelin/contracts/access/roles/MinterRole.sol](../@openzeppelin/contracts/access/roles/MinterRole.sol)
+View Source: [chainlinkv0.5/contracts/LinkTokenReceiver.sol](../chainlinkv0.5/contracts/LinkTokenReceiver.sol)
 
-**↗ Extends: [Context](Context.md)**
-**↘ Derived Contracts: [ERC20Mintable](ERC20Mintable.md)**
+**↘ Derived Contracts: [Oracle](Oracle.md)**
 
-**MinterRole**
+**LinkTokenReceiver**
 
 ## Contract Members
 **Constants & Variables**
 
 ```js
-struct Roles.Role private _minters;
+bytes4 private constant ORACLE_REQUEST_SELECTOR;
+uint256 private constant SELECTOR_LENGTH;
+uint256 private constant EXPECTED_REQUEST_WORDS;
+uint256 private constant MINIMUM_REQUEST_LENGTH;
 
-```
-
-**Events**
-
-```js
-event MinterAdded(address indexed account);
-event MinterRemoved(address indexed account);
 ```
 
 ## Modifiers
 
-- [onlyMinter](#onlyminter)
+- [onlyLINK](#onlylink)
+- [permittedFunctionsForLINK](#permittedfunctionsforlink)
+- [validRequestLength](#validrequestlength)
 
-### onlyMinter
+### onlyLINK
+
+Reverts if not sent from the LINK token
 
 ```js
-modifier onlyMinter() internal
+modifier onlyLINK() internal
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
+
+### permittedFunctionsForLINK
+
+Reverts if the given data does not begin with the `oracleRequest` function selector
+
+```js
+modifier permittedFunctionsForLINK(bytes _data) internal
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| _data | bytes | The data payload of the request | 
+
+### validRequestLength
+
+Reverts if the given payload is less than needed to create a request
+
+```js
+modifier validRequestLength(bytes _data) internal
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| _data | bytes | The request payload | 
 
 ## Functions
 
-- [()](#)
-- [isMinter(address account)](#isminter)
-- [addMinter(address account)](#addminter)
-- [renounceMinter()](#renounceminter)
-- [_addMinter(address account)](#_addminter)
-- [_removeMinter(address account)](#_removeminter)
+- [onTokenTransfer(address _sender, uint256 _amount, bytes _data)](#ontokentransfer)
+- [getChainlinkToken()](#getchainlinktoken)
 
-### 
+### onTokenTransfer
+
+Called when LINK is sent to the contract via `transferAndCall`
 
 ```js
-function () internal nonpayable
+function onTokenTransfer(address _sender, uint256 _amount, bytes _data) public nonpayable onlyLINK validRequestLength permittedFunctionsForLINK 
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
+| _sender | address | Address of the sender | 
+| _amount | uint256 | Amount of LINK sent (specified in wei) | 
+| _data | bytes | Payload of the transaction | 
 
-### isMinter
+### getChainlinkToken
+
+⤿ Overridden Implementation(s): [Oracle.getChainlinkToken](Oracle.md#getchainlinktoken)
 
 ```js
-function isMinter(address account) public view
-returns(bool)
+function getChainlinkToken() public view
+returns(address)
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
-
-### addMinter
-
-```js
-function addMinter(address account) public nonpayable onlyMinter 
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| account | address |  | 
-
-### renounceMinter
-
-```js
-function renounceMinter() public nonpayable
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-
-### _addMinter
-
-```js
-function _addMinter(address account) internal nonpayable
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| account | address |  | 
-
-### _removeMinter
-
-```js
-function _removeMinter(address account) internal nonpayable
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| account | address |  | 
 
 ## Contracts
 

@@ -4,69 +4,28 @@ title: Alkemi Network
 nav_order: 3
 ---
 
-# MinterRole.sol
+# OracleInterface.sol
 
-View Source: [@openzeppelin/contracts/access/roles/MinterRole.sol](../@openzeppelin/contracts/access/roles/MinterRole.sol)
+View Source: [chainlinkv0.5/contracts/interfaces/OracleInterface.sol](../chainlinkv0.5/contracts/interfaces/OracleInterface.sol)
 
-**↗ Extends: [Context](Context.md)**
-**↘ Derived Contracts: [ERC20Mintable](ERC20Mintable.md)**
+**↘ Derived Contracts: [Oracle](Oracle.md)**
 
-**MinterRole**
-
-## Contract Members
-**Constants & Variables**
-
-```js
-struct Roles.Role private _minters;
-
-```
-
-**Events**
-
-```js
-event MinterAdded(address indexed account);
-event MinterRemoved(address indexed account);
-```
-
-## Modifiers
-
-- [onlyMinter](#onlyminter)
-
-### onlyMinter
-
-```js
-modifier onlyMinter() internal
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
+**OracleInterface**
 
 ## Functions
 
-- [()](#)
-- [isMinter(address account)](#isminter)
-- [addMinter(address account)](#addminter)
-- [renounceMinter()](#renounceminter)
-- [_addMinter(address account)](#_addminter)
-- [_removeMinter(address account)](#_removeminter)
+- [fulfillOracleRequest(bytes32 requestId, uint256 payment, address callbackAddress, bytes4 callbackFunctionId, uint256 expiration, bytes32 data)](#fulfilloraclerequest)
+- [getAuthorizationStatus(address node)](#getauthorizationstatus)
+- [setFulfillmentPermission(address node, bool allowed)](#setfulfillmentpermission)
+- [withdraw(address recipient, uint256 amount)](#withdraw)
+- [withdrawable()](#withdrawable)
 
-### 
+### fulfillOracleRequest
 
-```js
-function () internal nonpayable
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-
-### isMinter
+⤿ Overridden Implementation(s): [Oracle.fulfillOracleRequest](Oracle.md#fulfilloraclerequest)
 
 ```js
-function isMinter(address account) public view
+function fulfillOracleRequest(bytes32 requestId, uint256 payment, address callbackAddress, bytes4 callbackFunctionId, uint256 expiration, bytes32 data) external nonpayable
 returns(bool)
 ```
 
@@ -74,54 +33,71 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
+| requestId | bytes32 |  | 
+| payment | uint256 |  | 
+| callbackAddress | address |  | 
+| callbackFunctionId | bytes4 |  | 
+| expiration | uint256 |  | 
+| data | bytes32 |  | 
 
-### addMinter
+### getAuthorizationStatus
+
+⤿ Overridden Implementation(s): [Oracle.getAuthorizationStatus](Oracle.md#getauthorizationstatus)
 
 ```js
-function addMinter(address account) public nonpayable onlyMinter 
+function getAuthorizationStatus(address node) external view
+returns(bool)
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
+| node | address |  | 
 
-### renounceMinter
+### setFulfillmentPermission
+
+⤿ Overridden Implementation(s): [Oracle.setFulfillmentPermission](Oracle.md#setfulfillmentpermission)
 
 ```js
-function renounceMinter() public nonpayable
+function setFulfillmentPermission(address node, bool allowed) external nonpayable
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
+| node | address |  | 
+| allowed | bool |  | 
 
-### _addMinter
+### withdraw
+
+⤿ Overridden Implementation(s): [Oracle.withdraw](Oracle.md#withdraw)
 
 ```js
-function _addMinter(address account) internal nonpayable
+function withdraw(address recipient, uint256 amount) external nonpayable
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
+| recipient | address |  | 
+| amount | uint256 |  | 
 
-### _removeMinter
+### withdrawable
+
+⤿ Overridden Implementation(s): [Oracle.withdrawable](Oracle.md#withdrawable)
 
 ```js
-function _removeMinter(address account) internal nonpayable
+function withdrawable() external view
+returns(uint256)
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
 
 ## Contracts
 

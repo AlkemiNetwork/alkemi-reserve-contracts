@@ -1,8 +1,14 @@
+---
+layout: default
+title: Alkemi Network
+nav_order: 3
+---
+
 # LiquidityReserve (LiquidityReserve.sol)
 
 View Source: [contracts/liquidity-reserve/LiquidityReserve.sol](../contracts/liquidity-reserve/LiquidityReserve.sol)
 
-**↗ Extends: [LiquidityReserveState](LiquidityReserveState.md)**
+**↗ Extends: [ChainlinkClient](ChainlinkClient.md), [LiquidityReserveState](LiquidityReserveState.md)**
 
 **LiquidityReserve**
 
@@ -24,6 +30,7 @@ enum PriceLockout {
 ```js
 //internal members
 address internal constant ETH;
+uint256 internal _amountToWithdraw;
 
 //public members
 address public asset;
@@ -33,6 +40,8 @@ uint256 public lockingPrice;
 uint256 public totalBalance;
 uint256 public deposited;
 uint256 public earned;
+uint256 public oraclePrice;
+uint256 public lastPriceCheck;
 uint8 public lockingPricePosition;
 bool public isDepositable;
 
@@ -45,55 +54,41 @@ event ReserveDeposit(address indexed token, address indexed sender, uint256  amo
 event ReserveWithdraw(address indexed token, address indexed withdrawer, uint256  amount);
 event ReserveApprove(address indexed token, address indexed to, uint256  amount);
 event ReserveTransfer(address indexed token, address indexed to, uint256  amount);
+event PriceUnlock(uint256  lockingPrice, uint256  oraclePrice, uint256  lockingPricePosition);
 ```
-
-## Modifiers
-
-- [onlyUnlocked](#onlyunlocked)
-
-### onlyUnlocked
-
-Throws if locking conditions are still valid
-
-```js
-modifier onlyUnlocked(address _token) internal
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| _token | address |  | 
 
 ## Functions
 
-- [(address _liquidityProvider, address _alkemiNetwork, address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition)](#)
-- [isUnlocked(address _token)](#isunlocked)
+- [(address _link, address _liquidityProvider, address _alkemiNetwork, address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition)](#)
 - [isActive()](#isactive)
 - [balance(address _token)](#balance)
 - [isBeneficiary()](#isbeneficiary)
 - [details()](#details)
 - [deposit(uint256 _value)](#deposit)
-- [withdraw(uint256 _value)](#withdraw)
+- [withdraw(uint256 _value, address _oracle, bytes32 _jobId, string _sym, string _market, uint256 _oraclePayment)](#withdraw)
 - [transferFromReserve(address payable _to, uint256 _value)](#transferfromreserve)
 - [earn(uint256 _value)](#earn)
 - [extendLockingPeriod(uint256 _newPeriod)](#extendlockingperiod)
 - [_deposit(address _token, uint256 _value)](#_deposit)
-- [_withdraw(address _token, uint256 _value)](#_withdraw)
-- [getTokenPrice(address _token)](#gettokenprice)
+- [_withdraw(address payable _recepient, address _token, uint256 _value)](#_withdraw)
+- [requestAssetPrice(address _oracle, bytes32 _jobId, string _sym, string _market, uint256 _oraclePayment)](#requestassetprice)
+- [fulfill(bytes32 _requestId, uint256 _price)](#fulfill)
+- [withdrawLink()](#withdrawlink)
+- [getChainlinkToken()](#getchainlinktoken)
 
 ### 
 
 constructor
 
 ```js
-function (address _liquidityProvider, address _alkemiNetwork, address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition) public nonpayable LiquidityReserveState 
+function (address _link, address _liquidityProvider, address _alkemiNetwork, address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition) public nonpayable LiquidityReserveState 
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
+| _link | address |  | 
 | _liquidityProvider | address | liquidity provider address | 
 | _alkemiNetwork | address | Alkemi Network contract address | 
 | _beneficiary | address | earnings beneficiary (address(0) if the earnings goes to the current reserve address) | 
@@ -101,21 +96,6 @@ function (address _liquidityProvider, address _alkemiNetwork, address _beneficia
 | _lockingPeriod | uint256 | funds locking period | 
 | _lockingPrice | uint256 | release funds when hitting this price | 
 | _lockingPricePosition | uint8 | locking price position | 
-
-### isUnlocked
-
-Returns true if one of the liquidity provder's conditions are valid
-
-```js
-function isUnlocked(address _token) public view
-returns(bool)
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| _token | address |  | 
 
 ### isActive
 
@@ -201,7 +181,7 @@ function deposit(uint256 _value) external payable onlyPermissioned
 this function can only be called by the liquidity provider or by the settlement contract
 
 ```js
-function withdraw(uint256 _value) external nonpayable onlyPermissioned 
+function withdraw(uint256 _value, address _oracle, bytes32 _jobId, string _sym, string _market, uint256 _oraclePayment) external nonpayable onlyPermissioned 
 ```
 
 **Arguments**
@@ -209,6 +189,11 @@ function withdraw(uint256 _value) external nonpayable onlyPermissioned
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
 | _value | uint256 | Amount of tokens being transferred | 
+| _oracle | address | oracle address | 
+| _jobId | bytes32 | oracle job id | 
+| _sym | string | asset symbol | 
+| _market | string | market currency needed | 
+| _oraclePayment | uint256 | amount of Link tokens for node | 
 
 ### transferFromReserve
 
@@ -269,42 +254,94 @@ function _deposit(address _token, uint256 _value) internal nonpayable
 ### _withdraw
 
 ```js
-function _withdraw(address _token, uint256 _value) internal nonpayable onlyUnlocked 
+function _withdraw(address payable _recepient, address _token, uint256 _value) internal nonpayable
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
+| _recepient | address payable |  | 
 | _token | address |  | 
 | _value | uint256 |  | 
 
-### getTokenPrice
+### requestAssetPrice
 
-Return token price from settlement contract
+send request to Chainlink nodes to get asset price
 
 ```js
-function getTokenPrice(address _token) internal view
-returns(uint256)
+function requestAssetPrice(address _oracle, bytes32 _jobId, string _sym, string _market, uint256 _oraclePayment) public nonpayable
 ```
-
-**Returns**
-
-token price
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _token | address | token address | 
+| _oracle | address | oracle address | 
+| _jobId | bytes32 | oracle job id | 
+| _sym | string | asset symbol | 
+| _market | string | market currency needed | 
+| _oraclePayment | uint256 | amount of Link tokens for node | 
+
+### fulfill
+
+can only be called by Chainlink oracles when request get fulfilled
+
+```js
+function fulfill(bytes32 _requestId, uint256 _price) public nonpayable recordChainlinkFulfillment 
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| _requestId | bytes32 | chainlink request id | 
+| _price | uint256 | returned price | 
+
+### withdrawLink
+
+Allows the owner to withdraw any LINK balance on the contract
+
+```js
+function withdrawLink() public nonpayable onlyPermissioned 
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+
+### getChainlinkToken
+
+Returns the address of the LINK token
+
+```js
+function getChainlinkToken() public view
+returns(address)
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
 
 ## Contracts
 
 * [Address](Address.md)
 * [AlkemiNetwork](AlkemiNetwork.md)
+* [AlkemiOracle](AlkemiOracle.md)
 * [AlkemiSettlementMock](AlkemiSettlementMock.md)
+* [Buffer](Buffer.md)
+* [CBOR](CBOR.md)
+* [Chainlink](Chainlink.md)
+* [ChainlinkClient](ChainlinkClient.md)
+* [ChainlinkOracle](ChainlinkOracle.md)
+* [ChainlinkRequestInterface](ChainlinkRequestInterface.md)
 * [Context](Context.md)
+* [ENSInterface](ENSInterface.md)
+* [ENSResolver](ENSResolver.md)
 * [ERC20](ERC20.md)
+* [ERC20Detailed](ERC20Detailed.md)
 * [ERC20Mintable](ERC20Mintable.md)
 * [EtherTokenConstantMock](EtherTokenConstantMock.md)
 * [IAlkemiSettlement](IAlkemiSettlement.md)
@@ -314,6 +351,8 @@ token price
 * [ILiquidityReserveFactory](ILiquidityReserveFactory.md)
 * [IOracle](IOracle.md)
 * [IOracleGuard](IOracleGuard.md)
+* [LinkTokenInterface](LinkTokenInterface.md)
+* [LinkTokenReceiver](LinkTokenReceiver.md)
 * [LiquidityReserve](LiquidityReserve.md)
 * [LiquidityReserveFactory](LiquidityReserveFactory.md)
 * [LiquidityReserveState](LiquidityReserveState.md)
@@ -321,6 +360,9 @@ token price
 * [MinterRole](MinterRole.md)
 * [Oracle](Oracle.md)
 * [OracleGuard](OracleGuard.md)
+* [OracleInterface](OracleInterface.md)
+* [Ownable](Ownable.md)
+* [PointerInterface](PointerInterface.md)
 * [Roles](Roles.md)
 * [SafeERC20](SafeERC20.md)
 * [SafeMath](SafeMath.md)

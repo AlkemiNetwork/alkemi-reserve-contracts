@@ -4,124 +4,122 @@ title: Alkemi Network
 nav_order: 3
 ---
 
-# MinterRole.sol
+# ENSInterface.sol
 
-View Source: [@openzeppelin/contracts/access/roles/MinterRole.sol](../@openzeppelin/contracts/access/roles/MinterRole.sol)
+View Source: [chainlinkv0.5/contracts/interfaces/ENSInterface.sol](../chainlinkv0.5/contracts/interfaces/ENSInterface.sol)
 
-**↗ Extends: [Context](Context.md)**
-**↘ Derived Contracts: [ERC20Mintable](ERC20Mintable.md)**
-
-**MinterRole**
-
-## Contract Members
-**Constants & Variables**
-
-```js
-struct Roles.Role private _minters;
-
-```
+**ENSInterface**
 
 **Events**
 
 ```js
-event MinterAdded(address indexed account);
-event MinterRemoved(address indexed account);
+event NewOwner(bytes32 indexed node, bytes32 indexed label, address  owner);
+event Transfer(bytes32 indexed node, address  owner);
+event NewResolver(bytes32 indexed node, address  resolver);
+event NewTTL(bytes32 indexed node, uint64  ttl);
 ```
-
-## Modifiers
-
-- [onlyMinter](#onlyminter)
-
-### onlyMinter
-
-```js
-modifier onlyMinter() internal
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
 
 ## Functions
 
-- [()](#)
-- [isMinter(address account)](#isminter)
-- [addMinter(address account)](#addminter)
-- [renounceMinter()](#renounceminter)
-- [_addMinter(address account)](#_addminter)
-- [_removeMinter(address account)](#_removeminter)
+- [setSubnodeOwner(bytes32 node, bytes32 label, address _owner)](#setsubnodeowner)
+- [setResolver(bytes32 node, address _resolver)](#setresolver)
+- [setOwner(bytes32 node, address _owner)](#setowner)
+- [setTTL(bytes32 node, uint64 _ttl)](#setttl)
+- [owner(bytes32 node)](#owner)
+- [resolver(bytes32 node)](#resolver)
+- [ttl(bytes32 node)](#ttl)
 
-### 
+### setSubnodeOwner
 
 ```js
-function () internal nonpayable
+function setSubnodeOwner(bytes32 node, bytes32 label, address _owner) external nonpayable
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
+| node | bytes32 |  | 
+| label | bytes32 |  | 
+| _owner | address |  | 
 
-### isMinter
+### setResolver
 
 ```js
-function isMinter(address account) public view
-returns(bool)
+function setResolver(bytes32 node, address _resolver) external nonpayable
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
+| node | bytes32 |  | 
+| _resolver | address |  | 
 
-### addMinter
+### setOwner
 
 ```js
-function addMinter(address account) public nonpayable onlyMinter 
+function setOwner(bytes32 node, address _owner) external nonpayable
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
+| node | bytes32 |  | 
+| _owner | address |  | 
 
-### renounceMinter
+### setTTL
 
 ```js
-function renounceMinter() public nonpayable
+function setTTL(bytes32 node, uint64 _ttl) external nonpayable
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
+| node | bytes32 |  | 
+| _ttl | uint64 |  | 
 
-### _addMinter
+### owner
 
 ```js
-function _addMinter(address account) internal nonpayable
+function owner(bytes32 node) external view
+returns(address)
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
+| node | bytes32 |  | 
 
-### _removeMinter
+### resolver
 
 ```js
-function _removeMinter(address account) internal nonpayable
+function resolver(bytes32 node) external view
+returns(address)
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
+| node | bytes32 |  | 
+
+### ttl
+
+```js
+function ttl(bytes32 node) external view
+returns(uint64)
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| node | bytes32 |  | 
 
 ## Contracts
 
