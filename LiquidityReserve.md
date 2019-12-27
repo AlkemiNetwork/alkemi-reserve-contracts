@@ -64,17 +64,17 @@ event PriceUnlock(uint256  lockingPrice, uint256  oraclePrice, uint256  lockingP
 - [balance(address _token)](#balance)
 - [isBeneficiary()](#isbeneficiary)
 - [details()](#details)
+- [getChainlinkToken()](#getchainlinktoken)
 - [deposit(uint256 _value)](#deposit)
 - [withdraw(uint256 _value, address _oracle, bytes32 _jobId, string _sym, string _market, uint256 _oraclePayment)](#withdraw)
 - [transferFromReserve(address payable _to, uint256 _value)](#transferfromreserve)
 - [earn(uint256 _value)](#earn)
 - [extendLockingPeriod(uint256 _newPeriod)](#extendlockingperiod)
-- [_deposit(address _token, uint256 _value)](#_deposit)
-- [_withdraw(address payable _recepient, address _token, uint256 _value)](#_withdraw)
 - [requestAssetPrice(address _oracle, bytes32 _jobId, string _sym, string _market, uint256 _oraclePayment)](#requestassetprice)
 - [fulfill(bytes32 _requestId, uint256 _price)](#fulfill)
 - [withdrawLink()](#withdrawlink)
-- [getChainlinkToken()](#getchainlinktoken)
+- [_deposit(address _token, uint256 _value)](#_deposit)
+- [_withdraw(address payable _recepient, address _token, uint256 _value)](#_withdraw)
 
 ### 
 
@@ -162,9 +162,23 @@ asset address, locking period, locking price, total balance, deposited amount, e
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
 
+### getChainlinkToken
+
+Returns the address of the LINK token
+
+```js
+function getChainlinkToken() public view
+returns(address)
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+
 ### deposit
 
-this function can only be called by the liquidity provider or by the settlement contract
+Deposit `_value` to the reserve
 
 ```js
 function deposit(uint256 _value) external payable onlyPermissioned 
@@ -178,7 +192,7 @@ function deposit(uint256 _value) external payable onlyPermissioned
 
 ### withdraw
 
-this function can only be called by the liquidity provider or by the settlement contract
+Withdraw `_value` from the reserve
 
 ```js
 function withdraw(uint256 _value, address _oracle, bytes32 _jobId, string _sym, string _market, uint256 _oraclePayment) external nonpayable onlyPermissioned 
@@ -197,7 +211,7 @@ function withdraw(uint256 _value, address _oracle, bytes32 _jobId, string _sym, 
 
 ### transferFromReserve
 
-can only be called from the Alkemi Network contract when ETH are locked
+Transfer asset from reserve to a specific address
 
 ```js
 function transferFromReserve(address payable _to, uint256 _value) external nonpayable onlyAlkemi 
@@ -212,7 +226,7 @@ function transferFromReserve(address payable _to, uint256 _value) external nonpa
 
 ### earn
 
-can only be called from Alkemi Network contract
+increment reserve earning
 
 ```js
 function earn(uint256 _value) external nonpayable onlyAlkemi 
@@ -237,6 +251,52 @@ function extendLockingPeriod(uint256 _newPeriod) external nonpayable onlyPermiss
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
 | _newPeriod | uint256 |  | 
+
+### requestAssetPrice
+
+send request to Chainlink nodes to get asset price
+
+```js
+function requestAssetPrice(address _oracle, bytes32 _jobId, string _sym, string _market, uint256 _oraclePayment) public nonpayable
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| _oracle | address | oracle address | 
+| _jobId | bytes32 | oracle job id | 
+| _sym | string | asset symbol | 
+| _market | string | market currency needed | 
+| _oraclePayment | uint256 | amount of Link tokens for node | 
+
+### fulfill
+
+update asset price and process withdraw
+
+```js
+function fulfill(bytes32 _requestId, uint256 _price) public nonpayable recordChainlinkFulfillment 
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| _requestId | bytes32 | chainlink request id | 
+| _price | uint256 | returned price | 
+
+### withdrawLink
+
+Allows the owner to withdraw any LINK balance on the contract
+
+```js
+function withdrawLink() public nonpayable onlyPermissioned 
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
 
 ### _deposit
 
@@ -265,70 +325,11 @@ function _withdraw(address payable _recepient, address _token, uint256 _value) i
 | _token | address |  | 
 | _value | uint256 |  | 
 
-### requestAssetPrice
-
-send request to Chainlink nodes to get asset price
-
-```js
-function requestAssetPrice(address _oracle, bytes32 _jobId, string _sym, string _market, uint256 _oraclePayment) public nonpayable
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| _oracle | address | oracle address | 
-| _jobId | bytes32 | oracle job id | 
-| _sym | string | asset symbol | 
-| _market | string | market currency needed | 
-| _oraclePayment | uint256 | amount of Link tokens for node | 
-
-### fulfill
-
-can only be called by Chainlink oracles when request get fulfilled
-
-```js
-function fulfill(bytes32 _requestId, uint256 _price) public nonpayable recordChainlinkFulfillment 
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| _requestId | bytes32 | chainlink request id | 
-| _price | uint256 | returned price | 
-
-### withdrawLink
-
-Allows the owner to withdraw any LINK balance on the contract
-
-```js
-function withdrawLink() public nonpayable onlyPermissioned 
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-
-### getChainlinkToken
-
-Returns the address of the LINK token
-
-```js
-function getChainlinkToken() public view
-returns(address)
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-
 ## Contracts
 
 * [Address](Address.md)
 * [AlkemiNetwork](AlkemiNetwork.md)
+* [AlkemiNetworkMock](AlkemiNetworkMock.md)
 * [AlkemiOracle](AlkemiOracle.md)
 * [AlkemiSettlementMock](AlkemiSettlementMock.md)
 * [Buffer](Buffer.md)
@@ -344,6 +345,7 @@ returns(address)
 * [ERC20Detailed](ERC20Detailed.md)
 * [ERC20Mintable](ERC20Mintable.md)
 * [EtherTokenConstantMock](EtherTokenConstantMock.md)
+* [IAlkemiNetwork](IAlkemiNetwork.md)
 * [IAlkemiSettlement](IAlkemiSettlement.md)
 * [IAlkemiToken](IAlkemiToken.md)
 * [IERC20](IERC20.md)
