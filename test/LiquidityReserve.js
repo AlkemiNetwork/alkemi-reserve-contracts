@@ -13,7 +13,6 @@ const ZERO_ADDR = '0x0000000000000000000000000000000000000000';
 
 const Oracle = artifacts.require("ChainlinkOracle");
 const TokenMock = artifacts.require("TokenMock");
-const AlkemiSettlementMock = artifacts.require("AlkemiSettlementMock");
 const AlkemiNetwork = artifacts.require("AlkemiNetwork");
 const LiquidityReserve = artifacts.require("LiquidityReserve");
 
@@ -42,7 +41,6 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
   const payment = web3.utils.toWei('1', 'ether');
 
   let token1, token2, linkToken, oc, alkemiNetwork, liquidityReserve1;
-  let alkemiSettlement;
 
   before(async() => {
     // ERC20 token mock for testing
@@ -67,10 +65,6 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
       { from: alkemiTeam }
     );
 
-    alkemiSettlement = await AlkemiSettlementMock.new({
-      from: alkemiTeam
-    });
-    
     alkemiNetwork = await AlkemiNetwork.new({ from: alkemiTeam });
 
     // Mint tokens
@@ -216,21 +210,17 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
     });  
     
     describe("Locking period", async() => {
-      it("should revert extending locking period from an address other than provider", async() => {
-        //reset oracle price
-        await alkemiSettlement.resetPriceOf(token1.address, 200);
-        
+      it("should revert extending locking period from an address other than provider", async() => {      
         await liquidityReserve1.extendLockingPeriod(lockingPeriod, { from: liquidityProvider1 }).should.be.rejectedWith(EVMRevert);
-      })
-      it("extend locking period", async() => {
-        //reset oracle price
-        await alkemiSettlement.resetPriceOf(token1.address, 200);
-  
+      });
+
+      it("extend locking period", async() => {  
         await liquidityReserve1.extendLockingPeriod(newLockingPeriod, { from: liquidityProvider1 });
   
-        await liquidityReserve1.withdraw(amountToWithdraw, oc.address, jobId, await token1.symbol.call(), "USD", payment, {from: liquidityProvider1}).should.be.rejectedWith(EVMRevert);
-      })
-    });  
+        //await liquidityReserve1.withdraw(amountToWithdraw, oc.address, jobId, await token1.symbol.call(), "USD", payment, {from: liquidityProvider1}).should.be.rejectedWith(EVMRevert);
+        assert.equal((await liquidityReserve1.lockingPeriod.call()).toString(), newLockingPeriod, "Wrong locking period");
+      });
+    });
   });
 
   describe("Create request", () => {

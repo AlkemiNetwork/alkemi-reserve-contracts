@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: Buffer
 nav_order: 3
 ---
 
@@ -8,7 +8,7 @@ nav_order: 3
 
 View Source: [chainlinkv0.5/contracts/vendor/Buffer.sol](../chainlinkv0.5/contracts/vendor/Buffer.sol)
 
-**Buffer**
+**{{ContractName}}**
 
 A library for working with mutable byte buffers in Solidity.
 * Byte buffers are mutable and expandable, and provide a variety of primitives
@@ -376,6 +376,7 @@ The original buffer.
 
 * [Address](Address.md)
 * [AlkemiNetwork](AlkemiNetwork.md)
+* [AlkemiNetworkMock](AlkemiNetworkMock.md)
 * [AlkemiOracle](AlkemiOracle.md)
 * [AlkemiSettlementMock](AlkemiSettlementMock.md)
 * [Buffer](Buffer.md)
@@ -391,6 +392,7 @@ The original buffer.
 * [ERC20Detailed](ERC20Detailed.md)
 * [ERC20Mintable](ERC20Mintable.md)
 * [EtherTokenConstantMock](EtherTokenConstantMock.md)
+* [IAlkemiNetwork](IAlkemiNetwork.md)
 * [IAlkemiSettlement](IAlkemiSettlement.md)
 * [IAlkemiToken](IAlkemiToken.md)
 * [IERC20](IERC20.md)

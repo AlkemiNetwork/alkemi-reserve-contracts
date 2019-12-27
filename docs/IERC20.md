@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: IERC20
 nav_order: 3
 ---
 
@@ -10,7 +10,7 @@ View Source: [@openzeppelin/contracts/token/ERC20/IERC20.sol](../@openzeppelin/c
 
 **↘ Derived Contracts: [ERC20](ERC20.md), [ERC20Detailed](ERC20Detailed.md)**
 
-**IERC20**
+**{{ContractName}}**
 
 Interface of the ERC20 standard as defined in the EIP. Does not include
 the optional functions; to access them see {ERC20Detailed}.
@@ -158,6 +158,7 @@ returns(bool)
 
 * [Address](Address.md)
 * [AlkemiNetwork](AlkemiNetwork.md)
+* [AlkemiNetworkMock](AlkemiNetworkMock.md)
 * [AlkemiOracle](AlkemiOracle.md)
 * [AlkemiSettlementMock](AlkemiSettlementMock.md)
 * [Buffer](Buffer.md)
@@ -173,6 +174,7 @@ returns(bool)
 * [ERC20Detailed](ERC20Detailed.md)
 * [ERC20Mintable](ERC20Mintable.md)
 * [EtherTokenConstantMock](EtherTokenConstantMock.md)
+* [IAlkemiNetwork](IAlkemiNetwork.md)
 * [IAlkemiSettlement](IAlkemiSettlement.md)
 * [IAlkemiToken](IAlkemiToken.md)
 * [IERC20](IERC20.md)

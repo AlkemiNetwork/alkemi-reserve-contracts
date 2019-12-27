@@ -8,7 +8,7 @@ import "./LiquidityReserveState.sol";
 
 /**
   * @title LiquidityReserve
-  * @dev Base layer functionality for the Liquidity Reserve
+  * @notice Base layer functionality for the Liquidity Reserve
   */
 contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   using SafeERC20 for ERC20;
@@ -30,7 +30,7 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   bool public isDepositable = true;
 
   /**
-   * @dev Price lockout actions
+   * @notice Price lockout actions
    */
   enum PriceLockout {
     BELOW,
@@ -64,7 +64,7 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   );
 
   /**
-   * @dev constructor
+   * @notice constructor
    * @param _liquidityProvider liquidity provider address
    * @param _alkemiNetwork Alkemi Network contract address
    * @param _beneficiary earnings beneficiary (address(0) if the earnings goes to the current reserve address)
@@ -120,14 +120,14 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   }
 
   /**
-   * @dev check if reserve is active
+   * @notice check if reserve is active
    */
   function isActive() external view returns(bool) {
     return isDepositable || totalBalance > 0;
   }
 
   /**
-   * @dev Get liquidity reserve of a specific token
+   * @notice Get liquidity reserve of a specific token
    * @param _token token address
    * @return liquidity reserve token balance
    */
@@ -140,14 +140,14 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   }
 
   /**
-   * @dev Returns true if the beneficiary is the current reserve.
+   * @notice Returns true if the beneficiary is the current reserve.
    */
   function isBeneficiary() public view returns (bool) {
     return beneficiary == address(0);
   }
 
   /**
-   * @dev Get reserve details
+   * @notice Get reserve details
    * @return asset address, locking period, locking price, total balance, deposited amount, earned amount
    */
   function details() public view returns (address, uint256, uint256, uint256, uint256, uint256) {
@@ -155,8 +155,17 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   }
 
   /**
-   * @dev Deposit `_value` to the reserve
-   * @notice this function can only be called by the liquidity provider or by the settlement contract
+   * @notice Returns the address of the LINK token
+   * @dev This is the public implementation for chainlinkTokenAddress, which is
+   * an internal method of the ChainlinkClient contract
+   */
+  function getChainlinkToken() public view returns (address) {
+    return chainlinkTokenAddress();
+  }
+
+  /**
+   * @notice Deposit `_value` to the reserve
+   * @dev this function can only be called by the liquidity provider or by the settlement contract
    * @param _value Amount of tokens being transferred
    */
   function deposit(uint256 _value) external payable onlyPermissioned {
@@ -166,8 +175,8 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   }
 
   /**
-   * @dev Withdraw `_value` from the reserve
-   * @notice this function can only be called by the liquidity provider or by the settlement contract
+   * @notice Withdraw `_value` from the reserve
+   * @dev this function can only be called by the liquidity provider
    * @param _value Amount of tokens being transferred
    * @param _oracle oracle address
    * @param _jobId oracle job id
@@ -193,8 +202,8 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   }
 
   /**
-   * @dev Transfer asset from reserve to a specific address
-   * @notice can only be called from the Alkemi Network contract when ETH are locked
+   * @notice Transfer asset from reserve to a specific address
+   * @dev can only be called from the Alkemi Network contract when asset is locked
    * @param _to recepient address
    * @param _value value to send
    */
@@ -210,8 +219,8 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   }
 
   /**
-   * @dev increment reserve earning
-   * @notice can only be called from Alkemi Network contract
+   * @notice increment reserve earning
+   * @dev can only be called from Alkemi Network contract
    */
   function earn(uint256 _value) external onlyAlkemi() {
     earned = SafeMath.add(earned, _value);
@@ -219,7 +228,7 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   }
 
   /**
-   * @dev extend reserve locking period
+   * @notice extend reserve locking period
    */
   function extendLockingPeriod(uint256 _newPeriod) external onlyPermissioned {
     require(_newPeriod > lockingPeriod, "LiquidityReserve: invalid new locking period");
@@ -227,38 +236,8 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
     lockingPeriod = _newPeriod;
   }
 
-  function _deposit(address _token, uint256 _value) internal {
-    require(_value > 0, "LiquidityReserve: can not deposit 0 amount");
-
-    if (_token == ETH) {
-      // Deposit is implicit in this case
-      require(msg.value == _value, "LiquidityReserve: ETH value mismatch");
-    } else {
-      ERC20(_token).safeTransferFrom(msg.sender, address(this), _value);
-    }
-
-    isDepositable = false;
-    deposited = SafeMath.add(deposited,_value);
-    totalBalance = deposited;
-
-    emit ReserveDeposit(_token, msg.sender, _value);
-  }
-
-  function _withdraw(address payable _recepient, address _token, uint256 _value) internal {
-    if (_token == ETH) {
-      require(address(this).balance >= _value, "LiquidityReserve: insufficient balance");
-      _recepient.transfer(_value);
-    } else {
-      ERC20(_token).transfer(_recepient, _value);
-    }
-
-    totalBalance = SafeMath.sub(totalBalance, _value);
-
-    emit ReserveWithdraw(_token, _recepient, _value);
-  }
-
   /**
-   * @dev send request to Chainlink nodes to get asset price
+   * @notice send request to Chainlink nodes to get asset price
    * @param _oracle oracle address
    * @param _jobId oracle job id
    * @param _sym asset symbol
@@ -289,8 +268,8 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
   }
 
   /**
-   * @dev update asset price and process withdraw
-   * @notice can only be called by Chainlink oracles when request get fulfilled
+   * @notice update asset price and process withdraw
+   * @dev can only be called by Chainlink oracles when request get fulfilled
    * @param _requestId chainlink request id
    * @param _price returned price
    */
@@ -318,12 +297,33 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
     require(link.transfer(msg.sender, link.balanceOf(address(this))), "Unable to transfer");
   }
 
-  /**
-   * @notice Returns the address of the LINK token
-   * @dev This is the public implementation for chainlinkTokenAddress, which is
-   * an internal method of the ChainlinkClient contract
-   */
-  function getChainlinkToken() public view returns (address) {
-    return chainlinkTokenAddress();
+  function _deposit(address _token, uint256 _value) internal {
+    require(_value > 0, "LiquidityReserve: can not deposit 0 amount");
+
+    if (_token == ETH) {
+      // Deposit is implicit in this case
+      require(msg.value == _value, "LiquidityReserve: ETH value mismatch");
+    } else {
+      ERC20(_token).safeTransferFrom(msg.sender, address(this), _value);
+    }
+
+    isDepositable = false;
+    deposited = SafeMath.add(deposited,_value);
+    totalBalance = deposited;
+
+    emit ReserveDeposit(_token, msg.sender, _value);
+  }
+
+  function _withdraw(address payable _recepient, address _token, uint256 _value) internal {
+    if (_token == ETH) {
+      require(address(this).balance >= _value, "LiquidityReserve: insufficient balance");
+      _recepient.transfer(_value);
+    } else {
+      ERC20(_token).transfer(_recepient, _value);
+    }
+
+    totalBalance = SafeMath.sub(totalBalance, _value);
+
+    emit ReserveWithdraw(_token, _recepient, _value);
   }
 }

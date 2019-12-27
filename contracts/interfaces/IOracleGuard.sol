@@ -1,6 +1,5 @@
 pragma solidity ^0.5.0;
 
-
 /**
  * @title IOracleGuard
  */
@@ -61,6 +60,6 @@ contract IOracleGuard {
   /**
    * @dev Get number of nodes available to vote
    */
-  function nodesAvailable() public view returns (uint256);
+  function nodesCounter() public view returns (uint256);
 
 }

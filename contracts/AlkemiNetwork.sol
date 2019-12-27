@@ -5,13 +5,20 @@ import "./liquidity-reserve/factory/LiquidityReserveFactory.sol";
 
 /**
  * @title AlkemiNetwork
- * @dev This contract manage Alkemi Network on-chain process
+ * @notice This contract manage Alkemi Network on-chain process
  */
 contract AlkemiNetwork is LiquidityReserveFactory {
+  /// @notice owner address
   address public owner;
+
+  /// @notice alkemi oracle address
+  address public alkemiOracle;
 
   mapping(address => address[]) public providerReserves;
   mapping(address => address[]) public tokenReserves;
+
+  /// @notice settlement id
+  uint256 public currentSettlementId;
 
   event ReserveCreate(
     address indexed reserve,
@@ -24,21 +31,80 @@ contract AlkemiNetwork is LiquidityReserveFactory {
 
   constructor() public {
     _setOwner(msg.sender);
+
+    currentSettlementId = 1;
   }
 
   /**
-   * @dev Verifies that the caller is the Owner
+   * @notice Verifies that the caller is the Owner
    */
   modifier onlyOwner() {
     require(
       msg.sender == owner,
-      "LiquidityReserveFactory: Only owner may perform this operation"
+      "AlkemiNetwork: Only owner can perform this operation"
     );
     _;
   }
 
   /**
-   * @dev Creates and initialises a new LiquidityReserve
+   * @notice Verifies that the calles is Alkemi Oracle
+   */
+  modifier onlyAlkemiOracle() {
+    require(
+      msg.sender == alkemiOracle,
+      "AlkemiNetwork: Only Alkemi Oracle can perform this operation"
+    );
+    _;
+  }
+
+   /**
+   * @notice Get liquidity reserves addresses of a liquidity provider
+   * @param _liquidityProvider liquidity provider address
+   * @return active liquidity reserve contract addresses
+   */
+  function providerLiquidityReserves(address _liquidityProvider)
+    public
+    view
+    returns (address[] memory)
+  {
+    address[] memory _reserves = providerReserves[_liquidityProvider];
+    address[] memory _activeReserves = new address[](_reserves.length);
+
+    uint256 j = 0;
+    for (uint256 i = 0; i < _reserves.length; i++) {
+      if (ILiquidityReserve(_reserves[i]).isActive()) {
+        _activeReserves[j] = _reserves[i];
+        j++;
+      }
+    }
+    return _activeReserves;
+  }
+
+  /**
+   * @notice Get liquidity reserves addresses that hold a specific asset
+   * @param _asset asset address
+   * @return liquidity reserves addresses
+   */
+  function tokenLiquidityReserves(address _asset)
+    public
+    view
+    returns (address[] memory)
+  {
+    address[] memory _reserves = tokenReserves[_asset];
+    address[] memory _activeReserves = new address[](_reserves.length);
+
+    uint256 j = 0;
+    for (uint256 i = 0; i < _reserves.length; i++) {
+      if (ILiquidityReserve(_reserves[i]).isActive()) {
+        _activeReserves[i] = _reserves[i];
+        j++;
+      }
+    }
+    return _activeReserves;
+  }
+  
+  /**
+   * @notice Creates and initialises a new LiquidityReserve
    * @param _beneficiary earnings beneficiary (address(0) if the earnings goes to the current reserve address)
    * @param _asset asset address
    * @param _lockingPeriod funds locking period
@@ -79,86 +145,38 @@ contract AlkemiNetwork is LiquidityReserveFactory {
   }
 
   /**
-   * @dev Get liquidity reserves addresses of a liquidity provider
-   * @param _liquidityProvider liquidity provider address
-   * @return active liquidity reserve contract addresses
-   */
-  function providerLiquidityReserves(address _liquidityProvider)
-    public
-    view
-    returns (address[] memory)
-  {
-    address[] memory _reserves = providerReserves[_liquidityProvider];
-    address[] memory _activeReserves = new address[](_reserves.length);
-
-    uint256 j = 0;
-    for (uint256 i = 0; i < _reserves.length; i++) {
-      if (ILiquidityReserve(_reserves[i]).isActive()) {
-        _activeReserves[j] = _reserves[i];
-        j++;
-      }
-    }
-    return _activeReserves;
-  }
-
-  /**
-   * @dev Get liquidity reserves addresses that hold a specific asset
-   * @param _asset asset address
-   * @return liquidity reserves addresses
-   */
-  function tokenLiquidityReserves(address _asset)
-    public
-    view
-    returns (address[] memory)
-  {
-    address[] memory _reserves = tokenReserves[_asset];
-    address[] memory _activeReserves = new address[](_reserves.length);
-
-    uint256 j = 0;
-    for (uint256 i = 0; i < _reserves.length; i++) {
-      if (ILiquidityReserve(_reserves[i]).isActive()) {
-        _activeReserves[i] = _reserves[i];
-        j++;
-      }
-    }
-    return _activeReserves;
-  }
-
-  /**
-   * @dev Manager can set the address of the new Owner here
+   * @notice Set new owner address
+   * @dev can only be called by the AlkemiNetwork owner
    * @param _owner Address of the new Owner
    */
   function setNewOwner(address _owner) public onlyOwner {
     _setOwner(_owner);
   }
 
+  /**
+   * @notice Set Alkemi Oracle address
+   * @dev can only be called by the AlkemiNetwork owner
+   * @param _oracle oracle address
+   */
+  function setAlkemiOracle(address _oracle) public onlyOwner {
+    _setAlkemiOracle(_oracle);
+  }
+
   function _setOwner(address _owner) internal {
     require(
       (_owner != address(0)) && (_owner != address(this)),
-      "LiquidityReserveManager: invalid owner address"
+      "AlkemiNetwork: invalid owner address"
     );
 
     owner = _owner;
   }
 
-  /// Will be moved to the settlement contract
-  /*
-  function setLiquidityReserveToken(address _liquidityReserve, address _token, uint256 _minAmount) public onlyOwner {
-    _setLiquidityReserveToken(_liquidityReserve, _token, _minAmount);
-  }
-
-  function _setLiquidityReserveToken(address _liquidityReserve, address _token, uint256 _minAmount) internal {
+  function _setAlkemiOracle(address _oracle) internal {
     require(
-      _liquidityReserve != address(0),
-      "LiquidityReserveManager: invalid liquidity reserve address"
-    );
-    require(
-      _token != address(0),
-      "LiquidityReserveManager: invalid token address"
+      _oracle != address(0),
+      "AlkemiNetwork: invalid oracle address"
     );
 
-    ILiquidityReserve(_liquidityReserve).setToken(_token, _minAmount);
+    alkemiOracle = _oracle;
   }
-  */
-
 }

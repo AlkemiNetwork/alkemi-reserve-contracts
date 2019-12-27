@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: MinterRole
 nav_order: 3
 ---
 
@@ -11,7 +11,7 @@ View Source: [@openzeppelin/contracts/access/roles/MinterRole.sol](../@openzeppe
 **↗ Extends: [Context](Context.md)**
 **↘ Derived Contracts: [ERC20Mintable](ERC20Mintable.md)**
 
-**MinterRole**
+**{{ContractName}}**
 
 ## Contract Members
 **Constants & Variables**
@@ -127,6 +127,7 @@ function _removeMinter(address account) internal nonpayable
 
 * [Address](Address.md)
 * [AlkemiNetwork](AlkemiNetwork.md)
+* [AlkemiNetworkMock](AlkemiNetworkMock.md)
 * [AlkemiOracle](AlkemiOracle.md)
 * [AlkemiSettlementMock](AlkemiSettlementMock.md)
 * [Buffer](Buffer.md)
@@ -142,6 +143,7 @@ function _removeMinter(address account) internal nonpayable
 * [ERC20Detailed](ERC20Detailed.md)
 * [ERC20Mintable](ERC20Mintable.md)
 * [EtherTokenConstantMock](EtherTokenConstantMock.md)
+* [IAlkemiNetwork](IAlkemiNetwork.md)
 * [IAlkemiSettlement](IAlkemiSettlement.md)
 * [IAlkemiToken](IAlkemiToken.md)
 * [IERC20](IERC20.md)

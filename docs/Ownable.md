@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: Ownable
 nav_order: 3
 ---
 
@@ -10,7 +10,7 @@ View Source: [chainlinkv0.5/contracts/vendor/Ownable.sol](../chainlinkv0.5/contr
 
 **↘ Derived Contracts: [Oracle](Oracle.md)**
 
-**Ownable**
+**{{ContractName}}**
 
 Contract module which provides a basic access control mechanism, where
 there is an account (an owner) that can be granted exclusive access to
@@ -133,6 +133,7 @@ function _transferOwnership(address newOwner) internal nonpayable
 
 * [Address](Address.md)
 * [AlkemiNetwork](AlkemiNetwork.md)
+* [AlkemiNetworkMock](AlkemiNetworkMock.md)
 * [AlkemiOracle](AlkemiOracle.md)
 * [AlkemiSettlementMock](AlkemiSettlementMock.md)
 * [Buffer](Buffer.md)
@@ -148,6 +149,7 @@ function _transferOwnership(address newOwner) internal nonpayable
 * [ERC20Detailed](ERC20Detailed.md)
 * [ERC20Mintable](ERC20Mintable.md)
 * [EtherTokenConstantMock](EtherTokenConstantMock.md)
+* [IAlkemiNetwork](IAlkemiNetwork.md)
 * [IAlkemiSettlement](IAlkemiSettlement.md)
 * [IAlkemiToken](IAlkemiToken.md)
 * [IERC20](IERC20.md)

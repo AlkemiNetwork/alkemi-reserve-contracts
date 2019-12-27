@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: SafeERC20
 nav_order: 3
 ---
 
@@ -8,7 +8,7 @@ nav_order: 3
 
 View Source: [@openzeppelin/contracts/token/ERC20/SafeERC20.sol](../@openzeppelin/contracts/token/ERC20/SafeERC20.sol)
 
-**SafeERC20**
+**{{ContractName}}**
 
 Wrappers around ERC20 operations that throw on failure (when the token
 contract returns false). Tokens that return no value (and instead revert or
@@ -117,6 +117,7 @@ function callOptionalReturn(IERC20 token, bytes data) private nonpayable
 
 * [Address](Address.md)
 * [AlkemiNetwork](AlkemiNetwork.md)
+* [AlkemiNetworkMock](AlkemiNetworkMock.md)
 * [AlkemiOracle](AlkemiOracle.md)
 * [AlkemiSettlementMock](AlkemiSettlementMock.md)
 * [Buffer](Buffer.md)
@@ -132,6 +133,7 @@ function callOptionalReturn(IERC20 token, bytes data) private nonpayable
 * [ERC20Detailed](ERC20Detailed.md)
 * [ERC20Mintable](ERC20Mintable.md)
 * [EtherTokenConstantMock](EtherTokenConstantMock.md)
+* [IAlkemiNetwork](IAlkemiNetwork.md)
 * [IAlkemiSettlement](IAlkemiSettlement.md)
 * [IAlkemiToken](IAlkemiToken.md)
 * [IERC20](IERC20.md)

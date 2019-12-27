@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: Oracle
 nav_order: 3
 ---
 
@@ -11,7 +11,7 @@ View Source: [chainlinkv0.5/contracts/Oracle.sol](../chainlinkv0.5/contracts/Ora
 **↗ Extends: [ChainlinkRequestInterface](ChainlinkRequestInterface.md), [OracleInterface](OracleInterface.md), [Ownable](Ownable.md), [LinkTokenReceiver](LinkTokenReceiver.md)**
 **↘ Derived Contracts: [ChainlinkOracle](ChainlinkOracle.md)**
 
-**Oracle**
+**{{ContractName}}**
 
 Node operators can deploy this contract to fulfill requests sent to them
 
@@ -293,6 +293,7 @@ returns(address)
 
 * [Address](Address.md)
 * [AlkemiNetwork](AlkemiNetwork.md)
+* [AlkemiNetworkMock](AlkemiNetworkMock.md)
 * [AlkemiOracle](AlkemiOracle.md)
 * [AlkemiSettlementMock](AlkemiSettlementMock.md)
 * [Buffer](Buffer.md)
@@ -308,6 +309,7 @@ returns(address)
 * [ERC20Detailed](ERC20Detailed.md)
 * [ERC20Mintable](ERC20Mintable.md)
 * [EtherTokenConstantMock](EtherTokenConstantMock.md)
+* [IAlkemiNetwork](IAlkemiNetwork.md)
 * [IAlkemiSettlement](IAlkemiSettlement.md)
 * [IAlkemiToken](IAlkemiToken.md)
 * [IERC20](IERC20.md)

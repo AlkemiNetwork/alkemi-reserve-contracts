@@ -1,28 +1,30 @@
 pragma solidity ^0.5.0;
 
 import "../interfaces/IOracleGuard.sol";
-import "../interfaces/IAlkemiToken.sol";
-import "../interfaces/IAlkemiSettlement.sol";
+import "../interfaces/IAlkemiNetwork.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
 
 contract AlkemiOracle {
 
   using SafeMath for uint256;
 
-  // mapping of banned nodes by settlement id
+  /// @notice mapping of banned nodes by settlement id
   mapping(uint256 => address[]) public settlementBannedNode;
 
-  // mapping of book hash by settlement id
+  /// @notice mapping of book hash by settlement id
   mapping (uint256 => bytes32) public settlementBookHash;
 
-  // mapping settlement voting by book hash
+  /// @notice mapping settlement voting by book hash
   mapping (bytes32 => SettlementVoting) public settlementVoting;
 
+  /// @notice mapping of voted nodes by book hash
   mapping(bytes32 => mapping (address => bool)) public accountingVotedNode;
 
-  IAlkemiSettlement internal _settlementContract;
+  /// @notice oracle guard instance
+  address public oracleGuard;
 
-  IOracleGuard internal _oracleGuard;
+  /// @notice alkemi network instance
+  address public alkemiNetwork;
 
   enum Vote {
     YES,
@@ -50,22 +52,22 @@ contract AlkemiOracle {
   event RequestStopTrade(uint256 indexed settlementId);
   event RequestContinueTrade(uint256 settlementId, uint256 settlementTimeStamp);
 
-  constructor(address settlementContract, address oracleGuard) public {
-    require(settlementContract != address(0), "Oracle: invalid settlement contract address");
-    require(oracleGuard != address(0), "Oracle: invalid guard address");
+  constructor(address _oracleGuard, address _alkemiNetwork) public {
+    require(_oracleGuard != address(0), "AlkemiOracle: invalid oracle guard address");
+    require(_alkemiNetwork != address(0), "AlkemiOracle: invalid alkemi network address");
 
-    _settlementContract = IAlkemiSettlement(settlementContract);
-    _oracleGuard = IOracleGuard(oracleGuard);
+    oracleGuard = _oracleGuard;
+    alkemiNetwork = _alkemiNetwork;
   }
 
   function getSettlementId() external view returns (uint256) {
-    require(_oracleGuard.isNodeAuth(msg.sender) == true, "Oracle: not authorized node");
+    require(IOracleGuard(oracleGuard).isNodeAuth(msg.sender) == true, "Oracle: not authorized node");
 
-    return _settlementContract.settlementId();
+    return IAlkemiNetwork(alkemiNetwork).currentSettlementId();
   }
 
   /**
-   * @dev submit book hash and settlement details to vote for
+   * @notice submit book hash and settlement details to vote for
    * @param exchangesAddresses list of exchanges addresses
    * @param surplusTokensAddresses list of tokens for surplus
    * @param deficitTokensAddresses list of tokens for deficit
@@ -83,11 +85,11 @@ contract AlkemiOracle {
     uint256 _settlementId,
     bytes32 _bookHash
   ) external {
-    require(_oracleGuard.isNodeAuth(msg.sender) == true, "Oracle: not authorized node");
+    require(IOracleGuard(oracleGuard).isNodeAuth(msg.sender) == true, "Oracle: not authorized node");
     require(settlementBookHash[_settlementId] == bytes32(0), "Oracle: book already submitted for this settlement id");
 
-    uint256 _minimumVotes = _oracleGuard.nodesAvailable();
-
+    uint256 _minimumVotes = IOracleGuard(oracleGuard).nodesCounter();
+     
     SettlementVoting memory voting = SettlementVoting({
       node: msg.sender,
       settlementId: _settlementId,
@@ -116,7 +118,7 @@ contract AlkemiOracle {
   }
 
   function settlementVote(uint256 _settlementId, bytes32 _bookHash, uint8 _vote) external {
-    require(_oracleGuard.isNodeAuth(msg.sender) == true, "Oracle: not authorized node");
+    require(IOracleGuard(oracleGuard).isNodeAuth(msg.sender) == true, "Oracle: not authorized node");
     require(settlementBookHash[_settlementId] == _bookHash, "Oracle: invalid accounting book to vote on for the current settlement id");
     require(accountingVotedNode[_bookHash][msg.sender] != true, "Oracle: node already voted");
 
@@ -131,10 +133,10 @@ contract AlkemiOracle {
       if((voting.yesVotes >= voting.minimumVotes) && (voting.isSettled == false)) {
         voting.isSettled = true;
         // un-ban nodes
-        _oracleGuard.authNode(settlementBannedNode[_settlementId]);
+        IOracleGuard(oracleGuard).authNode(settlementBannedNode[_settlementId]);
 
         //call settlement contract
-        _settlementContract.doSettlement(
+        IAlkemiNetwork(alkemiNetwork).doSettlement(
           voting.exchangesAddresses,
           voting.surplusTokensAddresses,
           voting.deficitTokensAddresses,
@@ -150,7 +152,7 @@ contract AlkemiOracle {
 
       if(voting.noVotes >= voting.minimumVotes) {
         // ban book submitter for the current settlement id
-        _oracleGuard.dropNode(voting.node);
+        IOracleGuard(oracleGuard).dropNode(voting.node);
         settlementBannedNode[_settlementId].push(voting.node);
         settlementBookHash[_settlementId] == bytes32(0);
 
@@ -169,7 +171,7 @@ contract AlkemiOracle {
   }
 
   function restartContainersTrading(uint256 settlementId, uint256 settlementTime) external {
-    require(_oracleGuard.isContractAuth(msg.sender) == true, "Oracle: not authorized contract");
+    require(IOracleGuard(oracleGuard).isContractAuth(msg.sender) == true, "Oracle: not authorized contract");
 
     emit RequestContinueTrade(settlementId, settlementTime);
   }

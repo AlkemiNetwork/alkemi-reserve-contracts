@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: OracleGuard
 nav_order: 3
 ---
 
@@ -8,19 +8,16 @@ nav_order: 3
 
 View Source: [contracts/oracles/OracleGuard.sol](../contracts/oracles/OracleGuard.sol)
 
-**OracleGuard**
+**{{ContractName}}**
 
 ## Contract Members
 **Constants & Variables**
 
 ```js
-//internal members
-address internal _oracleContract;
-address internal _alkemiToken;
-uint256 internal _requiredTokens;
-uint256 internal _nodesCounter;
-
-//public members
+address public alkemiOracle;
+address public alkemiToken;
+uint256 public requiredTokens;
+uint256 public nodesCounter;
 mapping(address => uint256) public auths;
 mapping(address => uint256) public contracts;
 mapping(address => uint256) public nodes;
@@ -34,7 +31,7 @@ mapping(uint256 => address) public slot;
 
 ### auth
 
-Allow only auth enticated sender
+Allow only authenticated sender
 
 ```js
 modifier auth(uint256 permission) internal
@@ -61,13 +58,11 @@ modifier auth(uint256 permission) internal
 - [authContract(address[] a)](#authcontract)
 - [dropContract(address a)](#dropcontract)
 - [setOracleContract(address oracleContract)](#setoraclecontract)
-- [setTokenContract(address alkemiToken)](#settokencontract)
-- [oracle()](#oracle)
-- [token()](#token)
-- [requiredToken()](#requiredtoken)
-- [nodesAvailable()](#nodesavailable)
+- [setTokenContract(address _alkemiToken)](#settokencontract)
 
 ### 
+
+constructor
 
 ```js
 function (uint256 minimumTokens) public nonpayable
@@ -77,11 +72,11 @@ function (uint256 minimumTokens) public nonpayable
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| minimumTokens | uint256 |  | 
+| minimumTokens | uint256 | required Alkemi Token for nodes to submit book | 
 
 ### isContractAuth
 
-Check if contract is authorized to call oracle
+Check if contract is authorized to call Alkemi Oracle
 
 ```js
 function isContractAuth(address _contract) external view
@@ -100,7 +95,7 @@ true if authorized
 
 ### isNodeAuth
 
-Check if node is authorized to submit book to oracle
+Check if node is authorized to submit book to Alkemi Oracle
 
 ```js
 function isNodeAuth(address _node) external view
@@ -157,7 +152,7 @@ true if banned
 
 ### rely
 
-can only be called from an authorized sender
+Grant to an address permission
 
 ```js
 function rely(address usr, uint256 permission) external nonpayable auth 
@@ -172,7 +167,7 @@ function rely(address usr, uint256 permission) external nonpayable auth
 
 ### deny
 
-can only be called from an authorized sender
+Remove from an address OracleGuard Owner permission
 
 ```js
 function deny(address usr, uint256 permission) external nonpayable auth 
@@ -187,7 +182,7 @@ function deny(address usr, uint256 permission) external nonpayable auth
 
 ### registerNode
 
-Node can only be registered by Alkemi
+Register node
 
 ```js
 function registerNode(address[] a) external nonpayable auth 
@@ -201,7 +196,7 @@ function registerNode(address[] a) external nonpayable auth
 
 ### authNode
 
-can only be called from an authorized sender
+Auth node to call oracle
 
 ```js
 function authNode(address[] a) external nonpayable auth 
@@ -215,7 +210,7 @@ function authNode(address[] a) external nonpayable auth
 
 ### dropNode
 
-can only be called from an authorized sender
+Ban node
 
 ```js
 function dropNode(address a) external nonpayable auth 
@@ -229,7 +224,7 @@ function dropNode(address a) external nonpayable auth
 
 ### authContract
 
-can only be called from an authorized sender
+Auth contracts to call oracle
 
 ```js
 function authContract(address[] a) external nonpayable auth 
@@ -243,7 +238,7 @@ function authContract(address[] a) external nonpayable auth
 
 ### dropContract
 
-can only be called from an authorized sender
+Ban contract
 
 ```js
 function dropContract(address a) external nonpayable auth 
@@ -257,7 +252,7 @@ function dropContract(address a) external nonpayable auth
 
 ### setOracleContract
 
-can only be called from an authorized sender
+Set on-chain oracle address
 
 ```js
 function setOracleContract(address oracleContract) external nonpayable auth 
@@ -271,78 +266,23 @@ function setOracleContract(address oracleContract) external nonpayable auth
 
 ### setTokenContract
 
-can only be called from an authorized sender
+Set Alkemi Token address
 
 ```js
-function setTokenContract(address alkemiToken) external nonpayable auth 
+function setTokenContract(address _alkemiToken) external nonpayable auth 
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| alkemiToken | address | Alkemi Token address | 
-
-### oracle
-
-Get on-chain oracle address
-
-```js
-function oracle() public view
-returns(address)
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-
-### token
-
-Get Alkemi Token address
-
-```js
-function token() public view
-returns(address)
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-
-### requiredToken
-
-Get the amount of required tokens to run node
-
-```js
-function requiredToken() public view
-returns(uint256)
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-
-### nodesAvailable
-
-Get number of nodes available to vote
-
-```js
-function nodesAvailable() public view
-returns(uint256)
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
+| _alkemiToken | address | Alkemi Token address | 
 
 ## Contracts
 
 * [Address](Address.md)
 * [AlkemiNetwork](AlkemiNetwork.md)
+* [AlkemiNetworkMock](AlkemiNetworkMock.md)
 * [AlkemiOracle](AlkemiOracle.md)
 * [AlkemiSettlementMock](AlkemiSettlementMock.md)
 * [Buffer](Buffer.md)
@@ -358,6 +298,7 @@ returns(uint256)
 * [ERC20Detailed](ERC20Detailed.md)
 * [ERC20Mintable](ERC20Mintable.md)
 * [EtherTokenConstantMock](EtherTokenConstantMock.md)
+* [IAlkemiNetwork](IAlkemiNetwork.md)
 * [IAlkemiSettlement](IAlkemiSettlement.md)
 * [IAlkemiToken](IAlkemiToken.md)
 * [IERC20](IERC20.md)

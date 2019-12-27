@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: AlkemiOracle
 nav_order: 3
 ---
 
@@ -8,7 +8,7 @@ nav_order: 3
 
 View Source: [contracts/oracles/AlkemiOracle.sol](../contracts/oracles/AlkemiOracle.sol)
 
-**AlkemiOracle**
+**{{ContractName}}**
 
 **Enums**
 ### Vote
@@ -44,15 +44,12 @@ struct SettlementVoting {
 **Constants & Variables**
 
 ```js
-//public members
 mapping(uint256 => address[]) public settlementBannedNode;
 mapping(uint256 => bytes32) public settlementBookHash;
 mapping(bytes32 => struct AlkemiOracle.SettlementVoting) public settlementVoting;
 mapping(bytes32 => mapping(address => bool)) public accountingVotedNode;
-
-//internal members
-contract IAlkemiSettlement internal _settlementContract;
-contract IOracleGuard internal _oracleGuard;
+address public oracleGuard;
+address public alkemiNetwork;
 
 ```
 
@@ -68,7 +65,7 @@ event RequestContinueTrade(uint256  settlementId, uint256  settlementTimeStamp);
 
 ## Functions
 
-- [(address settlementContract, address oracleGuard)](#)
+- [(address _oracleGuard, address _alkemiNetwork)](#)
 - [getSettlementId()](#getsettlementid)
 - [submitBook(address[] exchangesAddresses, address[] surplusTokensAddresses, address[] deficitTokensAddresses, uint128[] surplus, uint128[] deficit, uint256 _settlementId, bytes32 _bookHash)](#submitbook)
 - [settlementVote(uint256 _settlementId, bytes32 _bookHash, uint8 _vote)](#settlementvote)
@@ -80,15 +77,15 @@ event RequestContinueTrade(uint256  settlementId, uint256  settlementTimeStamp);
 ### 
 
 ```js
-function (address settlementContract, address oracleGuard) public nonpayable
+function (address _oracleGuard, address _alkemiNetwork) public nonpayable
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| settlementContract | address |  | 
-| oracleGuard | address |  | 
+| _oracleGuard | address |  | 
+| _alkemiNetwork | address |  | 
 
 ### getSettlementId
 
@@ -190,6 +187,7 @@ function stopContainersTrading(uint256 settlementId) internal nonpayable
 
 * [Address](Address.md)
 * [AlkemiNetwork](AlkemiNetwork.md)
+* [AlkemiNetworkMock](AlkemiNetworkMock.md)
 * [AlkemiOracle](AlkemiOracle.md)
 * [AlkemiSettlementMock](AlkemiSettlementMock.md)
 * [Buffer](Buffer.md)
@@ -205,6 +203,7 @@ function stopContainersTrading(uint256 settlementId) internal nonpayable
 * [ERC20Detailed](ERC20Detailed.md)
 * [ERC20Mintable](ERC20Mintable.md)
 * [EtherTokenConstantMock](EtherTokenConstantMock.md)
+* [IAlkemiNetwork](IAlkemiNetwork.md)
 * [IAlkemiSettlement](IAlkemiSettlement.md)
 * [IAlkemiToken](IAlkemiToken.md)
 * [IERC20](IERC20.md)

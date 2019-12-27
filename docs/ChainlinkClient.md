@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: ChainlinkClient
 nav_order: 3
 ---
 
@@ -10,7 +10,7 @@ View Source: [chainlinkv0.5/contracts/ChainlinkClient.sol](../chainlinkv0.5/cont
 
 **↘ Derived Contracts: [LiquidityReserve](LiquidityReserve.md)**
 
-**ChainlinkClient**
+**{{ContractName}}**
 
 Contract writers can inherit this contract in order to create requests for the
 Chainlink network
@@ -335,6 +335,7 @@ function validateChainlinkCallback(bytes32 _requestId) internal nonpayable recor
 
 * [Address](Address.md)
 * [AlkemiNetwork](AlkemiNetwork.md)
+* [AlkemiNetworkMock](AlkemiNetworkMock.md)
 * [AlkemiOracle](AlkemiOracle.md)
 * [AlkemiSettlementMock](AlkemiSettlementMock.md)
 * [Buffer](Buffer.md)
@@ -350,6 +351,7 @@ function validateChainlinkCallback(bytes32 _requestId) internal nonpayable recor
 * [ERC20Detailed](ERC20Detailed.md)
 * [ERC20Mintable](ERC20Mintable.md)
 * [EtherTokenConstantMock](EtherTokenConstantMock.md)
+* [IAlkemiNetwork](IAlkemiNetwork.md)
 * [IAlkemiSettlement](IAlkemiSettlement.md)
 * [IAlkemiToken](IAlkemiToken.md)
 * [IERC20](IERC20.md)

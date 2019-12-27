@@ -2,45 +2,50 @@ pragma solidity ^0.5.0;
 
 contract OracleGuard {
 
-  // Alkemi oracle contract address
-  address internal _oracleContract;
+  /// @notice Alkemi oracle contract address
+  address public alkemiOracle;
 
-  // Alkemi token address
-  address internal _alkemiToken;
+  /// @notice Alkemi token address
+  address public alkemiToken;
 
-  // required minimum amount of tokens to run book keeper node
-  uint256 internal _requiredTokens;
+  /// @notice required minimum amount of tokens to run book keeper node
+  uint256 public requiredTokens;
 
-  uint256 internal _nodesCounter;
+  /// @notice number of available nodes
+  uint256 public nodesCounter;
 
   // --- Auth ---
   // 1: OracleGuard Owner permission
   // 2: OracleContract permission
   mapping (address => uint) public auths;
 
-  // Whitelisted contracts, set by an auth
+  /// @notice Whitelisted contracts, set by an auth
   mapping (address => uint256) public contracts;
   
-  // Mapping for nodes, set by an auth
+  /// @notice Mapping for nodes, set by an auth
   // 0: node not authenticated
   // 1: node authenticated
   // 2: node banned
   // 3: slashed node (does not have minimum amount of tokens)
   mapping (address => uint256) public nodes;
 
-  // Authorized nodes, set by an auth
+  /// @notice Authorized nodes, set by an auth
   mapping (uint256 => address) public slot;
 
+  /**
+   * @notice constructor
+   * @param minimumTokens required Alkemi Token for nodes to submit book
+   */
   constructor(uint256 minimumTokens) public {
     auths[msg.sender] = 1;
 
-    _oracleContract = address(0);
-    _requiredTokens = minimumTokens;
-    _nodesCounter = 0;
+    alkemiOracle = address(0);
+    requiredTokens = minimumTokens;
+    nodesCounter = 0;
   }
 
   /**
-   * @dev Allow only auth enticated sender
+   * @notice Allow only authenticated sender
    */
   modifier auth(uint permission) {
     require(
@@ -50,7 +55,7 @@ contract OracleGuard {
   }
 
   /**
-   * @dev Check if contract is authorized to call oracle
+   * @notice Check if contract is authorized to call Alkemi Oracle
    * @param _contract contract address
    * @return true if authorized
    */
@@ -59,7 +64,7 @@ contract OracleGuard {
   }
 
   /**
-   * @dev Check if node is authorized to submit book to oracle
+   * @notice Check if node is authorized to submit book to Alkemi Oracle
    * @param _node node address
    * @return true if authorized
    */
@@ -68,7 +73,7 @@ contract OracleGuard {
   }
 
   /**
-   * @dev check if node is banned
+   * @notice check if node is banned
    * @param _node node address
    * @return true if banned
    */
@@ -77,7 +82,7 @@ contract OracleGuard {
   }
 
   /**
-   * @dev check if node is slashed (node does not have minimum token amount)
+   * @notice check if node is slashed (node does not have minimum token amount)
    * @param _node node address
    * @return true if banned
    */
@@ -86,8 +91,8 @@ contract OracleGuard {
   }
 
   /**
-   * @dev Set to an address OracleGuard Owner permission
-   * @notice can only be called from an authorized sender
+   * @notice Grant to an address permission
+   * @dev can only be called from an authorized sender
    * @param usr address
    * @param permission Permission type
    */
@@ -96,8 +101,8 @@ contract OracleGuard {
   }
 
   /**
-   * @dev Remove from an address OracleGuard Owner permission
-   * @notice can only be called from an authorized sender
+   * @notice Remove from an address OracleGuard Owner permission
+   * @dev can only be called from an authorized sender
    * @param usr address
    * @param permission Permission type
    */
@@ -106,8 +111,8 @@ contract OracleGuard {
   }
 
   /**
-   * @dev Register node
-   * @notice Node can only be registered by Alkemi
+   * @notice Register node
+   * @dev Node can only be registered by Alkemi
    * @param a node address
    */
   function registerNode(address[] calldata a) external auth(1) {
@@ -117,13 +122,13 @@ contract OracleGuard {
       require(slot[s] == address(0), "OracleGuard: oracle already authorized");
       nodes[a[i]] = 1;
       slot[s] = a[i];
-      _nodesCounter++;
+      nodesCounter++;
     }
   }
 
   /**
-   * @dev Auth node to call oracle
-   * @notice can only be called from an authorized sender
+   * @notice Auth node to call oracle
+   * @dev can only be called from an authorized sender
    * @param a nodes addresses
    */
   function authNode(address[] calldata a) external auth(2) {
@@ -133,24 +138,24 @@ contract OracleGuard {
       require(slot[s] == address(0), "OracleGuard: oracle already authorized");
       nodes[a[i]] = 1;
       slot[s] = a[i];
-      _nodesCounter++;
+      nodesCounter++;
     }
   }
 
   /**
-   * @dev Ban node
-   * @notice can only be called from an authorized sender
+   * @notice Ban node
+   * @dev can only be called from an authorized sender
    * @param a node address
    */
   function dropNode(address a) external auth(2) {
     nodes[a] = 2;
     slot[uint8(uint256(a) >> 152)] = address(0);
-    _nodesCounter--;
+    nodesCounter--;
   }
 
   /**
-   * @dev Auth contracts to call oracle
-   * @notice can only be called from an authorized sender
+   * @notice Auth contracts to call oracle
+   * @dev can only be called from an authorized sender
    * @param a contracts addresseses
    */
   function authContract(address[] calldata a) external auth(1) {
@@ -161,8 +166,8 @@ contract OracleGuard {
   }
 
   /**
-   * @dev Ban contract
-   * @notice can only be called from an authorized sender
+   * @notice Ban contract
+   * @dev can only be called from an authorized sender
    * @param a contract address
    */
   function dropContract(address a) external auth(1) {
@@ -170,56 +175,28 @@ contract OracleGuard {
   }
 
   /**
-   * @dev Set on-chain oracle address
-   * @notice can only be called from an authorized sender
+   * @notice Set on-chain oracle address
+   * @dev can only be called from an authorized sender
    * @param oracleContract oracle contract address
    */
   function setOracleContract(address oracleContract) external auth(1) {
     require(oracleContract != address(0), "OracleGuard: invalid address");
 
     // Remove oracle permissions
-    auths[_oracleContract] = 0;
+    auths[alkemiOracle] = 0;
 
-    _oracleContract = oracleContract;
+    alkemiOracle = oracleContract;
     auths[oracleContract] = 2;
   }
 
   /**
-   * @dev Set Alkemi Token address
-   * @notice can only be called from an authorized sender
-   * @param alkemiToken Alkemi Token address
+   * @notice Set Alkemi Token address
+   * @dev can only be called from an authorized sender
+   * @param _alkemiToken Alkemi Token address
    */
-  function setTokenContract(address alkemiToken) external auth(1) {
-    require(alkemiToken != address(0), "OracleGuard: invalid address");
+  function setTokenContract(address _alkemiToken) external auth(1) {
+    require(_alkemiToken != address(0), "OracleGuard: invalid address");
 
-    _alkemiToken = alkemiToken;
-  }
-
-  /**
-   * @dev Get on-chain oracle address
-   */
-  function oracle() public view returns (address) {
-    return _oracleContract;
-  }
-
-  /**
-   * @dev Get Alkemi Token address
-   */
-  function token() public view returns (address) {
-    return _alkemiToken;
-  }
-
-  /**
-   * @dev Get the amount of required tokens to run node
-   */
-  function requiredToken() public view returns (uint256) {
-    return _requiredTokens;
-  }
-
-  /**
-   * @dev Get number of nodes available to vote
-   */
-  function nodesAvailable() public view returns (uint256) {
-    return _nodesCounter;
+    alkemiToken = _alkemiToken;
   }
 }

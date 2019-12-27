@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: Chainlink
 nav_order: 3
 ---
 
@@ -8,7 +8,7 @@ nav_order: 3
 
 View Source: [chainlinkv0.5/contracts/Chainlink.sol](../chainlinkv0.5/contracts/Chainlink.sol)
 
-**Chainlink**
+**{{ContractName}}**
 
 Uses imported CBOR library for encoding to buffer
 
@@ -164,6 +164,7 @@ function addStringArray(struct Chainlink.Request self, string _key, string[] _va
 
 * [Address](Address.md)
 * [AlkemiNetwork](AlkemiNetwork.md)
+* [AlkemiNetworkMock](AlkemiNetworkMock.md)
 * [AlkemiOracle](AlkemiOracle.md)
 * [AlkemiSettlementMock](AlkemiSettlementMock.md)
 * [Buffer](Buffer.md)
@@ -179,6 +180,7 @@ function addStringArray(struct Chainlink.Request self, string _key, string[] _va
 * [ERC20Detailed](ERC20Detailed.md)
 * [ERC20Mintable](ERC20Mintable.md)
 * [EtherTokenConstantMock](EtherTokenConstantMock.md)
+* [IAlkemiNetwork](IAlkemiNetwork.md)
 * [IAlkemiSettlement](IAlkemiSettlement.md)
 * [IAlkemiToken](IAlkemiToken.md)
 * [IERC20](IERC20.md)
