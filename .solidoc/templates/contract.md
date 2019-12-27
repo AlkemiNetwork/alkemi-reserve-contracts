@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: {{ContractName}}
 nav_order: 3
 ---
 
