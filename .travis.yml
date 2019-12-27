@@ -7,6 +7,18 @@ notifications:
   email: false
 node_js:
   - '12.13.1'
+env:
+  - TASK=lint:tests
+  - TASK=lint:contracts
+  - TASK=test
+  - TASK=generate:doc
+before_script:
+  - npm run ganache-ci
+  - sleep 5
+script:
+  - travis_wait 60 npm run $TASK
+#after_success:
+#  - npm run coverage && cat coverage/lcov.info | coveralls
 deploy:	
   provider: pages	
   skip_cleanup: true	
@@ -14,16 +26,4 @@ deploy:
   keep_history: true	
   on:	
     branch: master	
-  target_branch: master
-env:
-  - TASK=lint:tests
-  - TASK=lint:contracts
-  - TASK=test
-before_script:
-  - npm run generate:doc
-  - npm run ganache-ci
-  - sleep 5
-script:
-  - travis_wait 60 npm run $TASK
-#after_success:
-#  - npm run coverage && cat coverage/lcov.info | coveralls
+  target_branch: gh-pages
