@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: ILiquidityReserveFactory
 nav_order: 3
 ---
 
@@ -8,7 +8,7 @@ nav_order: 3
 
 View Source: [contracts/interfaces/ILiquidityReserveFactory.sol](../contracts/interfaces/ILiquidityReserveFactory.sol)
 
-**ILiquidityReserveFactory**
+**{{ContractName}}**
 
 ## Functions
 
@@ -43,6 +43,7 @@ Address of new Liquidity Reserve
 
 * [Address](Address.md)
 * [AlkemiNetwork](AlkemiNetwork.md)
+* [AlkemiNetworkMock](AlkemiNetworkMock.md)
 * [AlkemiOracle](AlkemiOracle.md)
 * [AlkemiSettlementMock](AlkemiSettlementMock.md)
 * [Buffer](Buffer.md)
@@ -58,6 +59,7 @@ Address of new Liquidity Reserve
 * [ERC20Detailed](ERC20Detailed.md)
 * [ERC20Mintable](ERC20Mintable.md)
 * [EtherTokenConstantMock](EtherTokenConstantMock.md)
+* [IAlkemiNetwork](IAlkemiNetwork.md)
 * [IAlkemiSettlement](IAlkemiSettlement.md)
 * [IAlkemiToken](IAlkemiToken.md)
 * [IERC20](IERC20.md)

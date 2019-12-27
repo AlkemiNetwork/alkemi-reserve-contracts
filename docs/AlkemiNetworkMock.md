@@ -1,172 +1,148 @@
 ---
 layout: default
-title: IOracleGuard
+title: AlkemiNetworkMock
 nav_order: 3
 ---
 
-# IOracleGuard (IOracleGuard.sol)
+# AlkemiNetworkMock (AlkemiNetworkMock.sol)
 
-View Source: [contracts/interfaces/IOracleGuard.sol](../contracts/interfaces/IOracleGuard.sol)
+View Source: [contracts/mocks/AlkemiNetworkMock.sol](../contracts/mocks/AlkemiNetworkMock.sol)
 
 **{{ContractName}}**
 
+A contract to mock AlkemiNetwork functions
+
+## Contract Members
+**Constants & Variables**
+
+```js
+address public owner;
+address public alkemiOracle;
+uint256 public currentSettlementId;
+
+```
+
+## Modifiers
+
+- [onlyOwner](#onlyowner)
+- [onlyAlkemiOracle](#onlyalkemioracle)
+
+### onlyOwner
+
+Verifies that the caller is the Owner
+
+```js
+modifier onlyOwner() internal
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+
+### onlyAlkemiOracle
+
+Verifies that the calles is Alkemi Oracle
+
+```js
+modifier onlyAlkemiOracle() internal
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+
 ## Functions
 
-- [authNode(address[] a)](#authnode)
-- [dropNode(address a)](#dropnode)
-- [isContractAuth(address _contract)](#iscontractauth)
-- [isNodeAuth(address _node)](#isnodeauth)
-- [isNodeBan(address _node)](#isnodeban)
-- [isNodeSlashed(address _node)](#isnodeslashed)
-- [token()](#token)
-- [requiredToken()](#requiredtoken)
-- [nodesCounter()](#nodescounter)
+- [()](#)
+- [doSettlement(address[] exchangesAddresses, address[] surplusTokensAddresses, address[] deficitTokensAddresses, uint128[] surplus, uint128[] deficit)](#dosettlement)
+- [setNewOwner(address _owner)](#setnewowner)
+- [setAlkemiOracle(address _oracle)](#setalkemioracle)
+- [_setOwner(address _owner)](#_setowner)
+- [_setAlkemiOracle(address _oracle)](#_setalkemioracle)
 
-### authNode
-
-can only be called from an authorized sender
+### 
 
 ```js
-function authNode(address[] a) external nonpayable
+function () public nonpayable
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| a | address[] | nodes addresses | 
 
-### dropNode
+### doSettlement
 
-can only be called from an authorized sender
-
-```js
-function dropNode(address a) external nonpayable
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| a | address | node address | 
-
-### isContractAuth
-
-Check if contract is authorized to call oracle
+settlement function
 
 ```js
-function isContractAuth(address _contract) external view
+function doSettlement(address[] exchangesAddresses, address[] surplusTokensAddresses, address[] deficitTokensAddresses, uint128[] surplus, uint128[] deficit) external nonpayable onlyAlkemiOracle 
 returns(bool)
 ```
 
-**Returns**
-
-true if authorized
-
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _contract | address | contract address | 
+| exchangesAddresses | address[] | list of exchanges addresses | 
+| surplusTokensAddresses | address[] | list of surplus tokens | 
+| deficitTokensAddresses | address[] | list of dificit tokens | 
+| surplus | uint128[] | TokensAddresses list of surplus tokens | 
+| deficit | uint128[] | TokensAddresses list of dificit tokens | 
 
-### isNodeAuth
+### setNewOwner
 
-Check if node is authorized to submit book to oracle
-
-```js
-function isNodeAuth(address _node) external view
-returns(bool)
-```
-
-**Returns**
-
-true if authorized
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| _node | address | node address | 
-
-### isNodeBan
-
-check if node is banned
+Set new owner address
 
 ```js
-function isNodeBan(address _node) external view
-returns(bool)
-```
-
-**Returns**
-
-true if banned
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| _node | address | node address | 
-
-### isNodeSlashed
-
-check if node is slashed (node does not have minimum token amount)
-
-```js
-function isNodeSlashed(address _node) external view
-returns(bool)
-```
-
-**Returns**
-
-true if banned
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| _node | address | node address | 
-
-### token
-
-Get Alkemi Token address
-
-```js
-function token() public view
-returns(address)
+function setNewOwner(address _owner) public nonpayable onlyOwner 
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
+| _owner | address | Address of the new Owner | 
 
-### requiredToken
+### setAlkemiOracle
 
-Get the amount of required tokens to run node
+Set Alkemi Oracle address
 
 ```js
-function requiredToken() public view
-returns(uint256)
+function setAlkemiOracle(address _oracle) public nonpayable onlyOwner 
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
+| _oracle | address | oracle address | 
 
-### nodesCounter
-
-Get number of nodes available to vote
+### _setOwner
 
 ```js
-function nodesCounter() public view
-returns(uint256)
+function _setOwner(address _owner) internal nonpayable
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
+| _owner | address |  | 
+
+### _setAlkemiOracle
+
+```js
+function _setAlkemiOracle(address _oracle) internal nonpayable
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| _oracle | address |  | 
 
 ## Contracts
 
