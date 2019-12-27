@@ -1,0 +1,4 @@
+
+> alkemi-protocol-contracts@1.0.0 lint:tests /home/travis/build/project-alkemi/alkemi-protocol
+> eslint ./test --fix
+
