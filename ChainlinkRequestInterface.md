@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: ChainlinkRequestInterface
 nav_order: 3
 ---
 
@@ -10,7 +10,7 @@ View Source: [chainlinkv0.5/contracts/interfaces/ChainlinkRequestInterface.sol](
 
 **↘ Derived Contracts: [Oracle](Oracle.md)**
 
-**ChainlinkRequestInterface**
+**{{ContractName}}**
 
 ## Functions
 

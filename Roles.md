@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: Roles
 nav_order: 3
 ---
 
@@ -8,7 +8,7 @@ nav_order: 3
 
 View Source: [@openzeppelin/contracts/access/Roles.sol](../@openzeppelin/contracts/access/Roles.sol)
 
-**Roles**
+**{{ContractName}}**
 
 Library for managing addresses assigned to a Role.
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: AlkemiSettlementMock
 nav_order: 3
 ---
 
@@ -8,7 +8,7 @@ nav_order: 3
 
 View Source: [contracts/mocks/AlkemiSettlementMock.sol](../contracts/mocks/AlkemiSettlementMock.sol)
 
-**AlkemiSettlementMock**
+**{{ContractName}}**
 
 Alkemi Settlement contract mock
 

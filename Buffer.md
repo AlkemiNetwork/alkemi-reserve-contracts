@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: Buffer
 nav_order: 3
 ---
 
@@ -8,7 +8,7 @@ nav_order: 3
 
 View Source: [chainlinkv0.5/contracts/vendor/Buffer.sol](../chainlinkv0.5/contracts/vendor/Buffer.sol)
 
-**Buffer**
+**{{ContractName}}**
 
 A library for working with mutable byte buffers in Solidity.
 * Byte buffers are mutable and expandable, and provide a variety of primitives

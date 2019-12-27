@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: LiquidityReserveFactory
 nav_order: 3
 ---
 
@@ -10,7 +10,7 @@ View Source: [contracts/liquidity-reserve/factory/LiquidityReserveFactory.sol](.
 
 **↘ Derived Contracts: [AlkemiNetwork](AlkemiNetwork.md)**
 
-**LiquidityReserveFactory**
+**{{ContractName}}**
 
 This Factory creates a Liquidity Reserve
 

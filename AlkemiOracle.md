@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: AlkemiOracle
 nav_order: 3
 ---
 
@@ -8,7 +8,7 @@ nav_order: 3
 
 View Source: [contracts/oracles/AlkemiOracle.sol](../contracts/oracles/AlkemiOracle.sol)
 
-**AlkemiOracle**
+**{{ContractName}}**
 
 **Enums**
 ### Vote

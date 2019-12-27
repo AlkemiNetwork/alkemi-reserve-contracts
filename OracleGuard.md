@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: OracleGuard
 nav_order: 3
 ---
 
@@ -8,7 +8,7 @@ nav_order: 3
 
 View Source: [contracts/oracles/OracleGuard.sol](../contracts/oracles/OracleGuard.sol)
 
-**OracleGuard**
+**{{ContractName}}**
 
 ## Contract Members
 **Constants & Variables**

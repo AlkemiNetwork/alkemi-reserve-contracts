@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: ChainlinkOracle
 nav_order: 3
 ---
 
@@ -10,7 +10,7 @@ View Source: [contracts/liquidity-reserve/tests/ChainlinkOracle.sol](../contract
 
 **↗ Extends: [Oracle](Oracle.md)**
 
-**ChainlinkOracle**
+**{{ContractName}}**
 
 ## Functions
 

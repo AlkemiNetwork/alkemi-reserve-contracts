@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: EtherTokenConstantMock
 nav_order: 3
 ---
 
@@ -8,7 +8,7 @@ nav_order: 3
 
 View Source: [contracts/mocks/EtherTokenContantMock.sol](../contracts/mocks/EtherTokenContantMock.sol)
 
-**EtherTokenConstantMock**
+**{{ContractName}}**
 
 ## Contract Members
 **Constants & Variables**

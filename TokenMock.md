@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: TokenMock
 nav_order: 3
 ---
 
@@ -10,7 +10,7 @@ View Source: [contracts/mocks/TokenMock.sol](../contracts/mocks/TokenMock.sol)
 
 **↗ Extends: [ERC20Detailed](ERC20Detailed.md), [ERC20Mintable](ERC20Mintable.md)**
 
-**TokenMock**
+**{{ContractName}}**
 
 ERC20 Mintable token mock
 

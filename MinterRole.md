@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: MinterRole
 nav_order: 3
 ---
 
@@ -11,7 +11,7 @@ View Source: [@openzeppelin/contracts/access/roles/MinterRole.sol](../@openzeppe
 **↗ Extends: [Context](Context.md)**
 **↘ Derived Contracts: [ERC20Mintable](ERC20Mintable.md)**
 
-**MinterRole**
+**{{ContractName}}**
 
 ## Contract Members
 **Constants & Variables**

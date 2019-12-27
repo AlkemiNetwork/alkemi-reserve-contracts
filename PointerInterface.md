@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: PointerInterface
 nav_order: 3
 ---
 
@@ -8,7 +8,7 @@ nav_order: 3
 
 View Source: [chainlinkv0.5/contracts/interfaces/PointerInterface.sol](../chainlinkv0.5/contracts/interfaces/PointerInterface.sol)
 
-**PointerInterface**
+**{{ContractName}}**
 
 ## Functions
 

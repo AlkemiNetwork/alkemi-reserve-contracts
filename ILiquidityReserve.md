@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: ILiquidityReserve
 nav_order: 3
 ---
 
@@ -8,7 +8,7 @@ nav_order: 3
 
 View Source: [contracts/interfaces/ILiquidityReserve.sol](../contracts/interfaces/ILiquidityReserve.sol)
 
-**ILiquidityReserve**
+**{{ContractName}}**
 
 ## Functions
 

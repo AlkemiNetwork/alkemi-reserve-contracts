@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: AlkemiNetwork
 nav_order: 3
 ---
 
@@ -10,7 +10,7 @@ View Source: [contracts/AlkemiNetwork.sol](../contracts/AlkemiNetwork.sol)
 
 **↗ Extends: [LiquidityReserveFactory](LiquidityReserveFactory.md)**
 
-**AlkemiNetwork**
+**{{ContractName}}**
 
 This contract manage Alkemi Network on-chain process
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: Oracle
 nav_order: 3
 ---
 
@@ -11,7 +11,7 @@ View Source: [chainlinkv0.5/contracts/Oracle.sol](../chainlinkv0.5/contracts/Ora
 **↗ Extends: [ChainlinkRequestInterface](ChainlinkRequestInterface.md), [OracleInterface](OracleInterface.md), [Ownable](Ownable.md), [LinkTokenReceiver](LinkTokenReceiver.md)**
 **↘ Derived Contracts: [ChainlinkOracle](ChainlinkOracle.md)**
 
-**Oracle**
+**{{ContractName}}**
 
 Node operators can deploy this contract to fulfill requests sent to them
 

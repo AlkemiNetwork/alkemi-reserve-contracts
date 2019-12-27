@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: IAlkemiSettlement
 nav_order: 3
 ---
 
@@ -8,7 +8,7 @@ nav_order: 3
 
 View Source: [contracts/interfaces/IAlkemiSettlement.sol](../contracts/interfaces/IAlkemiSettlement.sol)
 
-**IAlkemiSettlement**
+**{{ContractName}}**
 
 ## Functions
 

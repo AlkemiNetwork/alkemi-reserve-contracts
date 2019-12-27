@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: Address
 nav_order: 3
 ---
 
@@ -8,7 +8,7 @@ nav_order: 3
 
 View Source: [@openzeppelin/contracts/utils/Address.sol](../@openzeppelin/contracts/utils/Address.sol)
 
-**Address**
+**{{ContractName}}**
 
 Collection of functions related to the address type
 

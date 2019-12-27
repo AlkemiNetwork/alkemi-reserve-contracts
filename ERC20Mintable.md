@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: ERC20Mintable
 nav_order: 3
 ---
 
@@ -11,7 +11,7 @@ View Source: [@openzeppelin/contracts/token/ERC20/ERC20Mintable.sol](../@openzep
 **↗ Extends: [ERC20](ERC20.md), [MinterRole](MinterRole.md)**
 **↘ Derived Contracts: [TokenMock](TokenMock.md)**
 
-**ERC20Mintable**
+**{{ContractName}}**
 
 Extension of {ERC20} that adds a set of accounts with the {MinterRole},
 which have permission to mint (create) new tokens as they see fit.

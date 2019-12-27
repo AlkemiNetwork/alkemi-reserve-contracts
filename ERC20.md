@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: ERC20
 nav_order: 3
 ---
 
@@ -11,7 +11,7 @@ View Source: [@openzeppelin/contracts/token/ERC20/ERC20.sol](../@openzeppelin/co
 **↗ Extends: [Context](Context.md), [IERC20](IERC20.md)**
 **↘ Derived Contracts: [ERC20Mintable](ERC20Mintable.md)**
 
-**ERC20**
+**{{ContractName}}**
 
 Implementation of the {IERC20} interface.
  * This implementation is agnostic to the way tokens are created. This means

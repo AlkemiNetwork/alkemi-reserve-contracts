@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: LiquidityReserveState
 nav_order: 3
 ---
 
@@ -10,7 +10,7 @@ View Source: [contracts/liquidity-reserve/LiquidityReserveState.sol](../contract
 
 **↘ Derived Contracts: [LiquidityReserve](LiquidityReserve.md)**
 
-**LiquidityReserveState**
+**{{ContractName}}**
 
 ## Contract Members
 **Constants & Variables**

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: SafeERC20
 nav_order: 3
 ---
 
@@ -8,7 +8,7 @@ nav_order: 3
 
 View Source: [@openzeppelin/contracts/token/ERC20/SafeERC20.sol](../@openzeppelin/contracts/token/ERC20/SafeERC20.sol)
 
-**SafeERC20**
+**{{ContractName}}**
 
 Wrappers around ERC20 operations that throw on failure (when the token
 contract returns false). Tokens that return no value (and instead revert or

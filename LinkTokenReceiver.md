@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: LinkTokenReceiver
 nav_order: 3
 ---
 
@@ -10,7 +10,7 @@ View Source: [chainlinkv0.5/contracts/LinkTokenReceiver.sol](../chainlinkv0.5/co
 
 **↘ Derived Contracts: [Oracle](Oracle.md)**
 
-**LinkTokenReceiver**
+**{{ContractName}}**
 
 ## Contract Members
 **Constants & Variables**

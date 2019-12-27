@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: Chainlink
 nav_order: 3
 ---
 
@@ -8,7 +8,7 @@ nav_order: 3
 
 View Source: [chainlinkv0.5/contracts/Chainlink.sol](../chainlinkv0.5/contracts/Chainlink.sol)
 
-**Chainlink**
+**{{ContractName}}**
 
 Uses imported CBOR library for encoding to buffer
 

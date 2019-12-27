@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: ENSResolver
 nav_order: 3
 ---
 
@@ -8,7 +8,7 @@ nav_order: 3
 
 View Source: [chainlinkv0.5/contracts/vendor/ENSResolver.sol](../chainlinkv0.5/contracts/vendor/ENSResolver.sol)
 
-**ENSResolver**
+**{{ContractName}}**
 
 ## Functions
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: Context
 nav_order: 3
 ---
 
@@ -10,7 +10,7 @@ View Source: [@openzeppelin/contracts/GSN/Context.sol](../@openzeppelin/contract
 
 **↘ Derived Contracts: [ERC20](ERC20.md), [MinterRole](MinterRole.md)**
 
-**Context**
+**{{ContractName}}**
 
 ## Functions
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: LiquidityReserve
 nav_order: 3
 ---
 
@@ -10,7 +10,7 @@ View Source: [contracts/liquidity-reserve/LiquidityReserve.sol](../contracts/liq
 
 **↗ Extends: [ChainlinkClient](ChainlinkClient.md), [LiquidityReserveState](LiquidityReserveState.md)**
 
-**LiquidityReserve**
+**{{ContractName}}**
 
 Base layer functionality for the Liquidity Reserve
 

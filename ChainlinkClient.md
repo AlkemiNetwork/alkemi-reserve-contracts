@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: ChainlinkClient
 nav_order: 3
 ---
 
@@ -10,7 +10,7 @@ View Source: [chainlinkv0.5/contracts/ChainlinkClient.sol](../chainlinkv0.5/cont
 
 **↘ Derived Contracts: [LiquidityReserve](LiquidityReserve.md)**
 
-**ChainlinkClient**
+**{{ContractName}}**
 
 Contract writers can inherit this contract in order to create requests for the
 Chainlink network

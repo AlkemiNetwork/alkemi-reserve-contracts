@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: IAlkemiToken
 nav_order: 3
 ---
 
@@ -8,7 +8,7 @@ nav_order: 3
 
 View Source: [contracts/interfaces/IAlkemiToken.sol](../contracts/interfaces/IAlkemiToken.sol)
 
-**IAlkemiToken**
+**{{ContractName}}**
 
 **Events**
 

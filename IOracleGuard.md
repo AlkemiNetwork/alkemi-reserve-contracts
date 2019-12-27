@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: IOracleGuard
 nav_order: 3
 ---
 
@@ -8,7 +8,7 @@ nav_order: 3
 
 View Source: [contracts/interfaces/IOracleGuard.sol](../contracts/interfaces/IOracleGuard.sol)
 
-**IOracleGuard**
+**{{ContractName}}**
 
 ## Functions
 

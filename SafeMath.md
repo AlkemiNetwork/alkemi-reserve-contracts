@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: SafeMath
 nav_order: 3
 ---
 
@@ -8,7 +8,7 @@ nav_order: 3
 
 View Source: [chainlinkv0.5/contracts/vendor/SafeMath.sol](../chainlinkv0.5/contracts/vendor/SafeMath.sol)
 
-**SafeMath**
+**{{ContractName}}**
 
 Wrappers over Solidity's arithmetic operations with added overflow
 checks.

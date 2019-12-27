@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: Migrations
 nav_order: 3
 ---
 
@@ -8,7 +8,7 @@ nav_order: 3
 
 View Source: [contracts/Migrations.sol](../contracts/Migrations.sol)
 
-**Migrations**
+**{{ContractName}}**
 
 ## Contract Members
 **Constants & Variables**

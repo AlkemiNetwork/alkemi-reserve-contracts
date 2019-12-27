@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Alkemi Network
+title: OracleInterface
 nav_order: 3
 ---
 
@@ -10,7 +10,7 @@ View Source: [chainlinkv0.5/contracts/interfaces/OracleInterface.sol](../chainli
 
 **↘ Derived Contracts: [Oracle](Oracle.md)**
 
-**OracleInterface**
+**{{ContractName}}**
 
 ## Functions
 
