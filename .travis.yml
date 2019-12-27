@@ -7,13 +7,6 @@ notifications:
   email: false
 node_js:
   - '12.13.1'
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  keep_history: true
-  on:
-    branch: master
 env:
   - TASK=lint:tests
   - TASK=lint:contracts
