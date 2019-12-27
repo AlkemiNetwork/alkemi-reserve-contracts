@@ -1,0 +1,62 @@
+
+> alkemi-protocol-contracts@1.0.0 test /home/travis/build/project-alkemi/alkemi-protocol
+> truffle test
+
+Using network 'development'.
+
+
+Compiling your contracts...
+===========================
+> Everything is up to date, there is nothing to compile.
+
+
+[0m[0m
+[0m  Contract: Alkemi Liquidity Reserve[0m
+[0m    Liquidity Reserve[0m
+    [32m  ✓[0m[90m check deployment[0m
+[0m    Create liquidity reserve[0m
+    [32m  ✓[0m[90m create liquidity reserve[0m[31m (141ms)[0m
+[0m    deposit into reserve[0m
+    [32m  ✓[0m[90m should revert when depositing token without aprroving transfer to the liquidity contract[0m[31m (84ms)[0m
+    [32m  ✓[0m[90m should revert when depositing token amount equal to zero[0m[31m (84ms)[0m
+    [32m  ✓[0m[90m should revert when depositing token from address that have no permission[0m[33m (75ms)[0m
+    [32m  ✓[0m[90m deposit[0m[31m (172ms)[0m
+    [32m  ✓[0m[90m should revert depositing into an already deposited-in reserve[0m[31m (77ms)[0m
+[0m    Withdraw[0m
+[0m      Liquidity provider withdraw[0m
+      [32m  ✓[0m[90m should revert withdrawing during locking period and price locking[0m[31m (181ms)[0m
+      [32m  ✓[0m[90m withdraw when price locking condition is valid even if locking period is not valid[0m[31m (414ms)[0m
+      [32m  ✓[0m[90m withdraw when locking period is valid even if price locking is not valid[0m[31m (115ms)[0m
+      [32m  ✓[0m[90m should revert another liqudity provider withdrawing from liquidity reserve[0m[33m (56ms)[0m
+[0m      Locking period[0m
+      [32m  ✓[0m[90m should revert extending locking period from an address other than provider[0m[33m (72ms)[0m
+      [32m  ✓[0m[90m extend locking period[0m[31m (179ms)[0m
+[0m    Create request[0m
+    [32m  ✓[0m[90m should revert when sending request without tokens[0m[31m (114ms)[0m
+    [32m  ✓[0m[90m send price request[0m[31m (143ms)[0m
+[0m    fulfill[0m
+    [32m  ✓[0m[90m records the data given to it by the oracle[0m
+    [32m  ✓[0m[90m should revert when node does not recognize request ID[0m
+    [32m  ✓[0m[90m should revert when called by anyone other than the oracle contract[0m[33m (44ms)[0m
+[0m    Withdraw LINK token[0m
+    [32m  ✓[0m[90m should revert when called by a non-owner[0m
+    [32m  ✓[0m[90m transfers LINK to the owner[0m[33m (55ms)[0m
+
+[0m  Contract: Oracle System[0m
+[0m    Oracle Guard[0m
+    [32m  ✓[0m[90m check deployment[0m[33m (71ms)[0m
+[0m    Oracle[0m
+[0m      Settlement id[0m
+      [32m  ✓[0m[90m get settlement id[0m[33m (58ms)[0m
+      [32m  ✓[0m[90m should revert getting settlement id from unauthorized node[0m
+[0m    Submit book hash and settlement details[0m
+    [32m  ✓[0m[90m should revert submitting from unauthorized node[0m[33m (42ms)[0m
+    [32m  ✓[0m[90m submit book[0m[31m (80ms)[0m
+    [32m  ✓[0m[90m should revert submitting book for a settlement id that have already a submitted book and settlement details[0m[33m (41ms)[0m
+[0m    Vote for submitted book[0m
+    [32m  ✓[0m[90m should revert voting from unauthorized node[0m
+    [32m  ✓[0m[90m should do settlement if Yes consensus reached[0m[31m (170ms)[0m
+
+
+[92m [0m[32m 28 passing[0m[90m (5s)[0m
+
