@@ -4,38 +4,46 @@ title: Alkemi Network
 nav_order: 3
 ---
 
-# MinterRole.sol
+# Ownable.sol
 
-View Source: [@openzeppelin/contracts/access/roles/MinterRole.sol](../@openzeppelin/contracts/access/roles/MinterRole.sol)
+View Source: [chainlinkv0.5/contracts/vendor/Ownable.sol](../chainlinkv0.5/contracts/vendor/Ownable.sol)
 
-**↗ Extends: [Context](Context.md)**
-**↘ Derived Contracts: [ERC20Mintable](ERC20Mintable.md)**
+**↘ Derived Contracts: [Oracle](Oracle.md)**
 
-**MinterRole**
+**Ownable**
+
+Contract module which provides a basic access control mechanism, where
+there is an account (an owner) that can be granted exclusive access to
+specific functions.
+ * This module is used through inheritance. It will make available the modifier
+`onlyOwner`, which can be aplied to your functions to restrict their use to
+the owner.
+ * This contract has been modified to remove the revokeOwnership function
 
 ## Contract Members
 **Constants & Variables**
 
 ```js
-struct Roles.Role private _minters;
+address private _owner;
 
 ```
 
 **Events**
 
 ```js
-event MinterAdded(address indexed account);
-event MinterRemoved(address indexed account);
+event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 ```
 
 ## Modifiers
 
-- [onlyMinter](#onlyminter)
+- [onlyOwner](#onlyowner)
 
-### onlyMinter
+### onlyOwner
+
+Throws if called by any account other than the owner.
 
 ```js
-modifier onlyMinter() internal
+modifier onlyOwner() internal
 ```
 
 **Arguments**
@@ -46,13 +54,14 @@ modifier onlyMinter() internal
 ## Functions
 
 - [()](#)
-- [isMinter(address account)](#isminter)
-- [addMinter(address account)](#addminter)
-- [renounceMinter()](#renounceminter)
-- [_addMinter(address account)](#_addminter)
-- [_removeMinter(address account)](#_removeminter)
+- [owner()](#owner)
+- [isOwner()](#isowner)
+- [transferOwnership(address newOwner)](#transferownership)
+- [_transferOwnership(address newOwner)](#_transferownership)
 
 ### 
+
+Initializes the contract setting the deployer as the initial owner.
 
 ```js
 function () internal nonpayable
@@ -63,10 +72,26 @@ function () internal nonpayable
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
 
-### isMinter
+### owner
+
+Returns the address of the current owner.
 
 ```js
-function isMinter(address account) public view
+function owner() public view
+returns(address)
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+
+### isOwner
+
+Returns true if the caller is the current owner.
+
+```js
+function isOwner() public view
 returns(bool)
 ```
 
@@ -74,54 +99,35 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
 
-### addMinter
+### transferOwnership
+
+Transfers ownership of the contract to a new account (`newOwner`).
+Can only be called by the current owner.
 
 ```js
-function addMinter(address account) public nonpayable onlyMinter 
+function transferOwnership(address newOwner) public nonpayable onlyOwner 
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| account | address |  | 
+| newOwner | address |  | 
 
-### renounceMinter
+### _transferOwnership
+
+Transfers ownership of the contract to a new account (`newOwner`).
 
 ```js
-function renounceMinter() public nonpayable
+function _transferOwnership(address newOwner) internal nonpayable
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-
-### _addMinter
-
-```js
-function _addMinter(address account) internal nonpayable
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| account | address |  | 
-
-### _removeMinter
-
-```js
-function _removeMinter(address account) internal nonpayable
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| account | address |  | 
+| newOwner | address |  | 
 
 ## Contracts
 

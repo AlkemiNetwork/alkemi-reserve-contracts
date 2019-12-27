@@ -1,192 +1,311 @@
-# Oracle.sol
+---
+layout: default
+title: Alkemi Network
+nav_order: 3
+---
 
-View Source: [contracts/oracles/Oracle.sol](../contracts/oracles/Oracle.sol)
+# The Chainlink Oracle contract (Oracle.sol)
+
+View Source: [chainlinkv0.5/contracts/Oracle.sol](../chainlinkv0.5/contracts/Oracle.sol)
+
+**↗ Extends: [ChainlinkRequestInterface](ChainlinkRequestInterface.md), [OracleInterface](OracleInterface.md), [Ownable](Ownable.md), [LinkTokenReceiver](LinkTokenReceiver.md)**
+**↘ Derived Contracts: [ChainlinkOracle](ChainlinkOracle.md)**
 
 **Oracle**
 
-**Enums**
-### Vote
-
-```js
-enum Vote {
- YES,
- NO
-}
-```
-
-## Structs
-### SettlementVoting
-
-```js
-struct SettlementVoting {
- address node,
- uint256 settlementId,
- bytes32 bookHash,
- uint256 minimumVotes,
- uint256 yesVotes,
- uint256 noVotes,
- bool isSettled,
- address[] exchangesAddresses,
- address[] surplusTokensAddresses,
- address[] deficitTokensAddresses,
- uint128[] surplus,
- uint128[] deficit
-}
-```
+Node operators can deploy this contract to fulfill requests sent to them
 
 ## Contract Members
 **Constants & Variables**
 
 ```js
 //public members
-mapping(uint256 => address[]) public settlementBannedNode;
-mapping(uint256 => bytes32) public settlementBookHash;
-mapping(bytes32 => struct Oracle.SettlementVoting) public settlementVoting;
-mapping(bytes32 => mapping(address => bool)) public accountingVotedNode;
+uint256 public constant EXPIRY_TIME;
+
+//private members
+uint256 private constant MINIMUM_CONSUMER_GAS_LIMIT;
+uint256 private constant ONE_FOR_CONSISTENT_GAS_COST;
+mapping(bytes32 => bytes32) private commitments;
+mapping(address => bool) private authorizedNodes;
+uint256 private withdrawableTokens;
 
 //internal members
-contract IAlkemiSettlement internal _settlementContract;
-contract IOracleGuard internal _oracleGuard;
+contract LinkTokenInterface internal LinkToken;
 
 ```
 
 **Events**
 
 ```js
-event Settlement(uint256 indexed settlementId, bytes32  bookHash);
-event RequestAccountingBook(uint256 indexed settlementId);
-event RequestVote(uint256 indexed settlementId, bytes32  bookHash);
-event RequestStopTrade(uint256 indexed settlementId);
-event RequestContinueTrade(uint256  settlementId, uint256  settlementTimeStamp);
+event OracleRequest(bytes32 indexed specId, address  requester, bytes32  requestId, uint256  payment, address  callbackAddr, bytes4  callbackFunctionId, uint256  cancelExpiration, uint256  dataVersion, bytes  data);
+event CancelOracleRequest(bytes32 indexed requestId);
 ```
+
+## Modifiers
+
+- [hasAvailableFunds](#hasavailablefunds)
+- [isValidRequest](#isvalidrequest)
+- [onlyAuthorizedNode](#onlyauthorizednode)
+- [checkCallbackAddress](#checkcallbackaddress)
+
+### hasAvailableFunds
+
+Reverts if amount requested is greater than withdrawable balance
+
+```js
+modifier hasAvailableFunds(uint256 _amount) internal
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| _amount | uint256 | The given amount to compare to `withdrawableTokens` | 
+
+### isValidRequest
+
+Reverts if request ID does not exist
+
+```js
+modifier isValidRequest(bytes32 _requestId) internal
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| _requestId | bytes32 | The given request ID to check in stored `commitments` | 
+
+### onlyAuthorizedNode
+
+Reverts if `msg.sender` is not authorized to fulfill requests
+
+```js
+modifier onlyAuthorizedNode() internal
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+
+### checkCallbackAddress
+
+Reverts if the callback address is the LINK token
+
+```js
+modifier checkCallbackAddress(address _to) internal
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| _to | address | The callback address | 
 
 ## Functions
 
-- [(address settlementContract, address oracleGuard)](#)
-- [getSettlementId()](#getsettlementid)
-- [submitBook(address[] exchangesAddresses, address[] surplusTokensAddresses, address[] deficitTokensAddresses, uint128[] surplus, uint128[] deficit, uint256 _settlementId, bytes32 _bookHash)](#submitbook)
-- [settlementVote(uint256 _settlementId, bytes32 _bookHash, uint8 _vote)](#settlementvote)
-- [requestNodesVoting(uint256 _settlementId, bytes32 _bookHash)](#requestnodesvoting)
-- [requestAccountingBook(uint256 _settlementId)](#requestaccountingbook)
-- [restartContainersTrading(uint256 settlementId, uint256 settlementTime)](#restartcontainerstrading)
-- [stopContainersTrading(uint256 settlementId)](#stopcontainerstrading)
+- [(address _link)](#)
+- [oracleRequest(address _sender, uint256 _payment, bytes32 _specId, address _callbackAddress, bytes4 _callbackFunctionId, uint256 _nonce, uint256 _dataVersion, bytes _data)](#oraclerequest)
+- [fulfillOracleRequest(bytes32 _requestId, uint256 _payment, address _callbackAddress, bytes4 _callbackFunctionId, uint256 _expiration, bytes32 _data)](#fulfilloraclerequest)
+- [getAuthorizationStatus(address _node)](#getauthorizationstatus)
+- [setFulfillmentPermission(address _node, bool _allowed)](#setfulfillmentpermission)
+- [withdraw(address _recipient, uint256 _amount)](#withdraw)
+- [withdrawable()](#withdrawable)
+- [cancelOracleRequest(bytes32 _requestId, uint256 _payment, bytes4 _callbackFunc, uint256 _expiration)](#canceloraclerequest)
+- [getChainlinkToken()](#getchainlinktoken)
 
 ### 
 
+Deploy with the address of the LINK token
+
 ```js
-function (address settlementContract, address oracleGuard) public nonpayable
+function (address _link) public nonpayable Ownable 
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| settlementContract | address |  | 
-| oracleGuard | address |  | 
+| _link | address | The address of the LINK token | 
 
-### getSettlementId
+### oracleRequest
+
+⤾ overrides [ChainlinkRequestInterface.oracleRequest](ChainlinkRequestInterface.md#oraclerequest)
+
+Creates the Chainlink request
 
 ```js
-function getSettlementId() external view
+function oracleRequest(address _sender, uint256 _payment, bytes32 _specId, address _callbackAddress, bytes4 _callbackFunctionId, uint256 _nonce, uint256 _dataVersion, bytes _data) external nonpayable onlyLINK checkCallbackAddress 
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| _sender | address | The sender of the request | 
+| _payment | uint256 | The amount of payment given (specified in wei) | 
+| _specId | bytes32 | The Job Specification ID | 
+| _callbackAddress | address | The callback address for the response | 
+| _callbackFunctionId | bytes4 | The callback function ID for the response | 
+| _nonce | uint256 | The nonce sent by the requester | 
+| _dataVersion | uint256 | The specified data version | 
+| _data | bytes | Version The specified data version | 
+
+### fulfillOracleRequest
+
+⤾ overrides [OracleInterface.fulfillOracleRequest](OracleInterface.md#fulfilloraclerequest)
+
+Called by the Chainlink node to fulfill requests
+
+```js
+function fulfillOracleRequest(bytes32 _requestId, uint256 _payment, address _callbackAddress, bytes4 _callbackFunctionId, uint256 _expiration, bytes32 _data) external nonpayable onlyAuthorizedNode isValidRequest 
+returns(bool)
+```
+
+**Returns**
+
+Status if the external call was successful
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| _requestId | bytes32 | The fulfillment request ID that must match the requester's | 
+| _payment | uint256 | The payment amount that will be released for the oracle (specified in wei) | 
+| _callbackAddress | address | The callback address to call for fulfillment | 
+| _callbackFunctionId | bytes4 | The callback function ID to use for fulfillment | 
+| _expiration | uint256 | The expiration that the node should respond by before the requester can cancel | 
+| _data | bytes32 | The data to return to the consuming contract | 
+
+### getAuthorizationStatus
+
+⤾ overrides [OracleInterface.getAuthorizationStatus](OracleInterface.md#getauthorizationstatus)
+
+Use this to check if a node is authorized for fulfilling requests
+
+```js
+function getAuthorizationStatus(address _node) external view
+returns(bool)
+```
+
+**Returns**
+
+The authorization status of the node
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| _node | address | The address of the Chainlink node | 
+
+### setFulfillmentPermission
+
+⤾ overrides [OracleInterface.setFulfillmentPermission](OracleInterface.md#setfulfillmentpermission)
+
+Sets the fulfillment permission for a given node. Use `true` to allow, `false` to disallow.
+
+```js
+function setFulfillmentPermission(address _node, bool _allowed) external nonpayable onlyOwner 
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| _node | address | The address of the Chainlink node | 
+| _allowed | bool | Bool value to determine if the node can fulfill requests | 
+
+### withdraw
+
+⤾ overrides [OracleInterface.withdraw](OracleInterface.md#withdraw)
+
+Allows the node operator to withdraw earned LINK to a given address
+
+```js
+function withdraw(address _recipient, uint256 _amount) external nonpayable onlyOwner hasAvailableFunds 
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| _recipient | address | The address to send the LINK token to | 
+| _amount | uint256 | The amount to send (specified in wei) | 
+
+### withdrawable
+
+⤾ overrides [OracleInterface.withdrawable](OracleInterface.md#withdrawable)
+
+Displays the amount of LINK that is available for the node operator to withdraw
+
+```js
+function withdrawable() external view onlyOwner 
 returns(uint256)
 ```
 
+**Returns**
+
+The amount of withdrawable LINK on the contract
+
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
 
-### submitBook
+### cancelOracleRequest
 
-submit book hash and settlement details to vote for
+⤾ overrides [ChainlinkRequestInterface.cancelOracleRequest](ChainlinkRequestInterface.md#canceloraclerequest)
+
+Allows requesters to cancel requests sent to this oracle contract. Will transfer the LINK
+sent for the request back to the requester's address.
 
 ```js
-function submitBook(address[] exchangesAddresses, address[] surplusTokensAddresses, address[] deficitTokensAddresses, uint128[] surplus, uint128[] deficit, uint256 _settlementId, bytes32 _bookHash) external nonpayable
+function cancelOracleRequest(bytes32 _requestId, uint256 _payment, bytes4 _callbackFunc, uint256 _expiration) external nonpayable
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| exchangesAddresses | address[] | list of exchanges addresses | 
-| surplusTokensAddresses | address[] | list of tokens for surplus | 
-| deficitTokensAddresses | address[] | list of tokens for deficit | 
-| surplus | uint128[] | TokensAddresses list of tokens for surplus | 
-| deficit | uint128[] | TokensAddresses list of tokens for deficit | 
-| _settlementId | uint256 | book settlement id | 
-| _bookHash | bytes32 | book hash | 
+| _requestId | bytes32 | The request ID | 
+| _payment | uint256 | The amount of payment given (specified in wei) | 
+| _callbackFunc | bytes4 | The requester's specified callback address | 
+| _expiration | uint256 | The time of the expiration for the request | 
 
-### settlementVote
+### getChainlinkToken
+
+⤾ overrides [LinkTokenReceiver.getChainlinkToken](LinkTokenReceiver.md#getchainlinktoken)
+
+Returns the address of the LINK token
 
 ```js
-function settlementVote(uint256 _settlementId, bytes32 _bookHash, uint8 _vote) external nonpayable
+function getChainlinkToken() public view
+returns(address)
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _settlementId | uint256 |  | 
-| _bookHash | bytes32 |  | 
-| _vote | uint8 |  | 
-
-### requestNodesVoting
-
-```js
-function requestNodesVoting(uint256 _settlementId, bytes32 _bookHash) internal nonpayable
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| _settlementId | uint256 |  | 
-| _bookHash | bytes32 |  | 
-
-### requestAccountingBook
-
-```js
-function requestAccountingBook(uint256 _settlementId) internal nonpayable
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| _settlementId | uint256 |  | 
-
-### restartContainersTrading
-
-```js
-function restartContainersTrading(uint256 settlementId, uint256 settlementTime) external nonpayable
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| settlementId | uint256 |  | 
-| settlementTime | uint256 |  | 
-
-### stopContainersTrading
-
-```js
-function stopContainersTrading(uint256 settlementId) internal nonpayable
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| settlementId | uint256 |  | 
 
 ## Contracts
 
 * [Address](Address.md)
 * [AlkemiNetwork](AlkemiNetwork.md)
+* [AlkemiOracle](AlkemiOracle.md)
 * [AlkemiSettlementMock](AlkemiSettlementMock.md)
+* [Buffer](Buffer.md)
+* [CBOR](CBOR.md)
+* [Chainlink](Chainlink.md)
+* [ChainlinkClient](ChainlinkClient.md)
+* [ChainlinkOracle](ChainlinkOracle.md)
+* [ChainlinkRequestInterface](ChainlinkRequestInterface.md)
 * [Context](Context.md)
+* [ENSInterface](ENSInterface.md)
+* [ENSResolver](ENSResolver.md)
 * [ERC20](ERC20.md)
+* [ERC20Detailed](ERC20Detailed.md)
 * [ERC20Mintable](ERC20Mintable.md)
 * [EtherTokenConstantMock](EtherTokenConstantMock.md)
 * [IAlkemiSettlement](IAlkemiSettlement.md)
@@ -196,6 +315,8 @@ function stopContainersTrading(uint256 settlementId) internal nonpayable
 * [ILiquidityReserveFactory](ILiquidityReserveFactory.md)
 * [IOracle](IOracle.md)
 * [IOracleGuard](IOracleGuard.md)
+* [LinkTokenInterface](LinkTokenInterface.md)
+* [LinkTokenReceiver](LinkTokenReceiver.md)
 * [LiquidityReserve](LiquidityReserve.md)
 * [LiquidityReserveFactory](LiquidityReserveFactory.md)
 * [LiquidityReserveState](LiquidityReserveState.md)
@@ -203,6 +324,9 @@ function stopContainersTrading(uint256 settlementId) internal nonpayable
 * [MinterRole](MinterRole.md)
 * [Oracle](Oracle.md)
 * [OracleGuard](OracleGuard.md)
+* [OracleInterface](OracleInterface.md)
+* [Ownable](Ownable.md)
+* [PointerInterface](PointerInterface.md)
 * [Roles](Roles.md)
 * [SafeERC20](SafeERC20.md)
 * [SafeMath](SafeMath.md)

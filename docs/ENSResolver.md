@@ -4,45 +4,28 @@ title: Alkemi Network
 nav_order: 3
 ---
 
-# LiquidityReserveFactory (LiquidityReserveFactory.sol)
+# ENSResolver.sol
 
-View Source: [contracts/liquidity-reserve/factory/LiquidityReserveFactory.sol](../contracts/liquidity-reserve/factory/LiquidityReserveFactory.sol)
+View Source: [chainlinkv0.5/contracts/vendor/ENSResolver.sol](../chainlinkv0.5/contracts/vendor/ENSResolver.sol)
 
-**↘ Derived Contracts: [AlkemiNetwork](AlkemiNetwork.md)**
-
-**LiquidityReserveFactory**
-
-This Factory creates a Liquidity Reserve
+**ENSResolver**
 
 ## Functions
 
-- [_createLiquidityReserve(address _linkToken, address _liquidityProvider, address _alkemiNetwork, address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition)](#_createliquidityreserve)
+- [addr(bytes32 node)](#addr)
 
-### _createLiquidityReserve
-
-Creates and initialises a new LiquidityReserve
+### addr
 
 ```js
-function _createLiquidityReserve(address _linkToken, address _liquidityProvider, address _alkemiNetwork, address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition) internal nonpayable
+function addr(bytes32 node) public view
 returns(address)
 ```
-
-**Returns**
-
-Address of new Liquidity Reserve
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _linkToken | address |  | 
-| _liquidityProvider | address | Lequidity provider address | 
-| _alkemiNetwork | address | Alkemi Network contract address | 
-| _beneficiary | address | earnings beneficiary (address(0) if the earnings goes to the current reserve address) | 
-| _asset | address |  | 
-| _lockingPeriod | uint256 | funds locking period | 
-| _lockingPrice | uint256 | release funds when hitting this price | 
-| _lockingPricePosition | uint8 | locking price position | 
+| node | bytes32 |  | 
 
 ## Contracts
 

@@ -11,11 +11,20 @@ env:
   - TASK=lint:tests
   - TASK=lint:contracts
   - TASK=test
+  - TASK=generate:doc
 before_script:
-  - npm run generate:doc
   - npm run ganache-ci
   - sleep 5
 script:
   - travis_wait 60 npm run $TASK
 #after_success:
 #  - npm run coverage && cat coverage/lcov.info | coveralls
+deploy:	
+  provider: pages	
+  skip_cleanup: true	
+  github_token: $GITHUB_TOKEN	
+  keep_history: true	
+  local_dir: docs
+  on:	
+    branch: master
+  target_branch: gh-pages

@@ -1,6 +1,12 @@
+---
+layout: default
+title: Alkemi Network
+nav_order: 3
+---
+
 # SafeMath.sol
 
-View Source: [@openzeppelin/contracts/math/SafeMath.sol](../@openzeppelin/contracts/math/SafeMath.sol)
+View Source: [chainlinkv0.5/contracts/vendor/SafeMath.sol](../chainlinkv0.5/contracts/vendor/SafeMath.sol)
 
 **SafeMath**
 
@@ -18,19 +24,16 @@ class of bugs, so it's recommended to use it always.
 
 - [add(uint256 a, uint256 b)](#add)
 - [sub(uint256 a, uint256 b)](#sub)
-- [sub(uint256 a, uint256 b, string errorMessage)](#sub)
 - [mul(uint256 a, uint256 b)](#mul)
 - [div(uint256 a, uint256 b)](#div)
-- [div(uint256 a, uint256 b, string errorMessage)](#div)
 - [mod(uint256 a, uint256 b)](#mod)
-- [mod(uint256 a, uint256 b, string errorMessage)](#mod)
 
 ### add
 
 Returns the addition of two unsigned integers, reverting on
 overflow.
-     * Counterpart to Solidity's `+` operator.
-     * Requirements:
+    * Counterpart to Solidity's `+` operator.
+    * Requirements:
 - Addition cannot overflow.
 
 ```js
@@ -49,8 +52,8 @@ returns(uint256)
 
 Returns the subtraction of two unsigned integers, reverting on
 overflow (when the result is negative).
-     * Counterpart to Solidity's `-` operator.
-     * Requirements:
+    * Counterpart to Solidity's `-` operator.
+    * Requirements:
 - Subtraction cannot overflow.
 
 ```js
@@ -65,34 +68,12 @@ returns(uint256)
 | a | uint256 |  | 
 | b | uint256 |  | 
 
-### sub
-
-Returns the subtraction of two unsigned integers, reverting with custom message on
-overflow (when the result is negative).
-     * Counterpart to Solidity's `-` operator.
-     * Requirements:
-- Subtraction cannot overflow.
-     * _Available since v2.4.0._
-
-```js
-function sub(uint256 a, uint256 b, string errorMessage) internal pure
-returns(uint256)
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| a | uint256 |  | 
-| b | uint256 |  | 
-| errorMessage | string |  | 
-
 ### mul
 
 Returns the multiplication of two unsigned integers, reverting on
 overflow.
-     * Counterpart to Solidity's `*` operator.
-     * Requirements:
+    * Counterpart to Solidity's `*` operator.
+    * Requirements:
 - Multiplication cannot overflow.
 
 ```js
@@ -111,10 +92,10 @@ returns(uint256)
 
 Returns the integer division of two unsigned integers. Reverts on
 division by zero. The result is rounded towards zero.
-     * Counterpart to Solidity's `/` operator. Note: this function uses a
+    * Counterpart to Solidity's `/` operator. Note: this function uses a
 `revert` opcode (which leaves remaining gas untouched) while Solidity
 uses an invalid opcode to revert (consuming all remaining gas).
-     * Requirements:
+    * Requirements:
 - The divisor cannot be zero.
 
 ```js
@@ -129,38 +110,14 @@ returns(uint256)
 | a | uint256 |  | 
 | b | uint256 |  | 
 
-### div
-
-Returns the integer division of two unsigned integers. Reverts with custom message on
-division by zero. The result is rounded towards zero.
-     * Counterpart to Solidity's `/` operator. Note: this function uses a
-`revert` opcode (which leaves remaining gas untouched) while Solidity
-uses an invalid opcode to revert (consuming all remaining gas).
-     * Requirements:
-- The divisor cannot be zero.
-     * _Available since v2.4.0._
-
-```js
-function div(uint256 a, uint256 b, string errorMessage) internal pure
-returns(uint256)
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| a | uint256 |  | 
-| b | uint256 |  | 
-| errorMessage | string |  | 
-
 ### mod
 
 Returns the remainder of dividing two unsigned integers. (unsigned integer modulo),
 Reverts when dividing by zero.
-     * Counterpart to Solidity's `%` operator. This function uses a `revert`
+    * Counterpart to Solidity's `%` operator. This function uses a `revert`
 opcode (which leaves remaining gas untouched) while Solidity uses an
 invalid opcode to revert (consuming all remaining gas).
-     * Requirements:
+    * Requirements:
 - The divisor cannot be zero.
 
 ```js
@@ -175,37 +132,23 @@ returns(uint256)
 | a | uint256 |  | 
 | b | uint256 |  | 
 
-### mod
-
-Returns the remainder of dividing two unsigned integers. (unsigned integer modulo),
-Reverts with custom message when dividing by zero.
-     * Counterpart to Solidity's `%` operator. This function uses a `revert`
-opcode (which leaves remaining gas untouched) while Solidity uses an
-invalid opcode to revert (consuming all remaining gas).
-     * Requirements:
-- The divisor cannot be zero.
-     * _Available since v2.4.0._
-
-```js
-function mod(uint256 a, uint256 b, string errorMessage) internal pure
-returns(uint256)
-```
-
-**Arguments**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| a | uint256 |  | 
-| b | uint256 |  | 
-| errorMessage | string |  | 
-
 ## Contracts
 
 * [Address](Address.md)
 * [AlkemiNetwork](AlkemiNetwork.md)
+* [AlkemiOracle](AlkemiOracle.md)
 * [AlkemiSettlementMock](AlkemiSettlementMock.md)
+* [Buffer](Buffer.md)
+* [CBOR](CBOR.md)
+* [Chainlink](Chainlink.md)
+* [ChainlinkClient](ChainlinkClient.md)
+* [ChainlinkOracle](ChainlinkOracle.md)
+* [ChainlinkRequestInterface](ChainlinkRequestInterface.md)
 * [Context](Context.md)
+* [ENSInterface](ENSInterface.md)
+* [ENSResolver](ENSResolver.md)
 * [ERC20](ERC20.md)
+* [ERC20Detailed](ERC20Detailed.md)
 * [ERC20Mintable](ERC20Mintable.md)
 * [EtherTokenConstantMock](EtherTokenConstantMock.md)
 * [IAlkemiSettlement](IAlkemiSettlement.md)
@@ -215,6 +158,8 @@ returns(uint256)
 * [ILiquidityReserveFactory](ILiquidityReserveFactory.md)
 * [IOracle](IOracle.md)
 * [IOracleGuard](IOracleGuard.md)
+* [LinkTokenInterface](LinkTokenInterface.md)
+* [LinkTokenReceiver](LinkTokenReceiver.md)
 * [LiquidityReserve](LiquidityReserve.md)
 * [LiquidityReserveFactory](LiquidityReserveFactory.md)
 * [LiquidityReserveState](LiquidityReserveState.md)
@@ -222,6 +167,9 @@ returns(uint256)
 * [MinterRole](MinterRole.md)
 * [Oracle](Oracle.md)
 * [OracleGuard](OracleGuard.md)
+* [OracleInterface](OracleInterface.md)
+* [Ownable](Ownable.md)
+* [PointerInterface](PointerInterface.md)
 * [Roles](Roles.md)
 * [SafeERC20](SafeERC20.md)
 * [SafeMath](SafeMath.md)
