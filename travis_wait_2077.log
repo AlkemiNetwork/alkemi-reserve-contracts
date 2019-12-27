@@ -1,6 +1,0 @@
-
-> alkemi-protocol-contracts@1.0.0 lint:contracts /home/travis/build/project-alkemi/alkemi-protocol
-> prettier --write **/*.sol
-
-contracts/AlkemiNetwork.sol 297ms
-contracts/Migrations.sol 14ms
