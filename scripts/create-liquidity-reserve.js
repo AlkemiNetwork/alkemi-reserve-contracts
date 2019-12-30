@@ -18,7 +18,6 @@ module.exports = async callback => {
     const token = await Token.deploy("Token A", "TOA", 18);
     const linkToken = await helpers.create(generated.LinkTokenFactory, alkemiTeam).deploy();
     const alkemiNetwork = await AlkemiNetwork.deployed();
-    console.log(token.address);
     const tx = await alkemiNetwork.createLiquidityReserve(
         linkToken.address,
         ZERO_ADDR,
