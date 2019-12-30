@@ -4,6 +4,8 @@
 > Implementation of Alkemi Protocol in Solidity.
 > [alkemi.network](https://alkemi.network/)
 
+![Liquidity Dashboard](/docs/assets/liquidity-dashboard.gif)
+
 ## Table of Contents
 
   - [Get Started](#get-started)
@@ -24,8 +26,6 @@
 ## Get Started
 
 For local development of `alkemi-protocol` you can setup the development environment on your machine.
-
-![Liquidity Dashboard](/docs/assets/liquidity-dashboard.gif)
 
 ### Local development
 
