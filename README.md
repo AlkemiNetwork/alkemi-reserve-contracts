@@ -1,7 +1,7 @@
 # Alkemi Protocol Contracts ![GitHub](https://img.shields.io/github/license/project-alkemi/alkemi-protocol) [![Build Status](https://travis-ci.com/project-alkemi/alkemi-protocol.svg?branch=master)](https://travis-ci.com/project-alkemi/alkemi-protocol) [![CircleCI](https://circleci.com/gh/project-alkemi/alkemi-protocol/tree/master.svg?style=svg)](https://circleci.com/gh/project-alkemi/alkemi-protocol/tree/master)
 ![GitHub stars](https://img.shields.io/github/stars/project-alkemi/alkemi-protocol?style=social&label=star) ![GitHub forks](https://img.shields.io/github/forks/project-alkemi/alkemi-protocol?style=social&label=fork) ![GitHub watchers](https://img.shields.io/github/watchers/project-alkemi/alkemi-protocol?style=social&label=watch) ![GitHub followers](https://img.shields.io/github/followers/project-alkemi?label=follow&style=social)
 
-> Implemetation of Alkemi Protocol in Solidity.
+> Implementation of Alkemi Protocol in Solidity.
 > [alkemi.network](https://alkemi.network/)
 
 ## Table of Contents
@@ -55,7 +55,7 @@ $ npm run compile
 ```
 ![](./docs/assets/alk-compile.gif)
 
-In a new terminal, launch an Ethereum RPC client, we use the default ganache-cli command to confgure and run a local development ganache:
+In a new terminal, launch an Ethereum RPC client, we use the default ganache-cli command to configure and run a local development ganache:
 
 ```bash
 $ npm run ganache
