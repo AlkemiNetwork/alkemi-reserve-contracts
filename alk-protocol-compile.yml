@@ -1,0 +1,157 @@
+# The configurations that used for the recording, feel free to edit them
+config:
+
+  # Specify a command to be executed
+  # like `/bin/bash -l`, `ls`, or any other commands
+  # the default is bash for Linux
+  # or powershell.exe for Windows
+  command:         bash -l
+
+  # Specify the current working directory path
+  # the default is the current working directory path
+  cwd:             /alkemi-protocol
+
+  # Export additional ENV variables
+  env:
+    recording:     true
+
+  # Explicitly set the number of columns
+  # or use `auto` to take the current
+  # number of columns of your shell
+  cols:            55
+
+  # Explicitly set the number of rows
+  # or use `auto` to take the current
+  # number of rows of your shell
+  rows:            12
+
+  # Amount of times to repeat GIF
+  # If value is -1, play once
+  # If value is 0, loop indefinitely
+  # If value is a positive number, loop n times
+  repeat:          0
+
+  # Quality
+  # 1 - 100
+  quality:         100
+
+  # Delay between frames in ms
+  # If the value is `auto` use the actual recording delays
+  frameDelay:      auto
+
+  # Maximum delay between frames in ms
+  # Ignored if the `frameDelay` isn't set to `auto`
+  # Set to `auto` to prevent limiting the max idle time
+  maxIdleTime:     5000
+
+  # The surrounding frame box
+  # The `type` can be null, window, floating, or solid`
+  # To hide the title use the value null
+  # Don't forget to add a backgroundColor style with a null as type
+  frameBox:
+    type:          floating
+    title:         Alkemi Protocol - Compile
+    style:
+      border:      0px black solid
+      # boxShadow: none
+      # margin:    0px
+
+  # Add a watermark image to the rendered gif
+  # You need to specify an absolute path for
+  # the image on your machine or a URL, and you can also
+  # add your own CSS styles
+  watermark:
+    imagePath:     https://alkemi.network/assets/images/favicon-standard-iphone.png
+    style:
+      position:    absolute
+      right:       15px
+      bottom:      15px
+      width:       60px
+      opacity:     0.9
+
+  # Cursor style can be one of
+  # `block`, `underline`, or `bar`
+  cursorStyle:     block
+
+  # Font family
+  # You can use any font that is installed on your machine
+  # in CSS-like syntax
+  fontFamily:      "Monaco, Lucida Console, Ubuntu Mono, Monospace"
+
+  # The size of the font
+  fontSize:        12
+
+  # The height of lines
+  lineHeight:      1
+
+  # The spacing between letters
+  letterSpacing:   0
+
+  # Theme
+  theme:
+    background:    "transparent"
+    foreground:    "#afafaf"
+    cursor:        "#c7c7c7"
+    black:         "#232628"
+    red:           "#fc4384"
+    green:         "#b3e33b"
+    yellow:        "#ffa727"
+    blue:          "#75dff2"
+    magenta:       "#ae89fe"
+    cyan:          "#708387"
+    white:         "#d5d5d0"
+    brightBlack:   "#626566"
+    brightRed:     "#ff7fac"
+    brightGreen:   "#c8ed71"
+    brightYellow:  "#ebdf86"
+    brightBlue:    "#75dff2"
+    brightMagenta: "#ae89fe"
+    brightCyan:    "#b1c6ca"
+    brightWhite:   "#f9f9f4"
+
+# Records, feel free to edit them
+records:
+  - delay:         180
+    content:       "\r\n\e[H\e[2J\e]7;file://Ryans-Macbook-Pro-3.local/alkemi-protocol\a$ "
+  - delay:         1810
+    content:       'n'
+  - delay:         215
+    content:       p
+  - delay:         225
+    content:       m
+  - delay:         184
+    content:       ' '
+  - delay:         454
+    content:       r
+  - delay:         152
+    content:       u
+  - delay:         194
+    content:       'n'
+  - delay:         140
+    content:       ' '
+  - delay:         68
+    content:       c
+  - delay:         76
+    content:       o
+  - delay:         110
+    content:       m
+  - delay:         447
+    content:       p
+  - delay:         239
+    content:       i
+  - delay:         206
+    content:       l
+  - delay:         195
+    content:       e
+  - delay:         461
+    content:       "\r\n"
+  - delay:         551
+    content:       "\r\n> alkemi-protocol-contracts@1.0.0 compile /alkemi-protocol\r\n> truffle compile --all\r\n\r\n"
+  - delay:         2693
+    content:       "\r\nCompiling your contracts...\r\n===========================\r\n"
+  - delay:         1392
+    content:       "> Compiling ./contracts/AlkemiNetwork.sol\r\n> Compiling ./contracts/Migrations.sol\r\n> Compiling ./contracts/interfaces/IAlkemiNetwork.sol\r\n> Compiling ./contracts/interfaces/IAlkemiToken.sol\r\n> Compiling ./contracts/interfaces/ILiquidityReserve.sol\r\n> Compiling ./contracts/interfaces/ILiquidityReserveFactory.sol\r\n> Compiling ./contracts/interfaces/IOracle.sol\r\n> Compiling ./contracts/interfaces/IOracleGuard.sol\r\n> Compiling ./contracts/liquidity-reserve/LiquidityReserve.sol\r\n> Compiling ./contracts/liquidity-reserve/LiquidityReserveState.sol\r\n> Compiling ./contracts/liquidity-reserve/factory/LiquidityReserveFactory.sol\r\n> Compiling ./contracts/liquidity-reserve/tests/ChainlinkOracle.sol\r\n> Compiling ./contracts/mocks/AlkemiNetworkMock.sol\r\n> Compiling ./contracts/mocks/EtherTokenContantMock.sol\r\n> Compiling ./contracts/mocks/TokenMock.sol\r\n> Compiling ./contracts/oracles/AlkemiOracle.sol\r\n> Compiling ./contracts/oracles/OracleGuard.sol\r\n> Compiling @openzeppelin/contracts/GSN/Context.sol\r\n> Compiling @openzeppelin/contracts/access/Roles.sol\r\n> Compiling @openzeppelin/contracts/access/roles/MinterRole.sol\r\n> Compiling @openzeppelin/contracts/math/SafeMath.sol\r\n> Compiling @openzeppelin/contracts/token/ERC20/ERC20.sol\r\n> Compiling @openzeppelin/contracts/token/ERC20/ERC20Detailed.sol\r\n> Compiling @openzeppelin/contracts/token/ERC20/ERC20Mintable.sol\r\n> Compiling @openzeppelin/contracts/token/ERC20/IERC20.sol\r\n> Compiling @openzeppelin/contracts/token/ERC20/SafeERC20.sol\r\n> Compiling @openzeppelin/contracts/utils/Address.sol\r\n> Compiling chainlinkv0.5/contracts/Chainlink.sol\r\n> Compiling chainlinkv0.5/contracts/ChainlinkClient.sol\r\n> Compiling chainlinkv0.5/contracts/LinkTokenReceiver.sol\r\n> Compiling chainlinkv0.5/contracts/Oracle.sol\r\n> Compiling chainlinkv0.5/contracts/interfaces/ChainlinkRequestInterface.sol\r\n> Compiling chainlinkv0.5/contracts/interfaces/ENSInterface.sol\r\n> Compiling chainlinkv0.5/contracts/interfaces/LinkTokenInterface.sol\r\n> Compiling chainlinkv0.5/contracts/interfaces/OracleInterface.sol\r\n> Compiling chainlinkv0.5/contracts/interfaces/PointerInterface.sol\r\n> Compiling chainlinkv0.5/contracts/vendor/Buffer.sol\r\n> Compiling chainlinkv0.5/contracts/vendor/CBOR.sol\r\n> Compiling chainlinkv0.5/contracts/vendor/ENSResolver.sol\r\n> Compiling chainlinkv0.5/contracts/vendor/Ownable.sol\r\n> Compiling chainlinkv0.5/contracts/vendor/SafeMath.sol\r\n"
+  - delay:         376
+    content: "> Artifacts written to /alkemi-protocol/build/contracts\r\n> Compiled successfully using:\r\n   - solc: 0.5.5+commit.47a71e8f.Emscripten.clang\r\n\r\n"
+  - delay:         5000
+    content:       "\r\n"

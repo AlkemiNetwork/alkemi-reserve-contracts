@@ -53,7 +53,7 @@ Compile the solidity contracts:
 ```bash
 $ npm run compile
 ```
-![Compile](/docs/assets/alk-compile.gif)
+![](./docs/assets/alk-compile.gif)
 
 In a new terminal, launch an Ethereum RPC client, we use the default ganache-cli command to confgure and run a local development ganache:
 
