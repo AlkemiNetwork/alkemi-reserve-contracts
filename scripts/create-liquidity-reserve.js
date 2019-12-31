@@ -1,6 +1,7 @@
-const { helpers, generated } = require('chainlink');
 const Token = artifacts.require("TokenMock.sol");
 const AlkemiNetwork = artifacts.require("AlkemiNetwork.sol");
+
+const config = require("./config.json");
 
 /*
   This script is meant to assist with creating a 
@@ -14,17 +15,36 @@ const dayTime = 24 * 3600;
 const now = Math.floor(Date.now() / 1000);
 const lockingPeriod = now + dayTime;
 
-module.exports = async callback => {
-    const token = await Token.deploy("Token A", "TOA", 18);
-    const linkToken = await helpers.create(generated.LinkTokenFactory, alkemiTeam).deploy();
+module.exports = async function(callback) {
+  try {
+    if(config.devchain.token == '') {
+      console.log("Specify an erc20 asset address in the config file");
+      return;
+    }
+    const erc20Token = await Token.at(config.devchain.token);
+
+    if(config.devchain.link == '') {
+      console.log("Specify LINK token address in the config file");
+      return;
+    }
+    const linkToken = config.devchain.link;
+    
     const alkemiNetwork = await AlkemiNetwork.deployed();
+
+    console.log("Alkemi Network: ", alkemiNetwork.address);
     const tx = await alkemiNetwork.createLiquidityReserve(
-        linkToken.address,
+        linkToken,
         ZERO_ADDR,
-        token.address,
+        erc20Token.address,
         lockingPeriod,
-        200,
-        1
+        config.devchain.lockingPrice,
+        config.devchain.pricePosition
     );
+
     callback(tx.tx);
+  }
+  catch(err) {
+    callback(err);
+  }
+  
 }

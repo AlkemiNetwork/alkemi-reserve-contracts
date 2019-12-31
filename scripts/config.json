@@ -1,0 +1,9 @@
+{
+    "devchain": {
+        "token": "",
+        "link": "",
+        "reserve": "",
+        "lockingPrice": 200,
+        "pricePosition": 1 
+    }
+}
