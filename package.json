@@ -5,6 +5,7 @@
   "dependencies": {
     "@openzeppelin/contracts": "^2.4.0",
     "chainlink": "^0.7.10",
+    "promptly": "^3.0.3",
     "truffle": "^5.0.44"
   },
   "devDependencies": {
