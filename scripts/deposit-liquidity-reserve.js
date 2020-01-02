@@ -9,15 +9,11 @@ const config = require("./config.json");
 
 module.exports = async function(callback) {
   try {
-    if(config.devchain.reserve == '') {
-      console.log("Specify a liquidity reserve address in the config file");
-      return;
-    }
-    const liquidityReserve = await LiquidityReserve.at(config.devchain.reserve);
+    const liquidityReserve = await LiquidityReserve.deployed();
     console.log("Liquidity Reserve: ", liquidityReserve.address);
 
     const tx = await liquidityReserve.deposit(
-        config.devchain.depositAmount
+        config.depositAmount
     );
 
     callback(tx.tx);

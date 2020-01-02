@@ -17,17 +17,17 @@ const lockingPeriod = now + dayTime;
 
 module.exports = async function(callback) {
   try {
-    if(config.devchain.token == '') {
+    if(config.token == '') {
       console.log("Specify an erc20 asset address in the config file");
       return;
     }
-    const erc20Token = await Token.at(config.devchain.token);
+    const erc20Token = await Token.at(config.token);
 
-    if(config.devchain.link == '') {
+    if(config.link == '') {
       console.log("Specify LINK token address in the config file");
       return;
     }
-    const linkToken = config.devchain.link;
+    const linkToken = config.link;
     
     const alkemiNetwork = await AlkemiNetwork.deployed();
 
@@ -37,8 +37,8 @@ module.exports = async function(callback) {
         ZERO_ADDR,
         erc20Token.address,
         lockingPeriod,
-        config.devchain.lockingPrice,
-        config.devchain.pricePosition
+        config.lockingPrice,
+        config.pricePosition
     );
 
     callback(tx.tx);
