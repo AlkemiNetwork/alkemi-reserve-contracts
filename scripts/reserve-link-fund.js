@@ -1,5 +1,5 @@
-const { helpers, generated } = require("chainlink");
-const LiquidityReserve = artifacts.require("LiquidityReserve");
+//const { helpers, generated } = require("chainlink");
+//const LiquidityReserve = artifacts.require("LiquidityReserve");
 
 /*
   This script is meant to assist with funding the liquidity
@@ -8,13 +8,12 @@ const LiquidityReserve = artifacts.require("LiquidityReserve");
   can be retrieved by calling the withdrawLink() function.
 */
 
-const payment = process.env.TRUFFLE_CL_BOX_PAYMENT || '1000000000000000000';
-const reserveAddress = process.env.LIQUIDITY_RESERVE_ADDRESS;
+//const payment = process.env.TRUFFLE_CL_BOX_PAYMENT || '1000000000000000000';
 
-module.exports = async callback => {
-  const linkToken = await helpers.create(generated.LinkTokenFactory, alkemiTeam).deploy();
-  const liquidityReserve = await LiquidityReserve.at(reserveAddress);
-  console.log('Funding contract:', liquidityReserve.address);
-  const tx = await linkToken.transfer(liquidityReserve.address, payment);
-  callback(tx.tx);
-}
+//module.exports = async callback => {
+//  const linkToken = await helpers.create(generated.LinkTokenFactory, alkemiTeam).deploy();
+//  const liquidityReserve = await LiquidityReserve.deployed();
+//  console.log('Funding contract:', liquidityReserve.address);
+//  const tx = await linkToken.transfer(liquidityReserve.address, payment);
+//  callback(tx.tx);
+//}

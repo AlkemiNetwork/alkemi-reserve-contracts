@@ -1,33 +1,28 @@
-const MyContract = artifacts.require('MyContract')
+const LiquidityReserve = artifacts.require("LiquidityReserve");
 
 /*
   This script allows for a Chainlink request to be created from
-  the requesting contract. Defaults to the Chainlink oracle address
-  on this page: https://docs.chain.link/docs/testnet-oracles
+  the Liquidity Reserve contract. Defaults to the Chainlink oracle address
+  on this page: https://docs.chain.link/docs/available-oracles
 */
 
 const oracleAddress =
-  process.env.TRUFFLE_CL_BOX_ORACLE_ADDRESS ||
-  '0xc99B3D447826532722E41bc36e644ba3479E4365'
+  process.env.ORACLE_ADDRESS ||
+  "0x7AFe1118Ea78C1eae84ca8feE5C65Bc76CcF879e";
 const jobId =
-  process.env.TRUFFLE_CL_BOX_JOB_ID || '3cff0a3524694ff8834bda9cf9c779a1'
-const payment = process.env.TRUFFLE_CL_BOX_PAYMENT || '1000000000000000000'
-const url =
-  process.env.TRUFFLE_CL_BOX_URL ||
-  'https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD'
-const path = process.env.TRUFFLE_CL_BOX_JSON_PATH || 'USD'
-const times = process.env.TRUFFLE_CL_BOX_TIMES || '100'
-
+  process.env.JOB_ID || "0e9e244b9c374cd1a5c714caf25b0be5";
+const sym = process.env.SYM;
+const market = process.env.MARKET || "USD";
+const payment = process.env.PAYMENT || "1000000000000000000";
 module.exports = async callback => {
-  const mc = await MyContract.deployed()
-  console.log('Creating request on contract:', mc.address)
+  const reserve = await LiquidityReserve.deployed()
+  console.log('Creating request on reserve:', reserve.address)
   const tx = await mc.createRequestTo(
     oracleAddress,
     web3.utils.toHex(jobId),
-    payment,
-    url,
-    path,
-    times,
+    sym,
+    market,
+    payment
   )
   callback(tx.tx)
 }

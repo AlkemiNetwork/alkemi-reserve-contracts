@@ -1,12 +1,12 @@
-const MyContract = artifacts.require('MyContract')
+const LiquidityReserve = artifacts.require("LiquidityReserve");
 
 /*
-  This script makes it easy to read the data variable
+  This script makes it easy to read the asset price
   of the requesting contract.
 */
 
 module.exports = async callback => {
-  const mc = await MyContract.deployed()
-  const data = await mc.data.call()
-  callback(data)
+  const reserve = await LiquidityReserve.deployed();
+  const price = await reserve.oraclePrice.call()
+  callback(price)
 }
