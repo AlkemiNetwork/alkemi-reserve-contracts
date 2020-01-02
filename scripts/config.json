@@ -1,10 +1,8 @@
 {
-    "devchain": {
-        "token": "",
-        "link": "",
-        "reserve": "",
-        "lockingPrice": 200,
-        "pricePosition": 1,
-        "depositAmount": 100
-    }
+    "token": "0x2db3bE482dD21c502Fd63C5FeB6742dFA00F4d36",
+    "link": "",
+    "reserve": "",
+    "lockingPrice": 200,
+    "pricePosition": 1,
+    "depositAmount": 100
 }

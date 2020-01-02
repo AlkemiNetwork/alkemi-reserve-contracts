@@ -1,0 +1,10 @@
+{
+    "DEVCHAIN": {
+        "ALKEMI_TOKEN": "",
+        "MIN_TOKEN": 100
+    },
+    "PRODUCTION": {
+        "ALKEMI_TOKEN": "",
+        "MIN_TOKEN": ""
+    }
+}
