@@ -1,12 +1,10 @@
 pragma solidity ^0.5.0;
 
-
 /**
   * @title ILiquidityReserveFactory
   */
 contract ILiquidityReserveFactory {
-
-  /**
+    /**
    * @dev Creates and initialises a new LiquidityReserve
    * @param _liquidityProvider Lequidity provider address
    * @param _alkemiNetwork Alkemi Network contract address
@@ -16,14 +14,14 @@ contract ILiquidityReserveFactory {
    * @param _lockingPricePosition locking price position
    * @return Address of new Liquidity Reserve
    */
-  function createLiquidityReserve(
-    address _liquidityProvider,
-    address _alkemiNetwork,
-    address _beneficiary,
-    address _asset,
-    uint256 _lockingPeriod,
-    uint256 _lockingPrice,
-    uint8 _lockingPricePosition
-  ) external returns (address);
+    function createLiquidityReserve(
+        address _liquidityProvider,
+        address _alkemiNetwork,
+        address _beneficiary,
+        address _asset,
+        uint256 _lockingPeriod,
+        uint256 _lockingPrice,
+        uint8 _lockingPricePosition
+    ) external returns (address);
 
 }
