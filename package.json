@@ -23,6 +23,7 @@
     "eslint-plugin-import": "^2.19.1",
     "eth-gas-reporter": "^0.2.12",
     "ganache-cli": "^6.7.0",
+    "husky": "^3.1.0",
     "link_token": "^1.0.6",
     "prettier": "^1.18.2",
     "prettier-plugin-solidity": "^1.0.0-alpha.34",
@@ -46,6 +47,11 @@
     "prettier:contracts": "prettier --write contracts/**/*.sol",
     "coverage": "npx solidity-coverage",
     "generate:doc": "truffle compile && solidoc ./ ./docs true"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run prettier:solidity"
+    }
   },
   "repository": {
     "type": "git",
