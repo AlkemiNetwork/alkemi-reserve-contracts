@@ -1,5 +1,5 @@
 {
-  "extends": "solhint:recommended",
+  "extends": "solhint:default",
   "plugins": ["prettier"],
   "rules": {
     "const-name-snakecase": "off",
