@@ -26,6 +26,8 @@
     "link_token": "^1.0.6",
     "prettier": "^1.18.2",
     "prettier-plugin-solidity": "^1.0.0-alpha.34",
+    "solhint": "^2.3.0",
+    "solhint-plugin-prettier": "0.0.3",
     "solidity-coverage": "^0.6.7",
     "solidoc": "^1.0.5",
     "truffle-assertions": "^0.9.2"
@@ -39,8 +41,9 @@
     "migrate:development": "truffle migrate --network development",
     "migrate:testnet": "truffle migrate --network rinkeby",
     "migrate:mainnet": "truffle migrate --network mainnet",
-    "lint:contracts": "prettier --write **/*.sol",
     "lint:tests": "eslint ./test --fix",
+    "lint:contracts": "solhint -f table contracts/**/*.sol",
+    "prettier:contracts": "prettier --write contracts/**/*.sol",
     "coverage": "npx solidity-coverage",
     "generate:doc": "truffle compile && solidoc ./ ./docs true"
   },
