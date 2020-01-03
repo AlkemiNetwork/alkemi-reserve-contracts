@@ -9,7 +9,7 @@ node_js:
   - '12.13.1'
 env:
   - TASK=lint:tests
-  - TASK=lint:contracts
+  - TASK=prettier:contracts
   - TASK=test
   - TASK=generate:doc
 before_script:

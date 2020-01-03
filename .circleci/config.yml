@@ -24,7 +24,7 @@ jobs:
           command: npm run lint:tests
       - run:
           name: Lint contracts
-          command: npm run lint:contracts      
+          command: npm run prettier:contracts      
       - run:
           name: Test Alkemi Protocol contracts
           command: npm run test

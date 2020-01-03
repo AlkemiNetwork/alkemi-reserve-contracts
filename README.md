@@ -77,11 +77,11 @@ $ npm run test
 
 ### Code Linting
 
-Linting is setup for `JavaScript` with [ESLint](https://eslint.org) & Solidity with [Prettier](https://prettier.io/).
+Linting is setup for `JavaScript` with [ESLint](https://eslint.org) & Solidity with [Solhint](https://protofire.github.io/solhint/) and [Prettier](https://prettier.io/).
 
 ```bash
 # lint solidity contracts
-$ npm run lint:contracts
+$ npm run prettier:contracts
 
 # lint tests
 $ npm run lint:tests
