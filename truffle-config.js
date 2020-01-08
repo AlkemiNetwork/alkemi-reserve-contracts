@@ -1,7 +1,10 @@
-const HDWalletProvider = require("@truffle/hdwallet-provider");
-const fs = require('fs');
-const mnemonic = fs.readFileSync(".mnemonic").toString().trim();
-const infuraKey = "816cc7a6308448dbbaf46ac5488507cf";
+/**
+ * remove comments for public chain migration
+ */
+//const HDWalletProvider = require("@truffle/hdwallet-provider");
+//const fs = require('fs');
+//const mnemonic = fs.readFileSync(".mnemonic").toString().trim();
+//const infuraKey = "816cc7a6308448dbbaf46ac5488507cf";
 
 module.exports = {
  
@@ -20,7 +23,7 @@ module.exports = {
     },
     rinkeby: {
       provider: () => new HDWalletProvider(mnemonic, `https://rinkeby.infura.io/v3/${infuraKey}`),
-      network_id: 4, // Ropsten's id
+      network_id: 4,
       skipDryRun: true // Skip dry run before migrations? (default: false for public nets )
     },
   },
