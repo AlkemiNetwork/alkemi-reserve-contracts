@@ -4,6 +4,7 @@
   "description": "Alkemi Protocol Smart Contracts",
   "dependencies": {
     "@openzeppelin/contracts": "^2.4.0",
+    "@truffle/hdwallet-provider": "^1.0.28",
     "chainlink": "^0.7.10",
     "promptly": "^3.0.3",
     "truffle": "^5.0.44"

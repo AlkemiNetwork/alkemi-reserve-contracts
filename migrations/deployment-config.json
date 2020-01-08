@@ -4,7 +4,7 @@
         "MIN_TOKEN": 100
     },
     "PRODUCTION": {
-        "ALKEMI_TOKEN": "",
-        "MIN_TOKEN": ""
+        "ALKEMI_TOKEN": "0x6C427C15219DA3cc5F44c1c66D4cB79661628181",
+        "MIN_TOKEN": "100"
     }
 }

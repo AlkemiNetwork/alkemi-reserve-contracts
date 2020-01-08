@@ -1,15 +1,11 @@
-/*
- * const HDWalletProvider = require('truffle-hdwallet-provider');
- * const infuraKey = "fj4jll3k.....";
- * 
- * const fs = require('fs');
- * const mnemonic = fs.readFileSync(".secret").toString().trim();
- */
+const HDWalletProvider = require("@truffle/hdwallet-provider");
+const fs = require('fs');
+const mnemonic = fs.readFileSync(".mnemonic").toString().trim();
+const infuraKey = "816cc7a6308448dbbaf46ac5488507cf";
 
 module.exports = {
  
   networks: {
-
     development: {
       host: "127.0.0.1", // Localhost (default: none)
       port: 8545, // Standard Ethereum port (default: none)
@@ -22,12 +18,9 @@ module.exports = {
       gas: 0xfffffffffff, // <-- Use this high gas value
       gasPrice: 0x01 // <-- Use this low gas price
     },
-    ropsten: {
-      provider: () => new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/YOUR-PROJECT-ID`),
-      network_id: 3, // Ropsten's id
-      gas: 5500000, // Ropsten has a lower block limit than mainnet
-      confirmations: 2, // # of confs to wait between deployments. (default: 0)
-      timeoutBlocks: 200, // # of blocks before a deployment times out  (minimum/default: 50)
+    rinkeby: {
+      provider: () => new HDWalletProvider(mnemonic, `https://rinkeby.infura.io/v3/${infuraKey}`),
+      network_id: 4, // Ropsten's id
       skipDryRun: true // Skip dry run before migrations? (default: false for public nets )
     },
   },
