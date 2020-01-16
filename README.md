@@ -7,7 +7,7 @@
 > Implementation of Alkemi Protocol in Solidity.
 > [alkemi.network](https://alkemi.network/)
 
-![Liquidity Dashboard](https://raw.githubusercontent.com/project-alkemi/alkemi-protocol/master/docs/assets/liquidity-dashboard.gif)
+![Liquidity Dashboard](https://raw.githubusercontent.com/project-alkemi/alkemi-protocol/master/docs/assets/liquidity-dashboard2.gif)
 
 ## Table of Contents
 
