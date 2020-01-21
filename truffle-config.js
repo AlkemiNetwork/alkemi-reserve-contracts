@@ -26,6 +26,16 @@ module.exports = {
       network_id: 4,
       skipDryRun: true // Skip dry run before migrations? (default: false for public nets )
     },
+    kovan: {
+      provider: () => new HDWalletProvider(mnemonic, `https://kovan.infura.io/v3/${infuraKey}`),
+      network_id: 42,
+      skipDryRun: true // Skip dry run before migrations? (default: false for public nets )
+    },
+    mainnet: {
+      provider: () => new HDWalletProvider(mnemonic, `https://mainnet.infura.io/v3/${infuraKey}`),
+      network_id: 1,
+      skipDryRun: false // Skip dry run before migrations? (default: false for public nets )
+    }
   },
 
   // Set default mocha options here, use special reporters etc.
