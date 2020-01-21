@@ -13,6 +13,16 @@ module.exports = async (deployer, network, accounts) => {
         await deployer.deploy(OracleGuard, deploymentConfig.DEVCHAIN.MIN_TOKEN);
         await deployer.deploy(AlkemiOracle, OracleGuard.address, AlkemiNetwork.address);
     }
+    else if (network == "rinkeby") {
+        await deployer.deploy(AlkemiNetwork);
+        await deployer.deploy(OracleGuard, deploymentConfig.RINKEBY.MIN_TOKEN);
+        await deployer.deploy(AlkemiOracle, OracleGuard.address, AlkemiNetwork.address);
+    }
+    else if (network == "kovan") {
+        await deployer.deploy(AlkemiNetwork);
+        await deployer.deploy(OracleGuard, deploymentConfig.KOVAN.MIN_TOKEN);
+        await deployer.deploy(AlkemiOracle, OracleGuard.address, AlkemiNetwork.address);
+    }
     else {
         await deployer.deploy(AlkemiNetwork);
         await deployer.deploy(OracleGuard, deploymentConfig.PRODUCTION.MIN_TOKEN);

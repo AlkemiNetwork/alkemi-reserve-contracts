@@ -17,13 +17,33 @@ module.exports = async (deployer, network, accounts) => {
         await oracleGuard.authContract([alkemiNetwork.address]);
         await alkemiNetwork.setAlkemiOracle(alkemiOracle.address);    
     }
+    else if (network == "rinkeby") {
+        const alkemiOracle = await AlkemiOracle.deployed();
+        const oracleGuard = await OracleGuard.deployed();
+        const alkemiNetwork = await AlkemiNetwork.deployed();
+    
+        await oracleGuard.setOracleContract(alkemiOracle.address);
+        await oracleGuard.setTokenContract(deploymentConfig.RINKEBY.ALKEMI_TOKEN);
+        await oracleGuard.authContract([alkemiNetwork.address]);
+        await alkemiNetwork.setAlkemiOracle(alkemiOracle.address); 
+    }
+    else if (network == "kovan") {
+        const alkemiOracle = await AlkemiOracle.deployed();
+        const oracleGuard = await OracleGuard.deployed();
+        const alkemiNetwork = await AlkemiNetwork.deployed();
+    
+        await oracleGuard.setOracleContract(alkemiOracle.address);
+        await oracleGuard.setTokenContract(deploymentConfig.KOVAN.ALKEMI_TOKEN);
+        await oracleGuard.authContract([alkemiNetwork.address]);
+        await alkemiNetwork.setAlkemiOracle(alkemiOracle.address); 
+    }
     else {
         const alkemiOracle = await AlkemiOracle.deployed();
         const oracleGuard = await OracleGuard.deployed();
         const alkemiNetwork = await AlkemiNetwork.deployed();
     
         await oracleGuard.setOracleContract(alkemiOracle.address);
-        await oracleGuard.setTokenContract(deploymentConfig.PRODUCTION.ALKEMI_TOKEN);
+        await oracleGuard.setTokenContract(deploymentConfig.MAINNET.ALKEMI_TOKEN);
         await oracleGuard.authContract([alkemiNetwork.address]);
         await alkemiNetwork.setAlkemiOracle(alkemiOracle.address); 
     }
