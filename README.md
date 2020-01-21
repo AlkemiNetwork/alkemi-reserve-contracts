@@ -1,25 +1,28 @@
-# Alkemi Protocol Contracts ![GitHub](https://img.shields.io/github/license/project-alkemi/alkemi-protocol) [![Build Status](https://travis-ci.com/project-alkemi/alkemi-protocol.svg?branch=master)](https://travis-ci.com/project-alkemi/alkemi-protocol) [![CircleCI](https://circleci.com/gh/project-alkemi/alkemi-protocol/tree/master.svg?style=svg)](https://circleci.com/gh/project-alkemi/alkemi-protocol/tree/master)
+# Alkemi Protocol Contracts
+
+![GitHub](https://img.shields.io/github/license/project-alkemi/alkemi-protocol) [![Build Status](https://travis-ci.com/project-alkemi/alkemi-protocol.svg?branch=master)](https://travis-ci.com/project-alkemi/alkemi-protocol) [![CircleCI](https://circleci.com/gh/project-alkemi/alkemi-protocol/tree/master.svg?style=svg)](https://circleci.com/gh/project-alkemi/alkemi-protocol/tree/master)
+
 ![GitHub stars](https://img.shields.io/github/stars/project-alkemi/alkemi-protocol?style=social&label=star) ![GitHub forks](https://img.shields.io/github/forks/project-alkemi/alkemi-protocol?style=social&label=fork) ![GitHub watchers](https://img.shields.io/github/watchers/project-alkemi/alkemi-protocol?style=social&label=watch) ![GitHub followers](https://img.shields.io/github/followers/project-alkemi?label=follow&style=social)
 
 > Implementation of Alkemi Protocol in Solidity.
 > [alkemi.network](https://alkemi.network/)
 
-![Liquidity Dashboard](/docs/assets/liquidity-dashboard.gif)
+![Liquidity Dashboard](https://raw.githubusercontent.com/project-alkemi/alkemi-protocol/master/docs/assets/liquidity-dashboard2.gif)
 
 ## Table of Contents
 
-  - [Get Started](#get-started)
-     - [Local development](#local-development)
-  - [Testing](#testing)
-     - [Code Linting](#code-linting)
-  - [Networks](#networks)
-     - [Testnets](#testnets)
-        - [Rinkeby Testnet](#rinkeby-testnet)
-     - [Mainnets](#mainnets)
-        - [Ethereum Mainnet](#ethereum-mainnet)
-  - [Documentation](#documentation)
-  - [Issues](#issues)
-  - [License](#license)
+- [Get Started](#get-started)
+  - [Local development](#local-development)
+- [Testing](#testing)
+  - [Code Linting](#code-linting)
+- [Networks](#networks)
+  - [Testnets](#testnets)
+    - [Rinkeby Testnet](#rinkeby-testnet)
+  - [Mainnets](#mainnets)
+    - [Ethereum Mainnet](#ethereum-mainnet)
+- [Documentation](#documentation)
+- [Issues](#issues)
+- [License](#license)
 
 ---
 
@@ -29,9 +32,7 @@ For local development of `alkemi-protocol` you can setup the development environ
 
 ### Local development
 
-For local development it is recommended to use
-[ganache](http://truffleframework.com/ganache/) to run a local development
-chain. Using the ganache simulator no full Ethereum node is required.
+For local development it is recommended to use [ganache](http://truffleframework.com/ganache/) to run a local development chain. Using the ganache simulator no full Ethereum node is required.
 
 As a pre-requisite, you need:
 
@@ -40,52 +41,41 @@ As a pre-requisite, you need:
 
 Clone the project and install all dependencies:
 
-```bash
-git clone git@github.com:project-alkemi/alkemi-protocol.git
-cd alkemi-protocol/
+    git clone git@github.com:project-alkemi/alkemi-protocol.git
+    cd alkemi-protocol/
 
-# install project dependencies
-$ npm i
-```
+    # install project dependencies
+    $ npm i
 
 Compile the solidity contracts:
 
-```bash
-$ npm run compile
-```
-![](./docs/assets/alk-compile.gif)
+    $ npm run compile
+
+![](https://raw.githubusercontent.com/project-alkemi/alkemi-protocol/master/docs/assets/alk-compile.gif)
 
 In a new terminal, launch an Ethereum RPC client, we use the default ganache-cli command to configure and run a local development ganache:
 
-```bash
-$ npm run ganache
-```
+    $ npm run ganache
 
 Switch back to your other terminal and deploy the contracts:
 
-```bash
-$ npm run deploy
-```
+    $ npm run deploy
 
 ## Testing
 
 Run tests with:
 
-```bash
-$ npm run test
-```
+    $ npm run test
 
 ### Code Linting
 
 Linting is setup for `JavaScript` with [ESLint](https://eslint.org) & Solidity with [Solhint](https://protofire.github.io/solhint/) and [Prettier](https://prettier.io/).
 
-```bash
-# lint solidity contracts
-$ npm run prettier:contracts
+    # lint solidity contracts
+    $ npm run prettier:contracts
 
-# lint tests
-$ npm run lint:tests
-```
+    # lint tests
+    $ npm run lint:tests
 
 Code style is enforced through the CI test process, builds will fail if there're any linting errors.
 
@@ -97,23 +87,31 @@ Code style is enforced through the CI test process, builds will fail if there're
 
 The contract addresses deployed on `Rinkeby` Test Network:
 
-| Contract                          | Address                                      |
-|-----------------------------------|----------------------------------------------|
-|                                   | ``                                           |
+| Contract      | Address                                                                                                                       |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| AlkemiToken   | [0x4adFFe7bB8DbB140ae545B1A26f16c86bAfa295f](https://rinkeby.etherscan.io/address/0x4adffe7bb8dbb140ae545b1a26f16c86bafa295f) |
+| AlkemiPrime   | [0x6C427C15219DA3cc5F44c1c66D4cB79661628181](https://rinkeby.etherscan.io/address/0x6C427C15219DA3cc5F44c1c66D4cB79661628181) |
+| AlkemiNetwork | [0xc96275330c45D446a66068e581456F0Ec4721CBa](https://rinkeby.etherscan.io/address/0xc96275330c45D446a66068e581456F0Ec4721CBa) |
+| OracleGuard   | [0x522E883A7bE0ABF63BD04Fb06e235A35732a3F54](https://rinkeby.etherscan.io/address/0x522E883A7bE0ABF63BD04Fb06e235A35732a3F54) |
+| AlkemiOracle  | [0xd2Eb3e89A0677D8F3959017FbAD99cBD729D19ED](https://rinkeby.etherscan.io/address/0xd2Eb3e89A0677D8F3959017FbAD99cBD729D19ED) |
 
 ### Mainnets
 
-### Ethereum Mainnet
+#### Ethereum Mainnet
 
 The contract addresses deployed on `Mainnet` Mainnet:
 
-| Contract                          | Address                                      |
-|-----------------------------------|----------------------------------------------|
-|                                   | ``                                           |
+| Contract      | Address                                    |
+| ------------- | ------------------------------------------ |
+| AlkemiToken   | 0x0000000000000000000000000000000000000000 |
+| AlkemiPrime   | 0x0000000000000000000000000000000000000000 |
+| AlkemiNetwork | 0x0000000000000000000000000000000000000000 |
+| OracleGuard   | 0x0000000000000000000000000000000000000000 |
+| AlkemiOracle  | 0x0000000000000000000000000000000000000000 |
 
 ## Documentation
 
-* [Contracts Documentation](https://project-alkemi.github.io/alkemi-protocol)
+- [Contracts Documentation](https://project-alkemi.github.io/alkemi-protocol)
 
 ## Issues
 
@@ -125,26 +123,24 @@ If you come across an issue with Alkemi Protocol contracts, do a search in the [
 
 ## License
 
-```
-MIT License
+    MIT License
 
-Copyright (c) 2019 Alkemi
+    Copyright (c) 2019 Alkemi
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.

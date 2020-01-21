@@ -1,7 +1,6 @@
 ---
 layout: default
 title: {{ContractName}}
-nav_order: 3
 ---
 
 # {{ContractTitle}}
@@ -62,9 +61,3 @@ nav_order: 3
 
 
 {{AllFunctions}}
-
-
-## Contracts
-
-
-{{AllContractsAnchor}}
