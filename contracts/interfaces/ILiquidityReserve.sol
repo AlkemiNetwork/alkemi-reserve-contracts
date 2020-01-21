@@ -4,6 +4,12 @@ pragma solidity ^0.5.0;
   * @title ILiquidityReserve
   */
 contract ILiquidityReserve {
+
+  /**
+   * @dev Returns the address of the current liquidity provider.
+   */
+    function liquidityProvider() public view returns (address);
+    
     /**
    * @dev check if reserve is active
    */
