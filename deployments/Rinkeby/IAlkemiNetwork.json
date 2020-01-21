@@ -1,0 +1,1188 @@
+{
+  "contractName": "IAlkemiNetwork",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "currentSettlementId",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_liquidityProvider",
+          "type": "address"
+        }
+      ],
+      "name": "providerLiquidityReserves",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_asset",
+          "type": "address"
+        }
+      ],
+      "name": "tokenLiquidityReserves",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address[]"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "exchangesAddresses",
+          "type": "address[]"
+        },
+        {
+          "name": "surplusTokensAddresses",
+          "type": "address[]"
+        },
+        {
+          "name": "deficitTokensAddresses",
+          "type": "address[]"
+        },
+        {
+          "name": "surplus",
+          "type": "uint128[]"
+        },
+        {
+          "name": "deficit",
+          "type": "uint128[]"
+        }
+      ],
+      "name": "doSettlement",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.5+commit.47a71e8f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"name\":\"_liquidityProvider\",\"type\":\"address\"}],\"name\":\"providerLiquidityReserves\",\"outputs\":[{\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"exchangesAddresses\",\"type\":\"address[]\"},{\"name\":\"surplusTokensAddresses\",\"type\":\"address[]\"},{\"name\":\"deficitTokensAddresses\",\"type\":\"address[]\"},{\"name\":\"surplus\",\"type\":\"uint128[]\"},{\"name\":\"deficit\",\"type\":\"uint128[]\"}],\"name\":\"doSettlement\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_asset\",\"type\":\"address\"}],\"name\":\"tokenLiquidityReserves\",\"outputs\":[{\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"currentSettlementId\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"currentSettlementId()\":{\"return\":\"settlement id\"},\"doSettlement(address[],address[],address[],uint128[],uint128[])\":{\"params\":{\"deficit\":\"list of deficit\",\"deficitTokensAddresses\":\"list of dificit tokens\",\"exchangesAddresses\":\"list of exchanges addresses\",\"surplus\":\"list of surplus amount\",\"surplusTokensAddresses\":\"list of surplus tokens\"}},\"providerLiquidityReserves(address)\":{\"params\":{\"_liquidityProvider\":\"liquidity provider address\"},\"return\":\"active liquidity reserve contract addresses\"},\"tokenLiquidityReserves(address)\":{\"params\":{\"_asset\":\"asset address\"},\"return\":\"liquidity reserves addresses\"}}},\"userdoc\":{\"methods\":{\"currentSettlementId()\":{\"notice\":\"Get current settlement id\"},\"doSettlement(address[],address[],address[],uint128[],uint128[])\":{\"notice\":\"settlement function\"},\"providerLiquidityReserves(address)\":{\"notice\":\"Get liquidity reserves addresses of a liquidity provider\"},\"tokenLiquidityReserves(address)\":{\"notice\":\"Get liquidity reserves addresses that hold a specific asset\"}}}},\"settings\":{\"compilationTarget\":{\"/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/interfaces/IAlkemiNetwork.sol\":\"IAlkemiNetwork\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/interfaces/IAlkemiNetwork.sol\":{\"keccak256\":\"0xd0bc14f1d9052943a99b8a381f31ad80787b7ea3eda511052adb6295fa4ff5cd\",\"urls\":[\"bzzr://3605aec8c2c2282356e8c6845bf9c4cb683da38b012ae8e0215bff97917575cb\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.5.0;\n\ninterface IAlkemiNetwork {\n    /**\n   * @notice Get current settlement id\n   * @return settlement id\n   */\n    function currentSettlementId() external view returns (uint256);\n\n    /**\n   * @notice Get liquidity reserves addresses of a liquidity provider\n   * @param _liquidityProvider liquidity provider address\n   * @return active liquidity reserve contract addresses\n   */\n    function providerLiquidityReserves(address _liquidityProvider)\n        external\n        view\n        returns (address[] memory);\n\n    /**\n   * @notice Get liquidity reserves addresses that hold a specific asset\n   * @param _asset asset address\n   * @return liquidity reserves addresses\n   */\n    function tokenLiquidityReserves(address _asset)\n        external\n        view\n        returns (address[] memory);\n\n    /**\n   * @notice settlement function\n   * @param exchangesAddresses list of exchanges addresses\n   * @param surplusTokensAddresses list of surplus tokens\n   * @param deficitTokensAddresses list of dificit tokens\n   * @param surplus list of surplus amount\n   * @param deficit list of deficit\n   */\n    function doSettlement(\n        address[] calldata exchangesAddresses,\n        address[] calldata surplusTokensAddresses,\n        address[] calldata deficitTokensAddresses,\n        uint128[] calldata surplus,\n        uint128[] calldata deficit\n    ) external returns (bool);\n}\n",
+  "sourcePath": "/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/interfaces/IAlkemiNetwork.sol",
+  "ast": {
+    "absolutePath": "/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/interfaces/IAlkemiNetwork.sol",
+    "exportedSymbols": {
+      "IAlkemiNetwork": [
+        517
+      ]
+    },
+    "id": 518,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 475,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:2"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 517,
+        "linearizedBaseContracts": [
+          517
+        ],
+        "name": "IAlkemiNetwork",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": "@notice Get current settlement id\n@return settlement id",
+            "id": 480,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "currentSettlementId",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 476,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "164:2:2"
+            },
+            "returnParameters": {
+              "id": 479,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 478,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 480,
+                  "src": "190:7:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 477,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "190:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "189:9:2"
+            },
+            "scope": 517,
+            "src": "136:63:2",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice Get liquidity reserves addresses of a liquidity provider\n@param _liquidityProvider liquidity provider address\n@return active liquidity reserve contract addresses",
+            "id": 488,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "providerLiquidityReserves",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 483,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 482,
+                  "name": "_liquidityProvider",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 488,
+                  "src": "439:26:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 481,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "439:7:2",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "438:28:2"
+            },
+            "returnParameters": {
+              "id": 487,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 486,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 488,
+                  "src": "514:16:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 484,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "514:7:2",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 485,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "514:9:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "513:18:2"
+            },
+            "scope": 517,
+            "src": "404:128:2",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice Get liquidity reserves addresses that hold a specific asset\n@param _asset asset address\n@return liquidity reserves addresses",
+            "id": 496,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "tokenLiquidityReserves",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 491,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 490,
+                  "name": "_asset",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 496,
+                  "src": "732:14:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 489,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "732:7:2",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "731:16:2"
+            },
+            "returnParameters": {
+              "id": 495,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 494,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 496,
+                  "src": "795:16:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 492,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "795:7:2",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 493,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "795:9:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "794:18:2"
+            },
+            "scope": 517,
+            "src": "700:113:2",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice settlement function\n@param exchangesAddresses list of exchanges addresses\n@param surplusTokensAddresses list of surplus tokens\n@param deficitTokensAddresses list of dificit tokens\n@param surplus list of surplus amount\n@param deficit list of deficit",
+            "id": 516,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "doSettlement",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 512,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 499,
+                  "name": "exchangesAddresses",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 516,
+                  "src": "1151:37:2",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_calldata_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 497,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1151:7:2",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 498,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1151:9:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 502,
+                  "name": "surplusTokensAddresses",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 516,
+                  "src": "1198:41:2",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_calldata_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 500,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1198:7:2",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 501,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1198:9:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 505,
+                  "name": "deficitTokensAddresses",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 516,
+                  "src": "1249:41:2",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_calldata_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 503,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1249:7:2",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 504,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1249:9:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 508,
+                  "name": "surplus",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 516,
+                  "src": "1300:26:2",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint128_$dyn_calldata_ptr",
+                    "typeString": "uint128[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 506,
+                      "name": "uint128",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1300:7:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint128",
+                        "typeString": "uint128"
+                      }
+                    },
+                    "id": 507,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1300:9:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint128_$dyn_storage_ptr",
+                      "typeString": "uint128[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 511,
+                  "name": "deficit",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 516,
+                  "src": "1336:26:2",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint128_$dyn_calldata_ptr",
+                    "typeString": "uint128[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 509,
+                      "name": "uint128",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1336:7:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint128",
+                        "typeString": "uint128"
+                      }
+                    },
+                    "id": 510,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1336:9:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint128_$dyn_storage_ptr",
+                      "typeString": "uint128[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1141:227:2"
+            },
+            "returnParameters": {
+              "id": 515,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 514,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 516,
+                  "src": "1387:4:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 513,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1387:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1386:6:2"
+            },
+            "scope": 517,
+            "src": "1120:273:2",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 518,
+        "src": "25:1370:2"
+      }
+    ],
+    "src": "0:1396:2"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/interfaces/IAlkemiNetwork.sol",
+    "exportedSymbols": {
+      "IAlkemiNetwork": [
+        517
+      ]
+    },
+    "id": 518,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 475,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:2"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 517,
+        "linearizedBaseContracts": [
+          517
+        ],
+        "name": "IAlkemiNetwork",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": "@notice Get current settlement id\n@return settlement id",
+            "id": 480,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "currentSettlementId",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 476,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "164:2:2"
+            },
+            "returnParameters": {
+              "id": 479,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 478,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 480,
+                  "src": "190:7:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 477,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "190:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "189:9:2"
+            },
+            "scope": 517,
+            "src": "136:63:2",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice Get liquidity reserves addresses of a liquidity provider\n@param _liquidityProvider liquidity provider address\n@return active liquidity reserve contract addresses",
+            "id": 488,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "providerLiquidityReserves",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 483,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 482,
+                  "name": "_liquidityProvider",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 488,
+                  "src": "439:26:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 481,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "439:7:2",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "438:28:2"
+            },
+            "returnParameters": {
+              "id": 487,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 486,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 488,
+                  "src": "514:16:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 484,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "514:7:2",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 485,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "514:9:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "513:18:2"
+            },
+            "scope": 517,
+            "src": "404:128:2",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice Get liquidity reserves addresses that hold a specific asset\n@param _asset asset address\n@return liquidity reserves addresses",
+            "id": 496,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "tokenLiquidityReserves",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 491,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 490,
+                  "name": "_asset",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 496,
+                  "src": "732:14:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 489,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "732:7:2",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "731:16:2"
+            },
+            "returnParameters": {
+              "id": 495,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 494,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 496,
+                  "src": "795:16:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 492,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "795:7:2",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 493,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "795:9:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "794:18:2"
+            },
+            "scope": 517,
+            "src": "700:113:2",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "@notice settlement function\n@param exchangesAddresses list of exchanges addresses\n@param surplusTokensAddresses list of surplus tokens\n@param deficitTokensAddresses list of dificit tokens\n@param surplus list of surplus amount\n@param deficit list of deficit",
+            "id": 516,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "doSettlement",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 512,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 499,
+                  "name": "exchangesAddresses",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 516,
+                  "src": "1151:37:2",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_calldata_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 497,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1151:7:2",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 498,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1151:9:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 502,
+                  "name": "surplusTokensAddresses",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 516,
+                  "src": "1198:41:2",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_calldata_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 500,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1198:7:2",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 501,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1198:9:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 505,
+                  "name": "deficitTokensAddresses",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 516,
+                  "src": "1249:41:2",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_calldata_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 503,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1249:7:2",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 504,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1249:9:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 508,
+                  "name": "surplus",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 516,
+                  "src": "1300:26:2",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint128_$dyn_calldata_ptr",
+                    "typeString": "uint128[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 506,
+                      "name": "uint128",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1300:7:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint128",
+                        "typeString": "uint128"
+                      }
+                    },
+                    "id": 507,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1300:9:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint128_$dyn_storage_ptr",
+                      "typeString": "uint128[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 511,
+                  "name": "deficit",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 516,
+                  "src": "1336:26:2",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint128_$dyn_calldata_ptr",
+                    "typeString": "uint128[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 509,
+                      "name": "uint128",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1336:7:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint128",
+                        "typeString": "uint128"
+                      }
+                    },
+                    "id": 510,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1336:9:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint128_$dyn_storage_ptr",
+                      "typeString": "uint128[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1141:227:2"
+            },
+            "returnParameters": {
+              "id": 515,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 514,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 516,
+                  "src": "1387:4:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 513,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1387:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1386:6:2"
+            },
+            "scope": 517,
+            "src": "1120:273:2",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 518,
+        "src": "25:1370:2"
+      }
+    ],
+    "src": "0:1396:2"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.5+commit.47a71e8f.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.21",
+  "updatedAt": "2020-01-21T11:50:43.748Z",
+  "devdoc": {
+    "methods": {
+      "currentSettlementId()": {
+        "return": "settlement id"
+      },
+      "doSettlement(address[],address[],address[],uint128[],uint128[])": {
+        "params": {
+          "deficit": "list of deficit",
+          "deficitTokensAddresses": "list of dificit tokens",
+          "exchangesAddresses": "list of exchanges addresses",
+          "surplus": "list of surplus amount",
+          "surplusTokensAddresses": "list of surplus tokens"
+        }
+      },
+      "providerLiquidityReserves(address)": {
+        "params": {
+          "_liquidityProvider": "liquidity provider address"
+        },
+        "return": "active liquidity reserve contract addresses"
+      },
+      "tokenLiquidityReserves(address)": {
+        "params": {
+          "_asset": "asset address"
+        },
+        "return": "liquidity reserves addresses"
+      }
+    }
+  },
+  "userdoc": {
+    "methods": {
+      "currentSettlementId()": {
+        "notice": "Get current settlement id"
+      },
+      "doSettlement(address[],address[],address[],uint128[],uint128[])": {
+        "notice": "settlement function"
+      },
+      "providerLiquidityReserves(address)": {
+        "notice": "Get liquidity reserves addresses of a liquidity provider"
+      },
+      "tokenLiquidityReserves(address)": {
+        "notice": "Get liquidity reserves addresses that hold a specific asset"
+      }
+    }
+  }
+}

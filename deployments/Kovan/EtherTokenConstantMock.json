@@ -1,0 +1,445 @@
+{
+  "contractName": "EtherTokenConstantMock",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getETHConstant",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "pure",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.5+commit.47a71e8f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"getETHConstant\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"pure\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/mocks/EtherTokenContantMock.sol\":\"EtherTokenConstantMock\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/mocks/EtherTokenContantMock.sol\":{\"keccak256\":\"0xcd1fca2bab7a76a1e444b618007a4ee00d4838b2c7f108bb92cd8307987bdff0\",\"urls\":[\"bzzr://2d438f0dc136f191de17d207b71457a97d9042bc226c3d38eb298823b5dbce70\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b5060808061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c806317e5123b14602d575b600080fd5b6033604f565b604080516001600160a01b039092168252519081900360200190f35b60009056fea165627a7a7230582015128e8a99902bfe6e6c4e2555071714a1efb68a7c275405b9b2f87ec7392a680029",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c806317e5123b14602d575b600080fd5b6033604f565b604080516001600160a01b039092168252519081900360200190f35b60009056fea165627a7a7230582015128e8a99902bfe6e6c4e2555071714a1efb68a7c275405b9b2f87ec7392a680029",
+  "sourceMap": "25:165:13:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:165:13;;;;;;;",
+  "deployedSourceMap": "25:165:13:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:165:13;;;;;;;;;;;;;;;;;;;103:85;;;:::i;:::-;;;;-1:-1:-1;;;;;103:85:13;;;;;;;;;;;;;;;152:7;103:85;:::o",
+  "source": "pragma solidity ^0.5.0;\n\ncontract EtherTokenConstantMock {\n    address constant ETH = address(0);\n\n    function getETHConstant() external pure returns (address) {\n        return ETH;\n    }\n}\n",
+  "sourcePath": "/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/mocks/EtherTokenContantMock.sol",
+  "ast": {
+    "absolutePath": "/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/mocks/EtherTokenContantMock.sol",
+    "exportedSymbols": {
+      "EtherTokenConstantMock": [
+        1870
+      ]
+    },
+    "id": 1871,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1856,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:13"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 1870,
+        "linearizedBaseContracts": [
+          1870
+        ],
+        "name": "EtherTokenConstantMock",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "id": 1861,
+            "name": "ETH",
+            "nodeType": "VariableDeclaration",
+            "scope": 1870,
+            "src": "63:33:13",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 1857,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "63:7:13",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "arguments": [
+                {
+                  "argumentTypes": null,
+                  "hexValue": "30",
+                  "id": 1859,
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "kind": "number",
+                  "lValueRequested": false,
+                  "nodeType": "Literal",
+                  "src": "94:1:13",
+                  "subdenomination": null,
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_rational_0_by_1",
+                    "typeString": "int_const 0"
+                  },
+                  "value": "0"
+                }
+              ],
+              "expression": {
+                "argumentTypes": [
+                  {
+                    "typeIdentifier": "t_rational_0_by_1",
+                    "typeString": "int_const 0"
+                  }
+                ],
+                "id": 1858,
+                "isConstant": false,
+                "isLValue": false,
+                "isPure": true,
+                "lValueRequested": false,
+                "nodeType": "ElementaryTypeNameExpression",
+                "src": "86:7:13",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_type$_t_address_$",
+                  "typeString": "type(address)"
+                },
+                "typeName": "address"
+              },
+              "id": 1860,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "typeConversion",
+              "lValueRequested": false,
+              "names": [],
+              "nodeType": "FunctionCall",
+              "src": "86:10:13",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address_payable",
+                "typeString": "address payable"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 1868,
+              "nodeType": "Block",
+              "src": "161:27:13",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 1866,
+                    "name": "ETH",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 1861,
+                    "src": "178:3:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "functionReturnParameters": 1865,
+                  "id": 1867,
+                  "nodeType": "Return",
+                  "src": "171:10:13"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 1869,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getETHConstant",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1862,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "126:2:13"
+            },
+            "returnParameters": {
+              "id": 1865,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1864,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1869,
+                  "src": "152:7:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1863,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "152:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "151:9:13"
+            },
+            "scope": 1870,
+            "src": "103:85:13",
+            "stateMutability": "pure",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1871,
+        "src": "25:165:13"
+      }
+    ],
+    "src": "0:191:13"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/mocks/EtherTokenContantMock.sol",
+    "exportedSymbols": {
+      "EtherTokenConstantMock": [
+        1870
+      ]
+    },
+    "id": 1871,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1856,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:13"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 1870,
+        "linearizedBaseContracts": [
+          1870
+        ],
+        "name": "EtherTokenConstantMock",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "id": 1861,
+            "name": "ETH",
+            "nodeType": "VariableDeclaration",
+            "scope": 1870,
+            "src": "63:33:13",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 1857,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "63:7:13",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "arguments": [
+                {
+                  "argumentTypes": null,
+                  "hexValue": "30",
+                  "id": 1859,
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "kind": "number",
+                  "lValueRequested": false,
+                  "nodeType": "Literal",
+                  "src": "94:1:13",
+                  "subdenomination": null,
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_rational_0_by_1",
+                    "typeString": "int_const 0"
+                  },
+                  "value": "0"
+                }
+              ],
+              "expression": {
+                "argumentTypes": [
+                  {
+                    "typeIdentifier": "t_rational_0_by_1",
+                    "typeString": "int_const 0"
+                  }
+                ],
+                "id": 1858,
+                "isConstant": false,
+                "isLValue": false,
+                "isPure": true,
+                "lValueRequested": false,
+                "nodeType": "ElementaryTypeNameExpression",
+                "src": "86:7:13",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_type$_t_address_$",
+                  "typeString": "type(address)"
+                },
+                "typeName": "address"
+              },
+              "id": 1860,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "typeConversion",
+              "lValueRequested": false,
+              "names": [],
+              "nodeType": "FunctionCall",
+              "src": "86:10:13",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address_payable",
+                "typeString": "address payable"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 1868,
+              "nodeType": "Block",
+              "src": "161:27:13",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 1866,
+                    "name": "ETH",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 1861,
+                    "src": "178:3:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "functionReturnParameters": 1865,
+                  "id": 1867,
+                  "nodeType": "Return",
+                  "src": "171:10:13"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 1869,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getETHConstant",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1862,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "126:2:13"
+            },
+            "returnParameters": {
+              "id": 1865,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1864,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1869,
+                  "src": "152:7:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1863,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "152:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "151:9:13"
+            },
+            "scope": 1870,
+            "src": "103:85:13",
+            "stateMutability": "pure",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1871,
+        "src": "25:165:13"
+      }
+    ],
+    "src": "0:191:13"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.5+commit.47a71e8f.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.21",
+  "updatedAt": "2020-01-21T12:20:09.896Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

@@ -8,7 +8,7 @@
         "MIN_TOKEN": "100"
     },
     "KOVAN": {
-        "ALKEMI_TOKEN": "",
+        "ALKEMI_TOKEN": "0x1D237aA864E2E6d3296A2e37AaFD64fc1A8C95bB",
         "MIN_TOKEN": "100"
     },
     "MAINNET": {

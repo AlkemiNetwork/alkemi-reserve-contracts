@@ -1,0 +1,648 @@
+{
+  "contractName": "ILiquidityReserveFactory",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_liquidityProvider",
+          "type": "address"
+        },
+        {
+          "name": "_alkemiNetwork",
+          "type": "address"
+        },
+        {
+          "name": "_beneficiary",
+          "type": "address"
+        },
+        {
+          "name": "_asset",
+          "type": "address"
+        },
+        {
+          "name": "_lockingPeriod",
+          "type": "uint256"
+        },
+        {
+          "name": "_lockingPrice",
+          "type": "uint256"
+        },
+        {
+          "name": "_lockingPricePosition",
+          "type": "uint8"
+        }
+      ],
+      "name": "createLiquidityReserve",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.5+commit.47a71e8f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"_liquidityProvider\",\"type\":\"address\"},{\"name\":\"_alkemiNetwork\",\"type\":\"address\"},{\"name\":\"_beneficiary\",\"type\":\"address\"},{\"name\":\"_asset\",\"type\":\"address\"},{\"name\":\"_lockingPeriod\",\"type\":\"uint256\"},{\"name\":\"_lockingPrice\",\"type\":\"uint256\"},{\"name\":\"_lockingPricePosition\",\"type\":\"uint8\"}],\"name\":\"createLiquidityReserve\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"createLiquidityReserve(address,address,address,address,uint256,uint256,uint8)\":{\"details\":\"Creates and initialises a new LiquidityReserve\",\"params\":{\"_alkemiNetwork\":\"Alkemi Network contract address\",\"_beneficiary\":\"earnings beneficiary (address(0) if the earnings goes to the current reserve address)\",\"_liquidityProvider\":\"Lequidity provider address\",\"_lockingPeriod\":\"funds locking period\",\"_lockingPrice\":\"release funds when hitting this price\",\"_lockingPricePosition\":\"locking price position\"},\"return\":\"Address of new Liquidity Reserve\"}},\"title\":\"ILiquidityReserveFactory\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/interfaces/ILiquidityReserveFactory.sol\":\"ILiquidityReserveFactory\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/interfaces/ILiquidityReserveFactory.sol\":{\"keccak256\":\"0x8922df16343f33050dccd0fa718c9624e88b8232bdddef1646a71a3c51048ba0\",\"urls\":[\"bzzr://5b793a0c3d15e321ab37967502c920f19a7a96701b56298f3657a225eaee513a\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.5.0;\n\n/**\n  * @title ILiquidityReserveFactory\n  */\ncontract ILiquidityReserveFactory {\n    /**\n   * @dev Creates and initialises a new LiquidityReserve\n   * @param _liquidityProvider Lequidity provider address\n   * @param _alkemiNetwork Alkemi Network contract address\n   * @param _beneficiary earnings beneficiary (address(0) if the earnings goes to the current reserve address)\n   * @param _lockingPeriod funds locking period\n   * @param _lockingPrice release funds when hitting this price\n   * @param _lockingPricePosition locking price position\n   * @return Address of new Liquidity Reserve\n   */\n    function createLiquidityReserve(\n        address _liquidityProvider,\n        address _alkemiNetwork,\n        address _beneficiary,\n        address _asset,\n        uint256 _lockingPeriod,\n        uint256 _lockingPrice,\n        uint8 _lockingPricePosition\n    ) external returns (address);\n\n}\n",
+  "sourcePath": "/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/interfaces/ILiquidityReserveFactory.sol",
+  "ast": {
+    "absolutePath": "/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/interfaces/ILiquidityReserveFactory.sol",
+    "exportedSymbols": {
+      "ILiquidityReserveFactory": [
+        659
+      ]
+    },
+    "id": 660,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 639,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:5"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": "@title ILiquidityReserveFactory",
+        "fullyImplemented": false,
+        "id": 659,
+        "linearizedBaseContracts": [
+          659
+        ],
+        "name": "ILiquidityReserveFactory",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": "@dev Creates and initialises a new LiquidityReserve\n@param _liquidityProvider Lequidity provider address\n@param _alkemiNetwork Alkemi Network contract address\n@param _beneficiary earnings beneficiary (address(0) if the earnings goes to the current reserve address)\n@param _lockingPeriod funds locking period\n@param _lockingPrice release funds when hitting this price\n@param _lockingPricePosition locking price position\n@return Address of new Liquidity Reserve",
+            "id": 658,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createLiquidityReserve",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 654,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 641,
+                  "name": "_liquidityProvider",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 658,
+                  "src": "665:26:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 640,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "665:7:5",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 643,
+                  "name": "_alkemiNetwork",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 658,
+                  "src": "701:22:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 642,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "701:7:5",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 645,
+                  "name": "_beneficiary",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 658,
+                  "src": "733:20:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 644,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "733:7:5",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 647,
+                  "name": "_asset",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 658,
+                  "src": "763:14:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 646,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "763:7:5",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 649,
+                  "name": "_lockingPeriod",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 658,
+                  "src": "787:22:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 648,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "787:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 651,
+                  "name": "_lockingPrice",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 658,
+                  "src": "819:21:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 650,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "819:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 653,
+                  "name": "_lockingPricePosition",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 658,
+                  "src": "850:27:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 652,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "850:5:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "655:228:5"
+            },
+            "returnParameters": {
+              "id": 657,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 656,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 658,
+                  "src": "902:7:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 655,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "902:7:5",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "901:9:5"
+            },
+            "scope": 659,
+            "src": "624:287:5",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 660,
+        "src": "70:844:5"
+      }
+    ],
+    "src": "0:915:5"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/interfaces/ILiquidityReserveFactory.sol",
+    "exportedSymbols": {
+      "ILiquidityReserveFactory": [
+        659
+      ]
+    },
+    "id": 660,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 639,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:5"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": "@title ILiquidityReserveFactory",
+        "fullyImplemented": false,
+        "id": 659,
+        "linearizedBaseContracts": [
+          659
+        ],
+        "name": "ILiquidityReserveFactory",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": "@dev Creates and initialises a new LiquidityReserve\n@param _liquidityProvider Lequidity provider address\n@param _alkemiNetwork Alkemi Network contract address\n@param _beneficiary earnings beneficiary (address(0) if the earnings goes to the current reserve address)\n@param _lockingPeriod funds locking period\n@param _lockingPrice release funds when hitting this price\n@param _lockingPricePosition locking price position\n@return Address of new Liquidity Reserve",
+            "id": 658,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createLiquidityReserve",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 654,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 641,
+                  "name": "_liquidityProvider",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 658,
+                  "src": "665:26:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 640,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "665:7:5",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 643,
+                  "name": "_alkemiNetwork",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 658,
+                  "src": "701:22:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 642,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "701:7:5",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 645,
+                  "name": "_beneficiary",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 658,
+                  "src": "733:20:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 644,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "733:7:5",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 647,
+                  "name": "_asset",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 658,
+                  "src": "763:14:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 646,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "763:7:5",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 649,
+                  "name": "_lockingPeriod",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 658,
+                  "src": "787:22:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 648,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "787:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 651,
+                  "name": "_lockingPrice",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 658,
+                  "src": "819:21:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 650,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "819:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 653,
+                  "name": "_lockingPricePosition",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 658,
+                  "src": "850:27:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 652,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "850:5:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "655:228:5"
+            },
+            "returnParameters": {
+              "id": 657,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 656,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 658,
+                  "src": "902:7:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 655,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "902:7:5",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "901:9:5"
+            },
+            "scope": 659,
+            "src": "624:287:5",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 660,
+        "src": "70:844:5"
+      }
+    ],
+    "src": "0:915:5"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.5+commit.47a71e8f.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.21",
+  "updatedAt": "2020-01-21T11:50:43.764Z",
+  "devdoc": {
+    "methods": {
+      "createLiquidityReserve(address,address,address,address,uint256,uint256,uint8)": {
+        "details": "Creates and initialises a new LiquidityReserve",
+        "params": {
+          "_alkemiNetwork": "Alkemi Network contract address",
+          "_beneficiary": "earnings beneficiary (address(0) if the earnings goes to the current reserve address)",
+          "_liquidityProvider": "Lequidity provider address",
+          "_lockingPeriod": "funds locking period",
+          "_lockingPrice": "release funds when hitting this price",
+          "_lockingPricePosition": "locking price position"
+        },
+        "return": "Address of new Liquidity Reserve"
+      }
+    },
+    "title": "ILiquidityReserveFactory"
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

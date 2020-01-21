@@ -91,9 +91,21 @@ The contract addresses deployed on `Rinkeby` Test Network:
 | ------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | AlkemiToken   | [0x4adFFe7bB8DbB140ae545B1A26f16c86bAfa295f](https://rinkeby.etherscan.io/address/0x4adffe7bb8dbb140ae545b1a26f16c86bafa295f) |
 | AlkemiPrime   | [0x6C427C15219DA3cc5F44c1c66D4cB79661628181](https://rinkeby.etherscan.io/address/0x6C427C15219DA3cc5F44c1c66D4cB79661628181) |
-| AlkemiNetwork | [0xc96275330c45D446a66068e581456F0Ec4721CBa](https://rinkeby.etherscan.io/address/0xc96275330c45D446a66068e581456F0Ec4721CBa) |
-| OracleGuard   | [0x522E883A7bE0ABF63BD04Fb06e235A35732a3F54](https://rinkeby.etherscan.io/address/0x522E883A7bE0ABF63BD04Fb06e235A35732a3F54) |
-| AlkemiOracle  | [0xd2Eb3e89A0677D8F3959017FbAD99cBD729D19ED](https://rinkeby.etherscan.io/address/0xd2Eb3e89A0677D8F3959017FbAD99cBD729D19ED) |
+| AlkemiNetwork | [0xE21127f47B365d3b1467746804f32BF8dCf47e26](https://rinkeby.etherscan.io/address/0xE21127f47B365d3b1467746804f32BF8dCf47e26) |
+| OracleGuard   | [0x6848c5474b4AE488c38A7B8de15d6C5AF2355c8d](https://rinkeby.etherscan.io/address/0x6848c5474b4AE488c38A7B8de15d6C5AF2355c8d) |
+| AlkemiOracle  | [0x7087ef6878A4557b86E8140dE664Bf82f75D38ee](https://rinkeby.etherscan.io/address/0x7087ef6878A4557b86E8140dE664Bf82f75D38ee) |
+
+#### Kovan Testnet
+
+The contract addresses deployed on `Kovan` Test Network:
+
+| Contract      | Address                                                                                                                       |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| AlkemiToken   | [0x60B3f59bD5B0F3BC99AfBF28AB53aA6C3C5baad5](https://kovan.etherscan.io/address/0x60B3f59bD5B0F3BC99AfBF28AB53aA6C3C5baad5) |
+| AlkemiPrime   | [0x1D237aA864E2E6d3296A2e37AaFD64fc1A8C95bB](https://kovan.etherscan.io/address/0x1D237aA864E2E6d3296A2e37AaFD64fc1A8C95bB) |
+| AlkemiNetwork | [0xd2Eb3e89A0677D8F3959017FbAD99cBD729D19ED](https://kovan.etherscan.io/address/0xd2Eb3e89A0677D8F3959017FbAD99cBD729D19ED) |
+| OracleGuard   | [0x1a0eE5C0fDCa464172dDa99213FE9522171A3524](https://kovan.etherscan.io/address/0x1a0eE5C0fDCa464172dDa99213FE9522171A3524) |
+| AlkemiOracle  | [0x4EC924FF6695b073540A9820f1857AEb2cD28147](https://kovan.etherscan.io/address/0x4EC924FF6695b073540A9820f1857AEb2cD28147) |
 
 ### Mainnets
 
