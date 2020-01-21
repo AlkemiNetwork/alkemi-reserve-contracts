@@ -100,6 +100,9 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
 
       assert.equal(await liquidityReserve1.asset.call(), token1.address, "wrong asset address");
       assert.equal(await liquidityReserve1.lockingPeriod.call(), lockingPeriod, "wrong locking period");
+      assert.equal(await alkemiNetwork.providerLiquidityReserves.call(liquidityProvider1), await alkemiNetwork.providerTokenReserves.call(liquidityProvider1, token1.address));
+      assert.equal(await alkemiNetwork.providerLiquidityReserves.call(liquidityProvider1), await alkemiNetwork.tokenLiquidityReserves.call(token1.address));
+      assert.equal(await alkemiNetwork.tokenLiquidityReserves.call(token1.address), await alkemiNetwork.providerTokenReserves.call(liquidityProvider1, token1.address));
     });
   });
 

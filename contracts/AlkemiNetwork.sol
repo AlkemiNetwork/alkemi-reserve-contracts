@@ -81,6 +81,30 @@ contract AlkemiNetwork is LiquidityReserveFactory {
     }
 
     /**
+   * @notice Get liquidity reserves addresses of a liquidity provider that hold specific asset
+   * @param _liquidityProvider liquidity provider address
+   * @param _asset asset address
+   * @return active liquidity reserve contract addresses
+   */
+    function providerTokenReserves(address _liquidityProvider, address _asset)
+        public
+        view
+        returns (address[] memory)
+    {
+        address[] memory _reserves = providerReserves[_liquidityProvider];
+        address[] memory _activeReserves = new address[](_reserves.length);
+
+        uint256 j = 0;
+        for (uint256 i = 0; i < _reserves.length; i++) {
+            if (ILiquidityReserve(_reserves[i]).isActive() && (ILiquidityReserve(_reserves[i]).asset() == _asset)) {
+                _activeReserves[j] = _reserves[i];
+                j++;
+            }
+        }
+        return _activeReserves;
+    }
+    
+    /**
    * @notice Get liquidity reserves addresses that hold a specific asset
    * @param _asset asset address
    * @return liquidity reserves addresses
