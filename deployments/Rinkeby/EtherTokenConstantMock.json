@@ -27,14 +27,14 @@
     "absolutePath": "/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/mocks/EtherTokenContantMock.sol",
     "exportedSymbols": {
       "EtherTokenConstantMock": [
-        1870
+        1880
       ]
     },
-    "id": 1871,
+    "id": 1881,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1856,
+        "id": 1866,
         "literals": [
           "solidity",
           "^",
@@ -50,19 +50,19 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1870,
+        "id": 1880,
         "linearizedBaseContracts": [
-          1870
+          1880
         ],
         "name": "EtherTokenConstantMock",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": true,
-            "id": 1861,
+            "id": 1871,
             "name": "ETH",
             "nodeType": "VariableDeclaration",
-            "scope": 1870,
+            "scope": 1880,
             "src": "63:33:13",
             "stateVariable": true,
             "storageLocation": "default",
@@ -71,7 +71,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 1857,
+              "id": 1867,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "63:7:13",
@@ -87,7 +87,7 @@
                 {
                   "argumentTypes": null,
                   "hexValue": "30",
-                  "id": 1859,
+                  "id": 1869,
                   "isConstant": false,
                   "isLValue": false,
                   "isPure": true,
@@ -110,7 +110,7 @@
                     "typeString": "int_const 0"
                   }
                 ],
-                "id": 1858,
+                "id": 1868,
                 "isConstant": false,
                 "isLValue": false,
                 "isPure": true,
@@ -123,7 +123,7 @@
                 },
                 "typeName": "address"
               },
-              "id": 1860,
+              "id": 1870,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -141,54 +141,54 @@
           },
           {
             "body": {
-              "id": 1868,
+              "id": 1878,
               "nodeType": "Block",
               "src": "161:27:13",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1866,
+                    "id": 1876,
                     "name": "ETH",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 1861,
+                    "referencedDeclaration": 1871,
                     "src": "178:3:13",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "functionReturnParameters": 1865,
-                  "id": 1867,
+                  "functionReturnParameters": 1875,
+                  "id": 1877,
                   "nodeType": "Return",
                   "src": "171:10:13"
                 }
               ]
             },
             "documentation": null,
-            "id": 1869,
+            "id": 1879,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getETHConstant",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1862,
+              "id": 1872,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "126:2:13"
             },
             "returnParameters": {
-              "id": 1865,
+              "id": 1875,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1864,
+                  "id": 1874,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1869,
+                  "scope": 1879,
                   "src": "152:7:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -197,7 +197,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1863,
+                    "id": 1873,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "152:7:13",
@@ -213,14 +213,14 @@
               ],
               "src": "151:9:13"
             },
-            "scope": 1870,
+            "scope": 1880,
             "src": "103:85:13",
             "stateMutability": "pure",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 1871,
+        "scope": 1881,
         "src": "25:165:13"
       }
     ],
@@ -230,14 +230,14 @@
     "absolutePath": "/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/mocks/EtherTokenContantMock.sol",
     "exportedSymbols": {
       "EtherTokenConstantMock": [
-        1870
+        1880
       ]
     },
-    "id": 1871,
+    "id": 1881,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1856,
+        "id": 1866,
         "literals": [
           "solidity",
           "^",
@@ -253,19 +253,19 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1870,
+        "id": 1880,
         "linearizedBaseContracts": [
-          1870
+          1880
         ],
         "name": "EtherTokenConstantMock",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": true,
-            "id": 1861,
+            "id": 1871,
             "name": "ETH",
             "nodeType": "VariableDeclaration",
-            "scope": 1870,
+            "scope": 1880,
             "src": "63:33:13",
             "stateVariable": true,
             "storageLocation": "default",
@@ -274,7 +274,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 1857,
+              "id": 1867,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "63:7:13",
@@ -290,7 +290,7 @@
                 {
                   "argumentTypes": null,
                   "hexValue": "30",
-                  "id": 1859,
+                  "id": 1869,
                   "isConstant": false,
                   "isLValue": false,
                   "isPure": true,
@@ -313,7 +313,7 @@
                     "typeString": "int_const 0"
                   }
                 ],
-                "id": 1858,
+                "id": 1868,
                 "isConstant": false,
                 "isLValue": false,
                 "isPure": true,
@@ -326,7 +326,7 @@
                 },
                 "typeName": "address"
               },
-              "id": 1860,
+              "id": 1870,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -344,54 +344,54 @@
           },
           {
             "body": {
-              "id": 1868,
+              "id": 1878,
               "nodeType": "Block",
               "src": "161:27:13",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1866,
+                    "id": 1876,
                     "name": "ETH",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 1861,
+                    "referencedDeclaration": 1871,
                     "src": "178:3:13",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "functionReturnParameters": 1865,
-                  "id": 1867,
+                  "functionReturnParameters": 1875,
+                  "id": 1877,
                   "nodeType": "Return",
                   "src": "171:10:13"
                 }
               ]
             },
             "documentation": null,
-            "id": 1869,
+            "id": 1879,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getETHConstant",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1862,
+              "id": 1872,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "126:2:13"
             },
             "returnParameters": {
-              "id": 1865,
+              "id": 1875,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1864,
+                  "id": 1874,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1869,
+                  "scope": 1879,
                   "src": "152:7:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -400,7 +400,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1863,
+                    "id": 1873,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "152:7:13",
@@ -416,14 +416,14 @@
               ],
               "src": "151:9:13"
             },
-            "scope": 1870,
+            "scope": 1880,
             "src": "103:85:13",
             "stateMutability": "pure",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 1871,
+        "scope": 1881,
         "src": "25:165:13"
       }
     ],
@@ -435,7 +435,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.21",
-  "updatedAt": "2020-01-21T11:50:43.807Z",
+  "updatedAt": "2020-01-27T11:43:12.235Z",
   "devdoc": {
     "methods": {}
   },
