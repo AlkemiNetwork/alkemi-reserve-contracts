@@ -305,7 +305,11 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
 
         if (lockingPricePosition == 0) {
             if (oraclePrice <= lockingPrice) {
-                emit PriceUnlock(lockingPrice, oraclePrice, lockingPricePosition);
+                emit PriceUnlock(
+                    lockingPrice,
+                    oraclePrice,
+                    lockingPricePosition
+                );
 
                 _withdraw(
                     address(uint160(liquidityProvider())),
@@ -315,7 +319,11 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
             }
         } else {
             if (oraclePrice >= lockingPrice) {
-                emit PriceUnlock(lockingPrice, oraclePrice, lockingPricePosition);
+                emit PriceUnlock(
+                    lockingPrice,
+                    oraclePrice,
+                    lockingPricePosition
+                );
 
                 _withdraw(
                     address(uint160(liquidityProvider())),
