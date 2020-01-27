@@ -304,23 +304,25 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
         lastPriceCheck = now;
 
         if (lockingPricePosition == 0) {
-            if (oraclePrice <= lockingPrice)
+            if (oraclePrice <= lockingPrice) {
+                emit PriceUnlock(lockingPrice, oraclePrice, lockingPricePosition);
+
                 _withdraw(
                     address(uint160(liquidityProvider())),
                     asset,
                     _amountToWithdraw
                 );
-
-                emit PriceUnlock(lockingPrice, oraclePrice, lockingPricePosition);
+            }
         } else {
-            if (oraclePrice >= lockingPrice)
+            if (oraclePrice >= lockingPrice) {
+                emit PriceUnlock(lockingPrice, oraclePrice, lockingPricePosition);
+
                 _withdraw(
                     address(uint160(liquidityProvider())),
                     asset,
                     _amountToWithdraw
                 );
-
-                emit PriceUnlock(lockingPrice, oraclePrice, lockingPricePosition);
+            }
         }
 
         _amountToWithdraw = 0;
