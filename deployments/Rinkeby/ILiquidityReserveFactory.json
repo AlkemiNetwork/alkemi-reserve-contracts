@@ -624,7 +624,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.21",
-  "updatedAt": "2020-01-27T11:00:32.883Z",
+  "updatedAt": "2020-01-27T11:43:12.205Z",
   "devdoc": {
     "methods": {
       "createLiquidityReserve(address,address,address,address,uint256,uint256,uint8)": {
