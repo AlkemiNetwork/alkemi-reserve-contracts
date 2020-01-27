@@ -286,7 +286,7 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
         path[3] = _market;
         path[4] = "price";
         req.addStringArray("copyPath", path);
-        req.addInt("times", 100);
+        req.addInt("times", 10**18);
         sendChainlinkRequestTo(_oracle, req, _oraclePayment);
     }
 
@@ -310,6 +310,8 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
                     asset,
                     _amountToWithdraw
                 );
+
+                emit PriceUnlock(lockingPrice, oraclePrice, lockingPricePosition);
         } else {
             if (oraclePrice >= lockingPrice)
                 _withdraw(
@@ -317,11 +319,11 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
                     asset,
                     _amountToWithdraw
                 );
+
+                emit PriceUnlock(lockingPrice, oraclePrice, lockingPricePosition);
         }
 
         _amountToWithdraw = 0;
-
-        emit PriceUnlock(lockingPrice, oraclePrice, lockingPricePosition);
     }
 
     /**

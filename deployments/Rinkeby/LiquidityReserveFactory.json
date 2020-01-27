@@ -1,9 +1,9 @@
 {
   "contractName": "LiquidityReserveFactory",
   "abi": [],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.5+commit.47a71e8f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"details\":\"This Factory creates a Liquidity Reserve\",\"methods\":{},\"title\":\"LiquidityReserveFactory\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/liquidity-reserve/factory/LiquidityReserveFactory.sol\":\"LiquidityReserveFactory\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/liquidity-reserve/LiquidityReserve.sol\":{\"keccak256\":\"0xac5d7d5fc1c116a857b0cfee77c7a432143c61f0e84d87e7867d94649117ae47\",\"urls\":[\"bzzr://1374352911bb105e792ad31a851c339410c1eb246528ac6f66471d886ab11335\"]},\"/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/liquidity-reserve/LiquidityReserveState.sol\":{\"keccak256\":\"0xeb785d599bf19f9a9956924331a8c7334786d354eb28b9fb3ec5b4a406f8290c\",\"urls\":[\"bzzr://8939db5bd6e5f4ef5949fc18e0655b90c567c5738abb0d45883068c0491c1d53\"]},\"/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/liquidity-reserve/factory/LiquidityReserveFactory.sol\":{\"keccak256\":\"0xae66c459cd08fcce5ff776154b81ea12bce2b74a1d84f148f3ec3b4a71acd7d7\",\"urls\":[\"bzzr://80616ca9876cb900f401de822dcd3d3fbd4d9a17f64709f7ddda3ce3461c9890\"]},\"@openzeppelin/contracts/GSN/Context.sol\":{\"keccak256\":\"0x90a3995645af7562d84b9d69363ffa5ae7217714ab61e951bf7bc450f40e4061\",\"urls\":[\"bzzr://51482c01bddf23793bddee43b60ab9578a62948a4f2082def24ea792a553b055\"]},\"@openzeppelin/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076\",\"urls\":[\"bzzr://292843005e754e752644f767477ec5ad7a1ffc91ddb18c38b8079c62f3993cad\"]},\"@openzeppelin/contracts/token/ERC20/ERC20.sol\":{\"keccak256\":\"0x65a4078c03875c25413a068ce9cfdd7e68a90f8786612d1189c89341e6e3b802\",\"urls\":[\"bzzr://fefcc5ec4e313a66c9fd38375983b5973c528e7e19b6d37c2f1ac6745295e6e2\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0xe5bb0f57cff3e299f360052ba50f1ea0fff046df2be070b6943e0e3c3fdad8a9\",\"urls\":[\"bzzr://cf2d583b8dce38d0617fdcd65f2fd9f126fe17b7f683b5a515ea9d2762d8b062\"]},\"@openzeppelin/contracts/token/ERC20/SafeERC20.sol\":{\"keccak256\":\"0x6f2c9955d65c522b80f4b8792f076512d2df947d2112cbc4d98a4781ed42ede2\",\"urls\":[\"bzzr://d2ff5aadcb697bc27ca3b0f6c40b4998e8cf0a1bd0f761d1df6d5981777841ae\"]},\"@openzeppelin/contracts/utils/Address.sol\":{\"keccak256\":\"0x70df50e240407aa50915ad14f61b1a901fa335b37de20955b99ed647be756af0\",\"urls\":[\"bzzr://cd04ca8d050befdf06ac93c2f6f5ea7250d2199b44aecbe54ded512e823f711a\"]},\"chainlinkv0.5/contracts/Chainlink.sol\":{\"keccak256\":\"0xebcc879f64de6845363e288b650f69f5c1005da7d4ddb63f85e991dd8b988978\",\"urls\":[\"bzzr://edc83c866847f1123f18c8c7da21e0e99c59c7dace77022998ac24da5057a03e\"]},\"chainlinkv0.5/contracts/ChainlinkClient.sol\":{\"keccak256\":\"0xc0c8c49ae17737caa957007286fec8029a3bc0c14e3550c9bc17caa7ec73bd2f\",\"urls\":[\"bzzr://2d16fab052156e663628e3c814866d7478a38e1d139f2a89b004de378f5f68a4\"]},\"chainlinkv0.5/contracts/interfaces/ChainlinkRequestInterface.sol\":{\"keccak256\":\"0xce2ef63d4dba0dfd878b4d4a328c97815937822c39f626f2af173565e674750e\",\"urls\":[\"bzzr://e11a8596788401106ab89cca333dff27e1847fbbb2e624a81a05e1230d79ad80\"]},\"chainlinkv0.5/contracts/interfaces/ENSInterface.sol\":{\"keccak256\":\"0x87607c12cc84c57afbcb38f00d96ae67c433474c1310a0c2798e2a728f41750d\",\"urls\":[\"bzzr://10a880076bf0b03ef9bd153e7f6ca18e65f15c9f7bf4b0883e93b8de67dd22c2\"]},\"chainlinkv0.5/contracts/interfaces/LinkTokenInterface.sol\":{\"keccak256\":\"0x31d465d033544d51f22525ba23b44a724710eb39c1e80c82403f5af3832d73dd\",\"urls\":[\"bzzr://b02046a02808059a41c750b1f35cc6797f1be8d7c5ad77ce9bf9ddc857a3e9ae\"]},\"chainlinkv0.5/contracts/interfaces/PointerInterface.sol\":{\"keccak256\":\"0xdc08ab9320d187dbaffa20dc31d331f8067fa534c9a654aab8f9ffa63df450da\",\"urls\":[\"bzzr://7e34f1d953ea72152d9daffea28117d5d31d85891f2cac5f1ded4a589cad4874\"]},\"chainlinkv0.5/contracts/vendor/Buffer.sol\":{\"keccak256\":\"0x0a3bc9b2ae59b3a51f85050a85f77611b44d12d0185dc5744db997e15ccc3ef4\",\"urls\":[\"bzzr://f499c6f1912d0fa8a62ce1ef81cf57c25fa9b15f5a1e2aeaf92dc9d2d1916277\"]},\"chainlinkv0.5/contracts/vendor/CBOR.sol\":{\"keccak256\":\"0xf4860143694476020a63afb3c3b411aca6c0e89d7b5950545becfe0ce3afa0bc\",\"urls\":[\"bzzr://93dc9867b4a6a870247b89298eedbe565ce958f4012b2617b0ab146fc1634741\"]},\"chainlinkv0.5/contracts/vendor/ENSResolver.sol\":{\"keccak256\":\"0x64fcf7d2fc5efc87eaf7eba4a8f69af4d28986b6e4fb3590f076eb41ce40296e\",\"urls\":[\"bzzr://09e1bdee1831b5e85d3c7b5d96b7c26ad54e96d654cfaf18f58449c4c45961fc\"]},\"chainlinkv0.5/contracts/vendor/SafeMath.sol\":{\"keccak256\":\"0x3c9aed70447b5aafb455bf2b124405f87979c19e628553c194f741660197265b\",\"urls\":[\"bzzr://560515f0c0118bae3cb38a64c2b67a75a80e87647618ba02f1e614a113cdfeea\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a723058209de873b51417c3cc2899f89c699cb0f99a8b8254fba978ab3f35068fce28a49d0029",
-  "deployedBytecode": "0x6080604052600080fdfea165627a7a723058209de873b51417c3cc2899f89c699cb0f99a8b8254fba978ab3f35068fce28a49d0029",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.5+commit.47a71e8f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"details\":\"This Factory creates a Liquidity Reserve\",\"methods\":{},\"title\":\"LiquidityReserveFactory\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/liquidity-reserve/factory/LiquidityReserveFactory.sol\":\"LiquidityReserveFactory\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/liquidity-reserve/LiquidityReserve.sol\":{\"keccak256\":\"0x1a2ff38934340d520ab01753b6ff8b868b8f8590fe1fddafc95979ba00c2e6d0\",\"urls\":[\"bzzr://818f0f0f363a457e9e6eeafa11c980e97bbeccc4c9c24154f6a90d50b81f3240\"]},\"/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/liquidity-reserve/LiquidityReserveState.sol\":{\"keccak256\":\"0xeb785d599bf19f9a9956924331a8c7334786d354eb28b9fb3ec5b4a406f8290c\",\"urls\":[\"bzzr://8939db5bd6e5f4ef5949fc18e0655b90c567c5738abb0d45883068c0491c1d53\"]},\"/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/liquidity-reserve/factory/LiquidityReserveFactory.sol\":{\"keccak256\":\"0xae66c459cd08fcce5ff776154b81ea12bce2b74a1d84f148f3ec3b4a71acd7d7\",\"urls\":[\"bzzr://80616ca9876cb900f401de822dcd3d3fbd4d9a17f64709f7ddda3ce3461c9890\"]},\"@openzeppelin/contracts/GSN/Context.sol\":{\"keccak256\":\"0x90a3995645af7562d84b9d69363ffa5ae7217714ab61e951bf7bc450f40e4061\",\"urls\":[\"bzzr://51482c01bddf23793bddee43b60ab9578a62948a4f2082def24ea792a553b055\"]},\"@openzeppelin/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076\",\"urls\":[\"bzzr://292843005e754e752644f767477ec5ad7a1ffc91ddb18c38b8079c62f3993cad\"]},\"@openzeppelin/contracts/token/ERC20/ERC20.sol\":{\"keccak256\":\"0x65a4078c03875c25413a068ce9cfdd7e68a90f8786612d1189c89341e6e3b802\",\"urls\":[\"bzzr://fefcc5ec4e313a66c9fd38375983b5973c528e7e19b6d37c2f1ac6745295e6e2\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0xe5bb0f57cff3e299f360052ba50f1ea0fff046df2be070b6943e0e3c3fdad8a9\",\"urls\":[\"bzzr://cf2d583b8dce38d0617fdcd65f2fd9f126fe17b7f683b5a515ea9d2762d8b062\"]},\"@openzeppelin/contracts/token/ERC20/SafeERC20.sol\":{\"keccak256\":\"0x6f2c9955d65c522b80f4b8792f076512d2df947d2112cbc4d98a4781ed42ede2\",\"urls\":[\"bzzr://d2ff5aadcb697bc27ca3b0f6c40b4998e8cf0a1bd0f761d1df6d5981777841ae\"]},\"@openzeppelin/contracts/utils/Address.sol\":{\"keccak256\":\"0x70df50e240407aa50915ad14f61b1a901fa335b37de20955b99ed647be756af0\",\"urls\":[\"bzzr://cd04ca8d050befdf06ac93c2f6f5ea7250d2199b44aecbe54ded512e823f711a\"]},\"chainlinkv0.5/contracts/Chainlink.sol\":{\"keccak256\":\"0xebcc879f64de6845363e288b650f69f5c1005da7d4ddb63f85e991dd8b988978\",\"urls\":[\"bzzr://edc83c866847f1123f18c8c7da21e0e99c59c7dace77022998ac24da5057a03e\"]},\"chainlinkv0.5/contracts/ChainlinkClient.sol\":{\"keccak256\":\"0xc0c8c49ae17737caa957007286fec8029a3bc0c14e3550c9bc17caa7ec73bd2f\",\"urls\":[\"bzzr://2d16fab052156e663628e3c814866d7478a38e1d139f2a89b004de378f5f68a4\"]},\"chainlinkv0.5/contracts/interfaces/ChainlinkRequestInterface.sol\":{\"keccak256\":\"0xce2ef63d4dba0dfd878b4d4a328c97815937822c39f626f2af173565e674750e\",\"urls\":[\"bzzr://e11a8596788401106ab89cca333dff27e1847fbbb2e624a81a05e1230d79ad80\"]},\"chainlinkv0.5/contracts/interfaces/ENSInterface.sol\":{\"keccak256\":\"0x87607c12cc84c57afbcb38f00d96ae67c433474c1310a0c2798e2a728f41750d\",\"urls\":[\"bzzr://10a880076bf0b03ef9bd153e7f6ca18e65f15c9f7bf4b0883e93b8de67dd22c2\"]},\"chainlinkv0.5/contracts/interfaces/LinkTokenInterface.sol\":{\"keccak256\":\"0x31d465d033544d51f22525ba23b44a724710eb39c1e80c82403f5af3832d73dd\",\"urls\":[\"bzzr://b02046a02808059a41c750b1f35cc6797f1be8d7c5ad77ce9bf9ddc857a3e9ae\"]},\"chainlinkv0.5/contracts/interfaces/PointerInterface.sol\":{\"keccak256\":\"0xdc08ab9320d187dbaffa20dc31d331f8067fa534c9a654aab8f9ffa63df450da\",\"urls\":[\"bzzr://7e34f1d953ea72152d9daffea28117d5d31d85891f2cac5f1ded4a589cad4874\"]},\"chainlinkv0.5/contracts/vendor/Buffer.sol\":{\"keccak256\":\"0x0a3bc9b2ae59b3a51f85050a85f77611b44d12d0185dc5744db997e15ccc3ef4\",\"urls\":[\"bzzr://f499c6f1912d0fa8a62ce1ef81cf57c25fa9b15f5a1e2aeaf92dc9d2d1916277\"]},\"chainlinkv0.5/contracts/vendor/CBOR.sol\":{\"keccak256\":\"0xf4860143694476020a63afb3c3b411aca6c0e89d7b5950545becfe0ce3afa0bc\",\"urls\":[\"bzzr://93dc9867b4a6a870247b89298eedbe565ce958f4012b2617b0ab146fc1634741\"]},\"chainlinkv0.5/contracts/vendor/ENSResolver.sol\":{\"keccak256\":\"0x64fcf7d2fc5efc87eaf7eba4a8f69af4d28986b6e4fb3590f076eb41ce40296e\",\"urls\":[\"bzzr://09e1bdee1831b5e85d3c7b5d96b7c26ad54e96d654cfaf18f58449c4c45961fc\"]},\"chainlinkv0.5/contracts/vendor/SafeMath.sol\":{\"keccak256\":\"0x3c9aed70447b5aafb455bf2b124405f87979c19e628553c194f741660197265b\",\"urls\":[\"bzzr://560515f0c0118bae3cb38a64c2b67a75a80e87647618ba02f1e614a113cdfeea\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a7230582079820da2247710be0fa95dce8a69a954d65a2204e67191fee00b54a8bdc20e320029",
+  "deployedBytecode": "0x6080604052600080fdfea165627a7a7230582079820da2247710be0fa95dce8a69a954d65a2204e67191fee00b54a8bdc20e320029",
   "sourceMap": "177:1089:10:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;177:1089:10;;;;;;;",
   "deployedSourceMap": "177:1089:10:-;;;;;",
   "source": "pragma solidity ^0.5.0;\n\nimport { LiquidityReserve } from \"../LiquidityReserve.sol\";\n\n/**\n * @title LiquidityReserveFactory\n * @dev This Factory creates a Liquidity Reserve\n */\ncontract LiquidityReserveFactory {\n\n  /**\n   * @dev Creates and initialises a new LiquidityReserve\n   * @param _liquidityProvider Lequidity provider address\n   * @param _alkemiNetwork Alkemi Network contract address\n   * @param _beneficiary earnings beneficiary (address(0) if the earnings goes to the current reserve address)\n   * @param _lockingPeriod funds locking period\n   * @param _lockingPrice release funds when hitting this price\n   * @param _lockingPricePosition locking price position\n   * @return Address of new Liquidity Reserve\n   */\n  function _createLiquidityReserve(\n    address _linkToken,\n    address _liquidityProvider,\n    address _alkemiNetwork,\n    address _beneficiary,\n    address _asset,\n    uint256 _lockingPeriod,\n    uint256 _lockingPrice,\n    uint8 _lockingPricePosition\n  ) internal returns (address) {\n    return address(\n      new LiquidityReserve(\n        _linkToken,\n        _liquidityProvider,\n        _alkemiNetwork,\n        _beneficiary,\n        _asset,\n        _lockingPeriod,\n        _lockingPrice,\n        _lockingPricePosition\n      )\n    );\n  }\n}",
@@ -12,14 +12,14 @@
     "absolutePath": "/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/liquidity-reserve/factory/LiquidityReserveFactory.sol",
     "exportedSymbols": {
       "LiquidityReserveFactory": [
-        1698
+        1706
       ]
     },
-    "id": 1699,
+    "id": 1707,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1659,
+        "id": 1667,
         "literals": [
           "solidity",
           "^",
@@ -32,14 +32,14 @@
       {
         "absolutePath": "/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/liquidity-reserve/LiquidityReserve.sol",
         "file": "../LiquidityReserve.sol",
-        "id": 1661,
+        "id": 1669,
         "nodeType": "ImportDirective",
-        "scope": 1699,
-        "sourceUnit": 1483,
+        "scope": 1707,
+        "sourceUnit": 1491,
         "src": "25:59:10",
         "symbolAliases": [
           {
-            "foreign": 1660,
+            "foreign": 1668,
             "local": null
           }
         ],
@@ -48,21 +48,21 @@
       {
         "baseContracts": [],
         "contractDependencies": [
-          1482
+          1490
         ],
         "contractKind": "contract",
         "documentation": "@title LiquidityReserveFactory\n@dev This Factory creates a Liquidity Reserve",
         "fullyImplemented": true,
-        "id": 1698,
+        "id": 1706,
         "linearizedBaseContracts": [
-          1698
+          1706
         ],
         "name": "LiquidityReserveFactory",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 1696,
+              "id": 1704,
               "nodeType": "Block",
               "src": "1009:255:10",
               "statements": [
@@ -75,11 +75,11 @@
                         "arguments": [
                           {
                             "argumentTypes": null,
-                            "id": 1685,
+                            "id": 1693,
                             "name": "_linkToken",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1663,
+                            "referencedDeclaration": 1671,
                             "src": "1067:10:10",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
@@ -88,11 +88,11 @@
                           },
                           {
                             "argumentTypes": null,
-                            "id": 1686,
+                            "id": 1694,
                             "name": "_liquidityProvider",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1665,
+                            "referencedDeclaration": 1673,
                             "src": "1087:18:10",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
@@ -101,11 +101,11 @@
                           },
                           {
                             "argumentTypes": null,
-                            "id": 1687,
+                            "id": 1695,
                             "name": "_alkemiNetwork",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1667,
+                            "referencedDeclaration": 1675,
                             "src": "1115:14:10",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
@@ -114,11 +114,11 @@
                           },
                           {
                             "argumentTypes": null,
-                            "id": 1688,
+                            "id": 1696,
                             "name": "_beneficiary",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1669,
+                            "referencedDeclaration": 1677,
                             "src": "1139:12:10",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
@@ -127,11 +127,11 @@
                           },
                           {
                             "argumentTypes": null,
-                            "id": 1689,
+                            "id": 1697,
                             "name": "_asset",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1671,
+                            "referencedDeclaration": 1679,
                             "src": "1161:6:10",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
@@ -140,11 +140,11 @@
                           },
                           {
                             "argumentTypes": null,
-                            "id": 1690,
+                            "id": 1698,
                             "name": "_lockingPeriod",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1673,
+                            "referencedDeclaration": 1681,
                             "src": "1177:14:10",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
@@ -153,11 +153,11 @@
                           },
                           {
                             "argumentTypes": null,
-                            "id": 1691,
+                            "id": 1699,
                             "name": "_lockingPrice",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1675,
+                            "referencedDeclaration": 1683,
                             "src": "1201:13:10",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
@@ -166,11 +166,11 @@
                           },
                           {
                             "argumentTypes": null,
-                            "id": 1692,
+                            "id": 1700,
                             "name": "_lockingPricePosition",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1677,
+                            "referencedDeclaration": 1685,
                             "src": "1224:21:10",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint8",
@@ -213,7 +213,7 @@
                               "typeString": "uint8"
                             }
                           ],
-                          "id": 1684,
+                          "id": 1692,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -221,23 +221,23 @@
                           "nodeType": "NewExpression",
                           "src": "1037:20:10",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_function_creation_nonpayable$_t_address_$_t_address_$_t_address_$_t_address_$_t_address_$_t_uint256_$_t_uint256_$_t_uint8_$returns$_t_contract$_LiquidityReserve_$1482_$",
+                            "typeIdentifier": "t_function_creation_nonpayable$_t_address_$_t_address_$_t_address_$_t_address_$_t_address_$_t_uint256_$_t_uint256_$_t_uint8_$returns$_t_contract$_LiquidityReserve_$1490_$",
                             "typeString": "function (address,address,address,address,address,uint256,uint256,uint8) returns (contract LiquidityReserve)"
                           },
                           "typeName": {
                             "contractScope": null,
-                            "id": 1683,
+                            "id": 1691,
                             "name": "LiquidityReserve",
                             "nodeType": "UserDefinedTypeName",
-                            "referencedDeclaration": 1482,
+                            "referencedDeclaration": 1490,
                             "src": "1041:16:10",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_LiquidityReserve_$1482",
+                              "typeIdentifier": "t_contract$_LiquidityReserve_$1490",
                               "typeString": "contract LiquidityReserve"
                             }
                           }
                         },
-                        "id": 1693,
+                        "id": 1701,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -247,7 +247,7 @@
                         "nodeType": "FunctionCall",
                         "src": "1037:216:10",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_LiquidityReserve_$1482",
+                          "typeIdentifier": "t_contract$_LiquidityReserve_$1490",
                           "typeString": "contract LiquidityReserve"
                         }
                       }
@@ -255,11 +255,11 @@
                     "expression": {
                       "argumentTypes": [
                         {
-                          "typeIdentifier": "t_contract$_LiquidityReserve_$1482",
+                          "typeIdentifier": "t_contract$_LiquidityReserve_$1490",
                           "typeString": "contract LiquidityReserve"
                         }
                       ],
-                      "id": 1682,
+                      "id": 1690,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -272,7 +272,7 @@
                       },
                       "typeName": "address"
                     },
-                    "id": 1694,
+                    "id": 1702,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -286,30 +286,30 @@
                       "typeString": "address"
                     }
                   },
-                  "functionReturnParameters": 1681,
-                  "id": 1695,
+                  "functionReturnParameters": 1689,
+                  "id": 1703,
                   "nodeType": "Return",
                   "src": "1015:244:10"
                 }
               ]
             },
             "documentation": "@dev Creates and initialises a new LiquidityReserve\n@param _liquidityProvider Lequidity provider address\n@param _alkemiNetwork Alkemi Network contract address\n@param _beneficiary earnings beneficiary (address(0) if the earnings goes to the current reserve address)\n@param _lockingPeriod funds locking period\n@param _lockingPrice release funds when hitting this price\n@param _lockingPricePosition locking price position\n@return Address of new Liquidity Reserve",
-            "id": 1697,
+            "id": 1705,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "_createLiquidityReserve",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1678,
+              "id": 1686,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1663,
+                  "id": 1671,
                   "name": "_linkToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1697,
+                  "scope": 1705,
                   "src": "765:18:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -318,7 +318,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1662,
+                    "id": 1670,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "765:7:10",
@@ -333,10 +333,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1665,
+                  "id": 1673,
                   "name": "_liquidityProvider",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1697,
+                  "scope": 1705,
                   "src": "789:26:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -345,7 +345,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1664,
+                    "id": 1672,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "789:7:10",
@@ -360,10 +360,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1667,
+                  "id": 1675,
                   "name": "_alkemiNetwork",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1697,
+                  "scope": 1705,
                   "src": "821:22:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -372,7 +372,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1666,
+                    "id": 1674,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "821:7:10",
@@ -387,10 +387,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1669,
+                  "id": 1677,
                   "name": "_beneficiary",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1697,
+                  "scope": 1705,
                   "src": "849:20:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -399,7 +399,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1668,
+                    "id": 1676,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "849:7:10",
@@ -414,10 +414,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1671,
+                  "id": 1679,
                   "name": "_asset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1697,
+                  "scope": 1705,
                   "src": "875:14:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -426,7 +426,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1670,
+                    "id": 1678,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "875:7:10",
@@ -441,10 +441,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1673,
+                  "id": 1681,
                   "name": "_lockingPeriod",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1697,
+                  "scope": 1705,
                   "src": "895:22:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -453,7 +453,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1672,
+                    "id": 1680,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "895:7:10",
@@ -467,10 +467,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1675,
+                  "id": 1683,
                   "name": "_lockingPrice",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1697,
+                  "scope": 1705,
                   "src": "923:21:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -479,7 +479,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1674,
+                    "id": 1682,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "923:7:10",
@@ -493,10 +493,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1677,
+                  "id": 1685,
                   "name": "_lockingPricePosition",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1697,
+                  "scope": 1705,
                   "src": "950:27:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -505,7 +505,7 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 1676,
+                    "id": 1684,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
                     "src": "950:5:10",
@@ -521,15 +521,15 @@
               "src": "759:222:10"
             },
             "returnParameters": {
-              "id": 1681,
+              "id": 1689,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1680,
+                  "id": 1688,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1697,
+                  "scope": 1705,
                   "src": "1000:7:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -538,7 +538,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1679,
+                    "id": 1687,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1000:7:10",
@@ -554,14 +554,14 @@
               ],
               "src": "999:9:10"
             },
-            "scope": 1698,
+            "scope": 1706,
             "src": "727:537:10",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "internal"
           }
         ],
-        "scope": 1699,
+        "scope": 1707,
         "src": "177:1089:10"
       }
     ],
@@ -571,14 +571,14 @@
     "absolutePath": "/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/liquidity-reserve/factory/LiquidityReserveFactory.sol",
     "exportedSymbols": {
       "LiquidityReserveFactory": [
-        1698
+        1706
       ]
     },
-    "id": 1699,
+    "id": 1707,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1659,
+        "id": 1667,
         "literals": [
           "solidity",
           "^",
@@ -591,14 +591,14 @@
       {
         "absolutePath": "/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/liquidity-reserve/LiquidityReserve.sol",
         "file": "../LiquidityReserve.sol",
-        "id": 1661,
+        "id": 1669,
         "nodeType": "ImportDirective",
-        "scope": 1699,
-        "sourceUnit": 1483,
+        "scope": 1707,
+        "sourceUnit": 1491,
         "src": "25:59:10",
         "symbolAliases": [
           {
-            "foreign": 1660,
+            "foreign": 1668,
             "local": null
           }
         ],
@@ -607,21 +607,21 @@
       {
         "baseContracts": [],
         "contractDependencies": [
-          1482
+          1490
         ],
         "contractKind": "contract",
         "documentation": "@title LiquidityReserveFactory\n@dev This Factory creates a Liquidity Reserve",
         "fullyImplemented": true,
-        "id": 1698,
+        "id": 1706,
         "linearizedBaseContracts": [
-          1698
+          1706
         ],
         "name": "LiquidityReserveFactory",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 1696,
+              "id": 1704,
               "nodeType": "Block",
               "src": "1009:255:10",
               "statements": [
@@ -634,11 +634,11 @@
                         "arguments": [
                           {
                             "argumentTypes": null,
-                            "id": 1685,
+                            "id": 1693,
                             "name": "_linkToken",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1663,
+                            "referencedDeclaration": 1671,
                             "src": "1067:10:10",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
@@ -647,11 +647,11 @@
                           },
                           {
                             "argumentTypes": null,
-                            "id": 1686,
+                            "id": 1694,
                             "name": "_liquidityProvider",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1665,
+                            "referencedDeclaration": 1673,
                             "src": "1087:18:10",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
@@ -660,11 +660,11 @@
                           },
                           {
                             "argumentTypes": null,
-                            "id": 1687,
+                            "id": 1695,
                             "name": "_alkemiNetwork",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1667,
+                            "referencedDeclaration": 1675,
                             "src": "1115:14:10",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
@@ -673,11 +673,11 @@
                           },
                           {
                             "argumentTypes": null,
-                            "id": 1688,
+                            "id": 1696,
                             "name": "_beneficiary",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1669,
+                            "referencedDeclaration": 1677,
                             "src": "1139:12:10",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
@@ -686,11 +686,11 @@
                           },
                           {
                             "argumentTypes": null,
-                            "id": 1689,
+                            "id": 1697,
                             "name": "_asset",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1671,
+                            "referencedDeclaration": 1679,
                             "src": "1161:6:10",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
@@ -699,11 +699,11 @@
                           },
                           {
                             "argumentTypes": null,
-                            "id": 1690,
+                            "id": 1698,
                             "name": "_lockingPeriod",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1673,
+                            "referencedDeclaration": 1681,
                             "src": "1177:14:10",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
@@ -712,11 +712,11 @@
                           },
                           {
                             "argumentTypes": null,
-                            "id": 1691,
+                            "id": 1699,
                             "name": "_lockingPrice",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1675,
+                            "referencedDeclaration": 1683,
                             "src": "1201:13:10",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
@@ -725,11 +725,11 @@
                           },
                           {
                             "argumentTypes": null,
-                            "id": 1692,
+                            "id": 1700,
                             "name": "_lockingPricePosition",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1677,
+                            "referencedDeclaration": 1685,
                             "src": "1224:21:10",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint8",
@@ -772,7 +772,7 @@
                               "typeString": "uint8"
                             }
                           ],
-                          "id": 1684,
+                          "id": 1692,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -780,23 +780,23 @@
                           "nodeType": "NewExpression",
                           "src": "1037:20:10",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_function_creation_nonpayable$_t_address_$_t_address_$_t_address_$_t_address_$_t_address_$_t_uint256_$_t_uint256_$_t_uint8_$returns$_t_contract$_LiquidityReserve_$1482_$",
+                            "typeIdentifier": "t_function_creation_nonpayable$_t_address_$_t_address_$_t_address_$_t_address_$_t_address_$_t_uint256_$_t_uint256_$_t_uint8_$returns$_t_contract$_LiquidityReserve_$1490_$",
                             "typeString": "function (address,address,address,address,address,uint256,uint256,uint8) returns (contract LiquidityReserve)"
                           },
                           "typeName": {
                             "contractScope": null,
-                            "id": 1683,
+                            "id": 1691,
                             "name": "LiquidityReserve",
                             "nodeType": "UserDefinedTypeName",
-                            "referencedDeclaration": 1482,
+                            "referencedDeclaration": 1490,
                             "src": "1041:16:10",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_LiquidityReserve_$1482",
+                              "typeIdentifier": "t_contract$_LiquidityReserve_$1490",
                               "typeString": "contract LiquidityReserve"
                             }
                           }
                         },
-                        "id": 1693,
+                        "id": 1701,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -806,7 +806,7 @@
                         "nodeType": "FunctionCall",
                         "src": "1037:216:10",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_LiquidityReserve_$1482",
+                          "typeIdentifier": "t_contract$_LiquidityReserve_$1490",
                           "typeString": "contract LiquidityReserve"
                         }
                       }
@@ -814,11 +814,11 @@
                     "expression": {
                       "argumentTypes": [
                         {
-                          "typeIdentifier": "t_contract$_LiquidityReserve_$1482",
+                          "typeIdentifier": "t_contract$_LiquidityReserve_$1490",
                           "typeString": "contract LiquidityReserve"
                         }
                       ],
-                      "id": 1682,
+                      "id": 1690,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -831,7 +831,7 @@
                       },
                       "typeName": "address"
                     },
-                    "id": 1694,
+                    "id": 1702,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -845,30 +845,30 @@
                       "typeString": "address"
                     }
                   },
-                  "functionReturnParameters": 1681,
-                  "id": 1695,
+                  "functionReturnParameters": 1689,
+                  "id": 1703,
                   "nodeType": "Return",
                   "src": "1015:244:10"
                 }
               ]
             },
             "documentation": "@dev Creates and initialises a new LiquidityReserve\n@param _liquidityProvider Lequidity provider address\n@param _alkemiNetwork Alkemi Network contract address\n@param _beneficiary earnings beneficiary (address(0) if the earnings goes to the current reserve address)\n@param _lockingPeriod funds locking period\n@param _lockingPrice release funds when hitting this price\n@param _lockingPricePosition locking price position\n@return Address of new Liquidity Reserve",
-            "id": 1697,
+            "id": 1705,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "_createLiquidityReserve",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1678,
+              "id": 1686,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1663,
+                  "id": 1671,
                   "name": "_linkToken",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1697,
+                  "scope": 1705,
                   "src": "765:18:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -877,7 +877,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1662,
+                    "id": 1670,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "765:7:10",
@@ -892,10 +892,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1665,
+                  "id": 1673,
                   "name": "_liquidityProvider",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1697,
+                  "scope": 1705,
                   "src": "789:26:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -904,7 +904,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1664,
+                    "id": 1672,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "789:7:10",
@@ -919,10 +919,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1667,
+                  "id": 1675,
                   "name": "_alkemiNetwork",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1697,
+                  "scope": 1705,
                   "src": "821:22:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -931,7 +931,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1666,
+                    "id": 1674,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "821:7:10",
@@ -946,10 +946,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1669,
+                  "id": 1677,
                   "name": "_beneficiary",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1697,
+                  "scope": 1705,
                   "src": "849:20:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -958,7 +958,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1668,
+                    "id": 1676,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "849:7:10",
@@ -973,10 +973,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1671,
+                  "id": 1679,
                   "name": "_asset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1697,
+                  "scope": 1705,
                   "src": "875:14:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -985,7 +985,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1670,
+                    "id": 1678,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "875:7:10",
@@ -1000,10 +1000,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1673,
+                  "id": 1681,
                   "name": "_lockingPeriod",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1697,
+                  "scope": 1705,
                   "src": "895:22:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1012,7 +1012,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1672,
+                    "id": 1680,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "895:7:10",
@@ -1026,10 +1026,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1675,
+                  "id": 1683,
                   "name": "_lockingPrice",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1697,
+                  "scope": 1705,
                   "src": "923:21:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1038,7 +1038,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1674,
+                    "id": 1682,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "923:7:10",
@@ -1052,10 +1052,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1677,
+                  "id": 1685,
                   "name": "_lockingPricePosition",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1697,
+                  "scope": 1705,
                   "src": "950:27:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1064,7 +1064,7 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 1676,
+                    "id": 1684,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
                     "src": "950:5:10",
@@ -1080,15 +1080,15 @@
               "src": "759:222:10"
             },
             "returnParameters": {
-              "id": 1681,
+              "id": 1689,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1680,
+                  "id": 1688,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1697,
+                  "scope": 1705,
                   "src": "1000:7:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1097,7 +1097,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1679,
+                    "id": 1687,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1000:7:10",
@@ -1113,14 +1113,14 @@
               ],
               "src": "999:9:10"
             },
-            "scope": 1698,
+            "scope": 1706,
             "src": "727:537:10",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "internal"
           }
         ],
-        "scope": 1699,
+        "scope": 1707,
         "src": "177:1089:10"
       }
     ],
@@ -1132,7 +1132,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.21",
-  "updatedAt": "2020-01-21T11:50:43.804Z",
+  "updatedAt": "2020-01-27T11:00:32.916Z",
   "devdoc": {
     "details": "This Factory creates a Liquidity Reserve",
     "methods": {},
