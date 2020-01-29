@@ -18,6 +18,7 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
 
     address public asset;
     address public beneficiary;
+    uint256 public createdAt;
     uint256 public lockingPeriod;
     uint256 public lockingPrice;
     uint256 public totalBalance;
@@ -62,9 +63,12 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
 
     /**
      * @notice constructor
+     * @param _link LINK token address
      * @param _liquidityProvider liquidity provider address
      * @param _alkemiNetwork Alkemi Network contract address
      * @param _beneficiary earnings beneficiary (address(0) if the earnings goes to the current reserve address)
+     * @param _asset reserve asset
+     * @param _createdAt reserve created time
      * @param _lockingPeriod funds locking period
      * @param _lockingPrice release funds when hitting this price
      * @param _lockingPricePosition locking price position
@@ -75,6 +79,7 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
         address _alkemiNetwork,
         address _beneficiary,
         address _asset,
+        uint256 _createdAt,
         uint256 _lockingPeriod,
         uint256 _lockingPrice,
         uint8 _lockingPricePosition
@@ -96,6 +101,7 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
 
         asset = _asset;
         beneficiary = _beneficiary;
+        createdAt = _createdAt;
         lockingPeriod = _lockingPeriod;
         lockingPrice = _lockingPrice;
 
@@ -144,10 +150,11 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
     function details()
         public
         view
-        returns (address, uint256, uint256, uint256, uint256, uint256)
+        returns (address, uint256, uint256, uint256, uint256, uint256, uint256)
     {
         return (
             asset,
+            createdAt,
             lockingPeriod,
             lockingPrice,
             totalBalance,
