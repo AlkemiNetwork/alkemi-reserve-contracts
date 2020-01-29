@@ -140,6 +140,7 @@ contract AlkemiNetwork is LiquidityReserveFactory {
         address _linkToken,
         address _beneficiary,
         address _asset,
+        uint256 _createdAt,
         uint256 _lockingPeriod,
         uint256 _lockingPrice,
         uint8 _lockingPricePosition
@@ -150,6 +151,7 @@ contract AlkemiNetwork is LiquidityReserveFactory {
             address(this),
             _beneficiary,
             _asset,
+            _createdAt,
             _lockingPeriod,
             _lockingPrice,
             _lockingPricePosition

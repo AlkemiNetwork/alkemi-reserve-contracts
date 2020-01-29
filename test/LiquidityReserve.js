@@ -89,6 +89,7 @@ contract('Alkemi Liquidity Reserve', ([alkemiTeam, liquidityProvider1, liquidity
         linkToken.address,
         ZERO_ADDR,
         token1.address,
+        now,
         lockingPeriod,
         lockingPrice,
         lockingPricePosition,
