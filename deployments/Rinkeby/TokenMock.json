@@ -382,14 +382,14 @@
     "absolutePath": "/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/mocks/TokenMock.sol",
     "exportedSymbols": {
       "TokenMock": [
-        1904
+        1921
       ]
     },
-    "id": 1905,
+    "id": 1922,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1882,
+        "id": 1899,
         "literals": [
           "solidity",
           "^",
@@ -402,10 +402,10 @@
       {
         "absolutePath": "@openzeppelin/contracts/token/ERC20/ERC20Detailed.sol",
         "file": "@openzeppelin/contracts/token/ERC20/ERC20Detailed.sol",
-        "id": 1883,
+        "id": 1900,
         "nodeType": "ImportDirective",
-        "scope": 1905,
-        "sourceUnit": 3754,
+        "scope": 1922,
+        "sourceUnit": 3771,
         "src": "25:63:14",
         "symbolAliases": [],
         "unitAlias": ""
@@ -413,10 +413,10 @@
       {
         "absolutePath": "@openzeppelin/contracts/token/ERC20/ERC20Mintable.sol",
         "file": "@openzeppelin/contracts/token/ERC20/ERC20Mintable.sol",
-        "id": 1884,
+        "id": 1901,
         "nodeType": "ImportDirective",
-        "scope": 1905,
-        "sourceUnit": 3782,
+        "scope": 1922,
+        "sourceUnit": 3799,
         "src": "89:63:14",
         "symbolAliases": [],
         "unitAlias": ""
@@ -427,17 +427,17 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1885,
+              "id": 1902,
               "name": "ERC20Detailed",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3753,
+              "referencedDeclaration": 3770,
               "src": "221:13:14",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ERC20Detailed_$3753",
+                "typeIdentifier": "t_contract$_ERC20Detailed_$3770",
                 "typeString": "contract ERC20Detailed"
               }
             },
-            "id": 1886,
+            "id": 1903,
             "nodeType": "InheritanceSpecifier",
             "src": "221:13:14"
           },
@@ -445,54 +445,54 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1887,
+              "id": 1904,
               "name": "ERC20Mintable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3781,
+              "referencedDeclaration": 3798,
               "src": "236:13:14",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ERC20Mintable_$3781",
+                "typeIdentifier": "t_contract$_ERC20Mintable_$3798",
                 "typeString": "contract ERC20Mintable"
               }
             },
-            "id": 1888,
+            "id": 1905,
             "nodeType": "InheritanceSpecifier",
             "src": "236:13:14"
           }
         ],
         "contractDependencies": [
-          2915,
-          3103,
-          3695,
-          3753,
-          3781,
-          3850
+          2932,
+          3120,
+          3712,
+          3770,
+          3798,
+          3867
         ],
         "contractKind": "contract",
         "documentation": "@notice ERC20 Mintable token mock",
         "fullyImplemented": true,
-        "id": 1904,
+        "id": 1921,
         "linearizedBaseContracts": [
-          1904,
-          3781,
-          3103,
-          3695,
-          3753,
-          3850,
-          2915
+          1921,
+          3798,
+          3120,
+          3712,
+          3770,
+          3867,
+          2932
         ],
         "name": "TokenMock",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 1902,
+              "id": 1919,
               "nodeType": "Block",
               "src": "391:2:14",
               "statements": []
             },
             "documentation": null,
-            "id": 1903,
+            "id": 1920,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [
@@ -500,11 +500,11 @@
                 "arguments": [
                   {
                     "argumentTypes": null,
-                    "id": 1897,
+                    "id": 1914,
                     "name": "name",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 1890,
+                    "referencedDeclaration": 1907,
                     "src": "363:4:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_memory_ptr",
@@ -513,11 +513,11 @@
                   },
                   {
                     "argumentTypes": null,
-                    "id": 1898,
+                    "id": 1915,
                     "name": "symbol",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 1892,
+                    "referencedDeclaration": 1909,
                     "src": "369:6:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_memory_ptr",
@@ -526,11 +526,11 @@
                   },
                   {
                     "argumentTypes": null,
-                    "id": 1899,
+                    "id": 1916,
                     "name": "decimals",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 1894,
+                    "referencedDeclaration": 1911,
                     "src": "377:8:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint8",
@@ -538,17 +538,17 @@
                     }
                   }
                 ],
-                "id": 1900,
+                "id": 1917,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1896,
+                  "id": 1913,
                   "name": "ERC20Detailed",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 3753,
+                  "referencedDeclaration": 3770,
                   "src": "349:13:14",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_type$_t_contract$_ERC20Detailed_$3753_$",
+                    "typeIdentifier": "t_type$_t_contract$_ERC20Detailed_$3770_$",
                     "typeString": "type(contract ERC20Detailed)"
                   }
                 },
@@ -559,15 +559,15 @@
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1895,
+              "id": 1912,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1890,
+                  "id": 1907,
                   "name": "name",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1903,
+                  "scope": 1920,
                   "src": "268:18:14",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -576,7 +576,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1889,
+                    "id": 1906,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "268:6:14",
@@ -590,10 +590,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1892,
+                  "id": 1909,
                   "name": "symbol",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1903,
+                  "scope": 1920,
                   "src": "288:20:14",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -602,7 +602,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1891,
+                    "id": 1908,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "288:6:14",
@@ -616,10 +616,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1894,
+                  "id": 1911,
                   "name": "decimals",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1903,
+                  "scope": 1920,
                   "src": "310:14:14",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -628,7 +628,7 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 1893,
+                    "id": 1910,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
                     "src": "310:5:14",
@@ -644,19 +644,19 @@
               "src": "267:58:14"
             },
             "returnParameters": {
-              "id": 1901,
+              "id": 1918,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "391:0:14"
             },
-            "scope": 1904,
+            "scope": 1921,
             "src": "256:137:14",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1905,
+        "scope": 1922,
         "src": "199:196:14"
       }
     ],
@@ -666,14 +666,14 @@
     "absolutePath": "/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/mocks/TokenMock.sol",
     "exportedSymbols": {
       "TokenMock": [
-        1904
+        1921
       ]
     },
-    "id": 1905,
+    "id": 1922,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1882,
+        "id": 1899,
         "literals": [
           "solidity",
           "^",
@@ -686,10 +686,10 @@
       {
         "absolutePath": "@openzeppelin/contracts/token/ERC20/ERC20Detailed.sol",
         "file": "@openzeppelin/contracts/token/ERC20/ERC20Detailed.sol",
-        "id": 1883,
+        "id": 1900,
         "nodeType": "ImportDirective",
-        "scope": 1905,
-        "sourceUnit": 3754,
+        "scope": 1922,
+        "sourceUnit": 3771,
         "src": "25:63:14",
         "symbolAliases": [],
         "unitAlias": ""
@@ -697,10 +697,10 @@
       {
         "absolutePath": "@openzeppelin/contracts/token/ERC20/ERC20Mintable.sol",
         "file": "@openzeppelin/contracts/token/ERC20/ERC20Mintable.sol",
-        "id": 1884,
+        "id": 1901,
         "nodeType": "ImportDirective",
-        "scope": 1905,
-        "sourceUnit": 3782,
+        "scope": 1922,
+        "sourceUnit": 3799,
         "src": "89:63:14",
         "symbolAliases": [],
         "unitAlias": ""
@@ -711,17 +711,17 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1885,
+              "id": 1902,
               "name": "ERC20Detailed",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3753,
+              "referencedDeclaration": 3770,
               "src": "221:13:14",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ERC20Detailed_$3753",
+                "typeIdentifier": "t_contract$_ERC20Detailed_$3770",
                 "typeString": "contract ERC20Detailed"
               }
             },
-            "id": 1886,
+            "id": 1903,
             "nodeType": "InheritanceSpecifier",
             "src": "221:13:14"
           },
@@ -729,54 +729,54 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1887,
+              "id": 1904,
               "name": "ERC20Mintable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 3781,
+              "referencedDeclaration": 3798,
               "src": "236:13:14",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_ERC20Mintable_$3781",
+                "typeIdentifier": "t_contract$_ERC20Mintable_$3798",
                 "typeString": "contract ERC20Mintable"
               }
             },
-            "id": 1888,
+            "id": 1905,
             "nodeType": "InheritanceSpecifier",
             "src": "236:13:14"
           }
         ],
         "contractDependencies": [
-          2915,
-          3103,
-          3695,
-          3753,
-          3781,
-          3850
+          2932,
+          3120,
+          3712,
+          3770,
+          3798,
+          3867
         ],
         "contractKind": "contract",
         "documentation": "@notice ERC20 Mintable token mock",
         "fullyImplemented": true,
-        "id": 1904,
+        "id": 1921,
         "linearizedBaseContracts": [
-          1904,
-          3781,
-          3103,
-          3695,
-          3753,
-          3850,
-          2915
+          1921,
+          3798,
+          3120,
+          3712,
+          3770,
+          3867,
+          2932
         ],
         "name": "TokenMock",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 1902,
+              "id": 1919,
               "nodeType": "Block",
               "src": "391:2:14",
               "statements": []
             },
             "documentation": null,
-            "id": 1903,
+            "id": 1920,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [
@@ -784,11 +784,11 @@
                 "arguments": [
                   {
                     "argumentTypes": null,
-                    "id": 1897,
+                    "id": 1914,
                     "name": "name",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 1890,
+                    "referencedDeclaration": 1907,
                     "src": "363:4:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_memory_ptr",
@@ -797,11 +797,11 @@
                   },
                   {
                     "argumentTypes": null,
-                    "id": 1898,
+                    "id": 1915,
                     "name": "symbol",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 1892,
+                    "referencedDeclaration": 1909,
                     "src": "369:6:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_memory_ptr",
@@ -810,11 +810,11 @@
                   },
                   {
                     "argumentTypes": null,
-                    "id": 1899,
+                    "id": 1916,
                     "name": "decimals",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 1894,
+                    "referencedDeclaration": 1911,
                     "src": "377:8:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint8",
@@ -822,17 +822,17 @@
                     }
                   }
                 ],
-                "id": 1900,
+                "id": 1917,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1896,
+                  "id": 1913,
                   "name": "ERC20Detailed",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 3753,
+                  "referencedDeclaration": 3770,
                   "src": "349:13:14",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_type$_t_contract$_ERC20Detailed_$3753_$",
+                    "typeIdentifier": "t_type$_t_contract$_ERC20Detailed_$3770_$",
                     "typeString": "type(contract ERC20Detailed)"
                   }
                 },
@@ -843,15 +843,15 @@
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1895,
+              "id": 1912,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1890,
+                  "id": 1907,
                   "name": "name",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1903,
+                  "scope": 1920,
                   "src": "268:18:14",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -860,7 +860,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1889,
+                    "id": 1906,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "268:6:14",
@@ -874,10 +874,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1892,
+                  "id": 1909,
                   "name": "symbol",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1903,
+                  "scope": 1920,
                   "src": "288:20:14",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -886,7 +886,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1891,
+                    "id": 1908,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "288:6:14",
@@ -900,10 +900,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1894,
+                  "id": 1911,
                   "name": "decimals",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1903,
+                  "scope": 1920,
                   "src": "310:14:14",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -912,7 +912,7 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 1893,
+                    "id": 1910,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
                     "src": "310:5:14",
@@ -928,19 +928,19 @@
               "src": "267:58:14"
             },
             "returnParameters": {
-              "id": 1901,
+              "id": 1918,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "391:0:14"
             },
-            "scope": 1904,
+            "scope": 1921,
             "src": "256:137:14",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1905,
+        "scope": 1922,
         "src": "199:196:14"
       }
     ],
@@ -952,7 +952,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.21",
-  "updatedAt": "2020-01-27T11:47:19.078Z",
+  "updatedAt": "2020-01-29T10:58:22.577Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {

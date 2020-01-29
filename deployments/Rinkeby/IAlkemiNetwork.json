@@ -100,14 +100,14 @@
     "absolutePath": "/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/interfaces/IAlkemiNetwork.sol",
     "exportedSymbols": {
       "IAlkemiNetwork": [
-        517
+        520
       ]
     },
-    "id": 518,
+    "id": 521,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 475,
+        "id": 478,
         "literals": [
           "solidity",
           "^",
@@ -123,9 +123,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 517,
+        "id": 520,
         "linearizedBaseContracts": [
-          517
+          520
         ],
         "name": "IAlkemiNetwork",
         "nodeType": "ContractDefinition",
@@ -133,28 +133,28 @@
           {
             "body": null,
             "documentation": "@notice Get current settlement id\n@return settlement id",
-            "id": 480,
+            "id": 483,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "currentSettlementId",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 476,
+              "id": 479,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "164:2:2"
             },
             "returnParameters": {
-              "id": 479,
+              "id": 482,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 478,
+                  "id": 481,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 480,
+                  "scope": 483,
                   "src": "190:7:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -163,7 +163,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 477,
+                    "id": 480,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "190:7:2",
@@ -178,7 +178,7 @@
               ],
               "src": "189:9:2"
             },
-            "scope": 517,
+            "scope": 520,
             "src": "136:63:2",
             "stateMutability": "view",
             "superFunction": null,
@@ -187,22 +187,22 @@
           {
             "body": null,
             "documentation": "@notice Get liquidity reserves addresses of a liquidity provider\n@param _liquidityProvider liquidity provider address\n@return active liquidity reserve contract addresses",
-            "id": 488,
+            "id": 491,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "providerLiquidityReserves",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 483,
+              "id": 486,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 482,
+                  "id": 485,
                   "name": "_liquidityProvider",
                   "nodeType": "VariableDeclaration",
-                  "scope": 488,
+                  "scope": 491,
                   "src": "439:26:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -211,7 +211,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 481,
+                    "id": 484,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "439:7:2",
@@ -228,15 +228,15 @@
               "src": "438:28:2"
             },
             "returnParameters": {
-              "id": 487,
+              "id": 490,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 486,
+                  "id": 489,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 488,
+                  "scope": 491,
                   "src": "514:16:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -246,7 +246,7 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 484,
+                      "id": 487,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
                       "src": "514:7:2",
@@ -256,7 +256,7 @@
                         "typeString": "address"
                       }
                     },
-                    "id": 485,
+                    "id": 488,
                     "length": null,
                     "nodeType": "ArrayTypeName",
                     "src": "514:9:2",
@@ -271,7 +271,7 @@
               ],
               "src": "513:18:2"
             },
-            "scope": 517,
+            "scope": 520,
             "src": "404:128:2",
             "stateMutability": "view",
             "superFunction": null,
@@ -280,22 +280,22 @@
           {
             "body": null,
             "documentation": "@notice Get liquidity reserves addresses that hold a specific asset\n@param _asset asset address\n@return liquidity reserves addresses",
-            "id": 496,
+            "id": 499,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "tokenLiquidityReserves",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 491,
+              "id": 494,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 490,
+                  "id": 493,
                   "name": "_asset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 496,
+                  "scope": 499,
                   "src": "732:14:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -304,7 +304,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 489,
+                    "id": 492,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "732:7:2",
@@ -321,15 +321,15 @@
               "src": "731:16:2"
             },
             "returnParameters": {
-              "id": 495,
+              "id": 498,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 494,
+                  "id": 497,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 496,
+                  "scope": 499,
                   "src": "795:16:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -339,7 +339,7 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 492,
+                      "id": 495,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
                       "src": "795:7:2",
@@ -349,7 +349,7 @@
                         "typeString": "address"
                       }
                     },
-                    "id": 493,
+                    "id": 496,
                     "length": null,
                     "nodeType": "ArrayTypeName",
                     "src": "795:9:2",
@@ -364,7 +364,7 @@
               ],
               "src": "794:18:2"
             },
-            "scope": 517,
+            "scope": 520,
             "src": "700:113:2",
             "stateMutability": "view",
             "superFunction": null,
@@ -373,22 +373,22 @@
           {
             "body": null,
             "documentation": "@notice settlement function\n@param exchangesAddresses list of exchanges addresses\n@param surplusTokensAddresses list of surplus tokens\n@param deficitTokensAddresses list of dificit tokens\n@param surplus list of surplus amount\n@param deficit list of deficit",
-            "id": 516,
+            "id": 519,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "doSettlement",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 512,
+              "id": 515,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 499,
+                  "id": 502,
                   "name": "exchangesAddresses",
                   "nodeType": "VariableDeclaration",
-                  "scope": 516,
+                  "scope": 519,
                   "src": "1151:37:2",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -398,7 +398,7 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 497,
+                      "id": 500,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
                       "src": "1151:7:2",
@@ -408,7 +408,7 @@
                         "typeString": "address"
                       }
                     },
-                    "id": 498,
+                    "id": 501,
                     "length": null,
                     "nodeType": "ArrayTypeName",
                     "src": "1151:9:2",
@@ -422,10 +422,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 502,
+                  "id": 505,
                   "name": "surplusTokensAddresses",
                   "nodeType": "VariableDeclaration",
-                  "scope": 516,
+                  "scope": 519,
                   "src": "1198:41:2",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -435,7 +435,7 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 500,
+                      "id": 503,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
                       "src": "1198:7:2",
@@ -445,7 +445,7 @@
                         "typeString": "address"
                       }
                     },
-                    "id": 501,
+                    "id": 504,
                     "length": null,
                     "nodeType": "ArrayTypeName",
                     "src": "1198:9:2",
@@ -459,10 +459,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 505,
+                  "id": 508,
                   "name": "deficitTokensAddresses",
                   "nodeType": "VariableDeclaration",
-                  "scope": 516,
+                  "scope": 519,
                   "src": "1249:41:2",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -472,7 +472,7 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 503,
+                      "id": 506,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
                       "src": "1249:7:2",
@@ -482,7 +482,7 @@
                         "typeString": "address"
                       }
                     },
-                    "id": 504,
+                    "id": 507,
                     "length": null,
                     "nodeType": "ArrayTypeName",
                     "src": "1249:9:2",
@@ -496,10 +496,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 508,
+                  "id": 511,
                   "name": "surplus",
                   "nodeType": "VariableDeclaration",
-                  "scope": 516,
+                  "scope": 519,
                   "src": "1300:26:2",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -509,7 +509,7 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 506,
+                      "id": 509,
                       "name": "uint128",
                       "nodeType": "ElementaryTypeName",
                       "src": "1300:7:2",
@@ -518,7 +518,7 @@
                         "typeString": "uint128"
                       }
                     },
-                    "id": 507,
+                    "id": 510,
                     "length": null,
                     "nodeType": "ArrayTypeName",
                     "src": "1300:9:2",
@@ -532,10 +532,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 511,
+                  "id": 514,
                   "name": "deficit",
                   "nodeType": "VariableDeclaration",
-                  "scope": 516,
+                  "scope": 519,
                   "src": "1336:26:2",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -545,7 +545,7 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 509,
+                      "id": 512,
                       "name": "uint128",
                       "nodeType": "ElementaryTypeName",
                       "src": "1336:7:2",
@@ -554,7 +554,7 @@
                         "typeString": "uint128"
                       }
                     },
-                    "id": 510,
+                    "id": 513,
                     "length": null,
                     "nodeType": "ArrayTypeName",
                     "src": "1336:9:2",
@@ -570,15 +570,15 @@
               "src": "1141:227:2"
             },
             "returnParameters": {
-              "id": 515,
+              "id": 518,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 514,
+                  "id": 517,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 516,
+                  "scope": 519,
                   "src": "1387:4:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -587,7 +587,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 513,
+                    "id": 516,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1387:4:2",
@@ -602,14 +602,14 @@
               ],
               "src": "1386:6:2"
             },
-            "scope": 517,
+            "scope": 520,
             "src": "1120:273:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 518,
+        "scope": 521,
         "src": "25:1370:2"
       }
     ],
@@ -619,14 +619,14 @@
     "absolutePath": "/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/interfaces/IAlkemiNetwork.sol",
     "exportedSymbols": {
       "IAlkemiNetwork": [
-        517
+        520
       ]
     },
-    "id": 518,
+    "id": 521,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 475,
+        "id": 478,
         "literals": [
           "solidity",
           "^",
@@ -642,9 +642,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 517,
+        "id": 520,
         "linearizedBaseContracts": [
-          517
+          520
         ],
         "name": "IAlkemiNetwork",
         "nodeType": "ContractDefinition",
@@ -652,28 +652,28 @@
           {
             "body": null,
             "documentation": "@notice Get current settlement id\n@return settlement id",
-            "id": 480,
+            "id": 483,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "currentSettlementId",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 476,
+              "id": 479,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "164:2:2"
             },
             "returnParameters": {
-              "id": 479,
+              "id": 482,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 478,
+                  "id": 481,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 480,
+                  "scope": 483,
                   "src": "190:7:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -682,7 +682,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 477,
+                    "id": 480,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "190:7:2",
@@ -697,7 +697,7 @@
               ],
               "src": "189:9:2"
             },
-            "scope": 517,
+            "scope": 520,
             "src": "136:63:2",
             "stateMutability": "view",
             "superFunction": null,
@@ -706,22 +706,22 @@
           {
             "body": null,
             "documentation": "@notice Get liquidity reserves addresses of a liquidity provider\n@param _liquidityProvider liquidity provider address\n@return active liquidity reserve contract addresses",
-            "id": 488,
+            "id": 491,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "providerLiquidityReserves",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 483,
+              "id": 486,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 482,
+                  "id": 485,
                   "name": "_liquidityProvider",
                   "nodeType": "VariableDeclaration",
-                  "scope": 488,
+                  "scope": 491,
                   "src": "439:26:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -730,7 +730,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 481,
+                    "id": 484,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "439:7:2",
@@ -747,15 +747,15 @@
               "src": "438:28:2"
             },
             "returnParameters": {
-              "id": 487,
+              "id": 490,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 486,
+                  "id": 489,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 488,
+                  "scope": 491,
                   "src": "514:16:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -765,7 +765,7 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 484,
+                      "id": 487,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
                       "src": "514:7:2",
@@ -775,7 +775,7 @@
                         "typeString": "address"
                       }
                     },
-                    "id": 485,
+                    "id": 488,
                     "length": null,
                     "nodeType": "ArrayTypeName",
                     "src": "514:9:2",
@@ -790,7 +790,7 @@
               ],
               "src": "513:18:2"
             },
-            "scope": 517,
+            "scope": 520,
             "src": "404:128:2",
             "stateMutability": "view",
             "superFunction": null,
@@ -799,22 +799,22 @@
           {
             "body": null,
             "documentation": "@notice Get liquidity reserves addresses that hold a specific asset\n@param _asset asset address\n@return liquidity reserves addresses",
-            "id": 496,
+            "id": 499,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "tokenLiquidityReserves",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 491,
+              "id": 494,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 490,
+                  "id": 493,
                   "name": "_asset",
                   "nodeType": "VariableDeclaration",
-                  "scope": 496,
+                  "scope": 499,
                   "src": "732:14:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -823,7 +823,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 489,
+                    "id": 492,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "732:7:2",
@@ -840,15 +840,15 @@
               "src": "731:16:2"
             },
             "returnParameters": {
-              "id": 495,
+              "id": 498,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 494,
+                  "id": 497,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 496,
+                  "scope": 499,
                   "src": "795:16:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -858,7 +858,7 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 492,
+                      "id": 495,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
                       "src": "795:7:2",
@@ -868,7 +868,7 @@
                         "typeString": "address"
                       }
                     },
-                    "id": 493,
+                    "id": 496,
                     "length": null,
                     "nodeType": "ArrayTypeName",
                     "src": "795:9:2",
@@ -883,7 +883,7 @@
               ],
               "src": "794:18:2"
             },
-            "scope": 517,
+            "scope": 520,
             "src": "700:113:2",
             "stateMutability": "view",
             "superFunction": null,
@@ -892,22 +892,22 @@
           {
             "body": null,
             "documentation": "@notice settlement function\n@param exchangesAddresses list of exchanges addresses\n@param surplusTokensAddresses list of surplus tokens\n@param deficitTokensAddresses list of dificit tokens\n@param surplus list of surplus amount\n@param deficit list of deficit",
-            "id": 516,
+            "id": 519,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "doSettlement",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 512,
+              "id": 515,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 499,
+                  "id": 502,
                   "name": "exchangesAddresses",
                   "nodeType": "VariableDeclaration",
-                  "scope": 516,
+                  "scope": 519,
                   "src": "1151:37:2",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -917,7 +917,7 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 497,
+                      "id": 500,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
                       "src": "1151:7:2",
@@ -927,7 +927,7 @@
                         "typeString": "address"
                       }
                     },
-                    "id": 498,
+                    "id": 501,
                     "length": null,
                     "nodeType": "ArrayTypeName",
                     "src": "1151:9:2",
@@ -941,10 +941,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 502,
+                  "id": 505,
                   "name": "surplusTokensAddresses",
                   "nodeType": "VariableDeclaration",
-                  "scope": 516,
+                  "scope": 519,
                   "src": "1198:41:2",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -954,7 +954,7 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 500,
+                      "id": 503,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
                       "src": "1198:7:2",
@@ -964,7 +964,7 @@
                         "typeString": "address"
                       }
                     },
-                    "id": 501,
+                    "id": 504,
                     "length": null,
                     "nodeType": "ArrayTypeName",
                     "src": "1198:9:2",
@@ -978,10 +978,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 505,
+                  "id": 508,
                   "name": "deficitTokensAddresses",
                   "nodeType": "VariableDeclaration",
-                  "scope": 516,
+                  "scope": 519,
                   "src": "1249:41:2",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -991,7 +991,7 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 503,
+                      "id": 506,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
                       "src": "1249:7:2",
@@ -1001,7 +1001,7 @@
                         "typeString": "address"
                       }
                     },
-                    "id": 504,
+                    "id": 507,
                     "length": null,
                     "nodeType": "ArrayTypeName",
                     "src": "1249:9:2",
@@ -1015,10 +1015,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 508,
+                  "id": 511,
                   "name": "surplus",
                   "nodeType": "VariableDeclaration",
-                  "scope": 516,
+                  "scope": 519,
                   "src": "1300:26:2",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -1028,7 +1028,7 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 506,
+                      "id": 509,
                       "name": "uint128",
                       "nodeType": "ElementaryTypeName",
                       "src": "1300:7:2",
@@ -1037,7 +1037,7 @@
                         "typeString": "uint128"
                       }
                     },
-                    "id": 507,
+                    "id": 510,
                     "length": null,
                     "nodeType": "ArrayTypeName",
                     "src": "1300:9:2",
@@ -1051,10 +1051,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 511,
+                  "id": 514,
                   "name": "deficit",
                   "nodeType": "VariableDeclaration",
-                  "scope": 516,
+                  "scope": 519,
                   "src": "1336:26:2",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -1064,7 +1064,7 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 509,
+                      "id": 512,
                       "name": "uint128",
                       "nodeType": "ElementaryTypeName",
                       "src": "1336:7:2",
@@ -1073,7 +1073,7 @@
                         "typeString": "uint128"
                       }
                     },
-                    "id": 510,
+                    "id": 513,
                     "length": null,
                     "nodeType": "ArrayTypeName",
                     "src": "1336:9:2",
@@ -1089,15 +1089,15 @@
               "src": "1141:227:2"
             },
             "returnParameters": {
-              "id": 515,
+              "id": 518,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 514,
+                  "id": 517,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 516,
+                  "scope": 519,
                   "src": "1387:4:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1106,7 +1106,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 513,
+                    "id": 516,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1387:4:2",
@@ -1121,14 +1121,14 @@
               ],
               "src": "1386:6:2"
             },
-            "scope": 517,
+            "scope": 520,
             "src": "1120:273:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 518,
+        "scope": 521,
         "src": "25:1370:2"
       }
     ],
@@ -1140,7 +1140,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.21",
-  "updatedAt": "2020-01-27T11:43:12.190Z",
+  "updatedAt": "2020-01-29T10:52:28.074Z",
   "devdoc": {
     "methods": {
       "currentSettlementId()": {

@@ -31,14 +31,14 @@
     "absolutePath": "/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/interfaces/IOracle.sol",
     "exportedSymbols": {
       "IOracle": [
-        669
+        672
       ]
     },
-    "id": 670,
+    "id": 673,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 661,
+        "id": 664,
         "literals": [
           "solidity",
           "^",
@@ -54,9 +54,9 @@
         "contractKind": "contract",
         "documentation": "@title IOracle",
         "fullyImplemented": false,
-        "id": 669,
+        "id": 672,
         "linearizedBaseContracts": [
-          669
+          672
         ],
         "name": "IOracle",
         "nodeType": "ContractDefinition",
@@ -64,22 +64,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 668,
+            "id": 671,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "restartContainersTrading",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 666,
+              "id": 669,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 663,
+                  "id": 666,
                   "name": "settlementId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 668,
+                  "scope": 671,
                   "src": "117:20:6",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -88,7 +88,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 662,
+                    "id": 665,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "117:7:6",
@@ -102,10 +102,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 665,
+                  "id": 668,
                   "name": "settlementTime",
                   "nodeType": "VariableDeclaration",
-                  "scope": 668,
+                  "scope": 671,
                   "src": "147:22:6",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -114,7 +114,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 664,
+                    "id": 667,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "147:7:6",
@@ -130,19 +130,19 @@
               "src": "107:68:6"
             },
             "returnParameters": {
-              "id": 667,
+              "id": 670,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "184:0:6"
             },
-            "scope": 669,
+            "scope": 672,
             "src": "74:111:6",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 670,
+        "scope": 673,
         "src": "51:136:6"
       }
     ],
@@ -152,14 +152,14 @@
     "absolutePath": "/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/interfaces/IOracle.sol",
     "exportedSymbols": {
       "IOracle": [
-        669
+        672
       ]
     },
-    "id": 670,
+    "id": 673,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 661,
+        "id": 664,
         "literals": [
           "solidity",
           "^",
@@ -175,9 +175,9 @@
         "contractKind": "contract",
         "documentation": "@title IOracle",
         "fullyImplemented": false,
-        "id": 669,
+        "id": 672,
         "linearizedBaseContracts": [
-          669
+          672
         ],
         "name": "IOracle",
         "nodeType": "ContractDefinition",
@@ -185,22 +185,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 668,
+            "id": 671,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "restartContainersTrading",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 666,
+              "id": 669,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 663,
+                  "id": 666,
                   "name": "settlementId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 668,
+                  "scope": 671,
                   "src": "117:20:6",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -209,7 +209,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 662,
+                    "id": 665,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "117:7:6",
@@ -223,10 +223,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 665,
+                  "id": 668,
                   "name": "settlementTime",
                   "nodeType": "VariableDeclaration",
-                  "scope": 668,
+                  "scope": 671,
                   "src": "147:22:6",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -235,7 +235,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 664,
+                    "id": 667,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "147:7:6",
@@ -251,19 +251,19 @@
               "src": "107:68:6"
             },
             "returnParameters": {
-              "id": 667,
+              "id": 670,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "184:0:6"
             },
-            "scope": 669,
+            "scope": 672,
             "src": "74:111:6",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 670,
+        "scope": 673,
         "src": "51:136:6"
       }
     ],
@@ -275,7 +275,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.21",
-  "updatedAt": "2020-01-27T11:43:12.210Z",
+  "updatedAt": "2020-01-29T10:52:28.096Z",
   "devdoc": {
     "methods": {},
     "title": "IOracle"

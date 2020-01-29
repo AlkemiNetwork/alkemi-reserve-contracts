@@ -373,14 +373,14 @@
     "absolutePath": "/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/liquidity-reserve/tests/ChainlinkOracle.sol",
     "exportedSymbols": {
       "ChainlinkOracle": [
-        1723
+        1740
       ]
     },
-    "id": 1724,
+    "id": 1741,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1710,
+        "id": 1727,
         "literals": [
           "solidity",
           "^",
@@ -393,10 +393,10 @@
       {
         "absolutePath": "chainlinkv0.5/contracts/Oracle.sol",
         "file": "chainlinkv0.5/contracts/Oracle.sol",
-        "id": 1711,
+        "id": 1728,
         "nodeType": "ImportDirective",
-        "scope": 1724,
-        "sourceUnit": 5375,
+        "scope": 1741,
+        "sourceUnit": 5392,
         "src": "25:44:11",
         "symbolAliases": [],
         "unitAlias": ""
@@ -407,52 +407,52 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1712,
+              "id": 1729,
               "name": "Oracle",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 5374,
+              "referencedDeclaration": 5391,
               "src": "99:6:11",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Oracle_$5374",
+                "typeIdentifier": "t_contract$_Oracle_$5391",
                 "typeString": "contract Oracle"
               }
             },
-            "id": 1713,
+            "id": 1730,
             "nodeType": "InheritanceSpecifier",
             "src": "99:6:11"
           }
         ],
         "contractDependencies": [
-          4937,
-          5374,
-          5407,
-          5628,
-          6512
+          4954,
+          5391,
+          5424,
+          5645,
+          6529
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1723,
+        "id": 1740,
         "linearizedBaseContracts": [
-          1723,
-          5374,
-          4937,
-          6512,
-          5628,
-          5407
+          1740,
+          5391,
+          4954,
+          6529,
+          5645,
+          5424
         ],
         "name": "ChainlinkOracle",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 1721,
+              "id": 1738,
               "nodeType": "Block",
               "src": "162:4:11",
               "statements": []
             },
             "documentation": null,
-            "id": 1722,
+            "id": 1739,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [
@@ -460,11 +460,11 @@
                 "arguments": [
                   {
                     "argumentTypes": null,
-                    "id": 1718,
+                    "id": 1735,
                     "name": "_link",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 1715,
+                    "referencedDeclaration": 1732,
                     "src": "155:5:11",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -472,17 +472,17 @@
                     }
                   }
                 ],
-                "id": 1719,
+                "id": 1736,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1717,
+                  "id": 1734,
                   "name": "Oracle",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 5374,
+                  "referencedDeclaration": 5391,
                   "src": "148:6:11",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_type$_t_contract$_Oracle_$5374_$",
+                    "typeIdentifier": "t_type$_t_contract$_Oracle_$5391_$",
                     "typeString": "type(contract Oracle)"
                   }
                 },
@@ -493,15 +493,15 @@
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1716,
+              "id": 1733,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1715,
+                  "id": 1732,
                   "name": "_link",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1722,
+                  "scope": 1739,
                   "src": "126:13:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -510,7 +510,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1714,
+                    "id": 1731,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "126:7:11",
@@ -527,19 +527,19 @@
               "src": "125:15:11"
             },
             "returnParameters": {
-              "id": 1720,
+              "id": 1737,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "162:0:11"
             },
-            "scope": 1723,
+            "scope": 1740,
             "src": "114:52:11",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1724,
+        "scope": 1741,
         "src": "71:97:11"
       }
     ],
@@ -549,14 +549,14 @@
     "absolutePath": "/Users/haythem96/Projects/Alkemi/alkemi-protocol/contracts/liquidity-reserve/tests/ChainlinkOracle.sol",
     "exportedSymbols": {
       "ChainlinkOracle": [
-        1723
+        1740
       ]
     },
-    "id": 1724,
+    "id": 1741,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1710,
+        "id": 1727,
         "literals": [
           "solidity",
           "^",
@@ -569,10 +569,10 @@
       {
         "absolutePath": "chainlinkv0.5/contracts/Oracle.sol",
         "file": "chainlinkv0.5/contracts/Oracle.sol",
-        "id": 1711,
+        "id": 1728,
         "nodeType": "ImportDirective",
-        "scope": 1724,
-        "sourceUnit": 5375,
+        "scope": 1741,
+        "sourceUnit": 5392,
         "src": "25:44:11",
         "symbolAliases": [],
         "unitAlias": ""
@@ -583,52 +583,52 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1712,
+              "id": 1729,
               "name": "Oracle",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 5374,
+              "referencedDeclaration": 5391,
               "src": "99:6:11",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Oracle_$5374",
+                "typeIdentifier": "t_contract$_Oracle_$5391",
                 "typeString": "contract Oracle"
               }
             },
-            "id": 1713,
+            "id": 1730,
             "nodeType": "InheritanceSpecifier",
             "src": "99:6:11"
           }
         ],
         "contractDependencies": [
-          4937,
-          5374,
-          5407,
-          5628,
-          6512
+          4954,
+          5391,
+          5424,
+          5645,
+          6529
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1723,
+        "id": 1740,
         "linearizedBaseContracts": [
-          1723,
-          5374,
-          4937,
-          6512,
-          5628,
-          5407
+          1740,
+          5391,
+          4954,
+          6529,
+          5645,
+          5424
         ],
         "name": "ChainlinkOracle",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 1721,
+              "id": 1738,
               "nodeType": "Block",
               "src": "162:4:11",
               "statements": []
             },
             "documentation": null,
-            "id": 1722,
+            "id": 1739,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [
@@ -636,11 +636,11 @@
                 "arguments": [
                   {
                     "argumentTypes": null,
-                    "id": 1718,
+                    "id": 1735,
                     "name": "_link",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 1715,
+                    "referencedDeclaration": 1732,
                     "src": "155:5:11",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -648,17 +648,17 @@
                     }
                   }
                 ],
-                "id": 1719,
+                "id": 1736,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1717,
+                  "id": 1734,
                   "name": "Oracle",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 5374,
+                  "referencedDeclaration": 5391,
                   "src": "148:6:11",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_type$_t_contract$_Oracle_$5374_$",
+                    "typeIdentifier": "t_type$_t_contract$_Oracle_$5391_$",
                     "typeString": "type(contract Oracle)"
                   }
                 },
@@ -669,15 +669,15 @@
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1716,
+              "id": 1733,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1715,
+                  "id": 1732,
                   "name": "_link",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1722,
+                  "scope": 1739,
                   "src": "126:13:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -686,7 +686,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1714,
+                    "id": 1731,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "126:7:11",
@@ -703,19 +703,19 @@
               "src": "125:15:11"
             },
             "returnParameters": {
-              "id": 1720,
+              "id": 1737,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "162:0:11"
             },
-            "scope": 1723,
+            "scope": 1740,
             "src": "114:52:11",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1724,
+        "scope": 1741,
         "src": "71:97:11"
       }
     ],
@@ -727,7 +727,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.21",
-  "updatedAt": "2020-01-27T11:43:12.231Z",
+  "updatedAt": "2020-01-29T10:52:28.136Z",
   "devdoc": {
     "methods": {
       "cancelOracleRequest(bytes32,uint256,bytes4,uint256)": {
