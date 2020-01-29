@@ -68,7 +68,7 @@ modifier onlyAlkemiOracle() internal
 - [providerLiquidityReserves(address _liquidityProvider)](#providerliquidityreserves)
 - [providerTokenReserves(address _liquidityProvider, address _asset)](#providertokenreserves)
 - [tokenLiquidityReserves(address _asset)](#tokenliquidityreserves)
-- [createLiquidityReserve(address _linkToken, address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition)](#createliquidityreserve)
+- [createLiquidityReserve(address _linkToken, address _beneficiary, address _asset, uint256 _createdAt, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition)](#createliquidityreserve)
 - [setNewOwner(address _owner)](#setnewowner)
 - [setAlkemiOracle(address _oracle)](#setalkemioracle)
 - [_setOwner(address _owner)](#_setowner)
@@ -148,7 +148,7 @@ liquidity reserves addresses
 Creates and initialises a new LiquidityReserve
 
 ```js
-function createLiquidityReserve(address _linkToken, address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition) public nonpayable
+function createLiquidityReserve(address _linkToken, address _beneficiary, address _asset, uint256 _createdAt, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition) public nonpayable
 returns(address)
 ```
 
@@ -163,6 +163,7 @@ Address of new Liquidity Reserve
 | _linkToken | address |  | 
 | _beneficiary | address | earnings beneficiary (address(0) if the earnings goes to the current reserve address) | 
 | _asset | address | asset address | 
+| _createdAt | uint256 |  | 
 | _lockingPeriod | uint256 | funds locking period | 
 | _lockingPrice | uint256 | release funds when hitting this price | 
 | _lockingPricePosition | uint8 | locking price position | 

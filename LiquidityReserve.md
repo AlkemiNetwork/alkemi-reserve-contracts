@@ -34,6 +34,7 @@ uint256 internal _amountToWithdraw;
 //public members
 address public asset;
 address public beneficiary;
+uint256 public createdAt;
 uint256 public lockingPeriod;
 uint256 public lockingPrice;
 uint256 public totalBalance;
@@ -58,7 +59,7 @@ event PriceUnlock(uint256  lockingPrice, uint256  oraclePrice, uint256  lockingP
 
 ## Functions
 
-- [(address _link, address _liquidityProvider, address _alkemiNetwork, address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition)](#)
+- [(address _link, address _liquidityProvider, address _alkemiNetwork, address _beneficiary, address _asset, uint256 _createdAt, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition)](#)
 - [isActive()](#isactive)
 - [balance(address _token)](#balance)
 - [isBeneficiary()](#isbeneficiary)
@@ -80,18 +81,19 @@ event PriceUnlock(uint256  lockingPrice, uint256  oraclePrice, uint256  lockingP
 constructor
 
 ```js
-function (address _link, address _liquidityProvider, address _alkemiNetwork, address _beneficiary, address _asset, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition) public nonpayable LiquidityReserveState 
+function (address _link, address _liquidityProvider, address _alkemiNetwork, address _beneficiary, address _asset, uint256 _createdAt, uint256 _lockingPeriod, uint256 _lockingPrice, uint8 _lockingPricePosition) public nonpayable LiquidityReserveState 
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _link | address |  | 
+| _link | address | LINK token address | 
 | _liquidityProvider | address | liquidity provider address | 
 | _alkemiNetwork | address | Alkemi Network contract address | 
 | _beneficiary | address | earnings beneficiary (address(0) if the earnings goes to the current reserve address) | 
-| _asset | address |  | 
+| _asset | address | reserve asset | 
+| _createdAt | uint256 | reserve created time | 
 | _lockingPeriod | uint256 | funds locking period | 
 | _lockingPrice | uint256 | release funds when hitting this price | 
 | _lockingPricePosition | uint8 | locking price position | 
@@ -149,7 +151,7 @@ Get reserve details
 
 ```js
 function details() public view
-returns(address, uint256, uint256, uint256, uint256, uint256)
+returns(address, uint256, uint256, uint256, uint256, uint256, uint256)
 ```
 
 **Returns**
