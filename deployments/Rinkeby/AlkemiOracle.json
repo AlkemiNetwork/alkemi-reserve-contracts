@@ -13382,12 +13382,12 @@
         }
       },
       "links": {},
-      "address": "0x769A8d3b4cCeaF7c231d2c4035D3C9519e2e55e9",
-      "transactionHash": "0x59a19c812611c582c88c6aac94c9666229680bfb936f1864c2237673e7a105c7"
+      "address": "0xdF696d4ab3F4d591c92E1e31C74b82BABE8e2Ad6",
+      "transactionHash": "0x1ae5a05e1164b26d1647778c1c8422bd3cb00d76bbb53ab3130e71bb6d4085cd"
     }
   },
   "schemaVersion": "3.0.21",
-  "updatedAt": "2020-01-29T10:58:22.583Z",
+  "updatedAt": "2020-01-30T10:13:29.316Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {

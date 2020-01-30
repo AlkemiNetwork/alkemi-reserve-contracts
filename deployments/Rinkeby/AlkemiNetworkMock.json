@@ -3720,7 +3720,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.21",
-  "updatedAt": "2020-01-29T10:52:28.137Z",
+  "updatedAt": "2020-01-30T10:10:16.951Z",
   "devdoc": {
     "methods": {
       "doSettlement(address[],address[],address[],uint128[],uint128[])": {

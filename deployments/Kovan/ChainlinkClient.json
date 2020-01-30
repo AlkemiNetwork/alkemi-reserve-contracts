@@ -11559,7 +11559,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.21",
-  "updatedAt": "2020-01-29T11:29:15.908Z",
+  "updatedAt": "2020-01-30T10:18:36.471Z",
   "devdoc": {
     "methods": {},
     "title": "The ChainlinkClient contract"

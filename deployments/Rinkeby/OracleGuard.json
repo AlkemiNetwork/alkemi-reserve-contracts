@@ -14128,12 +14128,12 @@
     "4": {
       "events": {},
       "links": {},
-      "address": "0x3cA3ce4d1992Aed14999340ab1305EC9D1dCA398",
-      "transactionHash": "0xadfcd31a9ccc8cf1598d8b81ebe6b930c2f0389e348c8b7278d81507bdc81f2c"
+      "address": "0xc497f40D1B7db6FA5017373f1a0Ec6d53126Da23",
+      "transactionHash": "0x26db6ab34188e4367693aff73f038ee6c722e7b153d62016bcb5dbf609889a99"
     }
   },
   "schemaVersion": "3.0.21",
-  "updatedAt": "2020-01-29T10:58:22.594Z",
+  "updatedAt": "2020-01-30T10:13:29.329Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {

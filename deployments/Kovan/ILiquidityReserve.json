@@ -1315,7 +1315,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.21",
-  "updatedAt": "2020-01-29T11:29:15.842Z",
+  "updatedAt": "2020-01-30T10:18:36.405Z",
   "devdoc": {
     "methods": {
       "deposit(address,uint256)": {

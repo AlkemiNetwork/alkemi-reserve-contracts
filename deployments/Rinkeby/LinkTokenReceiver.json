@@ -2829,7 +2829,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.21",
-  "updatedAt": "2020-01-29T10:52:28.161Z",
+  "updatedAt": "2020-01-30T10:10:16.975Z",
   "devdoc": {
     "methods": {
       "onTokenTransfer(address,uint256,bytes)": {

@@ -1465,7 +1465,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.21",
-  "updatedAt": "2020-01-29T11:29:15.858Z",
+  "updatedAt": "2020-01-30T10:18:36.423Z",
   "devdoc": {
     "methods": {
       "authNode(address[])": {
