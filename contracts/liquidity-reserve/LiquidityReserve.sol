@@ -150,13 +150,15 @@ contract LiquidityReserve is ChainlinkClient, LiquidityReserveState {
     function details()
         public
         view
-        returns (address, uint256, uint256, uint256, uint256, uint256, uint256)
+        returns (address, address, uint256, uint256, uint256, uint256, uint256, uint256, uint256)
     {
         return (
             asset,
+            beneficiary,
             createdAt,
             lockingPeriod,
             lockingPrice,
+            lockingPricePosition,
             totalBalance,
             deposited,
             earned
