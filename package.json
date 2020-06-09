@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Alkemi Protocol Smart Contracts",
   "dependencies": {
-    "@openzeppelin/contracts": "^2.4.0",
+    "@openzeppelin/contracts": "^3.0.2",
     "chainlink": "0.7.10",
     "minimist": "^1.2.2",
     "promptly": "^3.0.3",
