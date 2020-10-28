@@ -10,7 +10,7 @@
     "truffle": "^5.0.44"
   },
   "devDependencies": {
-    "@openzeppelin/test-helpers": "^0.5.3",
+    "@openzeppelin/test-helpers": "^0.5.9",
     "@typescript-eslint/eslint-plugin": "^2.11.0",
     "@typescript-eslint/parser": "^2.11.0",
     "bignumber.js": "^9.0.0",
