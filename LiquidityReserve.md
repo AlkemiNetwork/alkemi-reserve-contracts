@@ -151,7 +151,7 @@ Get reserve details
 
 ```js
 function details() public view
-returns(address, uint256, uint256, uint256, uint256, uint256, uint256)
+returns(address, address, uint256, uint256, uint256, uint256, uint256, uint256, uint256)
 ```
 
 **Returns**
