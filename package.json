@@ -1,5 +1,5 @@
 {
-  "name": "alkemi-protocol-contracts",
+  "name": "alkemi-reserve-contracts",
   "version": "1.0.0",
   "description": "Alkemi Protocol Smart Contracts",
   "dependencies": {

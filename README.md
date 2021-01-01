@@ -4,8 +4,8 @@
 
 ![GitHub stars](https://img.shields.io/github/stars/project-alkemi/alkemi-protocol?style=social&label=star) ![GitHub forks](https://img.shields.io/github/forks/project-alkemi/alkemi-protocol?style=social&label=fork) ![GitHub watchers](https://img.shields.io/github/watchers/project-alkemi/alkemi-protocol?style=social&label=watch) ![GitHub followers](https://img.shields.io/github/followers/project-alkemi?label=follow&style=social)
 
-> Implementation of Alkemi Protocol in Solidity.
-> [alkemi.network](https://alkemi.network/)
+> Implementation of Alkemi Reserve Contracts in Solidity.
+> [dapp.alkemi.tech](https://dapp.alkemi.tech/)
 
 ![Liquidity Dashboard](https://raw.githubusercontent.com/project-alkemi/alkemi-protocol/master/docs/assets/liquidity-dashboard2.gif)
 
@@ -28,7 +28,7 @@
 
 ## Get Started
 
-For local development of `alkemi-protocol` you can setup the development environment on your machine.
+For local development of `alkemi-reserve-contracts` you can setup the development environment on your machine.
 
 ### Local development
 
@@ -41,8 +41,8 @@ As a pre-requisite, you need:
 
 Clone the project and install all dependencies:
 
-    git clone git@github.com:project-alkemi/alkemi-protocol.git
-    cd alkemi-protocol/
+    git clone git@github.com:project-alkemi/alkemi-reserve-contracts.git
+    cd alkemi-reserve-contracts/
 
     # install project dependencies
     $ npm i
@@ -51,7 +51,7 @@ Compile the solidity contracts:
 
     $ npm run compile
 
-![](https://raw.githubusercontent.com/project-alkemi/alkemi-protocol/master/docs/assets/alk-compile.gif)
+![](https://raw.githubusercontent.com/project-alkemi/alkemi-reserve-contracts/master/docs/assets/alk-compile.gif)
 
 In a new terminal, launch an Ethereum RPC client, we use the default ganache-cli command to configure and run a local development ganache:
 
@@ -99,8 +99,8 @@ The contract addresses deployed on `Rinkeby` Test Network:
 
 The contract addresses deployed on `Kovan` Test Network:
 
-| Contract      | Address                                                                                                                       |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Contract      | Address                                                                                                                     |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | AlkemiToken   | [0x60B3f59bD5B0F3BC99AfBF28AB53aA6C3C5baad5](https://kovan.etherscan.io/address/0x60B3f59bD5B0F3BC99AfBF28AB53aA6C3C5baad5) |
 | AlkemiPrime   | [0x1D237aA864E2E6d3296A2e37AaFD64fc1A8C95bB](https://kovan.etherscan.io/address/0x1D237aA864E2E6d3296A2e37AaFD64fc1A8C95bB) |
 | AlkemiNetwork | [0xA1C1C69b7aB2C60a149BAA72a1cBFF6388fd7C80](https://kovan.etherscan.io/address/0xA1C1C69b7aB2C60a149BAA72a1cBFF6388fd7C80) |

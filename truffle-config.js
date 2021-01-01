@@ -1,18 +1,19 @@
 /**
  * remove comments for public chain migration
  */
-//const HDWalletProvider = require('truffle-hdwallet-provider')
-//const fs = require('fs');
-//const mnemonic = fs.readFileSync(".mnemonic").toString().trim();
-//const infuraKey = "816cc7a6308448dbbaf46ac5488507cf";
+/*
+ *const HDWalletProvider = require('truffle-hdwallet-provider')
+ *const fs = require('fs');
+ *const mnemonic = fs.readFileSync(".mnemonic").toString().trim();
+ *const infuraKey = "816cc7a6308448dbbaf46ac5488507cf";
+ */
 
 module.exports = {
- 
   networks: {
     development: {
       host: "127.0.0.1", // Localhost (default: none)
       port: 8545, // Standard Ethereum port (default: none)
-      network_id: "*", // Any network (default: none)
+      network_id: "*" // Any network (default: none)
     },
     coverage: {
       host: "localhost",
@@ -22,17 +23,26 @@ module.exports = {
       gasPrice: 0x01 // <-- Use this low gas price
     },
     rinkeby: {
-      provider: () => new HDWalletProvider(mnemonic, `https://rinkeby.infura.io/v3/${infuraKey}`),
+      provider: () => new HDWalletProvider(
+          mnemonic,
+          `https://rinkeby.infura.io/v3/${infuraKey}`
+        ),
       network_id: 4,
       skipDryRun: true // Skip dry run before migrations? (default: false for public nets )
     },
     kovan: {
-      provider: () => new HDWalletProvider(mnemonic, `https://kovan.infura.io/v3/${infuraKey}`),
+      provider: () => new HDWalletProvider(
+          mnemonic,
+          `https://kovan.infura.io/v3/${infuraKey}`
+        ),
       network_id: 42,
       skipDryRun: true // Skip dry run before migrations? (default: false for public nets )
     },
     mainnet: {
-      provider: () => new HDWalletProvider(mnemonic, `https://mainnet.infura.io/v3/${infuraKey}`),
+      provider: () => new HDWalletProvider(
+          mnemonic,
+          `https://mainnet.infura.io/v3/${infuraKey}`
+        ),
       network_id: 1,
       skipDryRun: false // Skip dry run before migrations? (default: false for public nets )
     }
@@ -46,7 +56,8 @@ module.exports = {
   compilers: {
     solc: {
       version: "0.5.5", // Fetch exact version from solc-bin (default: truffle's version)
-      settings: { // See the solidity docs for advice about optimization and evmVersion
+      settings: {
+        // See the solidity docs for advice about optimization and evmVersion
         optimizer: {
           enabled: true,
           runs: 200
@@ -54,4 +65,4 @@ module.exports = {
       }
     }
   }
-}
+};
